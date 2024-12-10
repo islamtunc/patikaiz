@@ -9,7 +9,10 @@ export default function GoogleSignInButton() {
     >
       <a href="/login/google" className="flex w-full items-center gap-2">
         <GoogleIcon />
-        Sign in with Google
+        
+
+
+        Bi google ' ê bikevê
       </a>
     </Button>
   );
