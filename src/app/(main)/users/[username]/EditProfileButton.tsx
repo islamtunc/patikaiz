@@ -1,3 +1,5 @@
+// Bismillahirahmanirahim
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -15,7 +17,6 @@ export default function EditProfileButton({ user }: EditProfileButtonProps) {
   return (
     <>
       <Button variant="outline" onClick={() => setShowDialog(true)}>
-        Edit profile
       </Button>
       <EditProfileDialog
         user={user}

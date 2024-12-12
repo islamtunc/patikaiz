@@ -1,3 +1,7 @@
+// Bismillahirahmanirahim
+
+
+
 import { Metadata } from "next";
 import Chat from "./Chat";
 

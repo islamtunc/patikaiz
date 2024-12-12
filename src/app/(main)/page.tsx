@@ -1,3 +1,7 @@
+// Bismillahirahmanirahim
+
+
+
 import PostEditor from "@/components/posts/editor/PostEditor";
 import TrendsSidebar from "@/components/TrendsSidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -11,8 +15,8 @@ export default function Home() {
         <PostEditor />
         <Tabs defaultValue="for-you">
           <TabsList>
-            <TabsTrigger value="for-you">For you</TabsTrigger>
-            <TabsTrigger value="following">Following</TabsTrigger>
+            <TabsTrigger value="for-you">Jibo Te</TabsTrigger>
+            <TabsTrigger value="following">Tê Şopandin</TabsTrigger>
           </TabsList>
           <TabsContent value="for-you">
             <ForYouFeed />

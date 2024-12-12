@@ -1,3 +1,7 @@
+// Bismillahirahmanirahim
+
+
+
 import { validateRequest } from "@/auth";
 import { redirect } from "next/navigation";
 import MenuBar from "./MenuBar";

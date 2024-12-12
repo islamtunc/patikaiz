@@ -1,3 +1,5 @@
+// Bismillahirahmanirahim
+
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";

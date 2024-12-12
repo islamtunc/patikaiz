@@ -1,3 +1,5 @@
+// Bismillahirahmanirahim
+
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
@@ -53,7 +55,7 @@ export default function SearchResults({ query }: SearchResultsProps) {
   if (status === "error") {
     return (
       <p className="text-center text-destructive">
-        An error occurred while loading posts.
+        Pirsgirek derket dema weşan hatin amade kirin..
       </p>
     );
   }

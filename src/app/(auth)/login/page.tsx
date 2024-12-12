@@ -6,7 +6,7 @@ import GoogleSignInButton from "./google/GoogleSignInButton";
 import LoginForm from "./LoginForm";
 
 export const metadata: Metadata = {
-  title: "Login",
+  title: "Têketin",
 };
 
 export default function Page() {
