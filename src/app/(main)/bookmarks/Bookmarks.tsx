@@ -40,7 +40,7 @@ export default function Bookmarks() {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        You don&apos;t have any bookmarks yet.
+        We hê tişte qeyd nekirîye.
       </p>
     );
   }
@@ -48,7 +48,7 @@ export default function Bookmarks() {
   if (status === "error") {
     return (
       <p className="text-center text-destructive">
-        An error occurred while loading bookmarks.
+        Pirsgirek derket,paşe dîsa biceribînin.
       </p>
     );
   }
