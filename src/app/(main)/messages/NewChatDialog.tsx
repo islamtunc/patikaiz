@@ -94,7 +94,7 @@ export default function NewChatDialog({
     <Dialog open onOpenChange={onOpenChange}>
       <DialogContent className="bg-card p-0">
         <DialogHeader className="px-6 pt-6">
-          <DialogTitle>New chat</DialogTitle>
+          <DialogTitle>Axaftina nû</DialogTitle>
         </DialogHeader>
         <div>
           <div className="group relative">
