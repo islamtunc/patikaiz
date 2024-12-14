@@ -1,3 +1,5 @@
+// Bismillahirrahmanirrahim 
+
 "use client";
 
 import useFollowerInfo from "@/hooks/useFollowerInfo";
