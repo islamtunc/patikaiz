@@ -1,3 +1,7 @@
+//Bismillahirahmanirahim 
+
+
+
 import { CommentsPage } from "@/lib/types";
 import {
   InfiniteData,
@@ -48,14 +52,14 @@ export function useSubmitCommentMutation(postId: string) {
       });
 
       toast({
-        description: "Comment created",
+        description: "Şirove hate şandin",
       });
     },
     onError(error) {
       console.error(error);
       toast({
         variant: "destructive",
-        description: "Failed to submit comment. Please try again.",
+        description: "Dema şandine de pirsgirek derket .",
       });
     },
   });
@@ -91,14 +95,14 @@ export function useDeleteCommentMutation() {
       );
 
       toast({
-        description: "Comment deleted",
+        description: "Serkeftin",
       });
     },
     onError(error) {
       console.error(error);
       toast({
         variant: "destructive",
-        description: "Failed to delete comment. Please try again.",
+        description: "Pirsgirek derket,dîsa kerema xwe re..",
       });
     },
   });
