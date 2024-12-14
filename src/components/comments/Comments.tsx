@@ -1,3 +1,8 @@
+
+//Bismillahirrahmanirrahim 
+
+
+
 import kyInstance from "@/lib/ky";
 import { CommentsPage, PostData } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -41,7 +46,7 @@ export default function Comments({ post }: CommentsProps) {
           disabled={isFetching}
           onClick={() => fetchNextPage()}
         >
-          Load previous comments
+          Şîroveyên pêşî
         </Button>
       )}
       {status === "pending" && <Loader2 className="mx-auto animate-spin" />}
@@ -50,7 +55,7 @@ export default function Comments({ post }: CommentsProps) {
       )}
       {status === "error" && (
         <p className="text-center text-destructive">
-          An error occurred while loading comments.
+          Nebû,dîsa biceribînin.
         </p>
       )}
       <div className="divide-y">
