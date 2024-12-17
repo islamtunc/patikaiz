@@ -45,8 +45,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-"Ser nameya namê ,namê Allah<br></<br>
- Bê nameye namê kêmî wî Wallah"
+
             {children}
           </ThemeProvider>
         </ReactQueryProvider>
