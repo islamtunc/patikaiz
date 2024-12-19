@@ -1,7 +1,6 @@
 // Bismillahirahmanirahim 
-
-
-
+// Elhamdullillahirabbulalemin
+// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain.
 
 import loginImage from "@/assets/login-image.jpg";
 import { Metadata } from "next";
@@ -11,7 +10,7 @@ import GoogleSignInButton from "./google/GoogleSignInButton";
 import LoginForm from "./LoginForm";
 
 export const metadata: Metadata = {
-  title: "Têketin",
+  title: "Müşterisi Burada",
 };
 
 export default function Page() {
@@ -19,16 +18,15 @@ export default function Page() {
     <main className="flex h-screen items-center justify-center p-5">
       <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
         <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
-          <h5 className="text-center text-3xl font-bold"> Ser nameya namê ,namê Allah<span></span>
- Bê nameye namê kêmî wî Wallah</h5>
+          <h5 className="text-center text-3xl font-bold"> Müşterisi Burada</h5>
          
-          <h1 className="text-center text-3xl font-bold">Lebê ?</h1>
+          <h1 className="text-center text-3xl font-bold">Müşterisi Burada</h1>
 
           <div className="space-y-5">
             <GoogleSignInButton />
             <div className="flex items-center gap-3">
               <div className="h-px flex-1 bg-muted" />
-              <span>AN JI</span>
+              <span>Giriş Yap</span>
               <div className="h-px flex-1 bg-muted" />
             </div>
             <LoginForm />
@@ -38,7 +36,7 @@ export default function Page() {
 
 
 
-              Endam nînî? Bibe Endam
+              Üye değil misin?Üye Ol
             </Link>
           </div>
         </div>
