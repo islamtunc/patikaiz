@@ -34,7 +34,7 @@ function Mmhome() {
 
 <Car href='/malper/mmavahi' style={{width:75 ,height:75, color:"green"}}/>
  
- <Button > Araba</Button>
+ <Button  ><a href='/malper/mmwesayit'>Araba</a> </Button>
 
 
 
