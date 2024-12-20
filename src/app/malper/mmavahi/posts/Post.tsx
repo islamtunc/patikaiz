@@ -1,4 +1,4 @@
-// Bismillahirahmanirahim 
+// Bismillahirahmanirahim
 
 "use client";
 
@@ -68,8 +68,8 @@ export default function Post({ post }: PostProps) {
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
-         
-      
+
+
         </div>
         <BookmarkButton
           postId={post.id}
@@ -80,7 +80,6 @@ export default function Post({ post }: PostProps) {
           }}
         />
       </div>
-      {showComments && <Comments post={post} />}
     </article>
   );
 }

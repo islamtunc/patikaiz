@@ -12,8 +12,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
-import { useToast } from "../ui/use-toast";
-
+import { useToast } from "@/components/ui/use-toast";
 interface LikeButtonProps {
   postId: string;
   initialState: LikeInfo;
