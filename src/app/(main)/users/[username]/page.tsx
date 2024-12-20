@@ -76,7 +76,6 @@ export default async function Page({ params: { username } }: PageProps) {
         </div>
         <UserPosts userId={user.id} />
       </div>
-      <TrendsSidebar />
     </main>
   );
 }
