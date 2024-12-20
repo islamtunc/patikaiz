@@ -14,7 +14,7 @@ export default function Home() {
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
 
-      <h5 >Emlak </h5>
+      <h5 style={{textAlign:"center",color:"green",fontSize:35}} >Emlak </h5>
 
         <Tabs defaultValue="PostEditor">
           <TabsList>

@@ -3,10 +3,14 @@
 
 
 import React from 'react'
+import Mmhome from '../malper/mm'
 
 function page() {
   return (
-    <div>page</div>
+    <div>
+
+      <Mmhome/>
+    </div>
   )
 }
 
