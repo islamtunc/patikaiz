@@ -7,7 +7,6 @@ import PostEditor from "./posts/editor/PostEditor";
 import SearchField from "@/components/SearchField";
 import TrendsSidebar from "@/components/TrendsSidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BadgeAlert } from "lucide-react";
 
 export default function Home() {
   return (

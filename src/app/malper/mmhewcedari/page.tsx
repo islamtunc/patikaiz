@@ -44,7 +44,6 @@ export default function Home() {
 </TabsContent>
         </Tabs>
       </div>
-      <TrendsSidebar />
     </main>
   );
 }
