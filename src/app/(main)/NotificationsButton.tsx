@@ -1,3 +1,5 @@
+// Bismillahirrahmanirrahim 
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -40,7 +42,7 @@ export default function NotificationsButton({
             </span>
           )}
         </div>
-        <span className="hidden lg:inline">Nûçe</span>
+        <span className="hidden lg:inline">Bildirimler</span>
       </Link>
     </Button>
   );
