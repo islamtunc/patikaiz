@@ -4,6 +4,7 @@
 
 import React from 'react'
 import Mmhome from './mm'
+import ForYouFeed from '../(main)/ForYouFeed'
 
 function page() {
   return (
@@ -12,8 +13,11 @@ function page() {
 
 
 
-
+      
       <Mmhome/>
+
+
+      <ForYouFeed/>
     </div>
   )
 }

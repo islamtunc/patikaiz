@@ -17,11 +17,7 @@ import { ClipboardEvent, useRef } from "react";
 import { useSubmitPostMutation } from "./mutations";
 import "./styles.css";
 import useMediaUpload, { Attachment } from "./useMediaUpload";
-import { Input } from "@/components/ui/input";
-import { Selection } from "@tiptap/pm/state";
-import { Form, FormItem } from "@/components/ui/form";
-import { Label } from "@/components/ui/label";
-
+import Mmm from "./Mmm";
 
 export default function PostEditor() {
   const { user } = useSession();
@@ -85,156 +81,25 @@ export default function PostEditor() {
   return (
     <div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex gap-5">
-<h3>        Yeni ilan vermek için formu doldurun.
-</h3>     
+        <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
+        <div {...rootProps} className="w-full">
+          <EditorContent
+            editor={editor}
+            className={cn(
+              "max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-5 py-3",
+              isDragActive && "outline-dashed",
+            )}
+            onPaste={onPaste}
+          />
+          <input {...getInputProps()} />
         </div>
-<div style={{borderColor:"green",borderWidth:5,}} >
-
-
-
-  
-<AddAttachmentsButton
-          onFilesSelected={startUpload}
-          disabled={isUploading || attachments.length >= 5}
-        /> 
-
-        <h5 >Fotoğraf Ekle</h5>
-</div>
-
-
-
-<FormItem>
-
-  <Label> Konut Tipi</Label>
-        <select>
-  <option value="someOption">Daire</option>
-  <option value="otherOption">Villa</option>
-
-  <option value="otherOption">Müstakil Ev</option>
-
-
-
-  <option value="otherOption">Residans</option>
-
-
-
-
-  <option value="someOption">Çiftlik Evi</option>
-  <option value="otherOption">Yazlık</option>
-
-  <option value="otherOption">Loft </option>
-
-
-
-  <option value="otherOption">Stüdyo Daire</option>
-
-</select>
-</FormItem>
-
-
-
-
-<FormItem><Label>Kullanım Amacı </Label>
-
-<select>
-  <option value="someOption">Satılık </option>
-  <option value="otherOption">Kiralık</option>
-
-
-  <option value="otherOption">Günlük Kiralık</option>
-
-
-  <option value="otherOption">Devren Kiralık</option>
-
-
-  <option value="someOption">Devren Satılık</option>
-
-</select></FormItem>
-
-
-<FormItem><Label>Oda Sayısı </Label>
-
-<select>
-  <option value="someOption"> 1+0(Stüdyo)</option>
-  <option value="otherOption">1+1</option>
-
-  <option value="otherOption">2+1</option>
-
-  
-  <option value="otherOption">3+1</option>
-
-</select>
-</FormItem>
-
-
-
-
-
-
-
-<FormItem><Label>Konumu</Label>
-
-<select>
-  <option value="someOption">Şehir Merkezi</option>
-  <option value="otherOption">Deniz Kenarı</option>
-
-  <option value="otherOption">Doğa İçinde</option>
-
-
-
-  <option value="otherOption">Site İçinde</option>
-
-
-  <option value="otherOption">Toplu Taşıma Yakınında</option>
-
-
-</select></FormItem>
-
-
-
-<FormItem><Label>imkanlar</Label>
-
-<select>
-<option value="otherOption">Havuzlu Konut</option>
-
-
-  <option value="someOption">Bahçeli Konut</option>
-
-  <option value="otherOption">Manzaralı Konut</option>
-
-
-
-  <option value="otherOption"> Otoparklı Konut</option>
-
-  <option value="otherOption"> Güvenlikli Site</option>
-
-</select>
-<br></br></FormItem>
-
-
-<FormItem><Label>Durumu</Label>
-
-<select >
-<option value="otherOption">Yeni Yapı</option>
-
-
-  <option value="someOption">Sıfır Konut</option>
-
-  <option value="otherOption">Arazi</option>
-
-
-
-  <option value="otherOption"> İkinci El</option>
-
-  <option value="otherOption"> Tadilat Gerektiren</option>
-
-</select>
-
-<Input placeholder="Açıklama"></Input>
-
-<Input placeholder="Fiyat Tl"></Input></FormItem>
-
-
+      </div>
+      {!!attachments.length && (
+        <AttachmentPreviews
+          attachments={attachments}
+          removeAttachment={removeAttachment}
+        />
+      )}
       <div className="flex items-center justify-end gap-3">
         {isUploading && (
           <>
@@ -242,14 +107,20 @@ export default function PostEditor() {
             <Loader2 className="size-5 animate-spin text-primary" />
           </>
         )}
-      
+        <AddAttachmentsButton
+          onFilesSelected={startUpload}
+          disabled={isUploading || attachments.length >= 5}
+        />
+        
+
+        <Mmm />
         <LoadingButton
           onClick={onSubmit}
           loading={mutation.isPending}
           disabled={!input.trim() || isUploading}
           className="min-w-20"
         >
-          İlanı Yayınla
+          Parvebike
         </LoadingButton>
       </div>
     </div>
