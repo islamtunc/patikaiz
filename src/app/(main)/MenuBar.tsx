@@ -1,8 +1,7 @@
 // Bismillahirahmanirahim
 
+"use client"
 
-
-import { validateRequest } from "@/auth";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
 import streamServerClient from "@/lib/stream";
@@ -10,13 +9,16 @@ import { Bookmark, Home } from "lucide-react";
 import Link from "next/link";
 import MessagesButton from "./MessagesButton";
 import NotificationsButton from "./NotificationsButton";
+import { useSession } from "./SessionProvider";
+
+
 
 interface MenuBarProps {
   className?: string;
 }
 
 export default async function MenuBar({ className }: MenuBarProps) {
-  const { user } = await validateRequest();
+  const { user } = useSession();
 
   if (!user) return null;
 
