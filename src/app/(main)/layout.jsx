@@ -6,9 +6,6 @@ import { validateRequest } from "@/auth";
 import MenuBar from "./MenuBar";
 import Navbar from "./Navbar";
 import SessionProvider, { useSession, SessionContext } from "./SessionProvider";
-import { redirect } from "next/navigation";
-import { use } from "react";
-import { Link } from "lucide-react";
 
 export default async function Layout({ children }
  
