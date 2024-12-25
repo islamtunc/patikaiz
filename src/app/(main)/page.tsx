@@ -3,8 +3,7 @@
 
 
 import React from 'react'
-import Mmhome from '../malper/mm'
-import ForYouFeed from './ForYouFeed'
+import Mmhome from './(malper)/mm'
 
 function page() {
   return (
