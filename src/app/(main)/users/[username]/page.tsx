@@ -1,12 +1,11 @@
 // Bismillahirahmanirahim
-
+// Elhamdulillahi Rabbul Alemin. Vessalatu Vesselamu Ala Rasulina Muhammedin ve Ala Alihi ve sahbihi ecmain.
 
 
 import { validateRequest } from "@/auth";
 import FollowButton from "@/components/FollowButton";
 import FollowerCount from "@/components/FollowerCount";
 import Linkify from "@/components/Linkify";
-import TrendsSidebar from "@/components/TrendsSidebar";
 import UserAvatar from "@/components/UserAvatar";
 import prisma from "@/lib/prisma";
 import { FollowerInfo, getUserDataSelect, UserData } from "@/lib/types";
@@ -17,7 +16,7 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import EditProfileButton from "./EditProfileButton";
 import UserPosts from "./UserPosts";
-
+import { Button } from "@/components/ui/button";
 interface PageProps {
   params: { username: string };
 }
@@ -114,14 +113,14 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
                 {formatNumber(user._count.posts)}
               </span>
             </span>
-            <FollowerCount userId={user.id} initialState={followerInfo} />
           </div>
         </div>
         {user.id === loggedInUserId ? (
           <EditProfileButton user={user} />
         ) : (
-          <FollowButton userId={user.id} initialState={followerInfo} />
-        )}
+
+
+         <Button>Mesaj yaz</Button>)}
       </div>
       {user.bio && (
         <>
