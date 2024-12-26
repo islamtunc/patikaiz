@@ -8,14 +8,15 @@ import PostEditor from "./mmcomp/posts/editor/PostEditor";
 import SearchField from "@/components/SearchField";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import ForYouFeed from "./ForYouFeed";
+
 import { useSession } from "../../SessionProvider";
 
 
- const { user } = useSession();
+ 
 export default function Home() {
 
 
+const { user } = useSession();
 
 
  
@@ -48,7 +49,7 @@ export default function Home() {
           </TabsContent>
           <TabsContent value="for-you">
 
-<ForYouFeed/>
+
 
 </TabsContent>
         </Tabs>
