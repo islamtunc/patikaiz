@@ -16,7 +16,7 @@ import { useSession } from "../../SessionProvider";
 export default function Home() {
 
 
-const { user } = useSession();
+const { user } = useSession;
 
 
  
