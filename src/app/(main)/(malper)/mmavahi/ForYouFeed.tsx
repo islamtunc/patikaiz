@@ -11,6 +11,8 @@ import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
+
+
 export default function ForYouFeed() {
   const {
     data,
