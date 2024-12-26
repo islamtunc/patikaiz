@@ -32,7 +32,7 @@ export default async function Layout({ children }
 
 
 
-{user? <MenuBar className="sticky bottom-0 flex w-full justify-center gap-5 border-t bg-card p-3 sm:hidden" /> : "Hoşgeldiniz"}
+{session.user? <MenuBar className="sticky bottom-0 flex w-full justify-center gap-5 border-t bg-card p-3 sm:hidden" /> : "Hoşgeldiniz"}
         </SessionProvider>
 
       </div>
