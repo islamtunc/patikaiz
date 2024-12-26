@@ -8,14 +8,18 @@ import PostEditor from "./mmcomp/posts/editor/PostEditor";
 import SearchField from "@/components/SearchField";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import ForYouFeed from "./ForYouFeed";
+
 import { useSession } from "../../SessionProvider";
+
+
+ 
 export default function Home() {
 
 
+const { user } = useSession();
 
 
-  const { user } = useSession();
+ 
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
@@ -45,7 +49,7 @@ export default function Home() {
           </TabsContent>
           <TabsContent value="for-you">
 
-<ForYouFeed/>
+
 
 </TabsContent>
         </Tabs>
