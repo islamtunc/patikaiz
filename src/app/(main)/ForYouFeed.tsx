@@ -2,8 +2,8 @@
 
 
 
-{
-  /*
+
+  
 
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
@@ -71,9 +71,3 @@ export default function ForYouFeed() {
   );
 }
 
-
-*/
-
-
-
-}
