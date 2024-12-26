@@ -10,12 +10,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
 import { useSession } from "../../SessionProvider";
+
+
+ const { user } = useSession();
 export default function Home() {
 
 
 
 
-  const { user } = useSession();
+ 
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
