@@ -4,7 +4,7 @@
 // Allahumme Salli ala Muhammedin ve ala ali Muhammed
 "use client";
 
-import PostEditor from "./mmcomp/posts/editor/PostEditor";
+import PostEditor from "@/components/posts/editor/PostEditor";
 import SearchField from "@/components/SearchField";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
