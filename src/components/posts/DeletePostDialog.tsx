@@ -1,7 +1,3 @@
-// Bismillahirahmanirahim 
-
-//Elhamdülillahirabbülalemin
-
 import { PostData } from "@/lib/types";
 import LoadingButton from "../LoadingButton";
 import { Button } from "../ui/button";
@@ -50,14 +46,14 @@ export default function DeletePostDialog({
             onClick={() => mutation.mutate(post.id, { onSuccess: onClose })}
             loading={mutation.isPending}
           >
-            Jê bibe
+            Delete
           </LoadingButton>
           <Button
             variant="outline"
             onClick={onClose}
             disabled={mutation.isPending}
           >
-            Betal bike
+            Cancel
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -2,6 +2,7 @@
 
 
 
+
 import { validateRequest } from "@/auth";
 import FollowButton from "@/components/FollowButton";
 import Linkify from "@/components/Linkify";
@@ -53,7 +54,7 @@ export default async function Page({ params: { postId } }: PageProps) {
   if (!user) {
     return (
       <p className="text-destructive">
-        Tu&apos; nikarî van rûpela bibînî.
+        You&apos;re not authorized to view this page.
       </p>
     );
   }
@@ -85,7 +86,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
 
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
-      <div className="text-xl font-bold">Derbarê vî de</div>
+      <div className="text-xl font-bold">About this user</div>
       <UserTooltip user={user}>
         <Link
           href={`/users/${user.username}`}

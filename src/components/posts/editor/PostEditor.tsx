@@ -1,4 +1,4 @@
-// Bismillahirahmanirahim 
+// Bismillahirahmanirahim
 
 "use client";
 
@@ -45,7 +45,7 @@ export default function PostEditor() {
         italic: false,
       }),
       Placeholder.configure({
-        placeholder: "Selam aleykum hevalê/a hêja ,fermo...",
+        placeholder: "What's crack-a-lackin'?",
       }),
     ],
   });
@@ -116,7 +116,7 @@ export default function PostEditor() {
           disabled={!input.trim() || isUploading}
           className="min-w-20"
         >
-          Parvebike
+          Post
         </LoadingButton>
       </div>
     </div>
