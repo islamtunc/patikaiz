@@ -2,7 +2,7 @@
 
 // Elhamdulillahi Rabbul Alemin
 // Allahumme Salli ala Muhammedin ve ala ali Muhammed
-"use client";
+
 
 import PostEditor from "@/components/posts/editor/PostEditor";
 import SearchField from "@/components/SearchField";
