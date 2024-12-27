@@ -32,7 +32,7 @@ export default function Page() {
 Üye Değil Misin? Üye Ol
             </Link>
 
-            <Link href="/" className="block text-center hover:underline">
+            <Link href="/malper" className="block text-center hover:underline">
 
         Giriş Yapmadan Devam Et
             </Link>
