@@ -12,7 +12,18 @@ function page() {
 
 
 
-      <a href='/mmavahi'>Emlak</a>
+      <a href='/mmavahi'>Emlak</a><br></br>
+
+      <a href='/mmwesayit'>Araç</a><br></br>
+
+      <a href='/mmkinc'>Giyim</a><br></br>
+
+      <a href='/mmkedkar'>İnşaat iş ilanları</a><br></br>
+
+      <a href='/mmhuner'>İş ilanları</a><br></br>
+
+      <a href='/mmkargeh'>Sanat ve el sanatları</a>
+
     </div>
   )
 }
