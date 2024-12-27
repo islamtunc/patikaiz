@@ -1,4 +1,4 @@
-// Bismillahirahmanirahim
+// Bismillahirahmanirahim 
 
 "use client";
 
@@ -47,7 +47,7 @@ export default function SearchResults({ query }: SearchResultsProps) {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        Parvekirinên 
+        No posts found for this query.
       </p>
     );
   }
@@ -55,7 +55,7 @@ export default function SearchResults({ query }: SearchResultsProps) {
   if (status === "error") {
     return (
       <p className="text-center text-destructive">
-        Pirsgirek derket dema weşan hatin amade kirin..
+        An error occurred while loading posts.
       </p>
     );
   }

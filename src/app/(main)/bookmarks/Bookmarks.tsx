@@ -1,5 +1,3 @@
-// Bismillahirahmanirahim
-
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
@@ -40,7 +38,7 @@ export default function Bookmarks() {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        Henüz ilan kaydetmediniz.
+        You don&apos;t have any bookmarks yet.
       </p>
     );
   }
@@ -48,7 +46,7 @@ export default function Bookmarks() {
   if (status === "error") {
     return (
       <p className="text-center text-destructive">
-        Sorun çıktı,tekrar deneyiniz.
+        An error occurred while loading bookmarks.
       </p>
     );
   }

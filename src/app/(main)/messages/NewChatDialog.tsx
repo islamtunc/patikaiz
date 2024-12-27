@@ -1,5 +1,4 @@
-// Bismillahirahmanirahim
-
+// Bismillahirahmanirahim 
 
 
 import LoadingButton from "@/components/LoadingButton";
@@ -94,13 +93,13 @@ export default function NewChatDialog({
     <Dialog open onOpenChange={onOpenChange}>
       <DialogContent className="bg-card p-0">
         <DialogHeader className="px-6 pt-6">
-          <DialogTitle>Axaftina nû</DialogTitle>
+          <DialogTitle>Axaftinekî nû</DialogTitle>
         </DialogHeader>
         <div>
           <div className="group relative">
             <SearchIcon className="absolute left-5 top-1/2 size-5 -translate-y-1/2 transform text-muted-foreground group-focus-within:text-primary" />
             <input
-              placeholder="Search users..."
+              placeholder="Endamên Bigere"
               className="h-12 w-full pe-4 ps-14 focus:outline-none"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
@@ -140,13 +139,13 @@ export default function NewChatDialog({
               ))}
             {isSuccess && !data.users.length && (
               <p className="my-3 text-center text-muted-foreground">
-                No users found. Try a different name.
+                Nehat dîtin
               </p>
             )}
             {isFetching && <Loader2 className="mx-auto my-3 animate-spin" />}
             {isError && (
               <p className="my-3 text-center text-destructive">
-                An error occurred while loading users.
+                Pirsgirek derket 
               </p>
             )}
           </div>
@@ -157,7 +156,7 @@ export default function NewChatDialog({
             loading={mutation.isPending}
             onClick={() => mutation.mutate()}
           >
-            Start chat
+            Destpêbike 
           </LoadingButton>
         </DialogFooter>
       </DialogContent>

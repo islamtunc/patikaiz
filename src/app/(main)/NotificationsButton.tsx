@@ -1,4 +1,4 @@
-// Bismillahirrahmanirrahim 
+// Bismillahirrahmanirahim 
 
 "use client";
 
@@ -30,7 +30,7 @@ export default function NotificationsButton({
     <Button
       variant="ghost"
       className="flex items-center justify-start gap-3"
-      title="Notifications"
+      title="Agahdarî"
       asChild
     >
       <Link href="/notifications">
@@ -42,7 +42,7 @@ export default function NotificationsButton({
             </span>
           )}
         </div>
-        <span className="hidden lg:inline">Bildirimler</span>
+        <span className="hidden lg:inline">Agahdarî</span>
       </Link>
     </Button>
   );

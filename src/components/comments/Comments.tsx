@@ -1,5 +1,4 @@
-
-//Bismillahirrahmanirrahim 
+//Bismillahirahmanirahim 
 
 
 
@@ -46,16 +45,16 @@ export default function Comments({ post }: CommentsProps) {
           disabled={isFetching}
           onClick={() => fetchNextPage()}
         >
-          Şîroveyên pêşî
+          Şîroveyên berê 
         </Button>
       )}
       {status === "pending" && <Loader2 className="mx-auto animate-spin" />}
       {status === "success" && !comments.length && (
-        <p className="text-center text-muted-foreground">Hê şîrove tunene.</p>
+        <p className="text-center text-muted-foreground">Hê şîrove tune.</p>
       )}
       {status === "error" && (
         <p className="text-center text-destructive">
-          Nebû,dîsa biceribînin.
+          Pirsgirek derket .
         </p>
       )}
       <div className="divide-y">

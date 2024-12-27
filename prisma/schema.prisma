@@ -1,7 +1,3 @@
-// Bismillahirahmanirahim
-
-
-
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -35,8 +31,6 @@ model User {
   likes                 Like[]
   bookmarks             Bookmark[]
   comments              Comment[]
-  
-  Mmal                  Mmal[]
   receivedNotifications Notification[] @relation("Recipient")
   issuedNotifications   Notification[] @relation("Issuer")
 
@@ -79,10 +73,6 @@ model Post {
 
   @@map("posts")
 }
-
-
-
-
 
 model Media {
   id     String    @id @default(cuid())
@@ -152,21 +142,6 @@ model Notification {
 
   @@map("notifications")
 }
-
-
-model Mmal {
-  id          String           @id @default(cuid())
-  name          String
-
-  
-  userId              String
-  user                User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-
-  @@map("Mmal")
-}
-
-
 
 enum NotificationType {
   LIKE

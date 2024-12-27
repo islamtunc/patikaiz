@@ -1,7 +1,3 @@
-// Bismillahirrahmanirrahim 
-
-
-
 import { StreamChat } from "stream-chat";
 
 const streamServerClient = StreamChat.getInstance(

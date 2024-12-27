@@ -1,6 +1,4 @@
-// Bismillahirahmanirahim 
-// Elhamdulillahi Rabbul Alemin. Vessalatu Vesselamu Ala Rasulina Muhammedin ve Ala Alihi ve sahbihi ecmain.
-
+// Bismillahirrahmanirrahim 
 
 "use client";
 

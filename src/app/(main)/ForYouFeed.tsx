@@ -1,13 +1,8 @@
-// Bismillahirahmanirahim
+// Bismillahirrahmanirrahim 
 
-
-
-
-  
-
+"use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
-
 import Post from "@/components/posts/Post";
 import PostsLoadingSkeleton from "@/components/posts/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
@@ -45,7 +40,7 @@ export default function ForYouFeed() {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        Kesî hê tiştek parvenekirye.
+        Hê kesî tiştek parvenekirî ye
       </p>
     );
   }
@@ -53,7 +48,7 @@ export default function ForYouFeed() {
   if (status === "error") {
     return (
       <p className="text-center text-destructive">
-        An error occurred while loading posts.
+        Pirsgirek derket 
       </p>
     );
   }
@@ -70,4 +65,3 @@ export default function ForYouFeed() {
     </InfiniteScrollContainer>
   );
 }
-

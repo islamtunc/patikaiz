@@ -1,7 +1,3 @@
-// Bismillahirahmanirahim 
-
-
-
 import ky from "ky";
 
 const kyInstance = ky.create({

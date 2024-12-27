@@ -1,5 +1,4 @@
-//Bismillahirrahmanirrahim 
-
+// Bismillahirrahmanirrahim 
 
 
 
@@ -48,7 +47,7 @@ async function WhoToFollow() {
 
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
-      <div className="text-xl font-bold">Pêşnîyarîyên</div>
+      <div className="text-xl font-bold">Pêşnîyarî</div>
       {usersToFollow.map((user) => (
         <div key={user.id} className="flex items-center justify-between gap-3">
           <UserTooltip user={user}>
@@ -108,7 +107,7 @@ async function TrendingTopics() {
 
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
-      <div className="text-xl font-bold">Mijarên Rojevê de</div>
+      <div className="text-xl font-bold">Rojevê de</div>
       {trendingTopics.map(({ hashtag, count }) => {
         const title = hashtag.split("#")[1];
 
@@ -121,7 +120,7 @@ async function TrendingTopics() {
               {hashtag}
             </p>
             <p className="text-sm text-muted-foreground">
-              {formatNumber(count)} {count === 1 ? "post" : "posts"}
+              {formatNumber(count)} {count === 1 ? "parvekirin" : "parvekirinên"}
             </p>
           </Link>
         );

@@ -1,4 +1,4 @@
-// Bismillahirahmanirahim
+// Bismillahirahmanirahim 
 
 "use client";
 
@@ -44,7 +44,7 @@ export default function UserPosts({ userId }: UserPostsProps) {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        This user hasn&apos;t posted anything yet.
+        Evî zilamî hê tiştek parvenekirî 
       </p>
     );
   }

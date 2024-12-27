@@ -1,3 +1,7 @@
+// Bismillahirahmanirahim 
+
+
+
 import kyInstance from "@/lib/ky";
 import { LikeInfo } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -67,7 +71,7 @@ export default function LikeButton({ postId, initialState }: LikeButtonProps) {
         )}
       />
       <span className="text-sm font-medium tabular-nums">
-        {data.likes} <span className="hidden sm:inline">likes</span>
+        {data.likes} <span className="hidden sm:inline">Ecibandin</span>
       </span>
     </button>
   );

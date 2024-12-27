@@ -1,8 +1,3 @@
-// Bismillahirahmanirahim 
-
-
-
-
 export default function NotFound() {
   return (
     <main className="my-12 w-full space-y-3 text-center">

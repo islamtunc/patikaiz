@@ -1,4 +1,4 @@
-// Bismillahirahmanirahim
+// Bismillahirahmanirahim 
 
 
 
@@ -82,7 +82,7 @@ export default function EditProfileDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Profîla xwe amade bikin</DialogTitle>
+          <DialogTitle>Profilê Amade Bike</DialogTitle>
         </DialogHeader>
         <div className="space-y-1.5">
           <Label>Avatar</Label>
@@ -129,7 +129,7 @@ export default function EditProfileDialog({
             />
             <DialogFooter>
               <LoadingButton type="submit" loading={mutation.isPending}>
-                Save
+                Qeyd bike
               </LoadingButton>
             </DialogFooter>
           </form>

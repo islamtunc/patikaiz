@@ -1,7 +1,3 @@
-// Bismillahirahmanirahim
-
-
-
 import { useToast } from "@/components/ui/use-toast";
 import { PostsPage } from "@/lib/types";
 import { useUploadThing } from "@/lib/uploadthing";
@@ -75,7 +71,7 @@ export function useUpdateProfileMutation() {
       router.refresh();
 
       toast({
-        description: "Profile we teze bû",
+        description: "Profile updated",
       });
     },
     onError(error) {

@@ -1,5 +1,3 @@
-// Bismillahirahmanirahim
-
 "use server";
 
 import { lucia } from "@/auth";
@@ -38,7 +36,7 @@ export async function signUp(
 
     if (existingUsername) {
       return {
-        error: "Kerema xwe re naveki din bijberin",
+        error: "Username already taken",
       };
     }
 
@@ -53,7 +51,7 @@ export async function signUp(
 
     if (existingEmail) {
       return {
-        error: "Kerema xwe re emaile ki din bijberin",
+        error: "Email already taken",
       };
     }
 
@@ -87,7 +85,7 @@ export async function signUp(
     if (isRedirectError(error)) throw error;
     console.error(error);
     return {
-      error: "Pirsgirek derket , kerema xwe re disa biceribinin .",
+      error: "Something went wrong. Please try again.",
     };
   }
 }

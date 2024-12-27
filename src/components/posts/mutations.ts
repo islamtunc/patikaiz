@@ -1,11 +1,13 @@
-// Bismillahirahmanirahim
-
-
-
+import { PostsPage } from "@/lib/types";
+import {
+  InfiniteData,
+  QueryFilters,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { usePathname, useRouter } from "next/navigation";
 import { useToast } from "../ui/use-toast";
 import { deletePost } from "./actions";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { usePathname, useRouter } from "next/navigation";
 
 export function useDeletePostMutation() {
   const { toast } = useToast();
@@ -18,21 +20,24 @@ export function useDeletePostMutation() {
   const mutation = useMutation({
     mutationFn: deletePost,
     onSuccess: async (deletedPost) => {
-      const queryFilter = { queryKey: ["post-feed"] };
+      const queryFilter: QueryFilters = { queryKey: ["post-feed"] };
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData(queryFilter, (oldData) => {
-        if (!oldData) return;
+      queryClient.setQueriesData<InfiniteData<PostsPage, string | null>>(
+        queryFilter,
+        (oldData) => {
+          if (!oldData) return;
 
-        return {
-          pageParams: oldData.pageParams,
-          pages: oldData.pages.map((page) => ({
-            nextCursor: page.nextCursor,
-            posts: page.posts.filter((p) => p.id !== deletedPost.id),
-          })),
-        };
-      });
+          return {
+            pageParams: oldData.pageParams,
+            pages: oldData.pages.map((page) => ({
+              nextCursor: page.nextCursor,
+              posts: page.posts.filter((p) => p.id !== deletedPost.id),
+            })),
+          };
+        },
+      );
 
       toast({
         description: "Post deleted",
@@ -53,4 +58,3 @@ export function useDeletePostMutation() {
 
   return mutation;
 }
-

@@ -1,11 +1,12 @@
-// Bismillahirahmanirahim
-// Elhamdulillahi Rabbul Alemin. Vessalatu Vesselamu Ala Rasulina Muhammedin ve Ala Alihi ve sahbihi ecmain.
+// Bismillahirrahmanirrahim 
+
 
 
 import { validateRequest } from "@/auth";
 import FollowButton from "@/components/FollowButton";
 import FollowerCount from "@/components/FollowerCount";
 import Linkify from "@/components/Linkify";
+import TrendsSidebar from "@/components/TrendsSidebar";
 import UserAvatar from "@/components/UserAvatar";
 import prisma from "@/lib/prisma";
 import { FollowerInfo, getUserDataSelect, UserData } from "@/lib/types";
@@ -16,7 +17,7 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import EditProfileButton from "./EditProfileButton";
 import UserPosts from "./UserPosts";
-import { Button } from "@/components/ui/button";
+
 interface PageProps {
   params: { username: string };
 }
@@ -57,7 +58,7 @@ export default async function Page({ params: { username } }: PageProps) {
   if (!loggedInUser) {
     return (
       <p className="text-destructive">
-        You&apos;re not authorized to view this page.
+        Hûn nikarin evê rûpelê bibînin
       </p>
     );
   }
@@ -70,11 +71,12 @@ export default async function Page({ params: { username } }: PageProps) {
         <UserProfile user={user} loggedInUserId={loggedInUser.id} />
         <div className="rounded-2xl bg-card p-5 shadow-sm">
           <h2 className="text-center text-2xl font-bold">
-        Parvekirinên  {user.displayName}
+            {user.displayName}&apos;s posts
           </h2>
         </div>
         <UserPosts userId={user.id} />
       </div>
+      <TrendsSidebar />
     </main>
   );
 }
@@ -105,22 +107,22 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
             <h1 className="text-3xl font-bold">{user.displayName}</h1>
             <div className="text-muted-foreground">@{user.username}</div>
           </div>
-          <div> ji {formatDate(user.createdAt, "MMM d, yyyy")} vir de endame. </div>
+          <div>Endame ji {formatDate(user.createdAt, "MMM d, yyyy")} vir de</div>
           <div className="flex items-center gap-3">
             <span>
-              Posts:{" "}
+              Parvekirin:{" "}
               <span className="font-semibold">
                 {formatNumber(user._count.posts)}
               </span>
             </span>
+            <FollowerCount userId={user.id} initialState={followerInfo} />
           </div>
         </div>
         {user.id === loggedInUserId ? (
           <EditProfileButton user={user} />
         ) : (
-
-
-         <Button>Mesaj yaz</Button>)}
+          <FollowButton userId={user.id} initialState={followerInfo} />
+        )}
       </div>
       {user.bio && (
         <>

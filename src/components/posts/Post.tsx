@@ -1,3 +1,6 @@
+// Bismillahirrahmanirrahim 
+
+
 "use client";
 
 import { useSession } from "@/app/(main)/SessionProvider";
@@ -142,7 +145,7 @@ function MediaPreview({ media }: MediaPreviewProps) {
     );
   }
 
-  return <p className="text-destructive">Unsupported media type</p>;
+  return <p className="text-destructive">Ev medya nabe</p>;
 }
 
 interface CommentButtonProps {
@@ -156,7 +159,7 @@ function CommentButton({ post, onClick }: CommentButtonProps) {
       <MessageSquare className="size-5" />
       <span className="text-sm font-medium tabular-nums">
         {post._count.comments}{" "}
-        <span className="hidden sm:inline">comments</span>
+        <span className="hidden sm:inline">Şîroveyên</span>
       </span>
     </button>
   );

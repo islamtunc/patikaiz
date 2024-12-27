@@ -1,7 +1,3 @@
-// Bismillahirahmanirahim 
-
-
-
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -20,13 +16,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
         ref={ref}
         {...props}
-     
-        
-        
-
-
-
-        
       />
     )
   }

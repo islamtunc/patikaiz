@@ -1,6 +1,4 @@
-// Bismillahirahmanirahim
-
-
+// Bismillahirrahmanirrahim 
 
 
 import { useInView } from "react-intersection-observer";

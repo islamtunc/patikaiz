@@ -1,7 +1,3 @@
-// Bismillahirahmanirahim
-
-
-
 import { CommentData } from "@/lib/types";
 import { MoreHorizontal, Trash2 } from "lucide-react";
 import { useState } from "react";
@@ -37,7 +33,7 @@ export default function CommentMoreButton({
           <DropdownMenuItem onClick={() => setShowDeleteDialog(true)}>
             <span className="flex items-center gap-3 text-destructive">
               <Trash2 className="size-4" />
-              Jê bibe
+              Delete
             </span>
           </DropdownMenuItem>
         </DropdownMenuContent>

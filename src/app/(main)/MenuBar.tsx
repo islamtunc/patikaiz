@@ -1,7 +1,8 @@
-// Bismillahirahmanirahim
+// Bismillahirrahmanirrahim 
 
 
 
+import { validateRequest } from "@/auth";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
 import streamServerClient from "@/lib/stream";
@@ -10,15 +11,12 @@ import Link from "next/link";
 import MessagesButton from "./MessagesButton";
 import NotificationsButton from "./NotificationsButton";
 
-
-
-import { validateRequest } from "@/auth";
 interface MenuBarProps {
   className?: string;
 }
-const { user } = await validateRequest();
 
 export default async function MenuBar({ className }: MenuBarProps) {
+  const { user } = await validateRequest();
 
   if (!user) return null;
 
@@ -42,7 +40,7 @@ export default async function MenuBar({ className }: MenuBarProps) {
       >
         <Link href="/">
           <Home />
-          <span className="hidden lg:inline">Anasayfa</span>
+          <span className="hidden lg:inline">Mâl</span>
         </Link>
       </Button>
       <NotificationsButton
@@ -52,12 +50,12 @@ export default async function MenuBar({ className }: MenuBarProps) {
       <Button
         variant="ghost"
         className="flex items-center justify-start gap-3"
-        title="Kaydedilen ilanlar"
+        title="Bêrika We"
         asChild
       >
         <Link href="/bookmarks">
           <Bookmark />
-          <span className="hidden lg:inline">Kaydedilen ilanlar</span>
+          <span className="hidden lg:inline">Bêrika We</span>
         </Link>
       </Button>
     </div>

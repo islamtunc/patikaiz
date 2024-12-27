@@ -1,4 +1,6 @@
-// Bismillahirahmanirahim
+// Bismillahirahmanirahim 
+
+
 
 "use client";
 
@@ -26,7 +28,7 @@ export default function MessagesButton({ initialState }: MessagesButtonProps) {
     <Button
       variant="ghost"
       className="flex items-center justify-start gap-3"
-      title="Messages"
+      title="Peyamên We"
       asChild
     >
       <Link href="/messages">
@@ -38,7 +40,7 @@ export default function MessagesButton({ initialState }: MessagesButtonProps) {
             </span>
           )}
         </div>
-        <span className="hidden lg:inline">Peyamên</span>
+        <span className="hidden lg:inline">Peyamên We</span>
       </Link>
     </Button>
   );

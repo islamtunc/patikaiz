@@ -1,4 +1,5 @@
-// Bismillahirahmanirahim
+// Bismillahirahmanirahim 
+
 
 "use client";
 
@@ -40,7 +41,7 @@ export default function FollowingFeed() {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        No posts found. Start following people to see their posts here.
+        Tu parvekirin nehatin dîtin. Dive hûn endamên din bişopînin
       </p>
     );
   }
@@ -48,7 +49,7 @@ export default function FollowingFeed() {
   if (status === "error") {
     return (
       <p className="text-center text-destructive">
-        An error occurred while loading posts.
+        Pirsgirek derket 
       </p>
     );
   }

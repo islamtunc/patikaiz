@@ -1,4 +1,4 @@
-// Bismillahirahmanirahim
+// Bismillahirrahmanirrahim 
 
 
 
@@ -92,7 +92,7 @@ function MenuHeader({ onClose }: MenuHeaderProps) {
             <X className="size-5" />
           </Button>
         </div>
-        <h1 className="me-auto text-xl font-bold md:ms-2">Peyamên We</h1>
+        <h1 className="me-auto text-xl font-bold md:ms-2">Messages</h1>
         <Button
           size="icon"
           variant="ghost"

@@ -1,4 +1,4 @@
-// Bismillahirahmanirahim
+//Bismillahirrahmanirrahim 
 
 "use client";
 
@@ -63,7 +63,7 @@ export default function Notifications() {
   if (status === "success" && !notifications.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        Hê tu encam nîne
+        Hê tiştekî tune
       </p>
     );
   }
