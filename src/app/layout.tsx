@@ -23,10 +23,10 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Lebê ?",
-    default: "Lebê",
+    template: "%s | Müşterisi Burada",
+    default: "Müşterisi Burada",
   },
-  description: "Medyayek civakî jibo parastin û pêşdebirîna zimanê Kurdî ",
+  description: " İnşaat iş ilanları",
 };
 
 export default function RootLayout({

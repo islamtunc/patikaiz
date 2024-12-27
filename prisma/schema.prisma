@@ -41,6 +41,7 @@ model User {
   Mmkedkar    Mmkedkar[]
   Mmwesayit   Mmwesayit[]
   Mmkargeh    Mmkargeh[]
+  Mmhuner     Mmhuner[]
 
   @@map("users")
 }
@@ -97,15 +98,6 @@ model Mmavahi {
   @@map("mmavahi")
 }
 
-
-
-
-
-
-
-
-
-
 model Mmhuner {
   id          String  @id @default(cuid())
   content     String
@@ -122,6 +114,7 @@ model Mmhuner {
 
   @@map("mmhuner")
 }
+
 model Mmhewcedari {
   id          String  @id @default(cuid())
   content     String
@@ -227,6 +220,8 @@ model Media {
   mmwesayitId   String?
   Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
   mmkargehId    String?
+  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
+  mmhunerId     String?
 
   @@map("post_media")
 }
@@ -257,6 +252,8 @@ model Comment {
   mmwesayitId   String?
   Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
   mmkargehId    String?
+  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
+  mmhunerId     String?
 
   @@map("comments")
 }
@@ -278,6 +275,8 @@ model Like {
   mmwesayitId   String?
   Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
   mmkargehId    String?
+  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
+  mmhunerId     String?
 
   @@unique([userId, postId])
   @@map("likes")
@@ -303,6 +302,8 @@ model Bookmark {
   mmwesayitId   String?
   Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
   mmkargehId    String?
+  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
+  mmhunerId     String?
 
   @@unique([userId, postId])
   @@map("bookmarks")
@@ -332,6 +333,8 @@ model Notification {
   mmwesayitId   String?
   Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
   mmkargehId    String?
+  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
+  mmhunerId     String?
 
   @@map("notifications")
 }
