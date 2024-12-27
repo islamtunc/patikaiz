@@ -31,6 +31,12 @@ export default function Page() {
             <Link href="/signup" className="block text-center hover:underline">
 Üye Değil Misin? Üye Ol
             </Link>
+
+            <Link href="/" className="block text-center hover:underline">
+
+        Giriş Yapmadan Devam Et
+            </Link>
+
           </div>
         </div>
         <Image
