@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import LoginForm from "./LoginForm";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Giriş Yap",
@@ -32,11 +33,13 @@ export default function Page() {
 Üye Değil Misin? Üye Ol
             </Link>
 
+<Button>
             <Link href="/malper" className="block text-center hover:underline">
 
         Giriş Yapmadan Devam Et
             </Link>
 
+            </Button>
           </div>
         </div>
         <Image
