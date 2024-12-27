@@ -97,6 +97,31 @@ model Mmavahi {
   @@map("mmavahi")
 }
 
+
+
+
+
+
+
+
+
+
+model Mmhuner {
+  id          String  @id @default(cuid())
+  content     String
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attachments Media[]
+
+  bookmarks Bookmark[]
+
+  likes               Like[]
+  comments            Comment[]
+  linkedNotifications Notification[]
+  createdAt           DateTime       @default(now())
+
+  @@map("mmhuner")
+}
 model Mmhewcedari {
   id          String  @id @default(cuid())
   content     String
