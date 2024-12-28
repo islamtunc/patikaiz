@@ -94,7 +94,17 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
       ({ followerId }) => followerId === loggedInUserId,
     ),
   };
+function mmpeyam() {
+  
 
+
+
+
+
+
+
+  
+}
   return (
     <div className="h-fit w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
       <UserAvatar
@@ -119,11 +129,12 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
             <FollowerCount userId={user.id} initialState={followerInfo} />
           </div>
         </div>
+
         {user.id === loggedInUserId ? (
           <EditProfileButton user={user} />
         ) : (
 
-  <Button ><a href="/messages/[$userId]">Mesaj Yaz</a></Button>)}
+  <Button >Mesaj Yaz</Button>)}
       </div>
       {user.bio && (
         <>
