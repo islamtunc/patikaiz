@@ -2,7 +2,6 @@
 
 
 
-import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude, PostsPage } from "@/lib/types";
 import { NextRequest } from "next/server";
@@ -13,14 +12,10 @@ export async function GET(req: NextRequest) {
 
     const pageSize = 10;
 
-    const { user } = await validateRequest();
-
-    if (!user) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
-    }
+   
 
     const posts = await prisma.mmavahi.findMany({
-      include: getPostDataInclude(user.id),
+      include: getPostDataInclude(""),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
       cursor: cursor ? { id: cursor } : undefined,

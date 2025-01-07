@@ -1,3 +1,7 @@
+// Bismillahirahmanirahim
+
+
+
 import { Prisma } from "@prisma/client";
 
 export function getUserDataSelect(loggedInUserId: string) {
