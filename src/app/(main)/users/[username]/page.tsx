@@ -5,7 +5,7 @@
 import { validateRequest } from "@/auth";
 import FollowerCount from "@/components/FollowerCount";
 import Linkify from "@/components/Linkify";
-import TrendsSidebar from "@/components/TrendsSidebar";
+
 import UserAvatar from "@/components/UserAvatar";
 import prisma from "@/lib/prisma";
 import { FollowerInfo, getUserDataSelect, UserData } from "@/lib/types";
@@ -80,7 +80,7 @@ export default async function Page({ params: { username } }: PageProps) {
         </div>
         <UserPosts userId={user.id} />
       </div>
-      <TrendsSidebar />
+      
     </main>
   );
 }
