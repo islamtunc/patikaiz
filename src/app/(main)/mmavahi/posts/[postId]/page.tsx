@@ -5,7 +5,7 @@
 import { validateRequest } from "@/auth";
 import FollowButton from "@/components/FollowButton";
 import Linkify from "@/components/Linkify";
-import Post from "@/components/posts/Post";
+import Post from "@/components/mmavahi/Post";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
