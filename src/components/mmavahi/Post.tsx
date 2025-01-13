@@ -9,10 +9,8 @@ import { Media } from "@prisma/client";
 import { MessageSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import Linkify from "../Linkify";
 import UserAvatar from "../UserAvatar";
-import UserTooltip from "../UserTooltip";
 
 
 interface PostProps {
@@ -39,7 +37,7 @@ export default function Post({ post }: PostProps) {
               </Link>
           
             <Link
-              href={`/posts/${post.id}`}
+              href={`/mmavahi/posts/${post.id}`}
               className="block text-sm text-muted-foreground hover:underline"
               suppressHydrationWarning
             >

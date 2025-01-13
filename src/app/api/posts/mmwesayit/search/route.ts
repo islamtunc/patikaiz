@@ -1,3 +1,9 @@
+// Bismillahirrahmanirahim
+// Elhamdullillahirabbulalemin
+//Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi, ecmain
+
+
+
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude, PostsPage } from "@/lib/types";
@@ -5,7 +11,10 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
+    const q = req.nextUrl.searchParams.get("q") || "";
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
+
+    const searchQuery = q.split(" ").join(" & ");
 
     const pageSize = 10;
 
@@ -15,20 +24,34 @@ export async function GET(req: NextRequest) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const posts = await prisma.post.findMany({
+    const posts = await prisma.mmavahi.findMany({
       where: {
-        user: {
-          followers: {
-            some: {
-              followerId: user.id,
+        OR: [
+          {
+            content: {
+              search: searchQuery,
             },
           },
-        },
+          {
+            user: {
+              displayName: {
+                search: searchQuery,
+              },
+            },
+          },
+          {
+            user: {
+              username: {
+                search: searchQuery,
+              },
+            },
+          },
+        ],
       },
+      include: getPostDataInclude(user.id),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
       cursor: cursor ? { id: cursor } : undefined,
-      include: getPostDataInclude(user.id),
     });
 
     const nextCursor = posts.length > pageSize ? posts[pageSize].id : null;

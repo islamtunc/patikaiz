@@ -3,18 +3,18 @@
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
-import PostsLoadingSkeleton from "@/components/mmavahi/PostsLoadingSkeleton";
 import Post from "@/components/mmavahi/Post";
+import PostsLoadingSkeleton from "@/components/mmavahi/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
-interface UserPostsProps {
-  userId: string;
+interface SearchResultsProps {
+  query: string;
 }
 
-export default function UserPosts({ userId }: UserPostsProps) {
+export default function SearchResults({ query }: SearchResultsProps) {
   const {
     data,
     fetchNextPage,
@@ -23,16 +23,19 @@ export default function UserPosts({ userId }: UserPostsProps) {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["post-feed", "user-posts", userId],
+    queryKey: ["post-feed", "search", query],
     queryFn: ({ pageParam }) =>
       kyInstance
-        .get(
-          `/api/users/${userId}/posts`,
-          pageParam ? { searchParams: { cursor: pageParam } } : {},
-        )
+        .get("/api/posts/mmavahi/search", {
+          searchParams: {
+            q: query,
+            ...(pageParam ? { cursor: pageParam } : {}),
+          },
+        })
         .json<PostsPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
+    gcTime: 0,
   });
 
   const posts = data?.pages.flatMap((page) => page.posts) || [];
@@ -44,7 +47,7 @@ export default function UserPosts({ userId }: UserPostsProps) {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        Evî zilamî hê tiştek parvenekirî 
+        No posts found for this query.
       </p>
     );
   }

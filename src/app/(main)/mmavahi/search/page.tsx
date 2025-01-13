@@ -11,7 +11,7 @@ interface PageProps {
 
 export function generateMetadata({ searchParams: { q } }: PageProps): Metadata {
   return {
-    title: `Search results for "${q}"`,
+    title: `"${q} için arama sonuçları"`,
   };
 }
 
@@ -21,12 +21,11 @@ export default function Page({ searchParams: { q } }: PageProps) {
       <div className="w-full min-w-0 space-y-5">
         <div className="rounded-2xl bg-card p-5 shadow-sm">
           <h1 className="line-clamp-2 break-all text-center text-2xl font-bold">
-            Encamên lêgerîna &quot;{q}&quot; 
+            &quot;{q}&quot; için arama sonuçları 
           </h1>
         </div>
         <SearchResults query={q} />
       </div>
-      
     </main>
   );
 }

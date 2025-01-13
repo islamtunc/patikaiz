@@ -3,9 +3,9 @@
 
 
 import { validateRequest } from "@/auth";
-
+import FollowButton from "@/components/FollowButton";
 import Linkify from "@/components/Linkify";
-import Post from "@/components/mmkedkar/Post";
+import Post from "@/components/posts/Post";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
@@ -21,7 +21,7 @@ interface PageProps {
 }
 
 const getPost = cache(async (postId: string, loggedInUserId: string) => {
-  const post = await prisma.mmavahi.findUnique({
+  const post = await prisma.mmkedkar.findUnique({
     where: {
       id: postId,
     },
@@ -64,7 +64,6 @@ export default async function Page({ params: { postId } }: PageProps) {
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
         <Post post={post} />
-        <a>.....</a>
       </div>
       <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
         <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
@@ -108,7 +107,17 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
           {user.bio}
         </div>
       </Linkify>
-
+      {user.id !== loggedInUser.id && (
+        <FollowButton
+          userId={user.id}
+          initialState={{
+            followers: user._count.followers,
+            isFollowedByUser: user.followers.some(
+              ({ followerId }) => followerId === loggedInUser.id,
+            ),
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
 
-import SearchField from "@/components/SearchField";
+import SearchField from "@/components/mmavahi/SearchField";
 
 export default function Home() {
   return (

@@ -2,11 +2,12 @@
 
 
 
+import TrendsSidebar from "@/components/TrendsSidebar";
 import { Metadata } from "next";
 import Notifications from "./Notifications";
 
 export const metadata: Metadata = {
-  title: "Bildirimler",
+  title: "Agahdarî",
 };
 
 export default function Page() {
@@ -18,7 +19,7 @@ export default function Page() {
         </div>
         <Notifications />
       </div>
-      
+      <TrendsSidebar />
     </main>
   );
 }

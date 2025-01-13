@@ -3,7 +3,6 @@
 
 
 import { validateRequest } from "@/auth";
-
 import Linkify from "@/components/Linkify";
 import Post from "@/components/mmavahi/Post";
 import UserAvatar from "@/components/UserAvatar";
@@ -30,6 +29,9 @@ const getPost = cache(async (postId: string, loggedInUserId: string) => {
 
   if (!post) notFound();
 
+
+
+  
   return post;
 });
 

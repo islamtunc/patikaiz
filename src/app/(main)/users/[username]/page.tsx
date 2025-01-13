@@ -5,7 +5,6 @@
 import { validateRequest } from "@/auth";
 import FollowerCount from "@/components/FollowerCount";
 import Linkify from "@/components/Linkify";
-
 import UserAvatar from "@/components/UserAvatar";
 import prisma from "@/lib/prisma";
 import { FollowerInfo, getUserDataSelect, UserData } from "@/lib/types";
@@ -72,15 +71,14 @@ export default async function Page({ params: { username } }: PageProps) {
         <UserProfile user={user} loggedInUserId={loggedInUser.id} />
         <div className="rounded-2xl bg-card p-5 shadow-sm">
         
-        {user? <Home/> : <div> </div>}
-
+        {user.id==loggedInUser.id? <Home/> : <div> 
           <h2 className="text-center text-2xl font-bold">
             {user.displayName}&apos;ın İlanları
-          </h2>
+          </h2></div>}
+
         </div>
         <UserPosts userId={user.id} />
       </div>
-      
     </main>
   );
 }
@@ -91,12 +89,7 @@ interface UserProfileProps {
 }
 
 async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
-  const followerInfo: FollowerInfo = {
-    followers: user._count.followers,
-    isFollowedByUser: user.followers.some(
-      ({ followerId }) => followerId === loggedInUserId,
-    ),
-  };
+  
 
   return (
     <div className="h-fit w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
@@ -116,10 +109,8 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
             <span>
               İlan Sayısı:{" "}
               <span className="font-semibold">
-                {formatNumber(user._count.posts)}
               </span>
             </span>
-            <FollowerCount userId={user.id} initialState={followerInfo} />
           </div>
         </div>
 
