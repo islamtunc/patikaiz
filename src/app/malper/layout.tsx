@@ -1,5 +1,7 @@
 // Bismillahirahmanirahim 
 
+import MmmNavbar from "./mmnav";
+
 
 
 export default async function Layout({
@@ -14,7 +16,7 @@ export default async function Layout({
 
     <div>
 
-
+<MmmNavbar/>
         {children}
     </div>
   );
