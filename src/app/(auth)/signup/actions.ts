@@ -36,7 +36,7 @@ export async function signUp(
 
     if (existingUsername) {
       return {
-        error: "Username already taken",
+        error: "Başka bir kullanıcı adı girin",
       };
     }
 
@@ -51,7 +51,7 @@ export async function signUp(
 
     if (existingEmail) {
       return {
-        error: "Email already taken",
+        error: "Başka bir email girin",
       };
     }
 
@@ -85,7 +85,7 @@ export async function signUp(
     if (isRedirectError(error)) throw error;
     console.error(error);
     return {
-      error: "Something went wrong. Please try again.",
+      error: "Bir sorun çıktı tekrar deneyin ",
     };
   }
 }
