@@ -1,4 +1,4 @@
-
+// Bismillahirrahmanirahim 
 
 
 
@@ -35,7 +35,7 @@ export default function useInitializeChatClient() {
       setChatClient(null);
       client
         .disconnectUser()
-        .catch((error) => console.error("Failed to disconnect user", error))
+        .catch((error) => console.error("Bir sorun çıktı tekrar deneyin ", error))
         .then(() => console.log("Connection closed"));
     };
   }, [user.id, user.username, user.displayName, user.avatarUrl]);
