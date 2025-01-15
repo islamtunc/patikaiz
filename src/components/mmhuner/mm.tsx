@@ -2,34 +2,31 @@
 
 
 
-import PostEditor from "@/components/mmavahi/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import ForYouFeed from "./ForYouFeed";
 
-import SearchField from "@/components/mmavahi/SearchField";
-import MmHome from "@/components/mmavahi/mmmal/mm";
-import MmmmmmHome from "@/components/mmavahi/mm";
 
-export default function Home() {
+export default function MmHome() {
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
 
-        <h1 className="text-3xl font-semibold">Emlak</h1>
         <Tabs defaultValue="mm">
           <TabsList>
-            <TabsTrigger value="for-you">İlanlar</TabsTrigger>
+            <TabsTrigger value="for-you">Satılık </TabsTrigger>
+            <TabsTrigger value="following">Kiralık</TabsTrigger>
+            <TabsTrigger value="mm">Eğlence</TabsTrigger>
+            
+            <TabsTrigger value="for-you">Devren Satılık </TabsTrigger>
             <TabsTrigger value="following">Kategoride Ara</TabsTrigger>
             <TabsTrigger value="mm">Yeni ilan Ver</TabsTrigger>
 
           </TabsList>
+         
           <TabsContent value="for-you">
-            <ForYouFeed />
           </TabsContent>
           <TabsContent value="following">
 
-      <SearchField/>
           </TabsContent>
     
 
@@ -38,7 +35,7 @@ export default function Home() {
 
 
         <TabsContent value="mm">
-<MmmmmmHome/>
+
 
     </TabsContent>
     </Tabs>

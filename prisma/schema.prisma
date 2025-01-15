@@ -100,7 +100,7 @@ model Mmavahi {
 
 model Mmhuner {
   id          String  @id @default(cuid())
-  content     String
+  content     String[]
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]

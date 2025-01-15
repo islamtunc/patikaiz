@@ -58,7 +58,7 @@ export default function PostEditor() {
   function onSubmit() {
     mutation.mutate(
       {
-        content: "mmal",
+        content: selectedOption,
         mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
        
       },

@@ -19,7 +19,7 @@ import "./styles.css";
 import useMediaUpload, { Attachment } from "./useMediaUpload";
 import { Input } from "@/components/ui/input";
 
-export default function PostEditor() {
+export default function MmPostEditor() {
   const { user } = useSession();
 
   const mutation = useSubmitPostMutation();
@@ -58,7 +58,7 @@ export default function PostEditor() {
   function onSubmit() {
     mutation.mutate(
       {
-        content: "mmal",
+        content: selectedOption,
         mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
        
       },
