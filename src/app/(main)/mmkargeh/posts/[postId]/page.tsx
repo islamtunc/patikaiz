@@ -1,7 +1,5 @@
 // Bismillahirrahmanirrahim
 
-
-
 import { validateRequest } from "@/auth";
 import Linkify from "@/components/Linkify";
 import Post from "@/components/mmavahi/Post";
@@ -12,8 +10,8 @@ import prisma from "@/lib/prisma";
 import { getPostDataInclude, UserData } from "@/lib/types";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import Link from "next/link";
 import { cache, Suspense } from "react";
 import { StreamChat } from "stream-chat";
 
@@ -22,9 +20,8 @@ interface PageProps {
 }
 
 const getPost = cache(async (postId: string, loggedInUserId: string) => {
-  const post = await prisma.mmavahi.findUnique({
+  const post = await prisma.mmkedkar.findUnique({
     where: {
-
       id: postId,
     },
     include: getPostDataInclude(loggedInUserId),
@@ -32,9 +29,6 @@ const getPost = cache(async (postId: string, loggedInUserId: string) => {
 
   if (!post) notFound();
 
-
-
-  
   return post;
 });
 
@@ -48,7 +42,7 @@ export async function generateMetadata({
   const post = await getPost(postId, user.id);
 
   return {
-    title: `${post.user.displayName}: ${post.content.slice(0, 50)}...`,
+    title: `${post.user.displayName}: ${post.content?.slice(0, 50) ?? ''}...`,
   };
 }
 
@@ -69,11 +63,7 @@ export default async function Page({ params: { postId } }: PageProps) {
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
         <Post post={post} />
-       
-
-
         <UserInfoSidebar user={post.user} />
-
       </div>
       <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
         <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
@@ -91,7 +81,6 @@ interface UserInfoSidebarProps {
 async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
   const { user: loggedInUser } = await validateRequest();
 
-
   if (!loggedInUser) return null;
 
   const handleMessageClick = async () => {
@@ -101,8 +90,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
     });
     await channel.create();
   
-  
-  redirect(`/messages/${channel.id}`)
+    redirect(`/messages/${channel.id}`);
   };
 
   return (
@@ -129,7 +117,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
           {user.bio}
         </div>
       </Linkify>
-      {user.id !== loggedInUser.id && (
+      {user.id == loggedInUser.id && (
         <Button onClick={handleMessageClick}>
           Mesaj Yaz
         </Button>
