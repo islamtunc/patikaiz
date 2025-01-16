@@ -3,9 +3,9 @@
 
 
 import { validateRequest } from "@/auth";
-import FollowButton from "@/components/FollowButton";
 import Linkify from "@/components/Linkify";
-import Post from "@/components/posts/Post";
+import Post from "@/components/mmavahi/Post";
+import { Button } from "@/components/ui/button";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
@@ -13,16 +13,18 @@ import { getPostDataInclude, UserData } from "@/lib/types";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { cache, Suspense } from "react";
+import { StreamChat } from "stream-chat";
 
 interface PageProps {
   params: { postId: string };
 }
 
 const getPost = cache(async (postId: string, loggedInUserId: string) => {
-  const post = await prisma.post.findUnique({
+  const post = await prisma.mmavahi.findUnique({
     where: {
+
       id: postId,
     },
     include: getPostDataInclude(loggedInUserId),
@@ -30,6 +32,9 @@ const getPost = cache(async (postId: string, loggedInUserId: string) => {
 
   if (!post) notFound();
 
+
+
+  
   return post;
 });
 
@@ -53,7 +58,7 @@ export default async function Page({ params: { postId } }: PageProps) {
   if (!user) {
     return (
       <p className="text-destructive">
-        You&apos;re not authorized to view this page.
+        ilan detaylarını görmek için giriş yapın 
       </p>
     );
   }
@@ -64,6 +69,11 @@ export default async function Page({ params: { postId } }: PageProps) {
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
         <Post post={post} />
+       
+
+
+        <UserInfoSidebar user={post.user} />
+
       </div>
       <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
         <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
@@ -81,11 +91,23 @@ interface UserInfoSidebarProps {
 async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
   const { user: loggedInUser } = await validateRequest();
 
+
   if (!loggedInUser) return null;
 
+  const handleMessageClick = async () => {
+    const client = StreamChat.getInstance(process.env.NEXT_PUBLIC_STREAM_KEY!);
+    const channel = client.channel("messaging", {
+      members: [loggedInUser.id, user.id],
+    });
+    await channel.create();
+  
+  
+  redirect(`/messages/${channel.id}`)
+  };
+
   return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
-      <div className="text-xl font-bold">About this user</div>
+    <div className="space-y-5 rounded-2xl bg-card p-5 ">
+      <div className="text-xl font-bold">Bu kullanıcı ile ilgili</div>
       <UserTooltip user={user}>
         <Link
           href={`/users/${user.username}`}
@@ -107,7 +129,11 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
           {user.bio}
         </div>
       </Linkify>
- 
+      {user.id !== loggedInUser.id && (
+        <Button onClick={handleMessageClick}>
+          Mesaj Yaz
+        </Button>
+      )}
     </div>
   );
 }

@@ -13,8 +13,7 @@ import { getPostDataInclude, UserData } from "@/lib/types";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { cache, Suspense } from "react";
 import { StreamChat } from "stream-chat";
 
@@ -93,7 +92,6 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
   const { user: loggedInUser } = await validateRequest();
 
 
-  const router = useRouter();
   if (!loggedInUser) return null;
 
   const handleMessageClick = async () => {
@@ -102,7 +100,9 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
       members: [loggedInUser.id, user.id],
     });
     await channel.create();
-   router.push(`/messages/${channel.id}`)
+  
+  
+  redirect(`/messages/${channel.id}`)
   };
 
   return (
