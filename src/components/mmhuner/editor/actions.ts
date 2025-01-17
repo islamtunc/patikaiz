@@ -1,3 +1,5 @@
+// Bismillahirrahmanirrahim
+
 "use server";
 
 import { validateRequest } from "@/auth";
@@ -15,12 +17,12 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.post.create({
+  const newPost = await prisma.mmavahi.create({
     data: {
-      content,
+      content: { set: [content] },
       userId: user.id,
       attachments: {
-        connect: mediaIds.map((id) => ({ id })),
+        connect: mediaIds.map((id: any) => ({ id })),
       },
     },
     include: getPostDataInclude(user.id),
