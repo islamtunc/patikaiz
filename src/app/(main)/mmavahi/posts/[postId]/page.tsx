@@ -117,11 +117,11 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
           {user.bio}
         </div>
       </Linkify>
-      {user.id == loggedInUser.id && (
+      {user.id == loggedInUser.id ? 
         <Button onClick={handleMessageClick}>
           Mesaj Yaz
-        </Button>
-      )}
+        </Button>:""
+      }
     </div>
   );
 }

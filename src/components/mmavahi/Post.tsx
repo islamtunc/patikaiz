@@ -13,6 +13,8 @@ import UserAvatar from "../UserAvatar";
 
 interface PostProps {
   post: PostData;
+
+  
 }
 
 export default async function Post({ post }: PostProps) {
