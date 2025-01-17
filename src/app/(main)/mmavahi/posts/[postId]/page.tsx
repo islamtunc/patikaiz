@@ -95,7 +95,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
 
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 ">
-      <div className="text-xl font-bold">Bu kullanıcı ile ilgili</div>
+      <div className="text-xl font-bold">İlan Sahibi</div>
       <UserTooltip user={user}>
         <Link
           href={`/users/${user.username}`}
@@ -107,21 +107,22 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
               {user.displayName}
             </p>
             <p className="line-clamp-1 break-all text-muted-foreground">
-              @{user.username}
             </p>
           </div>
         </Link>
       </UserTooltip>
+
+      {user.id !== loggedInUser.id ? 
+        <Button onClick={handleMessageClick}>
+          Mesaj Yaz
+        </Button>:""
+      }
       <Linkify>
         <div className="line-clamp-6 whitespace-pre-line break-words text-muted-foreground">
           {user.bio}
         </div>
       </Linkify>
-      {user.id == loggedInUser.id ? 
-        <Button onClick={handleMessageClick}>
-          Mesaj Yaz
-        </Button>:""
-      }
+   
     </div>
   );
 }
