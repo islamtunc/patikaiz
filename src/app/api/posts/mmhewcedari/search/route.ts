@@ -1,7 +1,5 @@
 // Bismillahirrahmanirahim
 // Elhamdullillahirabbulalemin
-//Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi, ecmain
-
 
 
 import { validateRequest } from "@/auth";
@@ -14,7 +12,7 @@ export async function GET(req: NextRequest) {
     const q = req.nextUrl.searchParams.get("q") || "";
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
 
-    const searchQuery = q.split(" ").join(" & ");
+    const searchTerms = q.split(" "); // Convert search query to an array
 
     const pageSize = 10;
 
@@ -29,20 +27,22 @@ export async function GET(req: NextRequest) {
         OR: [
           {
             content: {
-              search: searchQuery,
+              hasSome: searchTerms, // Use hasSome to match any of the search terms
             },
           },
           {
             user: {
               displayName: {
-                search: searchQuery,
+                contains: q, // Use contains for partial match
+                mode: "insensitive", // Case insensitive search
               },
             },
           },
           {
             user: {
               username: {
-                search: searchQuery,
+                contains: q, // Use contains for partial match
+                mode: "insensitive", // Case insensitive search
               },
             },
           },
