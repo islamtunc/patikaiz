@@ -54,6 +54,7 @@ export default function PostEditor() {
 
   const [selectedOption, setSelectedOption] = useState("mmal");
 
+  const mmmmm=[selectedOption]
   function onSubmit() {
     mutation.mutate(
       {

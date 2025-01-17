@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { signUp } from "./actions";
+import { Check } from "lucide-react";
 
 export default function SignUpForm() {
   const [error, setError] = useState<string>();
@@ -84,6 +85,7 @@ export default function SignUpForm() {
             </FormItem>
           )}
         />
+        <Check>Kullanıcı Sözleşmesi</Check>
         <LoadingButton loading={isPending} type="submit" className="w-full">
           Üye Ol
         </LoadingButton>
