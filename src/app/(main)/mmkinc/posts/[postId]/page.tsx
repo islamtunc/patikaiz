@@ -65,11 +65,7 @@ export default async function Page({ params: { postId } }: PageProps) {
         <Post post={post} />
         <UserInfoSidebar user={post.user} />
       </div>
-      <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
-        <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-          <UserInfoSidebar user={post.user} />
-        </Suspense>
-      </div>
+     
     </main>
   );
 }
@@ -117,7 +113,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
           {user.bio}
         </div>
       </Linkify>
-      {user.id == loggedInUser.id && (
+      {user.id !== loggedInUser.id && (
         <Button onClick={handleMessageClick}>
           Mesaj Yaz
         </Button>
