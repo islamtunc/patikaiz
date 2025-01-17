@@ -14,12 +14,11 @@ import { useDropzone } from "@uploadthing/react";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import { ClipboardEvent, useRef, useState } from "react";
-import { useSubmitPostMutation } from "./mutations";
-import "./styles.css";
-import useMediaUpload, { Attachment } from "./useMediaUpload";
+import useMediaUpload, { Attachment } from "../editor/useMediaUpload";
 import { Input } from "@/components/ui/input";
+import { useSubmitPostMutation } from "../editor/mutations";
 
-export default function MmPostEditor() {
+export default function PostEditor() {
   const { user } = useSession();
 
   const mutation = useSubmitPostMutation();
