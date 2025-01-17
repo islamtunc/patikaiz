@@ -1,30 +1,28 @@
+// Bismillahirrahmanirrahim
+
 "use server";
 
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude } from "@/lib/types";
-import { createPostSchema } from "@/lib/validation";
 
-export async function submitPost(input: {
-  content: string;
-  mediaIds: string[];
-}) {
+export async function deletePost(id: string) {
   const { user } = await validateRequest();
 
   if (!user) throw new Error("Unauthorized");
 
-  const { content, mediaIds } = createPostSchema.parse(input);
+  const post = await prisma.mmwesayit.findUnique({
+    where: { id },
+  });
 
-  const newPost = await prisma.post.create({
-    data: {
-      content,
-      userId: user.id,
-      attachments: {
-        connect: mediaIds.map((id) => ({ id })),
-      },
-    },
+  if (!post) throw new Error("Post not found");
+
+  if (post.userId !== user.id) throw new Error("Unauthorized");
+
+  const deletedPost = await prisma.mmwesayit.delete({
+    where: { id },
     include: getPostDataInclude(user.id),
   });
 
-  return newPost;
+  return deletedPost;
 }
