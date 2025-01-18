@@ -14,9 +14,9 @@ import { useDropzone } from "@uploadthing/react";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import { ClipboardEvent, useRef, useState } from "react";
-import { useSubmitPostMutation } from "./mutations";
+import { useSubmitPostMutation } from "../mutations";
 import "./styles.css";
-import useMediaUpload, { Attachment } from "./useMediaUpload";
+import useMediaUpload, { Attachment } from "../useMediaUpload";
 import { Input } from "@/components/ui/input";
 
 export default function MmPostEditor() {
