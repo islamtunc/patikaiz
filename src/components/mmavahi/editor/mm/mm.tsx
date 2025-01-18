@@ -16,29 +16,39 @@ export default function MmmmmmHome() {
 
         <Tabs defaultValue="mm">
           <TabsList>
-            <TabsTrigger value="for-you">Ev</TabsTrigger>
-            <TabsTrigger value="following">Arsa</TabsTrigger>
-            <TabsTrigger value="for-you">İş Yeri</TabsTrigger>
-            <TabsTrigger value="following">Bina</TabsTrigger>
-            <TabsTrigger value="for-you">Devre Mülk</TabsTrigger>
-            <TabsTrigger value="following">Turistik Tesis</TabsTrigger>
+            <TabsTrigger value="ev">Ev</TabsTrigger>
+            <TabsTrigger value="arsa">Arsa</TabsTrigger>
+            <TabsTrigger value="kargeh">İş Yeri</TabsTrigger>
+            <TabsTrigger value="bina">Bina</TabsTrigger>
+            <TabsTrigger value="dvr">Devre Mülk</TabsTrigger>
+            <TabsTrigger value="mm">Turistik Tesis</TabsTrigger>
             
             
             
             
           </TabsList>
          
-          <TabsContent value="for-you">
+          <TabsContent value="ev">
          
          <MmHome/>
           </TabsContent>
-          <TabsContent value="following">
+          <TabsContent value="arsa">
 
 <MmmHome/>
           </TabsContent>
-    
+          <TabsContent value="kargeh">
+         
+         <MmHome/>
+          </TabsContent>
 
+          <TabsContent value="bina">
+         
+         <MmHome/>
+          </TabsContent>
+          <TabsContent value="dvr">
 
+<MmmHome/>
+          </TabsContent>
 
 
 
