@@ -3,8 +3,9 @@
 
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import PostEditor from "../editor/mmfrtn";
-import MmPostEditor from "../editor/mmkr";
+
+import PostEditor from "../mmfrtn";
+import MmPostEditor from "../mmkr";
 
 
 
