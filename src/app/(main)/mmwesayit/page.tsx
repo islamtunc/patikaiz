@@ -2,12 +2,11 @@
 
 
 
-import PostEditor from "@/components/mmavahi/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
 
-import MmmmmmHome from "@/components/mmavahi/editor/mm/mm";
+import MmmmmmHome from "@/components/mmwesayit/editor/mm/mm";
 
 export default function Home() {
   return (
