@@ -4,10 +4,12 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import PostEditor from "../mmfrtn";
+import PostEditor from "./mmfrtn";
 
-import MmPostEditor from "../mmfrtn";
-export default function MmHome() {
+import MmPostEditor from "./mmkr";
+import MmKrPostEditor from "./mmdvrkr";
+import MmDsPostEditor from "./mmdvrfrtn";
+export default function MmmalHome() {
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
@@ -34,9 +36,15 @@ export default function MmHome() {
 
 
 
-        <TabsContent value="mm">
+          <TabsContent value="mmm">
+ <MmDsPostEditor/>
+
+</TabsContent>
+
+        <TabsContent value="mmmmm">
 
 
+     <MmKrPostEditor/>
     </TabsContent>
     </Tabs>
       </div>

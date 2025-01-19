@@ -14,11 +14,11 @@ import { useDropzone } from "@uploadthing/react";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import { ClipboardEvent, useRef, useState } from "react";
-import useMediaUpload, { Attachment } from "../useMediaUpload";
+import useMediaUpload, { Attachment } from "../../useMediaUpload";
 import { Input } from "@/components/ui/input";
-import { useSubmitPostMutation } from "../mutations";
+import { useSubmitPostMutation } from "../../mutations";
 
-export default function PostEditor() {
+export default function MmKrPostEditor() {
   const { user } = useSession();
 
   const mutation = useSubmitPostMutation();
@@ -54,7 +54,6 @@ export default function PostEditor() {
 
   const [selectedOption, setSelectedOption] = useState("mmal");
 
-  const mmmmm=[selectedOption]
   function onSubmit() {
     mutation.mutate(
       {
@@ -83,9 +82,9 @@ export default function PostEditor() {
       <div className="flex gap-5">
         <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
         <div {...rootProps} className="w-full">
-       <h5> Yeni Emlak İlanı</h5>
+       <h5> Yeni Devren Kiralık İş Yeri İlanı</h5>
 
-
+      <br></br>   <br></br>
 
 
 
@@ -134,19 +133,7 @@ export default function PostEditor() {
 <option value="option2">Yatırım Amaçlı</option>
 
           </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Konut Kullanımı</option>
-            <option value="option2">Satılık </option>
-            <option value="option3">Kiralık</option>
-            
-            <option value="Şehir Merkezi">Devren Kiralık</option>
-            <option value="option2">Devren Satılık </option>
-            <option value="option3">Devren Kiralık</option>
-          </select>
+   
           <select
             className="mt-3 p-2 border rounded"
             value={selectedOption}

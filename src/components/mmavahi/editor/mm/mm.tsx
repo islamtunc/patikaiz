@@ -3,8 +3,13 @@
 
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import MmmHome from "./mmerd/mm";
-import MmHome from "./mmmal/mm";
+
+import MmkargehHome from "./mmkargeh/mm";
+import MmerdHome from "./mmerd/mm";
+import MmmalHome from "./mmmal/mm";
+import MmbinaHome from "./mmbina/mm";
+import MmmDvHome from "./mmdvr/mm";
+import Mmm from "./mm/mm";
 
 
 
@@ -30,31 +35,28 @@ export default function MmmmmmHome() {
          
           <TabsContent value="ev">
          
-         <MmHome/>
+         <MmmalHome/>
           </TabsContent>
           <TabsContent value="arsa">
+          <MmerdHome/>
 
-<MmmHome/>
           </TabsContent>
           <TabsContent value="kargeh">
          
-         <MmHome/>
+         <MmkargehHome/>
           </TabsContent>
 
           <TabsContent value="bina">
          
-         <MmHome/>
+          <MmbinaHome/>
           </TabsContent>
           <TabsContent value="dvr">
 
-<MmmHome/>
+
+          <MmmDvHome/>
           </TabsContent>
-
-
-
         <TabsContent value="mm">
-
-
+          <Mmm/>
     </TabsContent>
     </Tabs>
       </div>

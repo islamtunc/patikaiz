@@ -14,8 +14,8 @@ export default function Home() {
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
 
-        <h1 className="text-3xl font-semibold">Emlak</h1>
-        <Tabs defaultValue="mm">
+        <h1 className="text-3xl font-semibold">Emlak </h1>
+        <Tabs defaultValue="for-you">
           <TabsList>
             <TabsTrigger value="for-you">İlanlar</TabsTrigger>
             <TabsTrigger value="following">Kategoride Ara</TabsTrigger>

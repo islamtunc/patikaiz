@@ -14,9 +14,9 @@ import { useDropzone } from "@uploadthing/react";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import { ClipboardEvent, useRef, useState } from "react";
-import useMediaUpload, { Attachment } from "../useMediaUpload";
+import useMediaUpload, { Attachment } from "../../useMediaUpload";
 import { Input } from "@/components/ui/input";
-import { useSubmitPostMutation } from "../mutations";
+import { useSubmitPostMutation } from "../../mutations";
 
 export default function PostEditor() {
   const { user } = useSession();
@@ -82,7 +82,7 @@ export default function PostEditor() {
       <div className="flex gap-5">
         <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
         <div {...rootProps} className="w-full">
-       <h5> Yeni Emlak İlanı</h5>
+       <h5> Yeni Devren Satılık Devre Mülk İlanı</h5>
 
 
 

@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PostEditor from "./mmfrtn";
 
 import MmPostEditor from "./mmkr";
-export default function MmerdHome() {
+export default function MmmDvHome() {
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
