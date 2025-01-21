@@ -3,8 +3,13 @@
 
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import MmmHome from "./mmerd/mm";
-import MmHome from "./mmmal/mm";
+
+import MmkargehHome from "./mmkargeh/mm";
+import MmerdHome from "./mmerd/mm";
+import MmmalHome from "./mmmal/mm";
+import MmbinaHome from "./mmbina/mm";
+import MmmDvHome from "./mmdvr/mm";
+import Mmm from "./mm/mm";
 
 
 
@@ -16,279 +21,42 @@ export default function MmmmmmHome() {
 
         <Tabs defaultValue="mm">
           <TabsList>
-            <TabsTrigger value="for-you">Sağlık </TabsTrigger>
-            <TabsTrigger value="following">Hukuk</TabsTrigger>
-            <TabsTrigger value="for-you">Eğlence</TabsTrigger>
-          
-            
-            
-            
-          </TabsList>
-       <TabsList>
-
-       <TabsTrigger value="for-you">IT ve Yazılım Kaynaakları</TabsTrigger>
-
-       <TabsTrigger value="following">Güzellik ve Bakım</TabsTrigger>
-
-
-
-
-
-       <TabsTrigger value="for-you">İşletme ve Stratejik Yöntem </TabsTrigger>
-
-       </TabsList>
-
-
-
-      <TabsList>
-
-            <TabsTrigger value="following">İnsan Kaynakları</TabsTrigger>
-            <TabsTrigger value="for-you">Muhasebe ,Finans ve Bankacılık</TabsTrigger>
-            <TabsTrigger value="following">Mühendsilik</TabsTrigger>
-            
-
-      </TabsList>
-
-
-
-          <TabsList>
-            <TabsTrigger value="following">Koruma ve Güvenlik</TabsTrigger>
-            <TabsTrigger value="for-you">Lojistik ve Taşıma</TabsTrigger>
-            <TabsTrigger value="following">Mağazacılık ve Perakendecilik</TabsTrigger>
-            
-            
-            
-            
-          </TabsList>
-          <TabsList>
-            <TabsTrigger value="for-you">Müşteeri Hizmetleri  </TabsTrigger>
-            <TabsTrigger value="following">Ofis Yönetimi ve İdari İşler</TabsTrigger>
-            <TabsTrigger value="for-you">Part Time ve Ek İş Fırsatları</TabsTrigger>
-          
-            
-            
-            
-          </TabsList>
-
-
-
-
-
-
-
-
-
-
-
-         <TabsList>
-
-         <TabsTrigger value="for-you">Tekstil ve Konfeksiyon</TabsTrigger>
-            <TabsTrigger value="following">Üretim ve İmalat</TabsTrigger>
-            
-
-         <TabsTrigger value="following">Restoran ve Konaklama</TabsTrigger>
-
-         </TabsList>
-
-
-
-
-
-
-
-
-
-          <TabsList>
-
-          <TabsTrigger value="following">Pazarlama ve Ürün Yönetimi</TabsTrigger>
-            <TabsTrigger value="for-you">Radyo,Sinema ve Televizyon</TabsTrigger>
-            
-          </TabsList>
-          <TabsList>
-            <TabsTrigger value="for-you">Satış  </TabsTrigger>
-            <TabsTrigger value="following">Tamir ve Bakım</TabsTrigger>
-            <TabsTrigger value="for-you">Tasarım </TabsTrigger>
-            <TabsTrigger value="following">Tarım ve Hayvancılık</TabsTrigger>
+            <TabsTrigger value="ev">Ev</TabsTrigger>
+            <TabsTrigger value="arsa">Arsa</TabsTrigger>
+            <TabsTrigger value="kargeh">İş Yeri</TabsTrigger>
+            <TabsTrigger value="bina">Bina</TabsTrigger>
+            <TabsTrigger value="dvr">Devre Mülk</TabsTrigger>
+            <TabsTrigger value="mm">Turistik Tesis</TabsTrigger>
             
             
             
             
           </TabsList>
          
-          <TabsContent value="mm1">
+          <TabsContent value="ev">
          
-         <MmHome/>
+         <MmmalHome/>
           </TabsContent>
-          <TabsContent value="mm3">
+          <TabsContent value="arsa">
+          <MmerdHome/>
 
-<MmmHome/>
           </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm5">
-
-
-    </TabsContent>
-
-    <TabsContent value="mm7">
+          <TabsContent value="kargeh">
          
-         <MmHome/>
+         <MmkargehHome/>
           </TabsContent>
-          <TabsContent value="mm9">
 
-<MmmHome/>
-          </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm11">
-
-
-    </TabsContent>
-    <TabsContent value="mm13">
+          <TabsContent value="bina">
          
-         <MmHome/>
+          <MmbinaHome/>
           </TabsContent>
-          <TabsContent value="mm15">
+          <TabsContent value="dvr">
 
-<MmmHome/>
+
+          <MmmDvHome/>
           </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm17">
-
-
-    </TabsContent>
-
-
-    <TabsContent value="mm19">
-         
-         <MmHome/>
-          </TabsContent>
-          <TabsContent value="mm21">
-
-<MmmHome/>
-          </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm23">
-
-
-    </TabsContent>
-
-
-    <TabsContent value="mm25">
-         
-         <MmHome/>
-          </TabsContent>
-          <TabsContent value="mm27">
-
-<MmmHome/>
-          </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm29">
-
-
-    </TabsContent>
-
-  
-    <TabsContent value="mm35">
-         
-         <MmHome/>
-          </TabsContent>
-          <TabsContent value="mm37">
-
-<MmmHome/>
-          </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm39">
-
-
-    </TabsContent>
-
-
-    <TabsContent value="mm41">
-         
-         <MmHome/>
-          </TabsContent>
-          <TabsContent value="mm43">
-
-<MmmHome/>
-          </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm45">
-
-
-    </TabsContent>
-
-
-    <TabsContent value="mm47">
-         
-         <MmHome/>
-          </TabsContent>
-          <TabsContent value="mm49">
-
-<MmmHome/>
-          </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm51">
-
-
-    </TabsContent>
-
-
-    <TabsContent value="mm53">
-         
-         <MmHome/>
-          </TabsContent>
-          <TabsContent value="mm55">
-
-<MmmHome/>
-          </TabsContent>
-    
-
-
-
-
-
-        <TabsContent value="mm57">
-
-
+        <TabsContent value="mm">
+          <Mmm/>
     </TabsContent>
     </Tabs>
       </div>

@@ -3,8 +3,13 @@
 
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import MmmHome from "./mmerd/mm";
-import MmHome from "./mmmal/mm";
+
+import MmkargehHome from "./mmkargeh/mm";
+import MmerdHome from "./mmerd/mm";
+import MmmalHome from "./mmmal/mm";
+import MmbinaHome from "./mmbina/mm";
+import MmmDvHome from "./mmdvr/mm";
+import Mmm from "./mm/mm";
 
 
 
@@ -16,35 +21,42 @@ export default function MmmmmmHome() {
 
         <Tabs defaultValue="mm">
           <TabsList>
-            <TabsTrigger value="for-you">Ev</TabsTrigger>
-            <TabsTrigger value="following">Arsa</TabsTrigger>
-            <TabsTrigger value="for-you">İş Yeri</TabsTrigger>
-            <TabsTrigger value="following">Bina</TabsTrigger>
-            <TabsTrigger value="for-you">Devre Mülk</TabsTrigger>
-            <TabsTrigger value="following">Turistik Tesis</TabsTrigger>
+            <TabsTrigger value="ev">Ev</TabsTrigger>
+            <TabsTrigger value="arsa">Arsa</TabsTrigger>
+            <TabsTrigger value="kargeh">İş Yeri</TabsTrigger>
+            <TabsTrigger value="bina">Bina</TabsTrigger>
+            <TabsTrigger value="dvr">Devre Mülk</TabsTrigger>
+            <TabsTrigger value="mm">Turistik Tesis</TabsTrigger>
             
             
             
             
           </TabsList>
          
-          <TabsContent value="for-you">
+          <TabsContent value="ev">
          
-         <MmHome/>
+         <MmmalHome/>
           </TabsContent>
-          <TabsContent value="following">
+          <TabsContent value="arsa">
+          <MmerdHome/>
 
-<MmmHome/>
           </TabsContent>
-    
+          <TabsContent value="kargeh">
+         
+         <MmkargehHome/>
+          </TabsContent>
+
+          <TabsContent value="bina">
+         
+          <MmbinaHome/>
+          </TabsContent>
+          <TabsContent value="dvr">
 
 
-
-
-
+          <MmmDvHome/>
+          </TabsContent>
         <TabsContent value="mm">
-
-
+          <Mmm/>
     </TabsContent>
     </Tabs>
       </div>
