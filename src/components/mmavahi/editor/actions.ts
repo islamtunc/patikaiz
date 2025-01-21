@@ -19,7 +19,7 @@ export async function submitPost(input: {
 
   const newPost = await prisma.mmavahi.create({
     data: {
-      content: { set: [content] },
+      content,
       userId: user.id,
       attachments: {
         connect: mediaIds.map((id: any) => ({ id })),
