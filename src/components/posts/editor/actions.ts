@@ -8,7 +8,7 @@ import { getPostDataInclude } from "@/lib/types";
 import { createPostSchema } from "@/lib/validation";
 
 export async function submitPost(input: {
-  content: string;
+  content: string[];
   mediaIds: string[];
 }) {
   const { user } = await validateRequest();
@@ -19,7 +19,7 @@ export async function submitPost(input: {
 
   const newPost = await prisma.mmavahi.create({
     data: {
-      content: { set: [content] },
+      content,
       userId: user.id,
       attachments: {
         connect: mediaIds.map((id: any) => ({ id })),
