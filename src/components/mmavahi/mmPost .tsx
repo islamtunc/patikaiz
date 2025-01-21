@@ -19,7 +19,7 @@ interface PostProps {
   
 }
 
-export default async function Post({ post }: PostProps) {
+export default async function MmPost({ post }: PostProps) {
 
 
   return (
