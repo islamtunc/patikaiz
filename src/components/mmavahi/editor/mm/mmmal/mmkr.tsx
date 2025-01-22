@@ -129,7 +129,7 @@ export default function PostEditor() {
       <div className="flex gap-5">
         <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
         <div {...rootProps} className="w-full">
-       <h5> Yeni  Satılık Ev İlanı</h5>
+       <h5> Yeni  Kiralık Ev İlanı</h5>
 
       <br></br>   <br></br>
 
