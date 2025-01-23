@@ -25,14 +25,22 @@ export default function MmmmmmHome() {
             <TabsTrigger value="arsa">Arsa</TabsTrigger>
             <TabsTrigger value="kargeh">İş Yeri</TabsTrigger>
             <TabsTrigger value="bina">Bina</TabsTrigger>
-            <TabsTrigger value="dvr">Devre Mülk</TabsTrigger>
-            <TabsTrigger value="mm">Turistik Tesis</TabsTrigger>
+            
             
             
             
             
           </TabsList>
          
+
+
+
+
+         <TabsList>
+
+         <TabsTrigger value="dvr">Devre Mülk</TabsTrigger>
+         <TabsTrigger value="mm">Turistik Tesis</TabsTrigger>
+         </TabsList>
           <TabsContent value="ev">
          
          <MmmalHome/>
