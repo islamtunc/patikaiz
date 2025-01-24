@@ -1,3 +1,7 @@
+// Bismillahirrahmanirrahim
+// Elhamdulillahi Rabbil Alemin
+
+
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { FollowerInfo } from "@/lib/types";
