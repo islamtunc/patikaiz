@@ -13,7 +13,6 @@ import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { cache, Suspense } from "react";
 import { StreamChat } from "stream-chat";
-import { useRouter } from 'next/navigation';
 
 import NewChatDialog from "@/app/(main)/messages/NewChatDialog";
 interface PageProps {
@@ -49,7 +48,6 @@ export async function generateMetadata({
 
 export default async function Page({ params: { postId } }: PageProps) {
   const { user } = await validateRequest();
-  const router = useRouter();
 
   if (!user) {
     return (
