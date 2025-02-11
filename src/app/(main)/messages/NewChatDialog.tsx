@@ -114,7 +114,7 @@ export const NewChatDialog: React.FC<NewChatDialogProps> = ({ onOpenChange, onCh
           <LoadingButton
             disabled={!selectedUsers.length}
             loading={mutation.isPending}
-            onClick={handleCreateChat} // Use the new function
+            onClick={() => mutation.mutate()} // Use the new function
           >
             Başla
           </LoadingButton>
