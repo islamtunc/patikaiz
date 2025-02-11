@@ -12,9 +12,10 @@ import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { cache, Suspense } from "react";
+import { StreamChat } from "stream-chat";
+import { useRouter } from 'next/navigation';
 
 import NewChatDialog from "@/app/(main)/messages/NewChatDialog";
-import Mm from "../mm";
 interface PageProps {
   params: { postId: string };
 }
@@ -47,9 +48,8 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params: { postId } }: PageProps) {
-   
-     "use server"
   const { user } = await validateRequest();
+  const router = useRouter();
 
   if (!user) {
     return (
@@ -61,19 +61,16 @@ export default async function Page({ params: { postId } }: PageProps) {
 
   const post = await getPost(postId, user.id);
 
-
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
         <MmPost post={post} />
 
-
-
-
-
-
-
-<Mm/>
+        <NewChatDialog 
+          onOpenChange={() => {}} 
+          onChatCreated={() => {}} 
+          userId={post.user.id} 
+        />
         <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
         </Suspense>
       </div>

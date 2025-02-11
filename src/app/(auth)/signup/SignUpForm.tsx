@@ -90,10 +90,7 @@ export default function SignUpForm() {
         />
         <Check>Kullanıcı Sözleşmesi</Check>
 
-        <Button onClick={() =>
-
-alert(" Lütfen Kullanıcı Sözleşmesini okuyunuz. Üye olmak için uygulamayı silip play storeden  ödeme planı seçip indirin ve tekrar deneyin.")
-}>Üye Ol</Button>
+<LoadingButton loading={isPending}>Üye Ol</LoadingButton>
       </form>
     </Form>
   );

@@ -1,5 +1,7 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahi Rabbil Alemin
+// Es Salatu Es Selamu Ala Rasulina Muhammedin ve Ala Alihi ve Sahbihi Ecmain.
+
 import Linkify from "@/components/Linkify";
 import MmPost from "@/components/mmavahi/mmPost ";
 import UserAvatar from "@/components/UserAvatar";
