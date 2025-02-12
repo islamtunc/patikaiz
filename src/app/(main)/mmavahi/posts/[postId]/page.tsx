@@ -3,67 +3,33 @@
 // Elhamdülillahirabbülalemin 
 
 // Allahu ekber
-import { validateRequest } from "@/auth";
+"use client";
+
 import MmPost from "@/components/mmavahi/mmPost ";
 import { Button } from "@/components/ui/button";
-import prisma from "@/lib/prisma";
-import { getPostDataInclude, UserData } from "@/lib/types";
-import { Loader2 } from "lucide-react";
-import { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
-import { cache } from "react";
-
+import { useState } from "react";
 import NewChatDialogClient from "@/components/mmavahi/NewChatDialogClient";
+
 interface PageProps {
-  params: { postId: string };
+  post: any;
+  userId: string;
 }
 
-const getPost = cache(async (postId: string, loggedInUserId: string) => {
-  const post = await prisma.mmavahi.findUnique({
-    where: {
-      id: postId,
-    },
-    include: getPostDataInclude(loggedInUserId),
-  });
+export default function Page({ post, userId }: PageProps) {
+  const [isChatDialogOpen, setIsChatDialogOpen] = useState(false);
 
-  if (!post) notFound();
-
-  return post;
-});
-
-export async function generateMetadata({
-  params: { postId },
-}: PageProps): Promise<Metadata> {
-  const { user } = await validateRequest();
-
-  if (!user) return {};
-
-  const post = await getPost(postId, user.id);
-
-  return {
-    title: `${post.user.displayName}: ${post.content?.slice(0, 50) ?? ''}...`,
+  const handleChatButtonClick = () => {
+    setIsChatDialogOpen(true);
   };
-}
-
-export default async function Page({ params: { postId } }: PageProps) {
-  const { user } = await validateRequest();
-
-  if (!user) {
-    return (
-      <p className="text-destructive">
-        ilan detaylarını görmek için giriş yapın 
-      </p>
-    );
-  }
-
-  const post = await getPost(postId, user.id);
 
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
         <MmPost post={post} />
-
-        <NewChatDialogClient postUserId={post.user.id} />
+        <Button onClick={handleChatButtonClick}>Mesaj Gönder</Button>
+        {isChatDialogOpen && (
+          <NewChatDialogClient postUserId={post.user.id} />
+        )}
       </div>
     </main>
   );

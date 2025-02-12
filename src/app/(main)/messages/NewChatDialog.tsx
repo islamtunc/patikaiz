@@ -1,6 +1,4 @@
-// Bismillahirahmanirahim 
-
-
+// Bismillahirrahmanirrahim
 
 import LoadingButton from "@/components/LoadingButton";
 import {
@@ -11,84 +9,66 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
-import UserAvatar from "@/components/UserAvatar";
-import useDebounce from "@/hooks/useDebounce";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { Check, Loader2, SearchIcon, X } from "lucide-react";
-import { useState, useEffect } from "react";
-import { UserResponse } from "stream-chat";
-import { DefaultStreamChatGenerics, useChatContext } from "stream-chat-react";
+import { useEffect } from "react";
+import { StreamChat } from 'stream-chat';
 import { useSession } from "../SessionProvider";
+import { DefaultStreamChatGenerics, useChatContext } from "stream-chat-react";
 
 interface NewChatDialogProps {
   onOpenChange: (open: boolean) => void;
   onChatCreated: () => void;
   userId: string;
   isOpen: boolean;
-  onCreateChat: () => void; // Add new prop
 }
 
-export const NewChatDialog: React.FC<NewChatDialogProps> = ({ onOpenChange, onChatCreated, userId, isOpen, onCreateChat }) => {
-  const { client, setActiveChannel } = useChatContext();
-
+export const NewChatDialog: React.FC<NewChatDialogProps> = ({ onOpenChange, onChatCreated, userId, isOpen }) => {
+  const { client, setActiveChannel } = useChatContext(); // Ensure setActiveChannel is imported correctly
   const { toast } = useToast();
-
   const { user: loggedInUser } = useSession();
 
-  const [searchInput, setSearchInput] = useState("");
-  const searchInputDebounced = useDebounce(searchInput);
+  const handleCreateChat = async () => {
+    try {
+      const client = StreamChat.getInstance(process.env.NEXT_PUBLIC_STREAM_KEY!);
 
-  const [selectedUsers, setSelectedUsers] = useState<
-    UserResponse<DefaultStreamChatGenerics>[]
-  >([]);
-
-  const { data, isFetching, isError, isSuccess } = useQuery({
-    queryKey: ["stream-users", searchInputDebounced],
-    queryFn: async () =>
-      client.queryUsers(
-        {
-          id: { $ne: loggedInUser.id },
-          role: { $ne: "admin" },
-          ...(searchInputDebounced
-            ? {
-                $or: [
-                  { name: { $autocomplete: searchInputDebounced } },
-                  { username: { $autocomplete: searchInputDebounced } },
-                ],
-              }
-            : {}),
+      // Replace this with your production token generation logic
+      const response = await fetch('/api/get-token', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        { name: 1, username: 1 },
-        { limit: 15 },
-      ),
-  });
+      });
 
-  const mutation = useMutation({
-    mutationFn: async () => {
+      if (!response.ok) {
+        throw new Error('Token request failed');
+      }
+
+      const data = await response.json();
+      const token = data.token;
+
+      await client.connectUser(
+        {
+          id: loggedInUser.id,
+          name: loggedInUser.name,
+          image: loggedInUser.image,
+        },
+        token
+      );
+
       const channel = client.channel("messaging", {
-        members: [loggedInUser.id, ...selectedUsers.map((u) => u.id)],
-        name:
-          selectedUsers.length > 1
-            ? loggedInUser.displayName +
-              ", " +
-              selectedUsers.map((u) => u.name).join(", ")
-            : undefined,
+        members: [loggedInUser.id, userId],
       });
       await channel.create();
-      return channel;
-    },
-    onSuccess: (channel) => {
-      setActiveChannel(channel);
+      setActiveChannel(channel); // Ensure setActiveChannel is used correctly
       onChatCreated();
-    },
-    onError(error) {
+      window.location.href = `/messages/${channel.id}`;
+    } catch (error) {
       console.error("Konuşma başlatılamadı", error);
       toast({
         variant: "destructive",
         description: "Konuşma başlatılamadı, tekrar deneyin",
       });
-    },
-  });
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -97,11 +77,6 @@ export const NewChatDialog: React.FC<NewChatDialogProps> = ({ onOpenChange, onCh
       // Logic to close the dialog
     }
   }, [isOpen]);
-
-  const handleCreateChat = () => {
-    onCreateChat(); // Call the passed function
-    mutation.mutate(); // Trigger the mutation
-  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -112,9 +87,8 @@ export const NewChatDialog: React.FC<NewChatDialogProps> = ({ onOpenChange, onCh
         
         <DialogFooter className="px-6 pb-6">
           <LoadingButton
-            disabled={!selectedUsers.length}
-            loading={mutation.isPending}
-            onClick={() => mutation.mutate()} // Use the new function
+            loading={false}
+            onClick={handleCreateChat}
           >
             Başla
           </LoadingButton>
@@ -123,4 +97,3 @@ export const NewChatDialog: React.FC<NewChatDialogProps> = ({ onOpenChange, onCh
     </Dialog>
   );
 }
-

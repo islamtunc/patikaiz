@@ -7,6 +7,7 @@
 
 import { useState } from "react";
 import { NewChatDialog } from "@/app/(main)/messages/NewChatDialog";
+
 interface NewChatDialogClientProps {
   postUserId: string;
 }
@@ -23,12 +24,6 @@ const NewChatDialogClient: React.FC<NewChatDialogClientProps> = ({ postUserId })
     // handle chat created
   };
 
-  const handleCreateChat = () => {
-    // Logic to create a new chat
-    // This function will be passed to NewChatDialog
-    console.log("Creating chat...");
-  };
-
   return (
     <>
       <button onClick={() => setIsOpen(true)}>Yeni Konuşma Başlat</button>
@@ -37,7 +32,6 @@ const NewChatDialogClient: React.FC<NewChatDialogClientProps> = ({ postUserId })
         onChatCreated={handleChatCreated} 
         userId={postUserId} 
         isOpen={isOpen}
-        onCreateChat={handleCreateChat} // Pass the new function
       />
     </>
   );
