@@ -111,27 +111,14 @@ export default function PostEditor() {
             value={selectedOption}
             onChange={(e) => setSelectedOption(e.target.value)}
           >
-            <option value="Şehir Merkezi">Konut Türü</option><br></br>
+            <option value="Şehir Merkezi">Emlak Türü</option><br></br>
            <br></br>
-           <option value="option2">Daire</option>
+           <option value="option2">Konut </option>
 
-            <option value="option2">Villa</option>
-            <option value="option3">Müstakil Ev</option>
+            <option value="option2">Arsa</option>
+            
          
-            <option value="option2">Residans</option>
 
-            <option value="option2">Stüdyo Daire</option>
-       
-            <option value="option3">Dubleks/Tripleks</option>
-         
-         <option value="option2">Residans</option>
-
-         <option value="option2">Loft</option>
-
-<option value="option2">Prefabrik Ev</option>
-<option value="option3">Çiftlik Evi</option>
-
-<option value="option2">Yatırım Amaçlı</option>
 
           </select>
           <select
