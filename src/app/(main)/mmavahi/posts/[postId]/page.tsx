@@ -4,7 +4,6 @@
 import { validateRequest } from "@/auth";
 import Linkify from "@/components/Linkify";
 import MmPost from "@/components/mmavahi/mmPost ";
-import { Button } from "@/components/ui/button";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
@@ -16,6 +15,7 @@ import Link from "next/link";
 import { cache, Suspense } from "react";
 import { StreamChat } from "stream-chat";
 
+import { Phone } from "lucide-react";
 interface PageProps {
   params: { postId: string };
 }
@@ -120,9 +120,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
         </div>
       </Linkify>
       {user.id == loggedInUser.id && (
-        <Button onClick={handleMessageClick}>
-          Mesaj Yaz
-        </Button>
+      <Phone href="+905549765692">Ara</Phone>
       )}
     </div>
   );
