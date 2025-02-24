@@ -73,7 +73,7 @@ export default async function MmPost({ post }: PostProps) {
 
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
-        <Phone href="+905549765692">Ara</Phone>
+        <Phone ><a href={`tel:${+905549765692}`}>Ara</a></Phone>
         <div className="flex items-center gap-5"></div>
       </div>
     </article>
