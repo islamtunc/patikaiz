@@ -20,7 +20,7 @@ interface PageProps {
 }
 
 const getPost = cache(async (postId: string, loggedInUserId: string) => {
-  const post = await prisma.mmkedkar.findUnique({
+  const post = await prisma.mmhuner.findUnique({
     where: {
       id: postId,
     },

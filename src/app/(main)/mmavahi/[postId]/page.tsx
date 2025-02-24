@@ -1,5 +1,6 @@
 // Bismillahirrahmanirrahim
-
+// Elhamdulillahirabbulalemin
+// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain.
 import { validateRequest } from "@/auth";
 import Linkify from "@/components/Linkify";
 import MmPost from "@/components/mmavahi/mmPost ";
@@ -20,13 +21,14 @@ interface PageProps {
 }
 
 const getPost = cache(async (postId: string, loggedInUserId: string) => {
-  const post = await prisma.mmkedkar.findUnique({
+  const post = await prisma.mmavahi.findUnique({
     where: {
       id: postId,
     },
     include: getPostDataInclude(loggedInUserId),
   });
 
+  
   if (!post) notFound();
 
   return post;
