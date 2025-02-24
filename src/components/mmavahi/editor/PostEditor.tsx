@@ -1,7 +1,8 @@
-// Bismillahirahmanirahim 
+// Bismillahirrahmanirrahim
+// Elhamdulillahirabbulalemin
+// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain.
 
-"use client";
-
+import React from "react";
 import { useSession } from "@/app/(main)/SessionProvider";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
@@ -21,9 +22,7 @@ import { Input } from "@/components/ui/input";
 
 export default function PostEditor() {
   const { user } = useSession();
-
   const mutation = useSubmitPostMutation();
-
   const {
     startUpload,
     attachments,
@@ -51,23 +50,20 @@ export default function PostEditor() {
     ],
   });
 
-
-
   const [selectedOption, setSelectedOption] = useState("mmal");
 
   function onSubmit() {
     mutation.mutate(
       {
-        content: [selectedOption,],
+        content: [selectedOption],
         mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
-       
       },
       {
         onSuccess: () => {
           editor?.commands.clearContent();
           resetMediaUploads();
         },
-      },
+      }
     );
   }
 
@@ -83,182 +79,141 @@ export default function PostEditor() {
       <div className="flex gap-5">
         <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
         <div {...rootProps} className="w-full">
-       <h5> Yeni Emlak İlanı</h5>
+          <h5>Yeni Emlak İlanı</h5>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Input placeholder="İlan Adı" className="mt-3" />
+            <Input placeholder="İlan Fiyatı" className="mt-3" />
+            <Input placeholder="Alan (metrekare)" className="mt-3" />
+            <Input placeholder="Açıklama" className="mt-3" />
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Emlak Türü</option>
+              <option value="Konut">Konut</option>
+              <option value="Arsa">Arsa</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Konut Kullanımı</option>
+              <option value="Satılık">Satılık</option>
+              <option value="Kiralık">Kiralık</option>
+              <option value="Devren Satılık">Devren Satılık</option>
+              <option value="Devren Kiralık">Devren Kiralık</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Oda Sayısı</option>
+              <option value="1+1">1+1</option>
+              <option value="2+1">2+1</option>
+              <option value="3+1">3+1</option>
+              <option value="4+1 ve üzeri">4+1 ve üzeri</option>
+              <option value="1+0">1+0 (Stüdyo Daire)</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Isınma Sistemi</option>
+              <option value="Doğal Gaz">Doğal Gaz</option>
+              <option value="Kömür Merkezi Sistem">Kömür Merkezi Sistem</option>
+              <option value="Jeotermal">Jeotermal</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Asansör</option>
+              <option value="Var">Var</option>
+              <option value="Yok">Yok</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Otopark</option>
+              <option value="Var">Var</option>
+              <option value="Yok">Yok</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Bahçeli</option>
+              <option value="Var">Var</option>
+              <option value="Yok">Yok</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Havuz</option>
+              <option value="Var">Var</option>
+              <option value="Yok">Yok</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Balkon</option>
+              <option value="Var">Var</option>
+              <option value="Yok">Yok</option>
+            </select>
 
-       <div style={{display:"flex",flexDirection:"column"}}>
-           <Input placeholder="ilan adı"/>
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Teras</option>
+              <option value="Var">Var</option>
+              <option value="Yok">Yok</option>
+            </select>
 
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Klima</option>
+              <option value="Var">Var</option>
+              <option value="Yok">Yok</option>
+            </select>
 
-
-
-
-
-
-
-    
-    
-           <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Emlak Türü</option><br></br>
-           <br></br>
-           <option value="option2">Konut </option>
-
-            <option value="option2">Arsa</option>
-            
-         
-
-
-          </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Konut Kullanımı</option>
-            <option value="option2">Satılık </option>
-            <option value="option3">Kiralık</option>
-            
-            <option value="Şehir Merkezi">Devren Kiralık</option>
-            <option value="option2">Devren Satılık </option>
-            <option value="option3">Devren Kiralık</option>
-          </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Oda Sayısı</option><br></br>
-           <br></br>
-           <option value="option2">1+1</option>
-
-            <option value="option2">2+1</option>
-            <option value="option3">3+1</option>
-            
-            <option value="option2">4+1 ve üzeri</option>
-            <option value="option3">1+0 (Studyo Daire)</option>
-          </select>
-      
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Isınma Sistemi</option>
-            <option value="option2">Doğal Gaz</option>
-            <option value="option3">Kömür Merkezi Sistem</option>
-            <option value="Şehir Merkezi">Jeotermal </option>
-            <option value="option2"></option>
-          </select>
-
-    
+            <select
+              className="mt-3 p-2 border rounded"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="Şehir Merkezi">Eşya Durumu</option>
+              <option value="Eşyalı">Eşyalı</option>
+              <option value="Eşyasız">Eşyasız</option>
+            </select>
           </div>
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-
-            
-
-            <option value="Şehir Merkezi"> Asansor var</option>
-            <option value="option2">Asansor yok</option>
-            
-            
-          </select>
-
-
-
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Otopark var</option>
-            <option value="option2">Otopark yok</option>
-          </select>
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Bahçeli</option>
-            <option value="option2">Bahçesiz</option>
-          </select>
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Havuz var</option>
-            <option value="option2">Havuz yok</option>
-          </select>
-
-          
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Balkon var</option>
-            <option value="option2">Balkon yok</option>
-          </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Teras var</option>
-            <option value="option2">Teras yok</option>
-          </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Klimalı</option>
-            <option value="option2">Klimasız</option>
-          </select>
-
-
-           
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Eşyalı</option>
-            <option value="option2">Eşyasız</option>
-          </select>
-         
-
         </div>
-        
       </div>
-
-
-      
-      <Input placeholder="ilan fiyatı"/>
-          <Input placeholder="Alan(metrekare)"/>
-
-          
-          <Input placeholder="Açıklaması"/>
 
       {!!attachments.length && (
         <AttachmentPreviews
@@ -342,7 +297,7 @@ function AttachmentPreviews({
     <div
       className={cn(
         "flex flex-col gap-3",
-        attachments.length > 1 && "sm:grid sm:grid-cols-2",
+        attachments.length > 1 && "sm:grid sm:grid-cols-2"
       )}
     >
       {attachments.map((attachment) => (
