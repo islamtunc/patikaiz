@@ -109,10 +109,10 @@ export default function PostEditor() {
         <div {...rootProps} className="w-full">
           <h5>Yeni Emlak İlanı</h5>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <Input ref={mmtel} placeholder="İlan Adı" className="mt-3" />
             <Input placeholder="İlan Fiyatı" className="mt-3" />
             <Input placeholder="Alan (metrekare)" className="mt-3" />
             <Input placeholder="Açıklama" className="mt-3" />
+            <Input ref={mmtel} placeholder="Whatsapp" className="mt-3" />
 
             <select
               className="mt-3 p-2 border rounded"
