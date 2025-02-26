@@ -1,6 +1,7 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain.
+// Es Salatu Es Selamu Ala Rasulina Muhammedin ve Ala Alihi ve Sahbihi Ecmain
+
 import { validateRequest } from "@/auth";
 import Linkify from "@/components/Linkify";
 import MmPost from "@/components/mmavahi/mmPost ";
@@ -13,8 +14,9 @@ import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { cache, Suspense } from "react";
-
 import { Phone } from "lucide-react";
+import ReactWhatsapp from "react-whatsapp";
+
 interface PageProps {
   params: { postId: string };
 }
@@ -27,7 +29,6 @@ const getPost = cache(async (postId: string, loggedInUserId: string) => {
     include: getPostDataInclude(loggedInUserId),
   });
 
-  
   if (!post) notFound();
 
   return post;
@@ -64,12 +65,7 @@ export default async function Page({ params: { postId } }: PageProps) {
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
         <MmPost post={post} />
-        <UserInfoSidebar user={post.user} />
-      </div>
-      <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
-        <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-          <UserInfoSidebar user={post.user} />
-        </Suspense>
+        <UserInfoSidebar user={post.user} post={post} />
       </div>
     </main>
   );
@@ -77,17 +73,16 @@ export default async function Page({ params: { postId } }: PageProps) {
 
 interface UserInfoSidebarProps {
   user: UserData;
+  post: any;
 }
 
-async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
+async function UserInfoSidebar({ user, post }: UserInfoSidebarProps) {
   const { user: loggedInUser } = await validateRequest();
 
   if (!loggedInUser) return null;
 
- 
-
   return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 ">
+    <div className="space-y-5 rounded-2xl bg-card p-5">
       <div className="text-xl font-bold">Bu kullanıcı ile ilgili</div>
       <UserTooltip user={user}>
         <Link
@@ -107,10 +102,9 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
       </UserTooltip>
       <Linkify>
         <div className="line-clamp-6 whitespace-pre-line break-words text-muted-foreground">
-          {user.bio}
+          <ReactWhatsapp element="div" number={"+90"+post.content[9]} message="Merhaba" />
         </div>
       </Linkify>
-   
     </div>
   );
 }
