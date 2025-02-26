@@ -97,6 +97,14 @@ export default async function MmPost({ post }: PostProps) {
       <Linkify>      <div className="whitespace-pre-line break-words">{post.content[10]}</div>
       </Linkify>
 
+
+
+
+
+
+      <ReactWhatsapp element="button" number={"+90"+ post.content[9]} message="Selam Aleyküm" />
+
+
       <div className="flex justify-between gap-5">
         <Phone ><a href={`tel:${+905549765692}`}>Ara</a></Phone>
 
