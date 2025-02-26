@@ -13,7 +13,6 @@ import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { cache, Suspense } from "react";
-import { StreamChat } from "stream-chat";
 
 import { Phone } from "lucide-react";
 interface PageProps {
@@ -85,15 +84,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
 
   if (!loggedInUser) return null;
 
-  const handleMessageClick = async () => {
-    const client = StreamChat.getInstance(process.env.NEXT_PUBLIC_STREAM_KEY!);
-    const channel = client.channel("messaging", {
-      members: [loggedInUser.id, user.id],
-    });
-    await channel.create();
-  
-    redirect(`/messages/${channel.id}`);
-  };
+ 
 
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 ">
