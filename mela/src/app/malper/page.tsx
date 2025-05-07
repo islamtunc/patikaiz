@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import BasicExample from "./components/mmslide";
 import { Alert, Card } from "react-bootstrap";
-import mm from "../../../public/rjd.jpg";
 
 function ContainerFluidExample() {
   return (
@@ -87,7 +86,7 @@ function ContainerFluidExample() {
 
         <Col>
           <BasicExample
-            nav="Psikoloji ve Beslenme"
+            nav="Emlak"
             nivis="Zaman zaman duygu durumlarımız değişiklik gösterebilmektedir ve bu durumda beslenme alışkanlıklarımızda değişebilmekte ve sağlıksız bir beslenme çeşidine yönelmekteyiz. Bu durumlarla nasıl başa çıkmalıyız? Detaylara yazılarımızdan ulaşabilirsiniz."
             cih="/malper/mmkinc"
           />
@@ -95,7 +94,7 @@ function ContainerFluidExample() {
 
         <Col>
           <BasicExample
-            nav="Diyet Çeşitleri"
+            nav="Arabalar"
             nivis="Belirli hastalık ve beslenme tarzlarında yapılan diyet farklılık gösterebilmektedir. Bazen yağdan, bazen karbonhidrattan ya da proteinden zengin beslenmeler öne çıkabilmektedir. Hangi hastalık durumunda hangi diyet çeşidini tercih etmeliyiz sorusu için detaylı bilgilere diyet çeşitleri yazılarımızdan ulaşabilirsiniz."
             cih="/malper/mmwesayit"
           />
