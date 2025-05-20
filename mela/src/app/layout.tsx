@@ -1,6 +1,7 @@
 // Bismillahirrahmanirrahim 
-
-
+// Elhamdulillahirabbulalemin
+// Esselatu vesselamu ala rasulillah ve ala alihi ve sahbihi ecma'in
+// Allahu Ekber velilahi'lhamd
 
 import { Toaster } from "@/components/ui/toaster";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -12,7 +13,6 @@ import { fileRouter } from "./api/uploadthing/core";
 import "./globals.css";
 import ReactQueryProvider from "./ReactQueryProvider";
 
-import Alert from 'react-bootstrap';
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -24,10 +24,10 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Yekazad Software Center",
-    default: " Yekazad Software Center",
+    template: "%s | İş İlanları",
+    default: "İş İlanları",
   },
-  description: " Software Development",
+  description: "En güncel iş ilanlarını burada bulabilirsiniz.",
 };
 
 export default function RootLayout({
@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="tr">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
         <ReactQueryProvider>
@@ -46,10 +46,12 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-
-
-
-              {children}
+            <header>
+              <h1 style={{ textAlign: "center", margin: "20px 0" }}>
+                İş İlanları
+              </h1>
+            </header>
+            <main>{children}</main>
           </ThemeProvider>
         </ReactQueryProvider>
         <Toaster />

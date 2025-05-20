@@ -1,5 +1,7 @@
 // Bismillahirahmanirahim
-
+// Elhamdulillahirabbulalemin
+// Esselatu vesselamu ala rasulillah ve ala alihi ve sahbihi ecma'in
+// Allahu Ekber velilahi'lhamd
 
 
 import signupImage from "@/assets/signup-image.jpg";

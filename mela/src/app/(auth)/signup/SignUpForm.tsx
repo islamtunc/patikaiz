@@ -1,5 +1,7 @@
 // Bismillahirahmanirahim
-
+// Elhamdulillahirabbulalemin
+// Esselatu vesselamu ala rasulillah ve ala alihi ve sahbihi ecma'in
+// Allahu Ekber velilahi'lhamd
 "use client";
 
 import LoadingButton from "@/components/LoadingButton";
@@ -30,6 +32,7 @@ export default function SignUpForm() {
       email: "",
       username: "",
       password: "",
+      phone: "", // Telefon numarası için varsayılan değer
     },
   });
 
@@ -66,6 +69,19 @@ export default function SignUpForm() {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="Email" type="email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Telefon Numarası</FormLabel>
+              <FormControl>
+                <Input placeholder="Telefon Numarası" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

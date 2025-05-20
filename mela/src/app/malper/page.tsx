@@ -5,16 +5,17 @@
 "use client";
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import Link from "next/link";
 
 const categories = [
-  { id: 1, name: "Emlak", icon: "🏠" },
-  { id: 2, name: "Vasıta", icon: "🚗" },
-  { id: 3, name: "İkinci El ve Sıfır Alışveriş", icon: "🛒" },
-  { id: 4, name: "İş Makineleri", icon: "🚜" },
-  { id: 5, name: "Yedek Parça", icon: "🔧" },
-  { id: 6, name: "İş İlanları", icon: "💼" },
-  { id: 7, name: "Hayvanlar Alemi", icon: "🐾" },
-  { id: 8, name: "Hizmetler", icon: "🛠️" },
+  { id: 1, name: "Emlak", icon: "🏠", link: "/malper/mmavahi" },
+  { id: 2, name: "Vasıta", icon: "🚗", link: "/malper/vasita" },
+  { id: 3, name: "İkinci El ve Sıfır Alışveriş", icon: "🛒", link: "/malper/ikinciel" },
+  { id: 4, name: "İş Makineleri", icon: "🚜", link: "/malper/ismakineleri" },
+  { id: 5, name: "Yedek Parça", icon: "🔧", link: "/malper/yedekparca" },
+  { id: 6, name: "İş İlanları", icon: "💼", link: "/malper/isilanlari" },
+  { id: 7, name: "Hayvanlar Alemi", icon: "🐾", link: "/malper/hayvanlaralemi" },
+  { id: 8, name: "Hizmetler", icon: "🛠️", link: "/malper/hizmetler" },
 ];
 
 function Page() {
@@ -24,12 +25,14 @@ function Page() {
       <Row>
         {categories.map((category) => (
           <Col key={category.id} xs={12} sm={6} md={4} lg={3} className="mb-4">
-            <Card className="h-100 text-center shadow-sm">
-              <Card.Body>
-                <div className="fs-1">{category.icon}</div>
-                <Card.Title className="mt-3">{category.name}</Card.Title>
-              </Card.Body>
-            </Card>
+            <Link href={category.link} style={{ textDecoration: "none" }}>
+              <Card className="h-100 text-center shadow-sm category-card" style={{ cursor: "pointer" }}>
+                <Card.Body>
+                  <div className="fs-1">{category.icon}</div>
+                  <Card.Title className="mt-3">{category.name}</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         ))}
       </Row>
