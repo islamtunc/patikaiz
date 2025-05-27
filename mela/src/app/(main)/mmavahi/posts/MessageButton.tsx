@@ -1,7 +1,8 @@
+// Bismillahirrahmanirrahim
+// Elhamdulillahi Rabbul Alemin
+// Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 
-
-
-
+"use client";
 import React from "react";
 
 interface MessageButtonProps {
