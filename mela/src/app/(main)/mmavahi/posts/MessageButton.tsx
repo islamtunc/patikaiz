@@ -4,6 +4,7 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useChatContext } from "stream-chat-react";
 
 interface MessageButtonProps {
   targetUserId: string;
@@ -11,9 +12,21 @@ interface MessageButtonProps {
 
 const MessageButton: React.FC<MessageButtonProps> = ({ targetUserId }) => {
   const router = useRouter();
+  const { client, setActiveChannel } = useChatContext();
 
-  const handleClick = () => {
-    // Redirect to the messages page with the target user
+  const handleClick = async () => {
+    // Kanalı oluştur veya bul
+    if (!client.userID || !targetUserId) {
+      console.error("User IDs are not defined");
+      return;
+    }
+    const channel = client.channel(
+      "messaging",
+      undefined,
+      { members: [client.userID, targetUserId] }
+    );
+    await channel.watch();
+    setActiveChannel(channel);
     router.push(`/messages?userId=${targetUserId}`);
   };
 

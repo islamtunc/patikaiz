@@ -10,7 +10,7 @@ import {
   MessageInput,
   MessageList,
   Window,
-} from "stream-chat-react";
+} from "stream-chat-react"; 
 
 interface ChatChannelProps {
   open: boolean;
