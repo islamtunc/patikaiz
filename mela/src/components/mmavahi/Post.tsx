@@ -1,6 +1,5 @@
 // Bismillahirrahmanirrahim 
 
-
 "use client";
 
 import { PostData } from "@/lib/types";
@@ -11,28 +10,26 @@ import Image from "next/image";
 import Link from "next/link";
 import Linkify from "../Linkify";
 import UserAvatar from "../UserAvatar";
-
+import MessageButton from "@/app/(main)/mmavahi/posts/MessageButton";
 
 interface PostProps {
   post: PostData;
+  viewerId: string;
 }
 
-export default function Post({ post }: PostProps) {
-
-
+export default function Post({ post, viewerId }: PostProps) {
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
         <div className="flex flex-wrap gap-3">
-           
-       
+          {/* Kullanıcı avatarı ve adı eklenebilir */}
+          <UserAvatar avatarUrl={post.user.avatarUrl} size={40} />
           <div>
-            
-          
-         
+            <div className="font-semibold">{post.user.displayName}</div>
+            <div className="text-xs text-muted-foreground">@{post.user.username}</div>
+            <div className="text-xs text-muted-foreground">{formatRelativeDate(post.createdAt)}</div>
           </div>
         </div>
-      
       </div>
       <Linkify>
         <div className="whitespace-pre-line break-words">{post.content}</div>
@@ -43,16 +40,18 @@ export default function Post({ post }: PostProps) {
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
-       
-        <Link
-              href={`/mmavahi/posts/${post.id}`}
-              className="block text-sm text-muted-foreground hover:underline"
-              suppressHydrationWarning
-            >
-            Continue 
-            </Link>
+          <Link
+            href={`/mmavahi/posts/${post.id}`}
+            className="block text-sm text-muted-foreground hover:underline"
+            suppressHydrationWarning
+          >
+            Continue
+          </Link>
+          {/* Mesaj butonu: kendi postu değilse göster */}
+          {post.userId !== viewerId && (
+            <MessageButton targetUserId={post.userId} />
+          )}
         </div>
-      
       </div>
     </article>
   );
@@ -108,6 +107,3 @@ function MediaPreview({ media }: MediaPreviewProps) {
 
   return <p className="text-destructive">Ev medya nabe</p>;
 }
-
-
-
