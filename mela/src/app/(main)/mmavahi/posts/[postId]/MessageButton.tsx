@@ -2,17 +2,25 @@
 // Elhamdulillahi Rabbul Alemin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 "use client";
-import React from "react";
 import { useRouter } from "next/navigation";
+import { useChatContext } from "stream-chat-react";
 
 interface MessageButtonProps {
   targetUserId: string;
 }
 
-const MessageButton: React.FC<MessageButtonProps> = ({ targetUserId }) => {
+export default function MessageButton({ targetUserId }: MessageButtonProps) {
   const router = useRouter();
+  const { client } = useChatContext();
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    if (!client.userID || client.userID === targetUserId) return;
+    // Kanalı oluştur veya varsa getir
+    const channel = client.channel("messaging", {
+      members: [client.userID, targetUserId],
+    });
+    await channel.watch();
+    // Kanal oluşturulduktan sonra yönlendir
     router.push(`/messages?userId=${targetUserId}`);
   };
 
@@ -22,9 +30,7 @@ const MessageButton: React.FC<MessageButtonProps> = ({ targetUserId }) => {
       onClick={handleClick}
       type="button"
     >
-      Message
+      Mesaj Gönder
     </button>
   );
-};
-
-export default MessageButton;
+}
