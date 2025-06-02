@@ -14,6 +14,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache, Suspense } from "react";
+import ChatProviderClient from "./layout";
 
 interface PageProps {
   params: { postId: string };
@@ -50,9 +51,13 @@ import dynamic from "next/dynamic";
 // Update the import path below to match the actual location and filename of UserInfoSidebar
 // For example, if the file is in the same folder as this file, use:
 
-import UserInfoSidebar from "../../UserInfoSidebar";
-// Or, if it's in a different folder, adjust the path accordingly:
-// import UserInfoSidebar from "../../UserInfoSidebar";
+// Update the import path below to match the actual location and filename of UserInfoSidebar
+// For example, if the file is in the parent folder's components directory, use:
+// Update the import path below to match the actual location and filename of UserInfoSidebar
+// Example: if UserInfoSidebar is in "@/components/UserInfoSidebar", use:
+import UserInfoSidebar from "./UserInfoSidebar";
+// If it's in another location, update the path accordingly.
+// Or, adjust the path according to your project structure.
 
 export default async function Page({ params: { postId } }: PageProps) {
   const { user } = await validateRequest();
@@ -66,15 +71,17 @@ export default async function Page({ params: { postId } }: PageProps) {
   const post = await getPost(postId, user.id);
 
   return (
-    <main className="flex w-full min-w-0 gap-5">
-      <div className="w-full min-w-0 space-y-5">
-        <Post post={post} viewerId={user.id} />
-      </div>
-      <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
-        <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-          <UserInfoSidebar user={post.user} loggedInUserId={user.id} />
-        </Suspense>
-      </div>
-    </main>
+    <ChatProviderClient>
+      <main className="flex w-full min-w-0 gap-5">
+        <div className="w-full min-w-0 space-y-5">
+          <Post post={post} viewerId={user.id} />
+        </div>
+        <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
+          <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+            <UserInfoSidebar user={post.user} loggedInUserId={user.id} />
+          </Suspense>
+        </div>
+      </main>
+    </ChatProviderClient>
   );
 }
