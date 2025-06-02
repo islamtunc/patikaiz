@@ -13,7 +13,6 @@ import ChatSidebar from "./ChatSidebar";
 import useInitializeChatClient from "./useInitializeChatClient";
 
 export default function Chat() {
-  const chatClient = useInitializeChatClient();
   const { resolvedTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -48,20 +47,12 @@ export default function Chat() {
       <div style={sidebarStyle}>
         <ChatSidebar open={false} onClose={function (): void {
           throw new Error("Function not implemented.");
-        } } />
+        }} />
       </div>
       <div style={chatContentStyle}>
-        {chatClient ? (
-          <StreamChat client={chatClient}>
-            <ChatChannel open={false} openSidebar={function (): void {
-              throw new Error("Function not implemented.");
-            }} />
-          </StreamChat>
-        ) : (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-            <Loader2 className="animate-spin" />
-          </div>
-        )}
+        <ChatChannel open={false} openSidebar={function (): void {
+          throw new Error("Function not implemented.");
+        }} />
       </div>
     </div>
   );

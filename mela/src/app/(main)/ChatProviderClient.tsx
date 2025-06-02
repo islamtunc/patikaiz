@@ -4,7 +4,7 @@
 // Allah u  Ekber ve Lillahi'l Hamd
 "use client";
 import { Chat } from "stream-chat-react";
-import useInitializeChatClient from "../../../messages/useInitializeChatClient";
+import useInitializeChatClient from "./messages/useInitializeChatClient";
 // ...diğer importlar...
 
 export default function ChatProviderClient({ children }: { children: React.ReactNode }) {
