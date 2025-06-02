@@ -1,5 +1,7 @@
 // Bismillahirrahmanirrahim 
-
+// Elhamdulillahi Rabbil Alamin
+// Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber ve Lillahi'l-hamd
 "use client";
 
 import { PostData } from "@/lib/types";
@@ -10,7 +12,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Linkify from "../Linkify";
 import UserAvatar from "../UserAvatar";
-import MessageButton from "@/app/(main)/mmavahi/posts/MessageButton";
 
 interface PostProps {
   post: PostData;
@@ -47,10 +48,7 @@ export default function Post({ post, viewerId }: PostProps) {
           >
             Continue
           </Link>
-          {/* Mesaj butonu: kendi postu değilse göster */}
-          {post.userId !== viewerId && (
-            <MessageButton targetUserId={post.userId} />
-          )}
+        
         </div>
       </div>
     </article>

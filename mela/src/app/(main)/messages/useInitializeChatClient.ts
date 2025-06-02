@@ -1,9 +1,6 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahi Rabbul Alemin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
-
-"use client";
-
 import kyInstance from "@/lib/ky";
 import { useEffect, useState } from "react";
 import { StreamChat } from "stream-chat";
@@ -12,7 +9,7 @@ import { useSession } from "../SessionProvider";
 export default function useInitializeChatClient() {
   const { user } = useSession();
   const [chatClient, setChatClient] = useState<StreamChat | null>(null);
-   
+
   useEffect(() => {
     const client = StreamChat.getInstance(process.env.NEXT_PUBLIC_STREAM_KEY!);
 

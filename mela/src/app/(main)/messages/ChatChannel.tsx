@@ -1,4 +1,8 @@
 // Bismillahirahmanirahim 
+// Elhamdulillahi Rabbil Alamin
+// Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber ve Lillahi'l-hamd
+
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,7 +14,7 @@ import {
   MessageInput,
   MessageList,
   Window,
-} from "stream-chat-react"; 
+} from "stream-chat-react";
 
 interface ChatChannelProps {
   open: boolean;

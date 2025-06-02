@@ -1,6 +1,7 @@
 // Bismillahirrahmanirrahim 
-// Elhamdulillahi Rabbul Alemin
+// Elhamdulillahi Rabbil Alamin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber ve Lillahi'l-hamd
 "use client";
 
 import { Loader2 } from "lucide-react";
@@ -10,53 +11,58 @@ import { Chat as StreamChat } from "stream-chat-react";
 import ChatChannel from "./ChatChannel";
 import ChatSidebar from "./ChatSidebar";
 import useInitializeChatClient from "./useInitializeChatClient";
-import { useChatContext } from "stream-chat-react";
-import { useSearchParams } from "next/navigation";
 
 export default function Chat() {
   const chatClient = useInitializeChatClient();
   const { resolvedTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { client, setActiveChannel } = useChatContext();
-
-  // userId query parametresine göre kanal aç
-  const searchParams = useSearchParams();
-  const userId = searchParams.get("userId");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (userId && client.userID && userId !== client.userID) {
-      const channel = client.channel("messaging", {
-        members: [client.userID, userId],
-      });
-      channel.watch().then(() => setActiveChannel(channel));
-    }
-  }, [userId, client, setActiveChannel]);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-  if (!chatClient) {
-    return <Loader2 className="mx-auto my-3 animate-spin" />;
-  }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const containerStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: isMobile ? 'column' as const : 'row' as const,
+    height: '100vh',
+  };
+
+  const sidebarStyle = {
+    width: isMobile ? '100%' : '250px',
+  };
+
+  const chatContentStyle = {
+    flex: isMobile ? 'none' : 1,
+  };
 
   return (
-    <main className="relative w-full overflow-hidden rounded-2xl bg-card shadow-sm">
-      <div className="absolute bottom-0 top-0 flex w-full">
-        <StreamChat
-          client={chatClient}
-          theme={
-            resolvedTheme === "dark"
-              ? "str-chat__theme-dark"
-              : "str-chat__theme-light"
-          }
-        >
-          <ChatSidebar
-            open={sidebarOpen}
-            onClose={() => setSidebarOpen(false)}
-          />
-          <ChatChannel
-            open={!sidebarOpen}
-            openSidebar={() => setSidebarOpen(true)}
-          />
-        </StreamChat>
+    <div style={containerStyle}>
+      <div style={sidebarStyle}>
+        <ChatSidebar open={false} onClose={function (): void {
+          throw new Error("Function not implemented.");
+        } } />
       </div>
-    </main>
+      <div style={chatContentStyle}>
+        {chatClient ? (
+          <StreamChat client={chatClient}>
+            <ChatChannel open={false} openSidebar={function (): void {
+              throw new Error("Function not implemented.");
+            }} />
+          </StreamChat>
+        ) : (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <Loader2 className="animate-spin" />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

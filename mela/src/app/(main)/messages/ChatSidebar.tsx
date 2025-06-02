@@ -1,5 +1,7 @@
 // Bismillahirrahmanirrahim 
-
+// Elhamdulillahi Rabbil Alamin
+// Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber ve Lillahi'l-hamd
 
 
 import { Button } from "@/components/ui/button";
@@ -60,7 +62,7 @@ export default function ChatSidebar({ open, onClose }: ChatSidebarProps) {
           type: "messaging",
           members: { $in: [user.id] },
         }}
-        showChannelSearch     
+        showChannelSearch
         options={{ state: true, presence: true, limit: 8 }}
         sort={{ last_message_at: -1 }}
         additionalChannelSearchProps={{

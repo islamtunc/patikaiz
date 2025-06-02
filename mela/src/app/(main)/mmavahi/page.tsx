@@ -1,6 +1,9 @@
 // Bismillahirrahmanirrahim
-
-
+// Elhamdulillahi Rabbil Alamin
+// Es-salatu was-salamu 'ala Rasulillah
+// Allah u Ekber velillahilhamd
+"use client";
+import React from "react";
 
 import PostEditor from "@/components/mmavahi/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
