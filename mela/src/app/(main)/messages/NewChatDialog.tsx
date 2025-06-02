@@ -90,12 +90,15 @@ export default function NewChatDialog({
 
   return (
     <Dialog open onOpenChange={onOpenChange}>
-      <DialogContent className="bg-card p-0">
+      <DialogContent
+        className="bg-card p-0 flex flex-col max-h-[90vh] w-full sm:max-w-lg"
+        style={{ maxHeight: "90vh", display: "flex", flexDirection: "column" }}
+      >
         <DialogHeader className="px-6 pt-6">
           <DialogTitle>Axaftinekî nû</DialogTitle>
         </DialogHeader>
-        <div>
-          <div className="group relative">
+        <div className="flex-1 overflow-y-auto px-6 pb-2">
+          <div className="group relative mb-4">
             <SearchIcon className="absolute left-5 top-1/2 size-5 -translate-y-1/2 transform text-muted-foreground group-focus-within:text-primary" />
             <input
               placeholder="Endamên Bigere"
@@ -105,7 +108,7 @@ export default function NewChatDialog({
             />
           </div>
           {!!selectedUsers.length && (
-            <div className="mt-4 flex flex-wrap gap-2 p-2">
+            <div className="mb-2 flex flex-wrap gap-2">
               {selectedUsers.map((user) => (
                 <SelectedUserTag
                   key={user.id}
@@ -120,7 +123,7 @@ export default function NewChatDialog({
             </div>
           )}
           <hr />
-          <div className="h-96 overflow-y-auto">
+          <div className="h-72 overflow-y-auto">
             {isSuccess &&
               data.users.map((user) => (
                 <UserResult
@@ -149,7 +152,7 @@ export default function NewChatDialog({
             )}
           </div>
         </div>
-        <DialogFooter className="px-6 pb-6">
+        <DialogFooter className="px-6 pb-6 pt-2">
           <LoadingButton
             disabled={!selectedUsers.length}
             loading={mutation.isPending}
