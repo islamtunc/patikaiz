@@ -72,10 +72,17 @@ export default async function Page({ params: { postId } }: PageProps) {
 
   return (
     <ChatProviderClient>
-      <main className="flex w-full min-w-0 gap-5">
+      <main className="flex w-full min-w-0 gap-5 flex-col lg:flex-row">
         <div className="w-full min-w-0 space-y-5">
           <Post post={post} viewerId={user.id} />
+          {/* Mobilde göster (lg'den küçük ekranlarda) */}
+          <div className="block lg:hidden">
+            <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+              <UserInfoSidebar user={post.user} loggedInUserId={user.id} />
+            </Suspense>
+          </div>
         </div>
+        {/* Sadece büyük ekranda göster */}
         <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
           <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
             <UserInfoSidebar user={post.user} loggedInUserId={user.id} />
