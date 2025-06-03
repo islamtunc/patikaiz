@@ -1,6 +1,7 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahi Rabbul Alemin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 "use client";
 import { useRouter } from "next/navigation";
 import { useChatContext } from "stream-chat-react";
