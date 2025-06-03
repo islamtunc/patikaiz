@@ -20,7 +20,9 @@ export default function MessageButton({ targetUserId }: MessageButtonProps) {
       members: [client.userID, targetUserId],
     });
     await channel.watch();
-    // Kanal oluşturulduktan sonra yönlendir
+    // Otomatik "merhaba" mesajı gönder
+    await channel.sendMessage({ text: "merhaba" });
+    // Kanal oluşturulduktan ve mesaj atıldıktan sonra yönlendir
     router.push(`/messages?userId=${targetUserId}`);
   };
 
