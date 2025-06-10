@@ -1,5 +1,7 @@
 // Bismillahirahmanirahim 
-
+// Elhamdulillahi Rabbil Alamin
+// Es-salatu was-salamu 'ala Rasulillah
+// Allah u Ekber velillahilhamd
 
 
 import { Metadata } from "next";
