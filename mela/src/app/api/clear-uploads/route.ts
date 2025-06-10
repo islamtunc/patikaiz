@@ -1,3 +1,10 @@
+// Bismillahirrahmanirrahim
+// Elhamdulillahi Rabbil Alamin
+// Es-salatu was-salamu 'ala Rasulillah
+// Allah u Ekber velillahilhamd
+
+
+
 import prisma from "@/lib/prisma";
 import { UTApi } from "uploadthing/server";
 
