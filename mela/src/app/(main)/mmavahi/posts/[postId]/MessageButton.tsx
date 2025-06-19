@@ -23,7 +23,7 @@ export default function MessageButton({ targetUserId }: MessageButtonProps) {
         members: [client.userID, targetUserId],
       });
       await channel.watch();
-      await channel.sendMessage({ text: "merhaba" });
+     
       router.push("/messages");
     } catch (err) {
       setInfo("Mesaj gönderilemedi. Lütfen tekrar deneyin.");
