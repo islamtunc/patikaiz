@@ -8,7 +8,8 @@ import Linkify from "@/components/Linkify";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import dynamic from "next/dynamic";
-import { UserData } from "@/lib/types";
+import { FaWhatsapp, FaPhone } from "react-icons/fa";
+import type { UserData } from "@/lib/types";
 
 // Update the import path below if MessageButton is located elsewhere
 const MessageButton = dynamic(() => import("./MessageButton"), { ssr: false });
@@ -19,6 +20,9 @@ interface UserInfoSidebarProps {
 }
 
 export default function UserInfoSidebar({ user, loggedInUserId }: UserInfoSidebarProps) {
+  const whatsapp = user.whatsapp ?? "";
+  const contact = user.contact ?? "";
+
   if (!loggedInUserId) return null;
 
   return (
@@ -45,9 +49,33 @@ export default function UserInfoSidebar({ user, loggedInUserId }: UserInfoSideba
           {user.bio}
         </div>
       </Linkify>
+      {/* WhatsApp ve Telefon ikonları */}
+      {(whatsapp || contact) && (
+        <div className="flex gap-4 mt-2">
+          {whatsapp && typeof whatsapp === "string" && (
+            <a
+              href={`https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-green-600 hover:underline"
+            >
+              <FaWhatsapp size={22} /> WhatsApp
+            </a>
+          )}
+          {contact && typeof contact === "string" && (
+            <a
+              href={`tel:${contact}`}
+              className="flex items-center gap-2 text-blue-600 hover:underline"
+            >
+              <FaPhone size={22} /> Telefon
+            </a>
+          )}
+        </div>
+      )}
       {loggedInUserId !== user.id && (
         <MessageButton targetUserId={user.id} />
       )}
     </div>
   );
 }
+

@@ -28,6 +28,8 @@ export default function PostEditor() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("satilik");
   const [address, setAddress] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [contact, setContact] = useState("");
 
   const mutation = useSubmitPostMutation();
 
@@ -75,6 +77,8 @@ export default function PostEditor() {
           setPrice("");
           setCategory("satilik");
           setAddress("");
+          setWhatsapp("");
+          setContact("");
           editor?.commands.clearContent();
           resetMediaUploads();
         },
@@ -132,6 +136,24 @@ export default function PostEditor() {
             required
           />
         </div>
+      </div>
+      <div className="flex gap-3">
+        <input
+          type="text"
+          placeholder="WhatsApp Numarası (örn: 05XXXXXXXXX)"
+          className="w-1/2 rounded-lg border px-4 py-2"
+          value={whatsapp}
+          onChange={e => setWhatsapp(e.target.value)}
+          maxLength={20}
+        />
+        <input
+          type="text"
+          placeholder="İletişim Bilgisi (örn: e-posta veya telefon)"
+          className="w-1/2 rounded-lg border px-4 py-2"
+          value={contact}
+          onChange={e => setContact(e.target.value)}
+          maxLength={50}
+        />
       </div>
       <div {...rootProps} className="w-full">
         <EditorContent

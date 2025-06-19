@@ -43,6 +43,8 @@ model User {
   Mmwesayit   Mmwesayit[]
   Mmkargeh    Mmkargeh[]
   Mmhuner     Mmhuner[]
+  whatsapp               String?
+  contact                String?
 
   @@map("users")
 }

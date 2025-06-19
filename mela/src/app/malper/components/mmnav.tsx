@@ -21,17 +21,11 @@ function Mmmnavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/malper">Anasayfa</Nav.Link>
-            <NavDropdown title="Products" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/malper/mmavahi">Web Sites</NavDropdown.Item>
-              <NavDropdown.Item href="/malper/mmkinc">Mobile Apps</NavDropdown.Item>
-              <NavDropdown.Item href="/malper/mmkargeh">Desktop Apps</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/malper/mmkedkar">Artificial Intelligence</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#link">About Us</Nav.Link>
+            <Nav.Link href="/malper/ilanlar">İlanlar</Nav.Link>
+            <Nav.Link href="#link">Politikalarımız</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="/login" >Giriş Yap</Nav.Link>
+            <Nav.Link href="/login" >Giriş Yap/Kaydol</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

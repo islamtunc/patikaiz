@@ -1,52 +1,52 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahirrabbulalemin
 // Esselatu vesselamu ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
-
+// Allahu Ekber velilahi'lhamd
+// La ilahe illallah, Allahu Ekber, Allahu Ekber, Allahu
 import React from "react";
 
 const Footer = () => (
   <footer className="bg-dark text-white pt-4">
     <div className="container text-center text-md-left">
       <div className="row">
-        {/* About Section */}
+        {/* Hakkımızda Bölümü */}
         <div className="col-md-4 mt-md-0 mt-3">
-          <h5 className="text-uppercase font-weight-bold">About Us</h5>
+          <h5 className="text-uppercase font-weight-bold">Hakkımızda</h5>
           <p>
-            We are committed to providing the best services and resources for
-            our users. Stay connected with us for updates and news.
+           Müşterisi Burada Uygulaması, emlak, araç, ikinci el ve daha fazlası için güvenli ve kolay ilan paylaşımı sunar. Hızlıca ilan verin, aradığınızı kolayca bulun!
           </p>
         </div>
 
-        {/* Links Section */}
+        {/* Hızlı Linkler Bölümü */}
         <div className="col-md-4 mb-md-0 mb-3">
-          <h5 className="text-uppercase font-weight-bold">Quick Links</h5>
+          <h5 className="text-uppercase font-weight-bold">Hızlı Linkler</h5>
           <ul className="list-unstyled">
             <li>
-              <a href="#!" className="text-white">
-                Home
+              <a href="/" className="text-white">
+                Anasayfa
               </a>
             </li>
             <li>
-              <a href="#!" className="text-white">
-                About
+              <a href="/ilanlar" className="text-white">
+                İlanlar
               </a>
             </li>
             <li>
-              <a href="#!" className="text-white">
-                Services
+              <a href="/ilan-ver" className="text-white">
+                İlan Ver
               </a>
             </li>
             <li>
-              <a href="#!" className="text-white">
-                Contact
+              <a href="/iletisim" className="text-white">
+                İletişim
               </a>
             </li>
           </ul>
         </div>
 
-        {/* Social Media Section */}
+        {/* Sosyal Medya Bölümü */}
         <div className="col-md-4 mb-md-0 mb-3">
-          <h5 className="text-uppercase font-weight-bold">Follow Us</h5>
+          <h5 className="text-uppercase font-weight-bold">Bizi Takip Edin</h5>
           <ul className="list-unstyled d-flex justify-content-center">
             <li className="mx-2">
               <a href="https://facebook.com" className="text-white">
@@ -74,9 +74,9 @@ const Footer = () => (
     </div>
 
     <div className="text-center py-3">
-      © {new Date().getFullYear()} Copyright:{" "}
+      © {new Date().getFullYear()} Tüm Hakları Saklıdır: {" "}
       <a href="https://yekazad.com" className="text-white">
-        Yekazad
+        Yekazad 
       </a>
     </div>
   </footer>

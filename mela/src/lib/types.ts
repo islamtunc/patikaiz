@@ -15,14 +15,20 @@ export function getUserDataSelect(loggedInUserId: string) {
     avatarUrl: true,
     bio: true,
     createdAt: true,
-  
 
   } satisfies Prisma.UserSelect;
 }
 
-export type UserData = Prisma.UserGetPayload<{
-  select: ReturnType<typeof getUserDataSelect>;
-}>;
+export type UserData = {
+  id: string;
+  username: string;
+  displayName: string;
+  avatarUrl: string | null;
+  bio: string | null;
+  createdAt: Date;
+  whatsapp?: string | null;
+  contact?: string | null;
+};
 
 export function getPostDataInclude(loggedInUserId: string) {
   return {
