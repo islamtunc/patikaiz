@@ -2,6 +2,7 @@
 // Elhamdulillahi Rabbil Alamin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 // Allah u Ekber ve Lillahi'l-hamd
+
 "use client";
 
 import { Loader2 } from "lucide-react";

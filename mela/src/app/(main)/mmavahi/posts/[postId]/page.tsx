@@ -2,6 +2,7 @@
 // Elhamdulillahi Rabbul Alemin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 // Allah u Ekber ve Lillahi'l-hamd
+// HasbunAllahu ve ni'mel vekil
 import { validateRequest } from "@/auth";
 import Linkify from "@/components/Linkify";
 import Post from "@/components/mmavahi/Post";
