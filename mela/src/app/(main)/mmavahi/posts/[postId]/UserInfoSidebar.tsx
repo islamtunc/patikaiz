@@ -2,6 +2,8 @@
 // Elhamdulillahi Rabbul Alemin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 // Allah u  Ekber ve Lillahi'l Hamd
+// La ilahe illallah, Allahu Ekber, Allahu Ekber, Allahu Ekber
+// SubhAnAllah, SubhanAllah, SubhanAllah, ve'l-hamd
 "use client";
 import Link from "next/link";
 import Linkify from "@/components/Linkify";
@@ -51,24 +53,32 @@ export default function UserInfoSidebar({ user, loggedInUserId }: UserInfoSideba
       </Linkify>
       {/* WhatsApp ve Telefon ikonları */}
       {(whatsapp || contact) && (
-        <div className="flex gap-4 mt-2">
+        <div className="flex flex-col gap-2 mt-2">
           {whatsapp && typeof whatsapp === "string" && (
-            <a
-              href={`https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-green-600 hover:underline"
-            >
-              <FaWhatsapp size={22} /> WhatsApp
-            </a>
+            <div className="flex items-center gap-2 text-green-600">
+              <FaWhatsapp size={20} />
+              <span className="font-medium">WhatsApp:</span>
+              <a
+                href={`https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                {whatsapp}
+              </a>
+            </div>
           )}
           {contact && typeof contact === "string" && (
-            <a
-              href={`tel:${contact}`}
-              className="flex items-center gap-2 text-blue-600 hover:underline"
-            >
-              <FaPhone size={22} /> Telefon
-            </a>
+            <div className="flex items-center gap-2 text-blue-600">
+              <FaPhone size={20} />
+              <span className="font-medium">Telefon:</span>
+              <a
+                href={`tel:${contact}`}
+                className="hover:underline"
+              >
+                {contact}
+              </a>
+            </div>
           )}
         </div>
       )}
