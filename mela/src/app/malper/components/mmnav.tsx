@@ -2,6 +2,9 @@
 // Elhamdulillahirabbulalemin
 // Esselatu vesselamu ala rasulillah ve ala alihi ve sahbihi ecma'in
 // Allahu Ekber velilahi'lhamd
+// La ilahe illallah, Allahu Ekber, Allahu Ekber, Allahu Ekber
+// SubhAnAllah, SubhanAllah, SubhanAllah, ve'l-hamdulillah
+// HasbunAllahu ve ni'mel vekil
 "use client"
 
 import Container from 'react-bootstrap/Container';
