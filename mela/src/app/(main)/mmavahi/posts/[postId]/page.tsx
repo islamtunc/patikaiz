@@ -5,7 +5,7 @@
 // HasbunAllahu ve ni'mel vekil
 import { validateRequest } from "@/auth";
 import Linkify from "@/components/Linkify";
-import Post from "@/components/mmavahi/Post";
+import MmmPost from "@/components/mmavahi/mmPost";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
@@ -75,7 +75,7 @@ export default async function Page({ params: { postId } }: PageProps) {
     <ChatProviderClient>
       <main className="flex w-full min-w-0 gap-5 flex-col lg:flex-row">
         <div className="w-full min-w-0 space-y-5">
-          <Post post={post} viewerId={user.id} />
+          <MmmPost post={post} viewerId={user.id} />
           {/* Mobilde göster (lg'den küçük ekranlarda) */}
           <div className="block lg:hidden">
             <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>

@@ -1,3 +1,11 @@
+// Bismillahirrahmanirahim
+// Elhamdulillahi Rabbul Alemin 
+// Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe
+// SuphAnAllah, SubhanAllah, SubhanAllah, ve'l-hamdulillah
+// HasbunAllahu ve ni'mel vekil
+
+
 // Bismillahirrahmanirrahim 
 // Elhamdulillahi Rabbil Alamin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
@@ -18,9 +26,21 @@ interface PostProps {
   viewerId: string;
 }
 
-export default function Post({ post, viewerId }: PostProps) {
+export default function MmmPost({ post, viewerId }: PostProps) {
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
+      <div className="flex items-center gap-3 mb-2">
+        <UserAvatar avatarUrl={post.user.avatarUrl} size={40} />
+        <div>
+          <div className="font-semibold">{post.user.displayName}</div>
+          <div className="text-xs text-muted-foreground">@{post.user.username}</div>
+          <div className="text-xs text-muted-foreground">{formatRelativeDate(post.createdAt)}</div>
+        </div>
+      </div>
+      <div className="mb-2">
+        <span className="font-medium">Açıklama:</span>
+        <div className="whitespace-pre-line break-words">{post.content}</div>
+      </div>
       {!!post.attachments.length && (
         <Link href={`/mmavahi/posts/${post.id}`}> {/* Medya tıklanınca yönlendirsin */}
           <MediaPreviews attachments={post.attachments} />
@@ -29,6 +49,11 @@ export default function Post({ post, viewerId }: PostProps) {
       {!post.attachments.length && (
         <div className="text-center text-muted-foreground">Medya yok</div>
       )}
+      <div className="flex flex-col gap-1 mt-3">
+        <div><span className="font-medium">İlan ID:</span> {post.id}</div>
+        <div><span className="font-medium">Oluşturulma:</span> {formatRelativeDate(post.createdAt)}</div>
+        {/* Diğer özellikler buraya eklenebilir */}
+      </div>
       <div className="flex justify-between gap-5 mt-3">
         <div className="flex items-center gap-5">
           <Link
