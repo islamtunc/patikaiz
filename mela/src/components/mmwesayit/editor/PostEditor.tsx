@@ -2,6 +2,9 @@
 // ElHAMDULİLLAHİRABBULALEMİN
 // Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
+// SubhanAllah, Elhamdulillah, Allahu Ekber, La ilahe illallah
+// Elhamdulillahi Rabbil Alamin
+
 "use client";
 
 import { useSession } from "@/app/(main)/SessionProvider";
