@@ -30,6 +30,9 @@ export default function PostEditor() {
   const [address, setAddress] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [contact, setContact] = useState("");
+  const [location, setLocation] = useState<{ lat: number; lng: number; city?: string } | null>(null);
+  const [city, setCity] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const mutation = useSubmitPostMutation();
 
@@ -79,6 +82,7 @@ export default function PostEditor() {
           setAddress("");
           setWhatsapp("");
           setContact("");
+          setCity("");
           editor?.commands.clearContent();
           resetMediaUploads();
         },
@@ -91,6 +95,35 @@ export default function PostEditor() {
       .filter((item) => item.kind === "file")
       .map((item) => item.getAsFile()) as File[];
     startUpload(files);
+  }
+
+  async function handleLocationSearch(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    setLoading(true);
+    if (!navigator.geolocation) {
+      alert("Tarayıcınız konum servisini desteklemiyor.");
+      setLoading(false);
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        // OpenStreetMap Nominatim ile reverse geocoding
+        let city = "";
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`);
+          const data = await res.json();
+          city = data.address?.city || data.address?.town || data.address?.village || data.address?.state || "";
+        } catch {}
+        setLocation({ lat, lng, city });
+        setLoading(false);
+      },
+      (err) => {
+        alert("Konum alınamadı: " + err.message);
+        setLoading(false);
+      }
+    );
   }
 
   return (
@@ -154,6 +187,22 @@ export default function PostEditor() {
           onChange={e => setContact(e.target.value)}
           maxLength={50}
         />
+      </div>
+      <div className="flex gap-3">
+        <button
+          type="button"
+          onClick={handleLocationSearch}
+          className="rounded bg-muted px-2 py-1 text-xs text-muted-foreground hover:bg-muted/80"
+          disabled={loading}
+        >
+          {loading ? "Konum Alınıyor..." : "Konumumu Al"}
+        </button>
+        {location && (
+          <span className="text-xs text-muted-foreground">
+            Konumunuz: {location.lat.toFixed(5)}, {location.lng.toFixed(5)}
+            {location.city && ` (${location.city})`}
+          </span>
+        )}
       </div>
       <div {...rootProps} className="w-full">
         <EditorContent

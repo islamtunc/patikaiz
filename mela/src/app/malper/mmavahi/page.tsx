@@ -2,6 +2,7 @@
 // Elhamdulillahirabbulalemin
 // Essalatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
 // Allahu Ekber velilahi'lhamd
+// SubhanAllahi velhamdulillahi ve la ilahe illallahu vallahu ekber
 // La ilahe illallah, Allahu Ekber Allahu Ekber, ve lillahi'lhamd
 
 
@@ -9,6 +10,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ForYouFeed from "./ForYouFeed";
 import { Alert } from "react-bootstrap";
+import SearchField from "@/components/mmavahi/SearchField";
 
 export default function Home() {
   return (
@@ -19,8 +21,8 @@ export default function Home() {
           <TabsList>
             <TabsTrigger value="for-you">Satılık</TabsTrigger>
             <TabsTrigger value="rent">Kiralık</TabsTrigger>
-            <TabsTrigger value="projects">Projeler</TabsTrigger>
-            <TabsTrigger value="news">Haberler</TabsTrigger>
+            <TabsTrigger value="projects">Kategoride Ara</TabsTrigger>
+         
           </TabsList>
           <TabsContent value="for-you">
             <ForYouFeed />
@@ -29,11 +31,9 @@ export default function Home() {
             <ForYouFeed />
           </TabsContent>
           <TabsContent value="projects">
-            <ForYouFeed />
+           <SearchField/>
           </TabsContent>
-          <TabsContent value="news">
-            <ForYouFeed />
-          </TabsContent>
+     
         </Tabs>
       </div>
     </main>
