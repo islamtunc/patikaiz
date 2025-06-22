@@ -10,13 +10,10 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
-
     const pageSize = 10;
 
-   
-
     const posts = await prisma.mmavahi.findMany({
-      include: getPostDataInclude(""),
+      include: getPostDataInclude("user,attachments"),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
       cursor: cursor ? { id: cursor } : undefined,

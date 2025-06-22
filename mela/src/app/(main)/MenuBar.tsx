@@ -42,7 +42,7 @@ export default async function MenuBar({ className }: MenuBarProps) {
       >
         <Link href="/">
           <Home />
-          <span className="hidden lg:inline">Mâl</span>
+          <span className="hidden lg:inline">Anasayfa</span>
         </Link>
       </Button>
       <NotificationsButton
@@ -57,7 +57,7 @@ export default async function MenuBar({ className }: MenuBarProps) {
       >
         <Link href="/bookmarks">
           <Bookmark />
-          <span className="hidden lg:inline">Bêrika We</span>
+          <span className="hidden lg:inline">Favoriler</span>
         </Link>
       </Button>
     </div>

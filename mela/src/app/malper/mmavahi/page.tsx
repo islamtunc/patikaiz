@@ -26,13 +26,13 @@ export default function Home() {
             <ForYouFeed />
           </TabsContent>
           <TabsContent value="rent">
-            <div>Kiralık emlak ilanları burada listelenecek.</div>
+            <ForYouFeed />
           </TabsContent>
           <TabsContent value="projects">
-            <div>Emlak projeleri burada listelenecek.</div>
+            <ForYouFeed />
           </TabsContent>
           <TabsContent value="news">
-            <div>Emlak haberleri burada listelenecek.</div>
+            <ForYouFeed />
           </TabsContent>
         </Tabs>
       </div>

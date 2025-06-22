@@ -27,7 +27,7 @@ export default function ForYouFeed() {
       kyInstance
         .get(
           "/api/posts/mmavahi",
-          pageParam ? { searchParams: { cursor: pageParam } } : {},
+          pageParam ? { searchParams: { cursor: pageParam } } : undefined,
         )
         .json<PostsPage>(),
     initialPageParam: null as string | null,
@@ -43,7 +43,7 @@ export default function ForYouFeed() {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        Hê kesî tiştek parvenekirî ye
+        Henüz ilan yok.
       </p>
     );
   }
@@ -51,7 +51,7 @@ export default function ForYouFeed() {
   if (status === "error") {
     return (
       <p className="text-center text-destructive">
-        Pirsgirek derket 
+        Bir hata oluştu.
       </p>
     );
   }
