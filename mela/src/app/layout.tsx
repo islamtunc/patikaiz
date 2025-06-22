@@ -54,11 +54,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <header>
-              <h1 style={{ textAlign: "center", margin: "20px 0" }}>
-                Muşterisi Burada
-              </h1>
-            </header>
+           
             <main>{children}</main>
           </ThemeProvider>
         </ReactQueryProvider>

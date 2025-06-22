@@ -9,13 +9,12 @@ import Link from "next/link";
 
 const categories = [
   { id: 1, name: "Emlak", icon: "🏠", link: "/mmavahi" },
-  { id: 2, name: "Vasıta", icon: "🚗", link: "/vasita" },
-  { id: 3, name: "İkinci El ve Sıfır Alışveriş", icon: "🛒", link: "/malper/ikinciel" },
-  { id: 4, name: "İş Makineleri", icon: "🚜", link: "/ismakineleri" },
+  { id: 2, name: "Vasıta", icon: "🚗", link: "/mmwesayit" },
+  { id: 3, name: "İkinci El ve Sıfır Alışveriş", icon: "🛒", link: "/mmduyem" },
+  { id: 4, name: "İnşaat İş İlanları", icon: "🚜", link: "/mmkedkar" },
   { id: 5, name: "Yedek Parça", icon: "🔧", link: "/yedekparca" },
-  { id: 6, name: "İş İlanları", icon: "💼", link: "/isilanlari" },
-  { id: 7, name: "Hayvanlar Alemi", icon: "🐾", link: "/hayvanlaralemi" },
-  { id: 8, name: "Hizmetler", icon: "🛠️", link: "/hizmetler" },
+  { id: 6, name: "İş İlanları", icon: "💼", link: "/mmkargeh" },
+  { id: 8, name: "Ev Araç Gereçleri", icon: "🛠️", link: "/mmhewcedari" },
 ];
 
 function Page() {

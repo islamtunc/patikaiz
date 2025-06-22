@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Linkify from "../Linkify";
 import UserAvatar from "../UserAvatar";
+import { useState } from "react";
 
 interface PostProps {
   post: PostData;
@@ -19,6 +20,21 @@ interface PostProps {
 }
 
 export default function Post({ post, viewerId }: PostProps) {
+  const [deleting, setDeleting] = useState(false);
+  const isOwner = post.user.id === viewerId;
+
+  async function handleDelete() {
+    if (!confirm("İlanı silmek istediğinize emin misiniz?")) return;
+    setDeleting(true);
+    const res = await fetch(`/api/posts/${post.id}`, { method: "DELETE" });
+    setDeleting(false);
+    if (res.ok) {
+      window.location.reload();
+    } else {
+      alert("İlan silinemedi.");
+    }
+  }
+
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       {!!post.attachments.length && (
@@ -39,6 +55,15 @@ export default function Post({ post, viewerId }: PostProps) {
             Devamını Oku
           </Link>
         </div>
+        {isOwner && (
+          <button
+            onClick={handleDelete}
+            disabled={deleting}
+            className="text-red-600 hover:underline text-sm ml-auto"
+          >
+            {deleting ? "Siliniyor..." : "İlanı Sil"}
+          </button>
+        )}
       </div>
     </article>
   );

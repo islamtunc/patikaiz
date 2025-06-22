@@ -73,13 +73,13 @@ export default async function Page({ params: { username } }: PageProps) {
         <UserProfile user={user} loggedInUserId={loggedInUser.id} />
         <div className="rounded-2xl bg-card p-5 shadow-sm">
         
-        {user.id==loggedInUser.id? <Home/> : <div> 
+        {user.id==loggedInUser.id? <UserPosts userId={user.id} /> : <div> 
           <h2 className="text-center text-2xl font-bold">
             {user.displayName}&apos;ın İlanları
           </h2></div>}
 
         </div>
-        <UserPosts userId={user.id} />
+        
       </div>
     </main>
   );
@@ -125,7 +125,7 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
 
 
 
-{user? <Home/> : <div> </div>}
+{user? <UserPosts userId={user.id} /> : <div> </div>}
 
           <hr />
           <Linkify>

@@ -17,7 +17,7 @@ export default function EditProfileButton({ user }: EditProfileButtonProps) {
   return (
     <>
       <Button variant="outline" onClick={() => setShowDialog(true)}>
-        Profilê amade bike
+       Düzenle
       </Button>
       <EditProfileDialog
         user={user}
