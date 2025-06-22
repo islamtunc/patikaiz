@@ -1,5 +1,3 @@
-
-
 "use server";
 
 import { validateRequest } from "@/auth";
@@ -10,12 +8,15 @@ import { createPostSchema } from "@/lib/validation";
 export async function submitPost(input: {
   content: string;
   mediaIds: string[];
+  brand?: string;
+  model?: string;
+  year?: string;
 }) {
   const { user } = await validateRequest();
 
   if (!user) throw new Error("Unauthorized");
 
-  const { content, mediaIds } = createPostSchema.parse(input);
+  const { content, mediaIds, brand, model, year } = createPostSchema.parse(input);
 
   const newPost = await prisma.mmwesayit.create({
     data: {

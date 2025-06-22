@@ -1,5 +1,7 @@
 // Bismillahirahmanirahim 
-
+// ElHAMDULİLLAHİRABBULALEMİN
+// Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 "use client";
 
 import { useSession } from "@/app/(main)/SessionProvider";
@@ -17,10 +19,21 @@ import { ClipboardEvent, useRef, useState } from "react";
 import { useSubmitPostMutation } from "./mutations";
 import "./styles.css";
 import useMediaUpload, { Attachment } from "./useMediaUpload";
-import { Input } from "@/components/ui/input";
 
 export default function PostEditor() {
   const { user } = useSession();
+
+  // Emlak ilanı için ek alanlar
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("satilik");
+  const [address, setAddress] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [contact, setContact] = useState("");
+  // Araba ilanı için ek alanlar
+  const [brand, setBrand] = useState("");
+  const [model, setModel] = useState("");
+  const [year, setYear] = useState("");
 
   const mutation = useSubmitPostMutation();
 
@@ -46,24 +59,36 @@ export default function PostEditor() {
         italic: false,
       }),
       Placeholder.configure({
-        placeholder: "Selam aleykum,fermo...",
+        placeholder: "İlan açıklaması (ör: hasarsız değişim yok ...)",
       }),
     ],
   });
 
-
-
-  const [selectedOption, setSelectedOption] = useState("mmal");
+  const description =
+    editor?.getText({
+      blockSeparator: "\n",
+    }) || "";
 
   function onSubmit() {
     mutation.mutate(
       {
-        content: selectedOption,
+        content: description,
         mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
-       
+        brand,
+        model,
+        year,
       },
       {
         onSuccess: () => {
+          setTitle("");
+          setPrice("");
+          setCategory("satilik");
+          setAddress("");
+          setWhatsapp("");
+          setContact("");
+          setBrand("");
+          setModel("");
+          setYear("");
           editor?.commands.clearContent();
           resetMediaUploads();
         },
@@ -82,197 +107,102 @@ export default function PostEditor() {
     <div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex gap-5">
         <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
-        <div {...rootProps} className="w-full">
-       <h5> Yeni Emlak İlanı</h5>
-
-
-
-
-
-
-
-
-
-
-       <div style={{display:"flex",flexDirection:"column"}}>
-           <Input placeholder="ilan adı"/>
-
-
-
-
-
-
-
-
-    
-    
-           <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Konut Türü</option><br></br>
-           <br></br>
-           <option value="option2">Daire</option>
-
-            <option value="option2">Villa</option>
-            <option value="option3">Müstakil Ev</option>
-         
-            <option value="option2">Residans</option>
-
-            <option value="option2">Stüdyo Daire</option>
-       
-            <option value="option3">Dubleks/Tripleks</option>
-         
-         <option value="option2">Residans</option>
-
-         <option value="option2">Loft</option>
-
-<option value="option2">Prefabrik Ev</option>
-<option value="option3">Çiftlik Evi</option>
-
-<option value="option2">Yatırım Amaçlı</option>
-
-          </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Konut Kullanımı</option>
-            <option value="option2">Satılık </option>
-            <option value="option3">Kiralık</option>
-            
-            <option value="Şehir Merkezi">Devren Kiralık</option>
-            <option value="option2">Devren Satılık </option>
-            <option value="option3">Devren Kiralık</option>
-          </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Oda Sayısı</option><br></br>
-           <br></br>
-           <option value="option2">1+1</option>
-
-            <option value="option2">2+1</option>
-            <option value="option3">3+1</option>
-            
-            <option value="option2">4+1 ve üzeri</option>
-            <option value="option3">1+0 (Studyo Daire)</option>
-          </select>
-      
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Isınma Sistemi</option>
-            <option value="option2">Doğal Gaz</option>
-            <option value="option3">Kömür Merkezi Sistem</option>
-            <option value="Şehir Merkezi">Jeotermal </option>
-            <option value="option2"></option>
-          </select>
-
-    
+        <div className="w-full space-y-3">
+          <input
+            type="text"
+            placeholder="İlan Başlığı"
+            className="w-full rounded-lg border px-4 py-2"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            maxLength={100}
+            required
+          />
+          <div className="flex gap-3">
+            <input
+              type="number"
+              placeholder="Fiyat (₺)"
+              className="w-1/2 rounded-lg border px-4 py-2"
+              value={price}
+              onChange={e => setPrice(e.target.value)}
+              min={0}
+              required
+            />
+            <select
+              className="w-1/2 rounded-lg border px-4 py-2"
+              value={category}
+              onChange={e => setCategory(e.target.value)}
+            >
+              <option value="satilik">Satılık</option>
+              <option value="kiralik">Kiralık</option>
+            </select>
           </div>
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-
-            
-
-            <option value="Şehir Merkezi"> Asansor var</option>
-            <option value="option2">Asansor yok</option>
-            
-            
-          </select>
-
-
-
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Otopark var</option>
-            <option value="option2">Otopark yok</option>
-          </select>
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Bahçeli</option>
-            <option value="option2">Bahçesiz</option>
-          </select>
-
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Havuz var</option>
-            <option value="option2">Havuz yok</option>
-          </select>
-
-          
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Balkon var</option>
-            <option value="option2">Balkon yok</option>
-          </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Teras var</option>
-            <option value="option2">Teras yok</option>
-          </select>
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Klimalı</option>
-            <option value="option2">Klimasız</option>
-          </select>
-
-
-           
-          <select
-            className="mt-3 p-2 border rounded"
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value="Şehir Merkezi">Eşyalı</option>
-            <option value="option2">Eşyasız</option>
-          </select>
-         
-
+          <input
+            type="text"
+            placeholder="Adres"
+            className="w-full rounded-lg border px-4 py-2"
+            value={address}
+            onChange={e => setAddress(e.target.value)}
+            maxLength={200}
+            required
+          />
         </div>
-        
       </div>
-
-
-      
-      <Input placeholder="ilan fiyatı"/>
-          <Input placeholder="Alan(metrekare)"/>
-
-          
-          <Input placeholder="Açıklaması"/>
-
+      <div className="flex gap-3">
+        <input
+          type="text"
+          placeholder="WhatsApp Numarası (örn: 05XXXXXXXXX)"
+          className="w-1/2 rounded-lg border px-4 py-2"
+          value={whatsapp}
+          onChange={e => setWhatsapp(e.target.value)}
+          maxLength={20}
+        />
+        <input
+          type="text"
+          placeholder="İletişim Bilgisi (örn: e-posta veya telefon)"
+          className="w-1/2 rounded-lg border px-4 py-2"
+          value={contact}
+          onChange={e => setContact(e.target.value)}
+          maxLength={50}
+        />
+      </div>
+      <div className="flex gap-3">
+        <input
+          type="text"
+          placeholder="Marka (örn: Fiat)"
+          className="w-1/3 rounded-lg border px-4 py-2"
+          value={brand}
+          onChange={e => setBrand(e.target.value)}
+          maxLength={30}
+        />
+        <input
+          type="text"
+          placeholder="Model (örn: Albea)"
+          className="w-1/3 rounded-lg border px-4 py-2"
+          value={model}
+          onChange={e => setModel(e.target.value)}
+          maxLength={30}
+        />
+        <input
+          type="number"
+          placeholder="Yıl (örn: 2015)"
+          className="w-1/3 rounded-lg border px-4 py-2"
+          value={year}
+          onChange={e => setYear(e.target.value)}
+          min={1900}
+          max={2100}
+        />
+      </div>
+      <div {...rootProps} className="w-full">
+        <EditorContent
+          editor={editor}
+          className={cn(
+            "max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-5 py-3",
+            isDragActive && "outline-dashed",
+          )}
+          onPaste={onPaste}
+        />
+        <input {...getInputProps()} />
+      </div>
       {!!attachments.length && (
         <AttachmentPreviews
           attachments={attachments}
@@ -288,14 +218,21 @@ export default function PostEditor() {
         )}
         <AddAttachmentsButton
           onFilesSelected={startUpload}
-          disabled={isUploading || attachments.length >= 5}
+          disabled={isUploading || attachments.length >= 10}
         />
         <LoadingButton
           onClick={onSubmit}
           loading={mutation.isPending}
+          disabled={
+            !title.trim() ||
+            !price.trim() ||
+            !address.trim() ||
+            !description.trim() ||
+            isUploading
+          }
           className="min-w-20"
         >
-          Parve bikin
+          İlanı Yayınla
         </LoadingButton>
       </div>
     </div>

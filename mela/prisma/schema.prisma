@@ -177,14 +177,15 @@ model Mmwesayit {
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
-
-  bookmarks Bookmark[]
-
+  bookmarks   Bookmark[]
   likes               Like[]
   comments            Comment[]
   linkedNotifications Notification[]
   createdAt           DateTime       @default(now())
-
+  // Araba ilanı için ek alanlar
+  brand       String?
+  model       String?
+  year        String?
   @@map("mmwesayit")
 }
 
