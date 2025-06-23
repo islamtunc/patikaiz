@@ -7,11 +7,19 @@
 // 2FA SMS code sender endpoint (POST)
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import twilio from "twilio";
 
-// Placeholder for SMS provider
+// Twilio ile gerçek SMS gönderimi
 async function sendSms(phone: string, code: string) {
-  // TODO: Integrate with Twilio or other SMS provider
-  console.log(`Sending SMS to ${phone}: code ${code}`);
+  const accountSid = process.env.TWILIO_ACCOUNT_SID!;
+  const authToken = process.env.TWILIO_AUTH_TOKEN!;
+  const from = process.env.TWILIO_PHONE_NUMBER!;
+  const client = twilio(accountSid, authToken);
+  await client.messages.create({
+    body: `Doğrulama kodunuz: ${code}`,
+    from,
+    to: phone,
+  });
 }
 
 export async function POST(req: NextRequest) {

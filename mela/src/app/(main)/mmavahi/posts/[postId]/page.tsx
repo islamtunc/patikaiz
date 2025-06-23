@@ -79,14 +79,14 @@ export default async function Page({ params: { postId } }: PageProps) {
           {/* Mobilde göster (lg'den küçük ekranlarda) */}
           <div className="block lg:hidden">
             <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-              <UserInfoSidebar user={post.user} loggedInUserId={user.id} />
+              <UserInfoSidebar user={post.user} loggedInUserId={user.id} post={post} />
             </Suspense>
           </div>
         </div>
         {/* Sadece büyük ekranda göster */}
         <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
           <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-            <UserInfoSidebar user={post.user} loggedInUserId={user.id} />
+            <UserInfoSidebar user={post.user} loggedInUserId={user.id} post={post} />
           </Suspense>
         </div>
       </main>
