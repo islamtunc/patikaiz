@@ -3,15 +3,12 @@
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // Allah u Ekber, Allah u Ekber, ve lillahi'l-hamd
-import ky from "ky";
+import axios from "axios";
 
-const kyInstance = ky.create({
-  parseJson: (text) =>
-    JSON.parse(text, (key, value) => {
-      if (key.endsWith("At")) return new Date(value);
-      return value;
-    }),
-  timeout: 20000, // 20 saniye
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api",
+  timeout: 10000, // 10 seconds
+  // ...other config
 });
 
-export default kyInstance;
+export default api;

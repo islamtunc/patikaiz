@@ -1,0 +1,1 @@
+// Bu dosya kaldırıldı. Sadece (tabs)/web.tsx kullanılacak.

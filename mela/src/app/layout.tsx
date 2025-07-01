@@ -42,8 +42,9 @@ export default function RootLayout({
     <head>
 
 
-    <script src="http://localhost:8097"></script>
-
+ {process.env.NODE_ENV === "development" && (
+          <script src="http://localhost:8097"></script>
+        )}
     </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />

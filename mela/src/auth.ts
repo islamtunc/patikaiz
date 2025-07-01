@@ -59,6 +59,7 @@ export const validateRequest = cache(
   > => {
     console.log("validateRequest başladı");
     const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
+    console.log("validateRequest: sessionId:", sessionId);
 
     if (!sessionId) {
       console.log("validateRequest: session yok");
@@ -68,7 +69,14 @@ export const validateRequest = cache(
       };
     }
 
-    const result = await lucia.validateSession(sessionId);
+    let result;
+    try {
+      result = await lucia.validateSession(sessionId);
+      console.log("validateRequest: validateSession sonucu:", result);
+    } catch (err) {
+      console.error("validateRequest: validateSession hatası:", err);
+      return { user: null, session: null };
+    }
 
     try {
       if (result.session && result.session.fresh) {
@@ -87,7 +95,9 @@ export const validateRequest = cache(
           sessionCookie.attributes,
         );
       }
-    } catch {}
+    } catch (err) {
+      console.error("validateRequest: cookie set hatası:", err);
+    }
 
     console.log("validateRequest bitti");
     return result;

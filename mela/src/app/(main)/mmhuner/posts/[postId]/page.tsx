@@ -1,11 +1,11 @@
 // Bismillahirrahmanirrahim
-
-
-
+// Elhamdulillahi Rabbul Alemin
+// Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber ve Lillahi'l-hamd
+// HasbunAllahu ve ni'mel vekil
 import { validateRequest } from "@/auth";
-import FollowButton from "@/components/FollowButton";
 import Linkify from "@/components/Linkify";
-import Post from "@/components/posts/Post";
+import MmmPost from "@/components/mmavahi/mmPost";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
@@ -15,13 +15,14 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache, Suspense } from "react";
+import ChatProviderClient from "../../../ChatProviderClient";
 
 interface PageProps {
   params: { postId: string };
 }
 
 const getPost = cache(async (postId: string, loggedInUserId: string) => {
-  const post = await prisma.post.findUnique({
+  const post = await prisma.mmavahi.findUnique({
     where: {
       id: postId,
     },
@@ -47,9 +48,20 @@ export async function generateMetadata({
   };
 }
 
+import dynamic from "next/dynamic";
+// Update the import path below to match the actual location and filename of UserInfoSidebar
+// For example, if the file is in the same folder as this file, use:
+
+// Update the import path below to match the actual location and filename of UserInfoSidebar
+// For example, if the file is in the parent folder's components directory, use:
+// Update the import path below to match the actual location and filename of UserInfoSidebar
+// Example: if UserInfoSidebar is in "@/components/UserInfoSidebar", use:
+import UserInfoSidebar from "./UserInfoSidebar";
+// If it's in another location, update the path accordingly.
+// Or, adjust the path according to your project structure.
+
 export default async function Page({ params: { postId } }: PageProps) {
   const { user } = await validateRequest();
-
   if (!user) {
     return (
       <p className="text-destructive">
@@ -57,57 +69,27 @@ export default async function Page({ params: { postId } }: PageProps) {
       </p>
     );
   }
-
   const post = await getPost(postId, user.id);
 
   return (
-    <main className="flex w-full min-w-0 gap-5">
-      <div className="w-full min-w-0 space-y-5">
-        <Post post={post} />
-      </div>
-      <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
-        <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-          <UserInfoSidebar user={post.user} />
-        </Suspense>
-      </div>
-    </main>
-  );
-}
-
-interface UserInfoSidebarProps {
-  user: UserData;
-}
-
-async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
-  const { user: loggedInUser } = await validateRequest();
-
-  if (!loggedInUser) return null;
-
-  return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
-      <div className="text-xl font-bold">About this user</div>
-      <UserTooltip user={user}>
-        <Link
-          href={`/users/${user.username}`}
-          className="flex items-center gap-3"
-        >
-          <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
-          <div>
-            <p className="line-clamp-1 break-all font-semibold hover:underline">
-              {user.displayName}
-            </p>
-            <p className="line-clamp-1 break-all text-muted-foreground">
-              @{user.username}
-            </p>
+    <ChatProviderClient>
+      <main className="flex w-full min-w-0 gap-5 flex-col lg:flex-row">
+        <div className="w-full min-w-0 space-y-5">
+          <MmmPost post={post} viewerId={user.id} />
+          {/* Mobilde göster (lg'den küçük ekranlarda) */}
+          <div className="block lg:hidden">
+            <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+              <UserInfoSidebar user={post.user} loggedInUserId={user.id} post={post} />
+            </Suspense>
           </div>
-        </Link>
-      </UserTooltip>
-      <Linkify>
-        <div className="line-clamp-6 whitespace-pre-line break-words text-muted-foreground">
-          {user.bio}
         </div>
-      </Linkify>
-   
-    </div>
+        {/* Sadece büyük ekranda göster */}
+        <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
+          <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+            <UserInfoSidebar user={post.user} loggedInUserId={user.id} post={post} />
+          </Suspense>
+        </div>
+      </main>
+    </ChatProviderClient>
   );
 }

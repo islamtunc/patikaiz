@@ -1,7 +1,17 @@
+// Bismillahirahmanirahim
+// ElHAMDULİLLAHİRABBULALEMİN
+// Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
+// SubhanAllahi vel hamdu lillahi ve la ilahe illallah ve Allahu Ekber
+// Hasbuna Allahu ve ni'mel vekil
+// La havle ve la kuvvete illa billahi'l-aliyyi'l-azim
+// La ilahe illallah, Muhammedur Resulullah
+
+
+
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
