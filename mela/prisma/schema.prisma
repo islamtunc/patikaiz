@@ -258,3 +258,11 @@ model Notification {
 
   @@map("notifications")
 }
+
+enum NotificationType {
+  LIKE
+  COMMENT
+  FOLLOW
+  MENTION
+  // ihtiyaca göre ekleyebilirsiniz
+}
