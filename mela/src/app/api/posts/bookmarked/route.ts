@@ -1,3 +1,10 @@
+// Bismillahirahmanirahim 
+// Elhamdulillahi Rabbil Alamin
+// Es-salatu was-salamu 'ala Rasulillah 
+// Allah u Ekber velillahilhamd
+
+
+
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude, PostsPage } from "@/lib/types";
