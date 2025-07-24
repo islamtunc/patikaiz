@@ -22,7 +22,7 @@ interface PostProps {
   viewerId: string;
 }
 
-export default function MmmPost({ post, viewerId }: PostProps) {
+export default function MmmhPost({ post, viewerId }: PostProps) {
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex items-center gap-3 mb-2">
