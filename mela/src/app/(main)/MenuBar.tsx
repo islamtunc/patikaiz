@@ -13,6 +13,8 @@ import { Bookmark, Home } from "lucide-react";
 import Link from "next/link";
 import MessagesButton from "./MessagesButton";
 
+// Bildirim (notification) ile ilgili hiçbir kod yok, ek bir kaldırma gerekmez.
+
 interface MenuBarProps {
   className?: string;
 }
