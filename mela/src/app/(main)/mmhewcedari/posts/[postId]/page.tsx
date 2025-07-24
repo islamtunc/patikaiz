@@ -78,7 +78,7 @@ export default async function Page({ params: { postId } }: PageProps) {
     <ChatProviderClient>
       <main className="flex w-full min-w-0 gap-5 flex-col lg:flex-row">
         <div className="w-full min-w-0 space-y-5">
-          <MmmPost post={post} viewerId={user.id} />
+          <MmmhPost post={post} viewerId={user.id} />
           {/* Mobilde göster (lg'den küçük ekranlarda) */}
           <div className="block lg:hidden">
             <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
