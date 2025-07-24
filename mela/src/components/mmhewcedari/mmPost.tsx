@@ -35,7 +35,7 @@ export default function MmmPost({ post, viewerId }: PostProps) {
       </div>
     
       {!!post.attachments.length && (
-        <Link href={`/mmavahi/posts/${post.id}`}> {/* Medya tıklanınca yönlendirsin */}
+        <Link href={`/mmhewcedari/posts/${post.id}`}> {/* Medya tıklanınca yönlendirsin */}
           <MediaPreviews attachments={post.attachments} />
         </Link>
       )}
