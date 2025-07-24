@@ -26,13 +26,7 @@ model User {
   posts                 Post[]
   mmavahi               Mmavahi[]
   bookmarks             Bookmark[]
-  createdAt   DateTime      @default(now())
-  Mmhewcedari Mmhewcedari[]
-  Mmkinc      Mmkinc[]
-  Mmkedkar    Mmkedkar[]
-  Mmwesayit   Mmwesayit[]
-  Mmkargeh    Mmkargeh[]
-  Mmhuner     Mmhuner[]
+  createdAt             DateTime      @default(now())
   whatsapp               String?
   contact                String?
   twoFactorCode          String?
@@ -69,7 +63,7 @@ model Mmavahi {
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
   bookmarks   Bookmark[]
-  createdAt           DateTime       @default(now())
+  createdAt   DateTime       @default(now())
   // Ek alanlar
   title       String?
   price       String?
@@ -84,81 +78,6 @@ model Mmavahi {
   @@map("mmavahi")
 }
 
-model Mmhuner {
-  id          String  @id @default(cuid())
-  content     String
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt           DateTime       @default(now())
-
-  @@map("mmhuner")
-}
-
-model Mmhewcedari {
-  id          String  @id @default(cuid())
-  content     String
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt           DateTime       @default(now())
-
-  @@map("mmhewcedari")
-}
-
-model Mmkinc {
-  id          String  @id @default(cuid())
-  content     String
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt           DateTime       @default(now())
-
-  @@map("mmkinc")
-}
-
-model Mmkedkar {
-  id          String  @id @default(cuid())
-  content     String
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt           DateTime       @default(now())
-
-  @@map("mmkedkar")
-}
-
-model Mmwesayit {
-  id          String  @id @default(cuid())
-  content     String
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt           DateTime       @default(now())
-  // Araba ilanı için ek alanlar
-  brand       String?
-  model       String?
-  year        String?
-  @@map("mmwesayit")
-}
-
-model Mmkargeh {
-  id          String  @id @default(cuid())
-  content     String
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt           DateTime       @default(now())
-
-  @@map("mmkargeh")
-}
-
 model Media {
   id     String    @id @default(cuid())
   postId String?
@@ -169,18 +88,6 @@ model Media {
   createdAt     DateTime     @default(now())
   Mmavahi       Mmavahi?     @relation(fields: [mmavahiId], references: [id])
   mmavahiId     String?
-  Mmhewcedari   Mmhewcedari? @relation(fields: [mmhewcedariId], references: [id])
-  mmhewcedariId String?
-  Mmkinc        Mmkinc?      @relation(fields: [mmkincId], references: [id])
-  mmkincId      String?
-  Mmkedkar      Mmkedkar?    @relation(fields: [mmkedkarId], references: [id])
-  mmkedkarId    String?
-  Mmwesayit     Mmwesayit?   @relation(fields: [mmwesayitId], references: [id])
-  mmwesayitId   String?
-  Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
-  mmkargehId    String?
-  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
-  mmhunerId     String?
 
   @@map("post_media")
 }
@@ -200,18 +107,6 @@ model Bookmark {
   createdAt     DateTime     @default(now())
   Mmavahi       Mmavahi?     @relation(fields: [mmavahiId], references: [id])
   mmavahiId     String?
-  Mmhewcedari   Mmhewcedari? @relation(fields: [mmhewcedariId], references: [id])
-  mmhewcedariId String?
-  Mmkinc        Mmkinc?      @relation(fields: [mmkincId], references: [id])
-  mmkincId      String?
-  Mmkedkar      Mmkedkar?    @relation(fields: [mmkedkarId], references: [id])
-  mmkedkarId    String?
-  Mmwesayit     Mmwesayit?   @relation(fields: [mmwesayitId], references: [id])
-  mmwesayitId   String?
-  Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
-  mmkargehId    String?
-  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
-  mmhunerId     String?
 
   @@unique([userId, postId])
   @@map("bookmarks")
