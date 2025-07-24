@@ -12,7 +12,7 @@ import MmmPost from "@/components/mmhewcedari/mmPost";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
-import { getPostDataInclude, UserData } from "@/lib/types";
+import { getPostDataInclude, UserData, MmhewcedariPostData } from "@/lib/types";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -72,7 +72,7 @@ export default async function Page({ params: { postId } }: PageProps) {
       </p>
     );
   }
-  const post = await getPost(postId, user.id);
+  const post: MmhewcedariPostData = await getPost(postId, user.id);
 
   return (
     <ChatProviderClient>
