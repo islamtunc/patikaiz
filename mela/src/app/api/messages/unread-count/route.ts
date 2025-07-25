@@ -1,8 +1,10 @@
 // Bismillahirahmanirahim 
 // Elhamdulillahi Rabbul Alemin
 // Es-salatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Subhanallah Elhamdulillah Allahu Ekber
+// HasbunAllahu ve ni'mel vekil
+// Allah u Ekber, Allah u Ekber, ve lillahi'l-hamd
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
-
 
 
 
