@@ -9,39 +9,49 @@
 
 
 
-
-
-"use client"
+"use client";
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import Link from "next/link";
 
-const categories = [
-  { id: 1, name: "Emlak", icon: "🏠", link: "/mmavahi" },
-];
+import PostEditor from "@/components/mmavahi/editor/PostEditor";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-function Page() {
+import ForYouFeed from "./ForYouFeed";
+
+import SearchField from "@/components/mmavahi/SearchField";
+
+export default function Home() {
   return (
-    <Container className="mt-4">
-      <h1 className="text-center mb-4">Kategoriler</h1>
-      <Row>
-        {categories.map((category) => (
-          <Col key={category.id} xs={12} sm={6} md={4} lg={3} className="mb-4">
-            <Link href={category.link} passHref legacyBehavior>
-              <a style={{ textDecoration: "none" }}>
-                <Card className="h-100 text-center shadow-sm category-card" style={{ cursor: "pointer" }}>
-                  <Card.Body>
-                    <div className="fs-1">{category.icon}</div>
-                    <Card.Title className="mt-3">{category.name}</Card.Title>
-                  </Card.Body>
-                </Card>
-              </a>
-            </Link>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+    <main className="flex w-full min-w-0 gap-5">
+      <div className="w-full min-w-0 space-y-5">
+
+        <h1 className="text-3xl font-semibold">Emlak </h1>
+        <Tabs defaultValue="mm">
+          <TabsList>
+            <TabsTrigger value="for-you">İlanlar</TabsTrigger>
+            <TabsTrigger value="following">Kategoride Ara</TabsTrigger>
+            <TabsTrigger value="mm">Yeni İlan ver</TabsTrigger>
+
+          </TabsList>
+          <TabsContent value="for-you">
+            <ForYouFeed />
+          </TabsContent>
+          <TabsContent value="following">
+
+      <SearchField/>
+          </TabsContent>
+
+
+
+
+
+
+        <TabsContent value="mm">
+
+  <PostEditor />
+
+    </TabsContent>
+    </Tabs>
+      </div>
+    </main>
   );
 }
-
-export default Page;
