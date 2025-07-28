@@ -84,8 +84,7 @@ model Bookmark {
   post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   createdAt     DateTime     @default(now())
-  Mmavahi       Mmavahi?     @relation(fields: [mmavahiId], references: [id])
-  mmavahiId     String?
+  
 
   @@unique([userId, postId])
   @@map("bookmarks")
