@@ -56,27 +56,7 @@ model Post {
   @@map("posts")
 }
 
-model Mmavahi {
-  id          String  @id @default(cuid())
-  content     String
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt   DateTime       @default(now())
-  // Ek alanlar
-  title       String?
-  price       String?
-  category    String?
-  address     String?
-  whatsapp    String?
-  contact     String?
-  lat         Float?
-  lng         Float?
-  city        String?
 
-  @@map("mmavahi")
-}
 
 model Media {
   id     String    @id @default(cuid())
@@ -86,8 +66,7 @@ model Media {
   url    String
 
   createdAt     DateTime     @default(now())
-  Mmavahi       Mmavahi?     @relation(fields: [mmavahiId], references: [id])
-  mmavahiId     String?
+  
 
   @@map("post_media")
 }
