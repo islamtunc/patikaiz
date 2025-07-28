@@ -22,7 +22,7 @@ interface PostProps {
   viewerId: string;
 }
 
-export default function Post({ post, viewerId }: PostProps) {
+export default function mmPost({ post, viewerId }: PostProps) {
   const [deleting, setDeleting] = useState(false);
   const isOwner = post.user.id === viewerId;
 
