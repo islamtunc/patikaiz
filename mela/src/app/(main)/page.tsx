@@ -12,12 +12,12 @@
 "use client";
 import React from "react";
 
-import PostEditor from "@/components/mmavahi/editor/PostEditor";
+import PostEditor from "@/components/post/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
 
-import SearchField from "@/components/mmavahi/SearchField";
+import SearchField from "@/components/SearchField";
 
 export default function Home() {
   return (
