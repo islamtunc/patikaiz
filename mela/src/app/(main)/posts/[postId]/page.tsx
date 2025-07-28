@@ -6,7 +6,7 @@
 // La ilahe illallah 
 import { validateRequest } from "@/auth";
 import Linkify from "@/components/Linkify";
-import MmmPost from "@/components/mmPost";
+import MmmPost from "@/components/posts/mmPost";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
