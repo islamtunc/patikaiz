@@ -15,12 +15,8 @@ import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
-import { useSession } from "next-auth/react";
 
-export default function ForYouFeed() {
-  const { data: session } = useSession();
-  const viewerId = session?.user?.id ?? "";
-
+export default function ForYouFeed({ viewerId }: { viewerId: string }) {
   const {
     data,
     fetchNextPage,
