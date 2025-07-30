@@ -44,7 +44,7 @@ export async function submitPost(input: {
     description
   } = createPostSchema.parse(input);
 
-  const newPost = await prisma.mmavahi.create({
+  const newPost = await prisma.post.create({
     data: {
       content,
       userId: user.id,
