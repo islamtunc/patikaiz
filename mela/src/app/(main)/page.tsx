@@ -1,6 +1,6 @@
 // Bismillahirrahmanirahim
 // Elhamdulillahirabbulalemin
-// Esselatu vesselamu ala rasulillah ve ala alihi ve sahbihi ecma'in
+// Esselatu vesselamu ala rasulina Muhammed'in ve ala alihi ve sahbihi ecma'in
 // Allahu Ekber velilahi'lhamd
 // SUPHANALLAH VELHAMDULİLLAH VE ALLAH U EKBER
 // LA İLAHE İLLALLAH U VAHDEHU LA ŞERİKE LEH LEHUL MULKU LEHUL HEMDU VE
@@ -33,7 +33,7 @@ export default function Home() {
 
           </TabsList>
           <TabsContent value="for-you">
-            <ForYouFeed />
+            <ForYouFeed viewerId={""} />
           </TabsContent>
           <TabsContent value="following">
 
