@@ -12,7 +12,7 @@
 "use client";
 import React from "react";
 
-import PostEditor from "@/components/posts/editor /PostEditor";
+import PostEditor from "@/components/posts/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
