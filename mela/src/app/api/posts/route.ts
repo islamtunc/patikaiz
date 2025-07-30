@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
     const pageSize = 10;
 
-    const posts = await prisma.mmavahi.findMany({
+    const posts = await prisma.post.findMany({
       include: getPostDataInclude("user,attachments"),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
