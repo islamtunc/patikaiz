@@ -19,76 +19,76 @@ import StarterKit from "@tiptap/starter-kit";
 import { useDropzone } from "@uploadthing/react";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import Image from "next/image";
-import { ClipboardEvent, useRef, useState } from "react";
+import { ClipboardEvent, useRef, useState, useEffect } from "react";
 import { useSubmitPostMutation } from "./mutations";
 import "./styles.css";
 import useMediaUpload, { Attachment } from "./useMediaUpload";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default function JobPostTabs() {
+  const sectors = [
+    { value: "bilisim", label: "Bilişim" },
+    { value: "egitim", label: "Eğitim" },
+    { value: "saglik", label: "Sağlık" },
+    { value: "insaat", label: "İnşaat" },
+    { value: "diger", label: "Diğer" },
+  ];
+
   return (
     <Tabs defaultValue="bilisim" className="w-full max-w-2xl mx-auto">
       <TabsList>
-        <TabsTrigger value="bilisim">Bilişim</TabsTrigger>
-        <TabsTrigger value="egitim">Eğitim</TabsTrigger>
-        <TabsTrigger value="saglik">Sağlık</TabsTrigger>
-        <TabsTrigger value="insaat">İnşaat</TabsTrigger>
-        <TabsTrigger value="diger">Diğer</TabsTrigger>
-        <TabsTrigger value="yeni">Yeni İlan Ver</TabsTrigger>
+        {sectors.map((sector) => (
+          <TabsTrigger key={sector.value} value={sector.value}>
+            {sector.label}
+          </TabsTrigger>
+        ))}
       </TabsList>
-      <TabsContent value="bilisim">
-        {/* Bilişim sektörü ilanları */}
-        <div>Bilişim sektörü ilanları burada listelenecek.</div>
-      </TabsContent>
-      <TabsContent value="egitim">
-        {/* Eğitim sektörü ilanları */}
-        <div>Eğitim sektörü ilanları burada listelenecek.</div>
-      </TabsContent>
-      <TabsContent value="saglik">
-        {/* Sağlık sektörü ilanları */}
-        <div>Sağlık sektörü ilanları burada listelenecek.</div>
-      </TabsContent>
-      <TabsContent value="insaat">
-        {/* İnşaat sektörü ilanları */}
-        <div>İnşaat sektörü ilanları burada listelenecek.</div>
-      </TabsContent>
-      <TabsContent value="diger">
-        {/* Diğer sektör ilanları */}
-        <div>Diğer sektör ilanları burada listelenecek.</div>
-      </TabsContent>
-      <TabsContent value="yeni">
-        <JobPostForm />
-      </TabsContent>
+      {sectors.map((sector) => (
+        <TabsContent key={sector.value} value={sector.value}>
+          <JobPostForm sector={sector.label} />
+        </TabsContent>
+      ))}
     </Tabs>
   );
 }
 
-function JobPostForm() {
+function JobPostForm({ sector }: { sector: string }) {
+  // content dizisi: [sektör, başlık, şehir, adres, ücret, açıklama]
+  const [content, setContent] = useState([sector, "", "", "", "", ""]);
   const { user } = useSession();
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-
   const mutation = useSubmitPostMutation();
+  const {
+    startUpload,
+    attachments,
+    isUploading,
+    uploadProgress,
+    removeAttachment,
+    reset: resetMediaUploads,
+  } = useMediaUpload();
+
+  // Sektör değişirse content[0] güncellensin
+  useEffect(() => {
+    setContent((prev) => [sector, ...prev.slice(1)]);
+  }, [sector]);
+
+  function handleChange(index: number, value: string) {
+    setContent((prev) => {
+      const updated = [...prev];
+      updated[index] = value;
+      return updated;
+    });
+  }
 
   function onSubmit() {
     mutation.mutate(
       {
-       
-        content: [title, address, description],
-        mediaIds: [],
+        content,
+        mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
       },
       {
         onSuccess: () => {
-          setTitle("");
-          setCategory("");
-          setCity("");
-          setAddress("");
-          setPrice("");
-          setDescription("");
+          setContent([sector, "", "", "", "", ""]);
+          resetMediaUploads();
         },
       }
     );
@@ -98,60 +98,56 @@ function JobPostForm() {
     <div className="flex flex-col gap-4 bg-card p-5 rounded-xl shadow">
       <input
         type="text"
-        placeholder="İlan Başlığı"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="input"
-        required
+        value={content[0]}
+        disabled
+        className="input font-bold"
+        style={{ background: "#f3f4f6" }}
       />
       <input
         type="text"
-        placeholder="Kategori"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        placeholder="İlan Başlığı"
+        value={content[1]}
+        onChange={(e) => handleChange(1, e.target.value)}
         className="input"
         required
       />
       <input
         type="text"
         placeholder="Şehir"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
+        value={content[2]}
+        onChange={(e) => handleChange(2, e.target.value)}
         className="input"
         required
       />
       <input
         type="text"
         placeholder="Adres"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
+        value={content[3]}
+        onChange={(e) => handleChange(3, e.target.value)}
         className="input"
         required
       />
       <input
         type="text"
         placeholder="Ücret"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        value={content[4]}
+        onChange={(e) => handleChange(4, e.target.value)}
         className="input"
       />
       <textarea
         placeholder="Açıklama"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={content[5]}
+        onChange={(e) => handleChange(5, e.target.value)}
         className="input"
         rows={4}
         required
       />
+      {/* Medya ekleme ve önizleme kodları burada olabilir */}
       <LoadingButton
         onClick={onSubmit}
         loading={mutation.isPending}
         disabled={
-          !title.trim() ||
-          !category.trim() ||
-          !city.trim() ||
-          !address.trim() ||
-          !description.trim()
+          content.slice(1, 6).some((v) => !v.trim()) || isUploading
         }
       >
         İlanı Yayınla
