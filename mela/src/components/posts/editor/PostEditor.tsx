@@ -23,11 +23,127 @@ import { ClipboardEvent, useRef, useState } from "react";
 import { useSubmitPostMutation } from "./mutations";
 import "./styles.css";
 import useMediaUpload, { Attachment } from "./useMediaUpload";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-export default function PostEditor() {
+export default function JobPostTabs() {
+  return (
+    <Tabs defaultValue="ilanlar" className="w-full max-w-2xl mx-auto">
+      <TabsList>
+        <TabsTrigger value="ilanlar">İlanlar</TabsTrigger>
+        <TabsTrigger value="yeni">Yeni İlan Ver</TabsTrigger>
+      </TabsList>
+      <TabsContent value="ilanlar">
+        {/* Buraya iş ilanları listesini ekleyin */}
+        <div>İş ilanları burada listelenecek.</div>
+      </TabsContent>
+      <TabsContent value="yeni">
+        <JobPostForm />
+      </TabsContent>
+    </Tabs>
+  );
+}
+
+function JobPostForm() {
   const { user } = useSession();
   const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+
+  const mutation = useSubmitPostMutation();
+
+  function onSubmit() {
+    mutation.mutate(
+      {
+       
+        content: [title, address, description],
+        mediaIds: [],
+      },
+      {
+        onSuccess: () => {
+          setTitle("");
+          setCategory("");
+          setCity("");
+          setAddress("");
+          setPrice("");
+          setDescription("");
+        },
+      }
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-4 bg-card p-5 rounded-xl shadow">
+      <input
+        type="text"
+        placeholder="İlan Başlığı"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="input"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Kategori"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        className="input"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Şehir"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        className="input"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Adres"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        className="input"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Ücret"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        className="input"
+      />
+      <textarea
+        placeholder="Açıklama"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        className="input"
+        rows={4}
+        required
+      />
+      <LoadingButton
+        onClick={onSubmit}
+        loading={mutation.isPending}
+        disabled={
+          !title.trim() ||
+          !category.trim() ||
+          !city.trim() ||
+          !address.trim() ||
+          !description.trim()
+        }
+      >
+        İlanı Yayınla
+      </LoadingButton>
+    </div>
+  );
+}
+
+function PostEditor() {
+  const { user } = useSession();
+  // content dizisi: [başlık, kategori, şehir, adres, ücret, açıklama]
+  const [content, setContent] = useState(["", "", "", "", "", ""]);
 
   const mutation = useSubmitPostMutation();
 
@@ -48,38 +164,28 @@ export default function PostEditor() {
 
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({ bold: {}, italic: false }), // bold'u etkinleştir, italic'i devre dışı bırak
+      StarterKit.configure({ bold: {}, italic: false }),
       Placeholder.configure({ placeholder: "Yazınızı buraya yazın..." }),
     ],
   });
 
-  const description =
-    editor?.getText({ blockSeparator: "\n" }) || "";
-
-  function onPaste(e: ClipboardEvent<HTMLInputElement>) {
-    const files = Array.from(e.clipboardData.items)
-      .filter((item) => item.kind === "file")
-      .map((item) => item.getAsFile()) as File[];
-    startUpload(files);
+  function handleChange(index: number, value: string) {
+    setContent((prev) => {
+      const updated = [...prev];
+      updated[index] = value;
+      return updated;
+    });
   }
 
   function onSubmit() {
     mutation.mutate(
       {
-        content: [
-          title.trim(),
-          address.trim(),
-          ...description
-            .split("\n")
-            .map((line) => line.trim())
-            .filter((line) => line.length > 0),
-        ],
+        content,
         mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
       },
       {
         onSuccess: () => {
-          setTitle("");
-          setAddress("");
+          setContent(["", "", "", "", "", ""]);
           editor?.commands.clearContent();
           resetMediaUploads();
         },
@@ -88,70 +194,120 @@ export default function PostEditor() {
   }
 
   return (
-    <div className="flex flex-col gap-5 rounded-2xl bg-card p-3 sm:p-5 shadow-sm text-black w-full max-w-2xl mx-auto">
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
-        <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
-        <div className="w-full space-y-3">
-          <input
-            type="text"
-            placeholder="Yazı Başlığı"
-            className="w-full rounded-lg border px-4 py-2"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            maxLength={100}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Konu"
-            className="w-full rounded-lg border px-4 py-2"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            maxLength={200}
-            required
-          />
-        </div>
-      </div>
-      <div {...rootProps} className="w-full">
-        <EditorContent
-          editor={editor}
-          className={cn(
-            "max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-3 py-3 text-black prose prose-green", // prose ekle
-            isDragActive && "outline-dashed",
+    <Tabs defaultValue="ilanlar" className="w-full max-w-2xl mx-auto">
+      <TabsList>
+        <TabsTrigger value="ilanlar">İlanlar</TabsTrigger>
+        <TabsTrigger value="yeni">Yeni İlan Ver</TabsTrigger>
+      </TabsList>
+      <TabsContent value="ilanlar">
+        <div>İş ilanları burada listelenecek.</div>
+      </TabsContent>
+      <TabsContent value="yeni">
+        <div className="flex flex-col gap-5 rounded-2xl bg-card p-3 sm:p-5 shadow-sm text-black w-full max-w-2xl mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
+            <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
+            <div className="w-full space-y-3">
+              <input
+                type="text"
+                placeholder="İlan Başlığı"
+                className="w-full rounded-lg border px-4 py-2"
+                value={content[0]}
+                onChange={(e) => handleChange(0, e.target.value)}
+                maxLength={100}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Kategori"
+                className="w-full rounded-lg border px-4 py-2"
+                value={content[1]}
+                onChange={(e) => handleChange(1, e.target.value)}
+                maxLength={50}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Şehir"
+                className="w-full rounded-lg border px-4 py-2"
+                value={content[2]}
+                onChange={(e) => handleChange(2, e.target.value)}
+                maxLength={50}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Adres"
+                className="w-full rounded-lg border px-4 py-2"
+                value={content[3]}
+                onChange={(e) => handleChange(3, e.target.value)}
+                maxLength={200}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Ücret"
+                className="w-full rounded-lg border px-4 py-2"
+                value={content[4]}
+                onChange={(e) => handleChange(4, e.target.value)}
+                maxLength={20}
+              />
+              <textarea
+                placeholder="Açıklama"
+                className="w-full rounded-lg border px-4 py-2"
+                value={content[5]}
+                onChange={(e) => handleChange(5, e.target.value)}
+                rows={4}
+                required
+              />
+            </div>
+          </div>
+          <div {...rootProps} className="w-full">
+            <EditorContent
+              editor={editor}
+              className={cn(
+                "max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-3 py-3 text-black prose prose-green",
+                isDragActive && "outline-dashed",
+              )}
+              onPaste={(e) => {
+                const files = Array.from(e.clipboardData.items)
+                  .filter((item) => item.kind === "file")
+                  .map((item) => item.getAsFile()) as File[];
+                startUpload(files);
+              }}
+            />
+            <input {...getInputProps()} />
+          </div>
+          {!!attachments.length && (
+            <AttachmentPreviews
+              attachments={attachments}
+              removeAttachment={removeAttachment}
+            />
           )}
-          onPaste={onPaste}
-        />
-        <input {...getInputProps()} />
-      </div>
-      {!!attachments.length && (
-        <AttachmentPreviews
-          attachments={attachments}
-          removeAttachment={removeAttachment}
-        />
-      )}
-      <div className="flex flex-col sm:flex-row items-center justify-end gap-3">
-        {isUploading && (
-          <>
-            <span className="text-sm">{uploadProgress ?? 0}%</span>
-            <Loader2 className="size-5 animate-spin text-primary" />
-          </>
-        )}
-        <AddAttachmentsButton
-          onFilesSelected={startUpload}
-          disabled={isUploading || attachments.length >= 10}
-        />
-        <LoadingButton
-          onClick={onSubmit}
-          loading={mutation.isPending}
-          disabled={
-            !title.trim() || !address.trim() || !description.trim() || isUploading
-          }
-          className="min-w-20"
-        >
-           Yayınla
-        </LoadingButton>
-      </div>
-    </div>
+          <div className="flex flex-col sm:flex-row items-center justify-end gap-3">
+            {isUploading && (
+              <>
+                <span className="text-sm">{uploadProgress ?? 0}%</span>
+                <Loader2 className="size-5 animate-spin text-primary" />
+              </>
+            )}
+            <AddAttachmentsButton
+              onFilesSelected={startUpload}
+              disabled={isUploading || attachments.length >= 10}
+            />
+            <LoadingButton
+              onClick={onSubmit}
+              loading={mutation.isPending}
+              disabled={
+                content.slice(0, 6).some((v) => !v.trim()) || isUploading
+              }
+              className="min-w-20"
+            >
+              Yayınla
+            </LoadingButton>
+          </div>
+        </div>
+      </TabsContent>
+    </Tabs>
   );
 }
 
