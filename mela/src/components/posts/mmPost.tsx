@@ -23,6 +23,23 @@ interface PostProps {
 }
 
 export default function MmmPost({ post, viewerId }: PostProps) {
+  // content dizisini çöz
+  let arr: string[] = [];
+  try {
+    arr = Array.isArray(post.content) ? post.content : JSON.parse(post.content);
+  } catch {
+    arr = [];
+  }
+  // [sektör, başlık, şehir, adres, ücret, açıklama]
+  const [
+    sector = "-",
+    title = "-",
+    city = "-",
+    address = "-",
+    price = "-",
+    description = "-"
+  ] = arr;
+
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex items-center gap-3 mb-2">
@@ -33,56 +50,27 @@ export default function MmmPost({ post, viewerId }: PostProps) {
           <div className="text-xs text-muted-foreground">{formatRelativeDate(post.createdAt)}</div>
         </div>
       </div>
-    
+
       {!!post.attachments.length && (
-        <Link href={`/mmavahi/posts/${post.id}`}> {/* Medya tıklanınca yönlendirsin */}
+        <Link href={`/mmavahi/posts/${post.id}`}>
           <MediaPreviews attachments={post.attachments} />
         </Link>
       )}
       {!post.attachments.length && (
         <div className="text-center text-muted-foreground">Medya yok</div>
       )}
+
       <div className="flex flex-col gap-1 mt-3">
-        {(() => {
-          let arr: string[] = [];
-          try {
-            arr = JSON.parse(post.content);
-          } catch {
-            arr = [];
-          }
-          const [title, price, category, address, whatsapp, contact, city, coords, description] = arr;
-          return (
-            <>
-              <div><span className="font-medium">Başlık:</span> {post.content[1]}</div>
-              <div><span className="font-medium">Fiyat:</span> {price ? price + ' ₺' : '-'}</div>
-              <div><span className="font-medium">Kategori:</span> {category || '-'}</div>
-              <div><span className="font-medium">Adres:</span> {address || '-'}</div>
-              <div><span className="font-medium">WhatsApp:</span> {whatsapp || '-'}</div>
-              <div><span className="font-medium">İletişim:</span> {contact || '-'}</div>
-              <div><span className="font-medium">Şehir:</span> {city || '-'}</div>
-              <div><span className="font-medium">Koordinat:</span> {coords || '-'}</div>
-             
-
-
-
-
-
-
-
-
-
-
-               <div className="mb-2">
-        <span className="font-medium">Açıklama:</span>
-        <div className="whitespace-pre-line break-words">{description || '-'}</div>
-      </div>
-            </>
-          );
-        })()}
+        <div><span className="font-medium">Sektör:</span> {sector}</div>
+        <div><span className="font-medium">Başlık:</span> {title}</div>
+        <div><span className="font-medium">Şehir:</span> {city}</div>
+        <div><span className="font-medium">Adres:</span> {address}</div>
+        <div><span className="font-medium">Ücret:</span> {price ? price + " ₺" : "-"}</div>
+        <div className="mb-2">
+          <span className="font-medium">Açıklama:</span>
+          <div className="whitespace-pre-line break-words">{description || '-'}</div>
+        </div>
         <div><span className="font-medium">Oluşturulma:</span> {formatRelativeDate(post.createdAt)}</div>
-      </div>
-      <div className="flex justify-between gap-5 mt-3">
-      
       </div>
     </article>
   );
