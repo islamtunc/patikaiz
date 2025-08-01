@@ -30,18 +30,8 @@ export const loginSchema = z.object({
 export type LoginValues = z.infer<typeof loginSchema>;
 
 export const createPostSchema = z.object({
-  content: requiredString,
+  content: z.array(z.string().trim().min(1, "Required")), // content artık dizi!
   mediaIds: z.array(z.string()).max(5, "Cannot have more than 5 attachments"),
-  title: requiredString,
-  price: requiredString,
-  category: requiredString,
-  address: requiredString,
-  whatsapp: z.string().optional(),
-  contact: z.string().optional(),
-  city: requiredString,
-  lat: z.number(),
-  lng: z.number(),
-  description: requiredString,
 });
 
 export const updateUserProfileSchema = z.object({
