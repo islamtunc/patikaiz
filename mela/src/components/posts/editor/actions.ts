@@ -33,20 +33,6 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  // content dizisini alanlara ayır
-  const [
-    category = "",
-    title = "",
-    city = "",
-    address = "",
-    price = "",
-    description = "",
-  ] = content;
-
-  // lat/lng gibi alanlar için sabit değer veya content dizisine ekle
-  const lat = 0;
-  const lng = 0;
-
   const newPost = await prisma.post.create({
     data: {
       content: JSON.stringify(content), // Dizi olarak string olarak kaydediliyor
@@ -54,7 +40,6 @@ export async function submitPost(input: {
       ...(mediaIds.length > 0 && {
         attachments: { connect: mediaIds.map((id) => ({ id })) },
       }),
-      // title, price, category, address, city, lat, lng, description alanlarını kaldır!
     },
     include: getPostDataInclude(user.id),
   });
