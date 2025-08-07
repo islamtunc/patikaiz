@@ -6,7 +6,7 @@
 //La ilahe illAllah u vahdehu la şerike leh,lehul mulku ve lehul hamdu
 //Ve huwe ala kulli şey in kadir
 
-import ChatClientProvider from "../ChatClientProvider"
+import ChatProviderClient from "../ChatProviderClient"
 
 export default async function Layout({
   children,
@@ -18,11 +18,11 @@ export default async function Layout({
   return (
 <div>
 
-<ChatClientProvider/>
+<ChatProviderClient/>
 
 {children}
 
-<ChatClientProvider/>
+<ChatProviderClient/>
 </div>
   );
 }
