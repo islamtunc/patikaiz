@@ -12,7 +12,7 @@
 
 
 
-import ChatProviderClient from "../ChatProviderClient";
+import ChatProviderClient from "../../ChatProviderClient";
 
 export default function Layout({
   children,
