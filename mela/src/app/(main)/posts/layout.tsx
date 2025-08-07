@@ -8,7 +8,7 @@
 
 import ChatProviderClient from "../ChatProviderClient"
 
-export default async function Layout({
+export default  function Layout({
   children,
 }: {
   children: React.ReactNode;
@@ -16,14 +16,14 @@ export default async function Layout({
 
 
   return (
-<div>
+
 
 <ChatProviderClient/>
 
 {children}
 
 <ChatProviderClient/>
-</div>
+
   );
 }
 
