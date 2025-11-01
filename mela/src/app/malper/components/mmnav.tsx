@@ -47,7 +47,7 @@ function Mmmnavbar() {
 
 
             <NavDropdown title="Hediye Kutusu" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/malper/mmperwerdehi">Web</NavDropdown.Item>
+              <NavDropdown.Item href="/malper/">Web</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 
                 
