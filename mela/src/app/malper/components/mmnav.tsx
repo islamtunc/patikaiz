@@ -22,32 +22,31 @@ function Mmmnavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/malper/mmavahi">Duvar Takvimleri</Nav.Link>
-            <NavDropdown title="SADE TAKVİM" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/malper/mmavahi/mmmweb"></NavDropdown.Item>
-              <NavDropdown.Item href="/malper/mmavahi/mmmobile">
+
+
+            <NavDropdown title="ÖZEL GÜNLER" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/malper/mm">Anneler Günü</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
                 
-             Mobile Apps
+                Babalar Günü
               </NavDropdown.Item>
-              <NavDropdown.Item href="/malper/mmavahi/mmmdesktop">Desktop Apps</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Öğretmenler Günü</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/malper/mmavahi/mmmai">
-                
-                Artificial Intelligence
-              </NavDropdown.Item>
-
-
-
-
-
-              <NavDropdown.Item href="/malper/mmavahi/mmmhealth">
-                Health/Repairing
+              <NavDropdown.Item href="#action/3.4">
+                Diğer
               </NavDropdown.Item>
             </NavDropdown>
+          
 
 
 
 
-            <NavDropdown title="HEDİYELİ TAKVİM" id="basic-nav-dropdown">
+
+
+
+
+
+            <NavDropdown title="Hediye Kutusu" id="basic-nav-dropdown">
               <NavDropdown.Item href="/malper/mmperwerdehi">Web</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 
@@ -64,17 +63,7 @@ Mobile
 
 
 
-            <NavDropdown title="Cîhan" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/malper/mmkarubar">Nûçe</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+          
 
 
 
@@ -88,20 +77,6 @@ Mobile
 
 
           
-
-
-            <NavDropdown title="ÖZEL GÜNLER" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/malper/mm">Anneler Günü</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                
-                Babalar Günü
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Öğretmenler Günü</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Diğer
-              </NavDropdown.Item>
-            </NavDropdown>
 
 
             <Nav.Link href="#link">Hakkimizda</Nav.Link>
