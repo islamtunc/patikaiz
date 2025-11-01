@@ -1,7 +1,7 @@
 // Bismillahirrahmanirahim
 // Elhamdulillahirabbulalemin
 // Ese-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
-// La ilahe illallah
+// La ilahe illallah, Muhammeden Rasulullah
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
  "use client";
@@ -136,7 +136,7 @@ const ContactForm: React.FC = () => {
         </Button>
       </div>
       <p className="text-center mt-4" style={{ color: "#6c757d", fontSize: "1rem" }}>
-        To contact us, please fill out the form above. We will get back to you as soon as possible.
+   
       </p>
     </Form>
   );
