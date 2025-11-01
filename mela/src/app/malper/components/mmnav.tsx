@@ -79,7 +79,7 @@ Mobile
           
 
 
-            <Nav.Link href="/derheq">Hakkimizda</Nav.Link>
+            <Nav.Link href="/malper/derheq">Hakkimizda</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
