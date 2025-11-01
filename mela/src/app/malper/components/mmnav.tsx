@@ -4,6 +4,7 @@
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 // Estağfirullah El-Azim
+// La ilahe illallah
 "use client"
 
 import Container from 'react-bootstrap/Container';
@@ -20,7 +21,7 @@ function Mmmnavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/malper/mmavahi">Masa Takvimleri</Nav.Link>
+            <Nav.Link href="/malper/mmavahi">Duvar Takvimleri</Nav.Link>
             <NavDropdown title="SADE TAKVİM" id="basic-nav-dropdown">
               <NavDropdown.Item href="/malper/mmavahi/mmmweb"></NavDropdown.Item>
               <NavDropdown.Item href="/malper/mmavahi/mmmobile">
@@ -103,19 +104,7 @@ Mobile
             </NavDropdown>
 
 
-            <NavDropdown title="Tendûrûstî" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/mmmmm">Courses</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Documantations
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Contribute</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Join to Yekazad
-              </NavDropdown.Item>
-            </NavDropdown>
-
-            <Nav.Link href="#link">Derbare</Nav.Link>
+            <Nav.Link href="#link">Hakkimizda</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
