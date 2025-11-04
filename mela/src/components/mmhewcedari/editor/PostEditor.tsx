@@ -1,3 +1,4 @@
+
 // Bismillahirahmanirahim 
 // ElHAMDULİLLAHİRABBULALEMİN
 // Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
@@ -33,7 +34,8 @@ export default function PostEditor() {
   const [leadTime, setLeadTime] = useState<string>("3-7 iş günü");
   const [category, setCategory] = useState<string>("Duvar Takvimi");
   const [shortDesc, setShortDesc] = useState<string>("");
-
+  const [paperType, setPaperType] = useState<string>("Saten");
+  
   const {
     startUpload,
     attachments,
@@ -75,6 +77,7 @@ export default function PostEditor() {
     setLeadTime("3-7 iş günü");
     setCategory("Duvar Takvimi");
     setShortDesc("");
+    setPaperType("Saten");
     editor?.commands.clearContent();
     resetMediaUploads();
   }
@@ -101,6 +104,7 @@ export default function PostEditor() {
       leadTime: leadTime.trim(),
       category: category.trim(),
       shortDesc: shortDesc.trim(),
+      paperType: paperType.trim(),
       longDesc: longDescription.split("\n").map((l) => l.trim()).filter(Boolean),
       media: attachments.map((a) => ({
         name: a.file.name,
@@ -171,6 +175,22 @@ export default function PostEditor() {
               min={0}
             />
           </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-1 gap-2">
+            <label className="text-sm text-gray-600">Duvar Kağıdı / Kağıt Türü</label>
+            <select
+              value={paperType}
+              onChange={(e) => setPaperType(e.target.value)}
+              className="w-full rounded-lg border px-4 py-2"
+            >
+              <option value="Saten">Saten (Premium)</option>
+              <option value="Mat">Mat</option>
+              <option value="Parlak">Parlak</option>
+              <option value="Kraft">Kraft (Ekolojik)</option>
+              <option value="Fotoğraf">Fotoğraf Kağıdı</option>
+            </select>
+          </div>
+          
           <input
             type="text"
             placeholder="Teslim süresi / Üretim (ör. 3-7 iş günü)"
