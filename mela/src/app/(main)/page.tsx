@@ -32,7 +32,7 @@ function AdminPage() {
             <Card.Body>
               <Card.Title>Ozel Gunler</Card.Title>
               <Card.Text>Manage or view the courses page.</Card.Text>
-              <Button variant="primary" href="/mmkinc">
+              <Button variant="primary" href="/mmhewcedari">
                 Go
               </Button>
             </Card.Body>
@@ -43,7 +43,7 @@ function AdminPage() {
             <Card.Body>
               <Card.Title>Hediye Kutusu</Card.Title>
               <Card.Text>Manage or view the services page.</Card.Text>
-              <Button variant="primary" href="/mmkargeh">
+              <Button variant="primary" href="/mmkedkar">
                 Go
               </Button>
             </Card.Body>
