@@ -51,7 +51,7 @@ const ContactForm: React.FC = () => {
     >
       {submitted && (
         <Alert variant="success" style={{ borderRadius: "12px", textAlign: "center" }}>
-          Your message has been sent!
+          Mesajiniz gonderildi, tesekkurler!
         </Alert>
       )}
       <h2
@@ -62,7 +62,8 @@ const ContactForm: React.FC = () => {
           letterSpacing: "1px",
           fontSize: "2rem",
         }}
-      >Têkili
+      >
+        Bize Ulaşın
       </h2>
       <Form.Group className="mb-3" controlId="formName">
         <Form.Label style={{ color: "#495057", fontWeight: 500 }}>isim</Form.Label>
