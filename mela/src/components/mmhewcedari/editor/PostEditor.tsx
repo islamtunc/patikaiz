@@ -1,4 +1,3 @@
-
 // Bismillahirahmanirahim 
 // ElHAMDULİLLAHİRABBULALEMİN
 // Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
@@ -200,19 +199,27 @@ export default function PostEditor() {
           />
           <input
             type="text"
-            placeholder="Kategori (ör. İslami, Doğa, Çocuk...)"
-            className="w-full rounded-lg border px-4 py-2"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-          <input
-            type="text"
             placeholder="Kısa açıklama (satışta görülecek)"
             className="w-full rounded-lg border px-4 py-2"
             value={shortDesc}
             onChange={(e) => setShortDesc(e.target.value)}
             maxLength={200}
           />
+          {/* Kategori select (5 seçenek) */}
+          <div className="grid grid-cols-1 sm:grid-cols-1 gap-2">
+            <label className="sr-only">Kategori</label>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full rounded-lg border px-4 py-2 bg-white"
+            >
+              <option value="Doğa">Doğa</option>
+              <option value="Aile">Aile</option>
+              <option value="İslami">İslami</option>
+              <option value="Çocuk">Çocuk</option>
+              <option value="Minimal">Minimal</option>
+            </select>
+          </div>
         </div>
       </div>
 
