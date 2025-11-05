@@ -79,7 +79,7 @@ export default function PostEditor() {
     resetMediaUploads();
   }
 
-  function onSubmit() {
+  async function onSubmit() {
     if (!productName.trim()) {
       alert("Ürün adı gerekli.");
       return;
@@ -90,8 +90,7 @@ export default function PostEditor() {
       return;
     }
 
-    const product = {
-      id: "prod-" + Date.now(),
+    const payload = {
       seller: user?.id || "unknown",
       name: productName.trim(),
       sku: sku.trim(),
@@ -102,24 +101,25 @@ export default function PostEditor() {
       category: category.trim(),
       shortDesc: shortDesc.trim(),
       longDesc: longDescription.split("\n").map((l) => l.trim()).filter(Boolean),
-      media: attachments.map((a) => ({
-        name: a.file.name,
-        type: a.file.type,
-        size: a.file.size,
-      })),
-      createdAt: new Date().toISOString(),
+      media: attachments.map((a) => ({ name: a.file.name, type: a.file.type, size: a.file.size })),
     };
 
     try {
-      const raw = localStorage.getItem("seller-products");
-      const list = raw ? JSON.parse(raw) : [];
-      list.unshift(product);
-      localStorage.setItem("seller-products", JSON.stringify(list));
-      alert("Ürün kaydedildi (localStorage). Gerçek entegrasyon için API çağrısı ekleyin.");
+      const res = await fetch("/api/posts/mmavahi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err || "API error");
+      }
+      const data = await res.json();
+      alert("Ürün gönderildi: " + (data?.id ?? "ok"));
       resetForm();
     } catch (err) {
       console.error(err);
-      alert("Kaydetme sırasında hata oluştu.");
+      alert("Kaydetme sırasında hata: " + (err as Error).message);
     }
   }
 

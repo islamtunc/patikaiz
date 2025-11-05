@@ -113,7 +113,7 @@ function page() {
           }
         `}</style>
 
-        <Tabs defaultValue="for-you">
+        <Tabs defaultValue="">
           <TabsList className="tabs-list" aria-label="Takvim Sekmeleri">
             <TabsTrigger className="tabs-trigger" value="for-you">Sevgililer Günü</TabsTrigger>
             <TabsTrigger className="tabs-trigger" value="dayik">Anneler Günü</TabsTrigger>

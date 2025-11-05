@@ -23,59 +23,26 @@ function Mmmnavbar() {
           <Nav className="me-auto">
             <Nav.Link href="/malper/mmavahi">Duvar Takvimleri</Nav.Link>
 
-
             <NavDropdown title="ÖZEL GÜNLER" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/malper/mm">Anneler Günü</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                
-                Babalar Günü
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Öğretmenler Günü</NavDropdown.Item>
+              <NavDropdown.Item href="/malper/mmhewcedari?tab=for-you">Anneler Günü</NavDropdown.Item>
+              <NavDropdown.Item href="/malper/mmhewcedari?tab=dayik">Babalar Günü</NavDropdown.Item>
+              <NavDropdown.Item href="/malper/mmhewcedari?tab=bav">Öğretmenler Günü</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item href="/malper?tab=rojbun">
                 Diğer
               </NavDropdown.Item>
             </NavDropdown>
-          
 
-
-
-
-
-
-
-
-
-            <NavDropdown title="Hediye Kutusu" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/malper/mmkedkar">Dunya Kuresi</NavDropdown.Item>
-            
-              <NavDropdown.Item href="#action/3.3">Kum Saati</NavDropdown.Item>
+            <NavDropdown title="Hediye Kutusu" id="basic-nav-dropdown-2">
+              <NavDropdown.Item href="/malper?tab=dunya-kuresi">Dunya Kuresi</NavDropdown.Item>
+              <NavDropdown.Item href="/malper?tab=kum-saati">Kum Saati</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                
-              Defter + Kalem vs
+              <NavDropdown.Item href="/malper?tab=defter-kalem">
+                Defter + Kalem vs
               </NavDropdown.Item>
             </NavDropdown>
 
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-            <Nav.Link href="/malper/derheq">Hakkimizda</Nav.Link>
+            <Nav.Link href="/malper?tab=hakkimizda">Hakkimizda</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
