@@ -31,9 +31,49 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: {
     template: "%s | Patika",
-    default: " Patika - Duvar Takvimi",
+    default: "Patika - Duvar Takvimi",
   },
-  description: " Duvar Takvimi.",
+  description:
+    "Patika - Kişiye özel ve temalı duvar takvimleri. Hızlı üretim, farklı kağıt seçenekleri, toplu sipariş indirimleri. A3 / A2 boyutları.",
+  keywords: [
+    "duvar takvimi",
+    "hediyelik takvim",
+    "kişiye özel takvim",
+    "takvim baskı",
+    "duvar takvimi 2026",
+  ],
+  openGraph: {
+    title: "Patika - Duvar Takvimi",
+    description:
+      "Kişiye özel ve temalı duvar takvimleri. Hızlı üretim, farklı kağıt seçenekleri, toplu sipariş indirimleri.",
+    url: "https://your-domain.com",
+    siteName: "Patika",
+    images: [
+      {
+        url: "https://your-domain.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Patika Duvar Takvimi Örnek",
+      },
+    ],
+    type: "website",
+    locale: "tr_TR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Patika - Duvar Takvimi",
+    description:
+      " Hediyelik ve temalı duvar takvimleri. Hızlı üretim, farklı kağıt seçenekleri.",
+    images: ["https://your-domain.com/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+  },
+  alternates: {
+    canonical: "https://your-domain.com",
+  },
 };
 
 export default function RootLayout({
@@ -41,8 +81,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // basic structured data for site (replace domain / logos dynamically)
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://your-domain.com",
+    "name": "Patika - Duvar Takvimi",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Yekazad Software Center",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://your-domain.com/logo.png"
+      }
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://your-domain.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
-    <html lang="en">
+    <html lang="tr">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
         <ReactQueryProvider>
@@ -52,25 +113,22 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-              {children}
-             
+            {children}
           </ThemeProvider>
         </ReactQueryProvider>
+
+        {/* JSON-LD structured data */}
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+        />
+
         <Toaster />
       </body>
     </html>
   );
 }
-
-
-
-
-
-
-
-
-
-
 
 export function Footer() {
   return (
@@ -78,5 +136,4 @@ export function Footer() {
       <p className="text-sm">© {new Date().getFullYear()} Yekazad Software Center</p>
     </footer>
   );
-  
 }
