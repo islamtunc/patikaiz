@@ -5,7 +5,7 @@
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
 import { Button } from "@/components/ui/button";
-import { Bookmark, Home, Mail, ShoppingCart } from "lucide-react";
+import { Bookmark, Home, User, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 interface MenuBarProps {
@@ -38,16 +38,6 @@ const MenuBar = ({ className }: MenuBarProps) => {
           </Link>
         </Button>
 
-        <Button
-          variant="ghost"
-          className="flex flex-col items-center justify-center p-2 md:flex-row md:justify-start md:gap-3"
-          title="Peyam"
-          asChild
-        >
-          <Link href="/malper/peyam" className="flex flex-col items-center md:flex-row md:gap-2">
-            <Mail className="h-6 w-6 text-primary" />
-          </Link>
-        </Button>
 
         <Button
           variant="ghost"
@@ -57,6 +47,20 @@ const MenuBar = ({ className }: MenuBarProps) => {
         >
           <Link href="/malper/sepet" className="flex flex-col items-center md:flex-row md:gap-2">
             <ShoppingCart className="h-6 w-6 text-primary" />
+          </Link>
+        </Button>
+
+
+
+
+        <Button
+          variant="ghost"
+          className="flex flex-col items-center justify-center p-2 md:flex-row md:justify-start md:gap-3"
+          title="Profil"
+          asChild
+        >
+          <Link href="/malper/profil" className="flex flex-col items-center md:flex-row md:gap-2">
+            <User className="h-6 w-6 text-primary" />
           </Link>
         </Button>
       </div>

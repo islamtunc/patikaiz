@@ -13,6 +13,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useCart } from '../hooks/useCart';
 import { Modal } from "./mmodel"
 import { NavDropdown } from 'react-bootstrap';
+import SearchField from '@/components/SearchField';
 
 function Mmmnavbar() {
   const { items } = useCart();
@@ -22,7 +23,7 @@ function Mmmnavbar() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="/malper">Patika</Navbar.Brand>
-        <Navbar.Brand href="/malper">Anasayfa</Navbar.Brand>
+        <Navbar.Brand href="/malper"><SearchField/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
