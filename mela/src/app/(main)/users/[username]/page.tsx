@@ -4,6 +4,7 @@
 //Suphanallah, Elhamdulillah, Allahu Ekber
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
+
 import { validateRequest } from "@/auth";
 import Linkify from "@/components/Linkify";
 import UserAvatar from "@/components/UserAvatar";

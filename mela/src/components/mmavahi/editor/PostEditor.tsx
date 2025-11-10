@@ -26,7 +26,7 @@ import useMediaUpload, { Attachment } from "./useMediaUpload";
 import Heading from "@tiptap/extension-heading";
 
 export default function PostEditor() {
-  const { user } = useSession();
+  const { user } = useSession(); // You can use 'user' here if needed, or remove this line if not.
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
 
