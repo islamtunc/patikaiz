@@ -37,6 +37,8 @@ const Vsrtn : FC = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
+
+      
       <DialogTrigger asChild>
         <Button
           variant="ghost"
@@ -44,12 +46,12 @@ const Vsrtn : FC = () => {
           title="Gizlilik Politikası"
           aria-label="Gizlilik Politikası"
         >
-          <FileText className="h-5 w-5" />
-          {!isMobile && <span>Gizlilik Politikası</span>}
+       
+          <span>Gizlilik Politikası</span>
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[640px]">
+      <DialogContent className="">
         <DialogHeader>
           <DialogTitle>Gizlilik Politikası</DialogTitle>
           <DialogDescription>
@@ -100,11 +102,16 @@ const Vsrtn : FC = () => {
             <Button variant="secondary" onClick={() => setOpen(false)}>
               Kapat
             </Button>
+
+           
           </div>
         </div>
       </DialogContent>
+
+    
     </Dialog>
-  );
+  
+    );
 };
 
 export default Vsrtn;

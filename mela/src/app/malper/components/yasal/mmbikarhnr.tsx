@@ -44,8 +44,7 @@ const Bkrhnr : FC = () => {
           title="Gizlilik Politikası"
           aria-label="Gizlilik Politikası"
         >
-          <FileText className="h-5 w-5" />
-          {!isMobile && <span>Kullanici Sozleşmesi</span>}
+          <span>Kullanici Sozleşmesi</span>
         </Button>
       </DialogTrigger>
 

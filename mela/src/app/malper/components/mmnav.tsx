@@ -56,14 +56,7 @@ function Mmmnavbar() {
 
 
 
-              <NavDropdown title="Yasal" id="basic-nav-dropdown-2">
-              <NavDropdown.Item ><Vsrtn/></NavDropdown.Item>
-              <NavDropdown.Item><Frtn/></NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item >
-              <Bkrhnr/>
-              </NavDropdown.Item>
-            </NavDropdown>
+            
 
 
             <Nav.Link href="/malper?tab=hakkimizda">Hakkimizda</Nav.Link>

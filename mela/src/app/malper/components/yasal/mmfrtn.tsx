@@ -44,12 +44,11 @@ const Frtn : FC = () => {
           title="Mesafeli Satiş Sozleşmesi"
           aria-label="Mesafeli Satiş Sozleşmesi"
         >
-          <FileText className="h-5 w-5" />
-          {!isMobile && <span> Mesafeli Satiş Sozleşmesi</span>}
+        <span> Mesafeli Satiş Sozleşmesi</span>
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[640px]">
+      <DialogContent className="">
         <DialogHeader>
           <DialogTitle>Mesafeli Satiş Sozleşmesi</DialogTitle>
           <DialogDescription>

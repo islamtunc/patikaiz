@@ -13,6 +13,7 @@ import MenuBar from "./components/mmenu";
 import Navbar from "./components/mmnav";
 import { Row, Col, Alert } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
+import Footer from "./components/mmbingeh";
 
 
 export default function Layout({
@@ -27,6 +28,12 @@ export default function Layout({
         <Row>
           <Col md={9}>
             {children}
+
+
+
+
+
+            <Footer />
           </Col>
           <Col md={3}>
             <MenuBar />
