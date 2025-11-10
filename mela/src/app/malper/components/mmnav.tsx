@@ -10,11 +10,9 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
-import Link from 'next/link';
-import { Modal } from './mmodel';
+import { Modal } from "./mmodel"
+import { NavDropdown } from 'react-bootstrap';
 
 function Mmmnavbar() {
   const { items } = useCart();
