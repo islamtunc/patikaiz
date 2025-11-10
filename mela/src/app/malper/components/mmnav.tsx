@@ -11,8 +11,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../hooks/useCart';
+import Link from 'next/link';
 
 function Mmmnavbar() {
+  const { items } = useCart();
+  const itemCount = items.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -44,6 +50,22 @@ function Mmmnavbar() {
 
             <Nav.Link href="/malper?tab=hakkimizda">Hakkimizda</Nav.Link>
 
+          </Nav>
+          <Nav>
+            <Link 
+              href="/malper/sepet" 
+              className="nav-link position-relative d-flex align-items-center gap-2"
+              title="Sepetim"
+              aria-label="Sepetim"
+            >
+              <ShoppingCart className="h-6 w-6" />
+              <span className="d-none d-md-inline">Sepetim</span>
+              {itemCount > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {itemCount}
+                </span>
+              )}
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
