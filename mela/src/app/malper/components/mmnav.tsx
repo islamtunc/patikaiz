@@ -14,6 +14,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
 import Link from 'next/link';
+import { Modal } from './mmodel';
 
 function Mmmnavbar() {
   const { items } = useCart();
@@ -52,20 +53,14 @@ function Mmmnavbar() {
 
           </Nav>
           <Nav>
-            <Link 
-              href="/malper/sepet" 
-              className="nav-link position-relative d-flex align-items-center gap-2"
-              title="Sepetim"
-              aria-label="Sepetim"
-            >
-              <ShoppingCart className="h-6 w-6" />
-              <span className="d-none d-md-inline">Sepetim</span>
+            <div className="nav-link position-relative d-flex align-items-center gap-2">
+              <Modal />
               {itemCount > 0 && (
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {itemCount}
                 </span>
               )}
-            </Link>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>
