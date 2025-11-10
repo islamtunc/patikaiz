@@ -6,12 +6,12 @@
 // LA ILAHE ILLALLAH MUHAMMEDUR RESULULLAH
 
 
+
 "use client";
 
 import { useSession } from "@/app/(main)/SessionProvider";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
-import UserAvatar from "@/components/UserAvatar";
 import { cn } from "@/lib/utils";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, useEditor } from "@tiptap/react";
@@ -20,20 +20,17 @@ import { useDropzone } from "@uploadthing/react";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import { ClipboardEvent, useRef, useState } from "react";
+import { useSubmitPostMutation } from "./mutations";
 import "./styles.css";
 import useMediaUpload, { Attachment } from "./useMediaUpload";
-import { useSubmitPostMutation } from './mutations';
+import Heading from "@tiptap/extension-heading";
 
 export default function PostEditor() {
   const { user } = useSession();
-  const [productName, setProductName] = useState("");
-  const [sku, setSku] = useState("");
-  const [price, setPrice] = useState<string>("");
-  const [sizes, setSizes] = useState<string>("A3"); // comma separated
-  const [stock, setStock] = useState<string>("10");
-  const [leadTime, setLeadTime] = useState<string>("3-7 iş günü");
-  const [category, setCategory] = useState<string>("Duvar Takvimi");
-  const [shortDesc, setShortDesc] = useState<string>("");
+  const [title, setTitle] = useState("");
+  const [address, setAddress] = useState("");
+
+  const mutation = useSubmitPostMutation();
 
   const {
     startUpload,
@@ -53,12 +50,13 @@ export default function PostEditor() {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({ bold: {}, italic: false }),
-      Placeholder.configure({ placeholder: "Ürün detaylarını (malzeme, baskı, kişiselleştirme vb.) buraya yazın..." }),
+      Placeholder.configure({ placeholder: "Yazınızı buraya yazın..." }),
+      Heading.configure({ levels: [1, 2, 3] }), // Başlık seviyeleri
     ],
-    editorProps: { attributes: { spellCheck: "true" } },
   });
 
-  const longDescription = editor?.getText({ blockSeparator: "\n" }) || "";
+  const description =
+    editor?.getText({ blockSeparator: "\n" }) || "";
 
   function onPaste(e: ClipboardEvent<HTMLInputElement>) {
     const files = Array.from(e.clipboardData.items)
@@ -67,144 +65,88 @@ export default function PostEditor() {
     startUpload(files);
   }
 
-  function resetForm() {
-    setProductName("");
-    setSku("");
-    setPrice("");
-    setSizes("A3");
-    setStock("10");
-    setLeadTime("3-7 iş günü");
-    setCategory("Duvar Takvimi");
-    setShortDesc("");
-    editor?.commands.clearContent();
-    resetMediaUploads();
-  }
-
-  const submitMutation = useSubmitPostMutation();
-
-  async function onSubmit() {
-    if (!productName.trim()) {
-      return;
-    }
-    
-    try {
-      await submitMutation.mutateAsync({
+  function onSubmit() {
+    mutation.mutate(
+      {
         content: [
-          productName,
-          sku,
-          price,
-          sizes,
-          stock,
-          leadTime,
-          category,
-          shortDesc,
-          longDescription
+          title.trim(),
+          address.trim(),
+          ...description
+            .split("\n")
+            .map((line) => line.trim())
+            .filter((line) => line.length > 0),
         ],
-        mediaIds: attachments.map(a => a.mediaId).filter(Boolean) as string[]
-      });
-      
-      // Reset form after successful submission
-      resetForm();
-      
-    } catch (error) {
-      console.error('Submission failed:', error);
-    }
+        mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
+      },
+      {
+        onSuccess: () => {
+          setTitle("");
+          setAddress("");
+          editor?.commands.clearContent();
+          resetMediaUploads();
+        },
+      }
+    );
   }
 
   return (
     <div className="flex flex-col gap-5 rounded-2xl bg-card p-3 sm:p-5 shadow-sm text-black w-full max-w-2xl mx-auto">
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
-        <UserAvatar avatarUrl={user?.avatarUrl} className="hidden sm:inline" />
-        <div className="w-full space-y-3">
-          <input
-            type="text"
-            placeholder="Ürün Adı (ör. Doğa Temalı Duvar Takvimi)"
-            className="w-full rounded-lg border px-4 py-2"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-            maxLength={120}
-            required
-          />
-          <div className="grid grid-cols-2 gap-2">
-            <input
-              type="text"
-              placeholder="SKU / Kod (opsiyonel)"
-              className="rounded-lg border px-4 py-2"
-              value={sku}
-              onChange={(e) => setSku(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Fiyat (TL)"
-              className="rounded-lg border px-4 py-2"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              inputMode="decimal"
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <input
-              type="text"
-              placeholder="Boyutlar (virgülle ayırın, örn: A3,A2)"
-              className="rounded-lg border px-4 py-2"
-              value={sizes}
-              onChange={(e) => setSizes(e.target.value)}
-            />
-            <input
-              type="number"
-              placeholder="Stok adedi"
-              className="rounded-lg border px-4 py-2"
-              value={stock}
-              onChange={(e) => setStock(e.target.value)}
-              min={0}
-            />
-          </div>
-          <input
-            type="text"
-            placeholder="Teslim süresi / Üretim (ör. 3-7 iş günü)"
-            className="w-full rounded-lg border px-4 py-2"
-            value={leadTime}
-            onChange={(e) => setLeadTime(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Kategori (ör. İslami, Doğa, Çocuk...)"
-            className="w-full rounded-lg border px-4 py-2"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Kısa açıklama (satışta görülecek)"
-            className="w-full rounded-lg border px-4 py-2"
-            value={shortDesc}
-            onChange={(e) => setShortDesc(e.target.value)}
-            maxLength={200}
-          />
-        </div>
+      {/* Başlık ve Adres inputları */}
+      <input
+        type="text"
+        placeholder="Başlık"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+        className="border rounded px-3 py-2 mb-2"
+      />
+      <input
+        type="text"
+        placeholder="Adres"
+        value={address}
+        onChange={e => setAddress(e.target.value)}
+        className="border rounded px-3 py-2 mb-2"
+      />
+      {/* Başlık araç çubuğu */}
+      <div className="flex gap-2 mb-2">
+        <button
+          type="button"
+          className="border rounded px-2 py-1"
+          onClick={() => editor?.chain().focus().toggleHeading({ level: 1 }).run()}
+        >
+          H1
+        </button>
+        <button
+          type="button"
+          className="border rounded px-2 py-1"
+          onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}
+        >
+          H2
+        </button>
+        <button
+          type="button"
+          className="border rounded px-2 py-1"
+          onClick={() => editor?.chain().focus().toggleHeading({ level: 3 }).run()}
+        >
+          H3
+        </button>
       </div>
-
       <div {...rootProps} className="w-full">
-        <label className="block text-sm text-gray-600 mb-2">Detaylı Ürün Açıklaması</label>
         <EditorContent
           editor={editor}
           className={cn(
-            "max-h-[18rem] w-full overflow-y-auto rounded-2xl bg-background px-3 py-3 text-black",
+            "max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-3 py-3 text-black prose prose-green", // prose ekle
             isDragActive && "outline-dashed",
           )}
           onPaste={onPaste}
         />
         <input {...getInputProps()} />
-        <div className="text-sm text-gray-500 mt-2">Görselleri sürükle veya ekleyin (max 10).</div>
       </div>
-
       {!!attachments.length && (
         <AttachmentPreviews
           attachments={attachments}
           removeAttachment={removeAttachment}
         />
       )}
-
       <div className="flex flex-col sm:flex-row items-center justify-end gap-3">
         {isUploading && (
           <>
@@ -212,21 +154,19 @@ export default function PostEditor() {
             <Loader2 className="size-5 animate-spin text-primary" />
           </>
         )}
-
         <AddAttachmentsButton
           onFilesSelected={startUpload}
           disabled={isUploading || attachments.length >= 10}
         />
-
         <LoadingButton
           onClick={onSubmit}
-          loading={false}
+          loading={mutation.status === 'pending'}
           disabled={
-            !productName.trim() || !price.trim() || isUploading
+            !title.trim() || !address.trim() || !description.trim() || isUploading
           }
           className="min-w-20"
         >
-          Ürünü Kaydet
+          Yayınla
         </LoadingButton>
       </div>
     </div>
@@ -297,7 +237,7 @@ function AttachmentPreviews({
 }
 
 function AttachmentPreview({
-  attachment: { file, mediaId, isUploading },
+  attachment: { file, isUploading },
   onRemoveClick,
 }: {
   attachment: Attachment;
