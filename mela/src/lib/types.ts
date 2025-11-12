@@ -7,13 +7,6 @@
 
 
 
-import { Prisma } from "@prisma/client";
-
-/**
- * Keep these shapes small and independent from the generated Prisma helpers.
- * This avoids TS errors when Prisma client/types are out-of-sync.
- */
-
 export function getUserDataSelect(loggedInUserId: string) {
   return {
     id: true,
@@ -50,40 +43,8 @@ export type UserData = {
   _count?: {
     posts?: number;
     followers?: number;
-    [k: string]: number | undefined;
   };
 };
-
-export function getPostDataInclude(loggedInUserId: string) {
-  return {
-    user: {
-      select: getUserDataSelect(loggedInUserId),
-    },
-    attachments: true,
-    likes: {
-      where: {
-        userId: loggedInUserId,
-      },
-      select: {
-        userId: true,
-      },
-    },
-    bookmarks: {
-      where: {
-        userId: loggedInUserId,
-      },
-      select: {
-        userId: true,
-      },
-    },
-    _count: {
-      select: {
-        likes: true,
-        comments: true,
-      },
-    },
-  };
-}
 
 export type PostData = {
   id: string | number;
@@ -95,18 +56,9 @@ export type PostData = {
   _count?: {
     likes?: number;
     comments?: number;
-    [k: string]: number | undefined;
   };
   [k: string]: any;
 };
-
-export function getCommentDataInclude(loggedInUserId: string) {
-  return {
-    user: {
-      select: getUserDataSelect(loggedInUserId),
-    },
-  };
-}
 
 export type CommentData = {
   id: string | number;
@@ -114,21 +66,6 @@ export type CommentData = {
   user?: Partial<UserData>;
   createdAt?: string | Date;
   [k: string]: any;
-};
-
-export const notificationsInclude = {
-  issuer: {
-    select: {
-      username: true,
-      displayName: true,
-      avatarUrl: true,
-    },
-  },
-  post: {
-    select: {
-      content: true,
-    },
-  },
 };
 
 export type NotificationData = {
@@ -140,6 +77,7 @@ export type NotificationData = {
     avatarUrl?: string | null;
   } | null;
   post?: {
+    id?: string | number;
     content?: string | null;
   } | null;
   isRead?: boolean;
@@ -174,12 +112,4 @@ export interface LikeInfo {
 
 export interface BookmarkInfo {
   isBookmarkedByUser: boolean;
-}
-
-export interface NotificationCountInfo {
-  unreadCount: number;
-}
-
-export interface MessageCountInfo {
-  unreadCount: number;
 }
