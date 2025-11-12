@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import MenuBar from "./MenuBar";
 import Navbar from "./Navbar";
 import SessionProvider from "./SessionProvider";
+import prisma from "@/lib/prisma"; // added
 
 export default async function Layout({
   children,
@@ -15,10 +16,30 @@ export default async function Layout({
 }) {
   const session = await validateRequest();
 
-  if (!session.user) redirect("/login");
+  if (!session?.user) return redirect("/malper");
+
+  // Prefer a flag on the session user if available, otherwise try prisma.admin safely.
+  const isAdminFromSession = !!((session.user as any)?.isAdmin);
+  let isAdmin = isAdminFromSession;
+
+  try {
+    // Cast to any so TypeScript won't fail if `admin` isn't in the generated client yet.
+    const prismaAny = prisma as any;
+    if (prismaAny?.admin && !isAdminFromSession) {
+      const adminRecord = await prismaAny.admin.findUnique({
+        where: { id: session.user.id },
+        select: { id: true },
+      });
+      isAdmin = !!adminRecord;
+    }
+  } catch (err) {
+    // keep isAdmin = isAdminFromSession on error
+  }
+
+  const providedSession = { ...session, isAdmin };
 
   return (
-    <SessionProvider value={session}>
+    <SessionProvider value={providedSession}>
       <div className="flex min-h-screen flex-col">
         <Navbar />
         <div className="mx-auto flex w-full max-w-7xl grow gap-5 p-5">

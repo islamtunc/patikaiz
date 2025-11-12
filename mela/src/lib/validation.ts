@@ -1,5 +1,10 @@
 // Bismillahirrahmanirahim
-
+// Elhamdulillahirabbulalemin
+// Ve salatu ve selamu ala resulina Muhammedin ve alihi ve sahbihi ecmain
+// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
+// Subhanallah, Elhamdulillah, Allahu Ekber
+// Estağfirullah El-Azim
+//LA ILAHE ILLALLAH MUHAMMEDEN RESULULLAH
 
 
 import { z } from "zod";

@@ -2,7 +2,7 @@
 // Elhamdullillahirabbulalemin
 // Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi, ecmain
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
-
+// La ilahe illAllah Muhammedur Rasulullah
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
@@ -13,8 +13,8 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Notification {
@@ -32,6 +32,23 @@ model Notification {
   @@index([senderId])
 }
 
+model Admin {
+  id            String    @id
+  user          User      @relation(fields: [id], references: [id], onDelete: Cascade)
+  role          AdminRole @default(MODERATOR)
+  permissions   String[]  @default(["moderate_posts", "view_reports"])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("admins")
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  MODERATOR
+}
+
 model User {
   id                    String         @id
   username              String         @unique
@@ -41,9 +58,10 @@ model User {
   googleId              String?        @unique
   avatarUrl             String?
   bio                   String?
+  isAdmin               Boolean        @default(false)
+  admin                 Admin?
   sessions              Session[]
   posts                 Post[]
-  mmavahi               Mmavahi[]
   bookmarks             Bookmark[]
 
   createdAt   DateTime      @default(now())

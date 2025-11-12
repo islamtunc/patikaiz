@@ -4,8 +4,7 @@
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 // Estağfirullah El-Azim
-
-
+//LA ILAHE ILLALLAH MUHAMMEDEN RESULULLAH
 
 export function getUserDataSelect(loggedInUserId: string) {
   return {
@@ -28,6 +27,45 @@ export function getUserDataSelect(loggedInUserId: string) {
         posts: true,
         followers: true,
       },
+    },
+  };
+}
+
+export function getPostDataInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
+    },
+    attachments: true,
+    likes: {
+      where: {
+        userId: loggedInUserId,
+      },
+      select: {
+        userId: true,
+      },
+    },
+    bookmarks: {
+      where: {
+        userId: loggedInUserId,
+      },
+      select: {
+        userId: true,
+      },
+    },
+    _count: {
+      select: {
+        likes: true,
+        comments: true,
+      },
+    },
+  };
+}
+
+export function getCommentDataInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
     },
   };
 }
