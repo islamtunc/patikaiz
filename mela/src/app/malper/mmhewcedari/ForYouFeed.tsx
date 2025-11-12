@@ -7,8 +7,8 @@
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
-import Post from "@/components/mmhewcedari/Post";
-import PostsLoadingSkeleton from "@/components/mmavahi/PostsLoadingSkeleton";
+import Post from "@/mcomponents/mmhewcedari/Post";
+import PostsLoadingSkeleton from "@/mcomponents/mmavahi/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -27,7 +27,7 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/mmhewcedari",
+          "/mapi/posts/mmhewcedari",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<PostsPage>(),
