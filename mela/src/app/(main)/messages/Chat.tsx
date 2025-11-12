@@ -6,24 +6,24 @@
 // Estağfirullah El-Azim
 "use client";
 
-import React, { useState,  type CSSProperties } from "react";
+import React, { useState, type CSSProperties } from "react";
 import { useTheme } from "next-themes";
 import { StreamChat } from "stream-chat";
 import { Chat as StreamChatUI } from "stream-chat-react";
+import useInitializeChatClient from "./useInitializeChatClient";
 import ChatChannel from "./ChatChannel";
 import ChatSidebar from "./ChatSidebar";
-import useInitializeChatClient from "./useInitializeChatClient";
 
-export default function ChatPage(props: any) {
-  // keep theme var but prefix to silence unused warning if not used
+export default function ChatPage() {
+  // keep resolvedTheme but prefix to silence "declared but never read" warning
   const { resolvedTheme: _resolvedTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // guard if chatClient can be null
-  const chatClient = useInitializeChatClient();
-  if (!chatClient) return null; // avoid passing null to components
+  // initialize chat client (returns StreamChat | null)
+  const chatClient = useInitializeChatClient() as StreamChat | null;
+  if (!chatClient) return null;
 
-  // explicit CSSProperties so TS accepts flexDirection literal
+  // explicit CSSProperties so TS accepts style object
   const containerStyle: CSSProperties = {
     display: "flex",
     flexDirection: "column",
@@ -32,14 +32,9 @@ export default function ChatPage(props: any) {
 
   return (
     <div style={containerStyle}>
-      {/* pass required props to sidebar */}
       <ChatSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      {/* pass non-null client and required props to channel */}
-      <StreamChatUI client={chatClient as StreamChat}>
-        <ChatChannel
-          open={true}
-          openSidebar={() => setSidebarOpen(true)}
-        />
+      <StreamChatUI client={chatClient}>
+        <ChatChannel open={true} openSidebar={() => setSidebarOpen(true)} />
       </StreamChatUI>
     </div>
   );
