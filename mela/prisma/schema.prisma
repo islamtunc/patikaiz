@@ -11,40 +11,8 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
-}
-
-model Notification {
-  id            String    @id @default(cuid())
-  recipientId   String
-  recipient     User      @relation("ReceivedNotifications", fields: [recipientId], references: [id], onDelete: Cascade)
-  senderId      String
-  sender        User      @relation("SentNotifications", fields: [senderId], references: [id], onDelete: Cascade)
-  content       String
-  isRead        Boolean   @default(false)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-  @@index([recipientId])
-  @@index([senderId])
-}
-
-model Admin {
-  id            String    @id
-  user          User      @relation(fields: [id], references: [id], onDelete: Cascade)
-  role          AdminRole @default(MODERATOR)
-  permissions   String[]  @default(["moderate_posts", "view_reports"])
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-  @@map("admins")
-}
-
-enum AdminRole {
-  SUPER_ADMIN
-  ADMIN
-  MODERATOR
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model User {
@@ -56,23 +24,17 @@ model User {
   googleId              String?        @unique
   avatarUrl             String?
   bio                   String?
-  isAdmin               Boolean        @default(false)
-  admin                 Admin?
   sessions              Session[]
   posts                 Post[]
-  mmavahi               Mmavahi[]
-  mmhewcedari           Mmhewcedari[]
-  mmkinc                Mmkinc[]
-  mmkedkar              Mmkedkar[]
-  mmwesayit             Mmwesayit[]
-  mmkargeh              Mmkargeh[]
-  mmhuner               Mmhuner[]
+  following             Follow[]       @relation("Following")
+  followers             Follow[]       @relation("Followers")
+  likes                 Like[]
   bookmarks             Bookmark[]
-  membership            Membership?
-  payments              MembershipPayment[] @relation("payments")
-  createdAt             DateTime            @default(now())
-  receivedNotifications Notification[]      @relation("ReceivedNotifications")
-  sentNotifications     Notification[]      @relation("SentNotifications")
+  comments              Comment[]
+  receivedNotifications Notification[] @relation("Recipient")
+  issuedNotifications   Notification[] @relation("Issuer")
+
+  createdAt DateTime @default(now())
 
   @@map("users")
 }
@@ -86,101 +48,30 @@ model Session {
   @@map("sessions")
 }
 
+model Follow {
+  followerId  String
+  follower    User   @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
+  followingId String
+  following   User   @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+  @@map("follows")
+}
+
 model Post {
   id                  String         @id @default(cuid())
-  content             String[]
+  content             String
   userId              String
   user                User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments         Media[]
+  likes               Like[]
   bookmarks           Bookmark[]
+  comments            Comment[]
+  linkedNotifications Notification[]
 
   createdAt DateTime @default(now())
 
   @@map("posts")
-}
-
-model Mmavahi {
-  id          String  @id @default(cuid())
-  content     String[]
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt   DateTime @default(now())
-
-  @@map("mmavahi")
-}
-
-model Mmhewcedari {
-  id          String  @id @default(cuid())
-  content     String[]
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt   DateTime @default(now())
-
-  @@map("mmhewcedari")
-}
-
-model Mmkinc {
-  id          String  @id @default(cuid())
-  content     String[]
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt   DateTime @default(now())
-
-  @@map("mmkinc")
-}
-
-model Mmkedkar {
-  id          String  @id @default(cuid())
-  content     String[]
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt   DateTime @default(now())
-
-  @@map("mmkedkar")
-}
-
-model Mmwesayit {
-  id          String  @id @default(cuid())
-  content     String[]
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt   DateTime @default(now())
-
-  @@map("mmwesayit")
-}
-
-model Mmkargeh {
-  id          String  @id @default(cuid())
-  content     String[]
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt   DateTime @default(now())
-
-  @@map("mmkargeh")
-}
-
-model Mmhuner {
-  id          String  @id @default(cuid())
-  content     String[]
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-  bookmarks   Bookmark[]
-  createdAt   DateTime @default(now())
-
-  @@map("mmhuner")
 }
 
 model Media {
@@ -190,21 +81,7 @@ model Media {
   type   MediaType
   url    String
 
-  createdAt     DateTime     @default(now())
-  Mmavahi       Mmavahi?     @relation(fields: [mmavahiId], references: [id])
-  mmavahiId     String?
-  Mmhewcedari   Mmhewcedari? @relation(fields: [mmhewcedariId], references: [id])
-  mmhewcedariId String?
-  Mmkinc        Mmkinc?      @relation(fields: [mmkincId], references: [id])
-  mmkincId      String?
-  Mmkedkar      Mmkedkar?    @relation(fields: [mmkedkarId], references: [id])
-  mmkedkarId    String?
-  Mmwesayit     Mmwesayit?   @relation(fields: [mmwesayitId], references: [id])
-  mmwesayitId   String?
-  Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
-  mmkargehId    String?
-  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
-  mmhunerId     String?
+  createdAt DateTime @default(now())
 
   @@map("post_media")
 }
@@ -212,6 +89,29 @@ model Media {
 enum MediaType {
   IMAGE
   VIDEO
+}
+//SELAMÎ DÛZGÛZ
+model Comment {
+  id      String @id @default(cuid())
+  content String
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId  String
+  post    Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("comments")
+}
+
+model Like {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@map("likes")
 }
 
 model Bookmark {
@@ -221,27 +121,30 @@ model Bookmark {
   postId String
   post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  createdAt     DateTime     @default(now())
-  Mmavahi       Mmavahi?     @relation(fields: [mmavahiId], references: [id])
-  mmavahiId     String?
-  Mmhewcedari   Mmhewcedari? @relation(fields: [mmhewcedariId], references: [id])
-  mmhewcedariId String?
-  Mmkinc        Mmkinc?      @relation(fields: [mmkincId], references: [id])
-  mmkincId      String?
-  Mmkedkar      Mmkedkar?    @relation(fields: [mmkedkarId], references: [id])
-  mmkedkarId    String?
-  Mmwesayit     Mmwesayit?   @relation(fields: [mmwesayitId], references: [id])
-  mmwesayitId   String?
-  Mmkargeh      Mmkargeh?    @relation(fields: [mmkargehId], references: [id])
-  mmkargehId    String?
-  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
-  mmhunerId     String?
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+  @@map("bookmarks")
 }
 
-model Mmmpeyam {
-  id        String   @id @default(cuid())
-  name      String
-  email     String
-  message   String
+model Notification {
+  id          String           @id @default(cuid())
+  recipientId String
+  recipient   User             @relation("Recipient", fields: [recipientId], references: [id], onDelete: Cascade)
+  issuerId    String
+  issuer      User             @relation("Issuer", fields: [issuerId], references: [id], onDelete: Cascade)
+  postId      String?
+  post        Post?            @relation(fields: [postId], references: [id], onDelete: Cascade)
+  type        NotificationType
+  read        Boolean          @default(false)
+
   createdAt DateTime @default(now())
+
+  @@map("notifications")
+}
+
+enum NotificationType {
+  LIKE
+  FOLLOW
+  COMMENT
 }
