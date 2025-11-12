@@ -2,10 +2,10 @@
 // Elhamdulillahirrabbulalemin
 // Esselatu vesselamu ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
 // Subhanallah, Elhamdulillah, Allahu Ekber
-// La ilahe illallah 
+// La ilahe illallah Muhameddur resulullah
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 // Bila Allah Azze ve Celle me ji sunneta Resulullah Muhammed (s.a.v) neqetine, amin rabbal alemin 
-// Xeyni Allah tu Xweda tune
+// Xeyni Allah tu Xweda tune û Hz. Muhammed (s.a.v) resûlê wî ye  
 
 
 import signupImage from "@/assets/signup-image.jpg";
@@ -24,7 +24,7 @@ export default function Page() {
       <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
         <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
           <div className="space-y-1 text-center">
-            <h1 className="text-3xl font-bold">Signup Yekazad SC</h1>
+            <h1 className="text-3xl font-bold">PatikaiZ e Uye Ol</h1>
 
           </div>
           <div className="space-y-5">

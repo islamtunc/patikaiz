@@ -3,8 +3,6 @@
 // Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi, ecmain
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // La ilahe illAllah Muhammedur Rasulullah
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider        = "prisma-client-js"
@@ -62,17 +60,19 @@ model User {
   admin                 Admin?
   sessions              Session[]
   posts                 Post[]
+  mmavahi               Mmavahi[]
+  mmhewcedari           Mmhewcedari[]
+  mmkinc                Mmkinc[]
+  mmkedkar              Mmkedkar[]
+  mmwesayit             Mmwesayit[]
+  mmkargeh              Mmkargeh[]
+  mmhuner               Mmhuner[]
   bookmarks             Bookmark[]
-
-  createdAt   DateTime      @default(now())
-  Mmhewcedari Mmhewcedari[]
-  Mmkinc      Mmkinc[]
-  Mmkedkar    Mmkedkar[]
-  Mmwesayit   Mmwesayit[]
-  Mmkargeh    Mmkargeh[]
-  Mmhuner     Mmhuner[]
-  receivedNotifications Notification[] @relation("ReceivedNotifications")
-  sentNotifications     Notification[] @relation("SentNotifications")
+  membership            Membership?
+  payments              MembershipPayment[] @relation("payments")
+  createdAt             DateTime            @default(now())
+  receivedNotifications Notification[]      @relation("ReceivedNotifications")
+  sentNotifications     Notification[]      @relation("SentNotifications")
 
   @@map("users")
 }
@@ -105,26 +105,10 @@ model Mmavahi {
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
-
-  bookmarks Bookmark[]
-
-  createdAt           DateTime       @default(now())
+  bookmarks   Bookmark[]
+  createdAt   DateTime @default(now())
 
   @@map("mmavahi")
-}
-
-model Mmhuner {
-  id          String  @id @default(cuid())
-  content     String[]
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  attachments Media[]
-
-  bookmarks Bookmark[]
-
-  createdAt           DateTime       @default(now())
-
-  @@map("mmhuner")
 }
 
 model Mmhewcedari {
@@ -133,10 +117,8 @@ model Mmhewcedari {
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
-
-  bookmarks Bookmark[]
-
-  createdAt           DateTime       @default(now())
+  bookmarks   Bookmark[]
+  createdAt   DateTime @default(now())
 
   @@map("mmhewcedari")
 }
@@ -147,10 +129,8 @@ model Mmkinc {
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
-
-  bookmarks Bookmark[]
-
-  createdAt           DateTime       @default(now())
+  bookmarks   Bookmark[]
+  createdAt   DateTime @default(now())
 
   @@map("mmkinc")
 }
@@ -161,10 +141,8 @@ model Mmkedkar {
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
-
-  bookmarks Bookmark[]
-
-  createdAt           DateTime       @default(now())
+  bookmarks   Bookmark[]
+  createdAt   DateTime @default(now())
 
   @@map("mmkedkar")
 }
@@ -175,10 +153,8 @@ model Mmwesayit {
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
-
-  bookmarks Bookmark[]
-
-  createdAt           DateTime       @default(now())
+  bookmarks   Bookmark[]
+  createdAt   DateTime @default(now())
 
   @@map("mmwesayit")
 }
@@ -189,12 +165,22 @@ model Mmkargeh {
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
-
-  bookmarks Bookmark[]
-
-  createdAt           DateTime       @default(now())
+  bookmarks   Bookmark[]
+  createdAt   DateTime @default(now())
 
   @@map("mmkargeh")
+}
+
+model Mmhuner {
+  id          String  @id @default(cuid())
+  content     String[]
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attachments Media[]
+  bookmarks   Bookmark[]
+  createdAt   DateTime @default(now())
+
+  @@map("mmhuner")
 }
 
 model Media {

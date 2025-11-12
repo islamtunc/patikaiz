@@ -6,8 +6,8 @@
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 // Dibe Bila Allah Azze ve Celle me ji sunneta Resulullah Muhammed (s.a.v) neqetine, amin rabbal alemin 
 // Xeyni Allah tu Xweda tune û Hz. Muhammed (s.a.v) resûlê wî ye
-"use client";
 
+"use client";
 import LoadingButton from "@/components/LoadingButton";
 import { PasswordInput } from "@/components/PasswordInput";
 import {

@@ -5,7 +5,9 @@
 // La ilahe illallah 
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 // Bila Allah Azze ve Celle me ji sunneta Resulullah Muhammed (s.a.v) neqetine, amin rabbal alemin 
-// Xeyni Allah tu Xweda tune
+// Xeyni Allah tu Xweda tune û Hz. Muhammed (s.a.v) resûlê wî ye
+
+
 
 
 import signupImage from "@/assets/signup-image.jpg";
