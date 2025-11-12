@@ -1,4 +1,9 @@
 // Bismillahirrahmanirrahim 
+// Elhamdulillahirabbulalemin
+// Ve salatu ve selamu ala resulina Muhammedin ve alihi ve sahbihi ecmain
+// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
+// Subhanallah, Elhamdulillah, Allahu Ekber
+// Estağfirullah El-Azim
 
 
 
@@ -24,7 +29,7 @@ export default async function MenuBar({ className }: MenuBarProps) {
     prisma.notification.count({
       where: {
         recipientId: user.id,
-        read: false,
+        isRead: false,
       },
     }),
     (await streamServerClient.getUnreadCount(user.id)).total_unread_count,

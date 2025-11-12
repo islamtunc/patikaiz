@@ -8,13 +8,13 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useCart } from "../hooks/useCart";
 
 export default function Page() {
-  const { items, addToCart, removeFromCart } = useCart();
+  const { items, addToCart } = useCart();
   const cartCount = items.length;
 
   const products = [
@@ -57,10 +57,7 @@ export default function Page() {
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <div
-            key={product.id}
-            className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
-          >
+          <div key={product.id} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
             <div className="relative h-48 w-full">
               <Image
                 src={product.image}
@@ -71,13 +68,9 @@ export default function Page() {
             </div>
             <div className="p-4">
               <h2 className="font-semibold text-lg mb-2">{product.name}</h2>
-              <p className="text-sm text-gray-600 mb-3">
-                {product.description}
-              </p>
+              <p className="text-sm text-gray-600 mb-3">{product.description}</p>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xl font-bold text-green-600">
-                  {product.price} TL
-                </span>
+                <span className="text-xl font-bold text-green-600">{product.price} TL</span>
               </div>
               <Button
                 className="w-full"

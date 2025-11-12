@@ -53,7 +53,6 @@ const MenuBar = ({ className }: MenuBarProps) => {
           asChild
         >
         
-        <Modal/>
         </Button>
 
         <Button
