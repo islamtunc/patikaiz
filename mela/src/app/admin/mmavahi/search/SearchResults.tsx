@@ -1,10 +1,17 @@
 // Bismillahirahmanirahim 
-
+// Elhamdulillahi Rabbil Alamin
+// Ve salatu ve selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah ümmetimizi korusun, birlik ve beraberliğimizi daim eylesin.
+// Allah bizleri doğru yoldan ayırmasın, İslam'ı en güzel şekilde yaşamayı nasip etsin.
+// Allah bizleri Kur'an ve Sünnet'e bağlı, salih ameller işleyen kullarından eylesin.
+// Allah bizleri Peygamber Efendimiz'in (s.a.v) izinden giden, O'na layık bir ümmet eylesin.
+// SuphanAllah velhamdulillah, Allahu Ekber.
+// La ilahe illallah, Muhammedur Resulullah.
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
-import Post from "@/components/mmavahi/Post";
-import PostsLoadingSkeleton from "@/components/mmavahi/PostsLoadingSkeleton";
+import Post from "@/mcomponents/mmavahi/Post";
+import PostsLoadingSkeleton from "@/mcomponents/mmavahi/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -26,7 +33,7 @@ export default function SearchResults({ query }: SearchResultsProps) {
     queryKey: ["post-feed", "search", query],
     queryFn: ({ pageParam }) =>
       kyInstance
-        .get("/api/posts/mmavahi/search", {
+        .get("/mapi/posts/mmavahi/search", {
           searchParams: {
             q: query,
             ...(pageParam ? { cursor: pageParam } : {}),
