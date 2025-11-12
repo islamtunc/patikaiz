@@ -8,10 +8,10 @@
 
 "use client";
 
-import PostEditor from "@/components/mmavahi/editor/PostEditor";
+import PostEditor from "@/mcomponents/mmavahi/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ForYouFeed from "./ForYouFeed";
-import SearchField from "@/components/mmavahi/SearchField";
+import SearchField from "@/mcomponents/mmavahi/SearchField";
 import { Alert } from "react-bootstrap";
 import { Suspense } from 'react';
 

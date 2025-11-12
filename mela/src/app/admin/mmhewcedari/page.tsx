@@ -2,12 +2,12 @@
 
 
 
-import PostEditor from "@/components/mmavahi/editor/PostEditor";
+import PostEditor from "@/mcomponents/mmavahi/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
 
-import SearchField from "@/components/SearchField";
+import SearchField from "@/mcomponents/SearchField";
 import { Alert } from "react-bootstrap";
 
 export default function Home() {

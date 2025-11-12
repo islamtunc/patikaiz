@@ -1,3 +1,11 @@
+//Bismillahirrahmanirrahim
+// Elhamdulillahirabbulalemin
+// Esselatu vesselamu ala rasulillah ve ala alihi ve sahbihi ecmain
+// Allahumme salli ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah u Ekber, Allahu Ekber, Allahu Ekber
+// La ilahe illallah, Allahu Ekber, Allahu Ekber, ve lillahi'l-hamd
+
+
 import { useToast } from "@/components/ui/use-toast";
 import { useUploadThing } from "@/lib/uploadthing";
 import { useState } from "react";

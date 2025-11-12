@@ -7,12 +7,12 @@
 // Allah bizleri Peygamber Efendimiz'in (s.a.v) izinden giden, O'na layık bir ümmet eylesin.
 // SuphanAllah velhamdulillah, Allahu Ekber.
 // La ilahe illallah, Muhammedur Resulullah.
-import PostEditor from "@/components/mmkedkar/editor/PostEditor";
+import PostEditor from "@/mcomponents/mmkedkar/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
 
-import SearchField from "@/components/mmavahi/SearchField";
+import SearchField from "@/mcomponents/mmavahi/SearchField";
 import { Alert } from "react-bootstrap";
 
 export default function Home() {

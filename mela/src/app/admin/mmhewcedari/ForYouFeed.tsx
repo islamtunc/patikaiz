@@ -1,5 +1,12 @@
 // Bismillahirrahmanirrahim 
-
+// Elhamdulillahi Rabbil Alamin
+// Ve salatu ve selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allah ümmetimizi korusun, birlik ve beraberliğimizi daim eylesin.
+// Allah bizleri doğru yoldan ayırmasın, İslam'ı en güzel şekilde yaşamayı nasip etsin.
+// Allah bizleri Kur'an ve Sünnet'e bağlı, salih ameller işleyen kullarından eylesin.
+// Allah bizleri Peygamber Efendimiz'in (s.a.v) izinden giden, O'na layık bir ümmet eylesin.
+// SuphanAllah velhamdulillah, Allahu Ekber.
+// La ilahe illallah, Muhammedur Resulullah.
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
@@ -23,7 +30,7 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/mmhewcedari",
+          "/mapi/posts/mmhewcedari",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<PostsPage>(),

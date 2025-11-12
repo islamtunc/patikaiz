@@ -8,8 +8,8 @@
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
-import Post from "@/components/mmavahi/Post";
-import PostsLoadingSkeleton from "@/components/mmavahi/PostsLoadingSkeleton";
+import Post from "@/mcomponents/mmavahi/Post";
+import PostsLoadingSkeleton from "@/mcomponents/mmavahi/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
@@ -32,7 +32,7 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/mmavahi",
+          "/mapi/posts/mmavahi",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<PostsPage>(),
@@ -93,7 +93,7 @@ export default function ForYouFeed() {
             <Button
               variant="outline-danger"
               size="sm"
-              onClick={() => deleteMutation.mutate(post.id)}
+              onClick={() => deleteMutation.mutate(String(post.id))}
               disabled={deleteMutation.isPending}
             >
               Sil
