@@ -10,7 +10,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/mcomponents/ui/button";
 import { useCart } from "../hooks/useCart";
 
 export default function Page() {

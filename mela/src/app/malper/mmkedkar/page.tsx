@@ -8,7 +8,7 @@
 "use client";
 import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
-import SearchField from "@/components/SearchField";
+import SearchField from "@/mcomponents/SearchField";
 // Fix Radix Tabs imports (use named exports Root/List/Trigger/Content)
 import {
   Root as Tabs,
