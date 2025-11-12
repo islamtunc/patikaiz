@@ -9,62 +9,43 @@
 
 
 import UserAvatar from "@/components/UserAvatar";
-import type { Notification } from "@prisma/client";
-import { NotificationData } from "@/lib/types";
+// Remove the unused import if Notification is not needed
+import type { NotificationData } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Heart, MessageCircle, User2 } from "lucide-react";
 import Link from "next/link";
 
-interface NotificationProps {
+type NotificationProps = {
   notification: NotificationData;
-}
+};
 
 export default function Notification({ notification }: NotificationProps) {
-  const notificationTypeMap: Record<
-    NotificationType,
-    { message: string; icon: JSX.Element; href: string }
-  > = {
-    FOLLOW: {
-      message: `${notification.issuer.displayName} Tu şopandî`,
-      icon: <User2 className="size-7 text-primary" />,
-      href: `/users/${notification.issuer.username}`,
-    },
-    COMMENT: {
-      message: `${notification.issuer.displayName} ji te re şîrove kir`,
-      icon: <MessageCircle className="size-7 fill-primary text-primary" />,
-      href: `/posts/${notification.postId}`,
-    },
-    LIKE: {
-      message: `${notification.issuer.displayName} parvekirin a te eciband.`,
-      icon: <Heart className="size-7 fill-red-500 text-red-500" />,
-      href: `/posts/${notification.postId}`,
-    },
+  const notificationTypeMap: Record<string, React.ReactNode> = {
+    LIKE: <Heart className="h-5 w-5 text-red-500" />,
+    COMMENT: <MessageCircle className="h-5 w-5 text-blue-500" />,
+    FOLLOW: <User2 className="h-5 w-5 text-green-500" />,
   };
 
-  const { message, icon, href } = notificationTypeMap[notification.type];
+  const icon = notificationTypeMap[notification.type ?? ""] || <Heart />;
 
   return (
-    <Link href={href} className="block">
-      <article
-        className={cn(
-          "flex gap-3 rounded-2xl bg-card p-5 shadow-sm transition-colors hover:bg-card/70",
-          !notification.read && "bg-primary/10",
+    <div className={cn("flex items-start gap-3 p-4")}>
+      {icon}
+      <div className="flex-1">
+        <p className="text-sm font-medium">
+          <Link href={`/user/${notification.issuer?.username}`}>
+            {notification.issuer?.displayName ?? notification.issuer?.username}
+          </Link>
+        </p>
+        {notification.post && (
+          <Link href={`/post/${notification.post.id}`}>
+            <p className="text-xs text-gray-600">{notification.post.content}</p>
+          </Link>
         )}
-      >
-        <div className="my-1">{icon}</div>
-        <div className="space-y-3">
-          <UserAvatar avatarUrl={notification.issuer.avatarUrl} size={36} />
-          <div>
-            <span className="font-bold">{notification.issuer.displayName}</span>{" "}
-            <span>{message}</span>
-          </div>
-          {notification.post && (
-            <div className="line-clamp-3 whitespace-pre-line text-muted-foreground">
-              {notification.post.content}
-            </div>
-          )}
-        </div>
-      </article>
-    </Link>
+        <p className="text-xs text-gray-500">
+          {new Date(notification.createdAt ?? "").toLocaleDateString()}
+        </p>
+      </div>
+    </div>
   );
 }
