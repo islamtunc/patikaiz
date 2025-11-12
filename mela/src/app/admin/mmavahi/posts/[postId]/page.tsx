@@ -1,11 +1,15 @@
 // Bismillahirrahmanirrahim
+// Elhamdullillahirabbulalemin
+// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi, ecmain
+// Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
+// La ilahe illAllah Muhammedur Rasulullah
 
 
 
 import { validateRequest } from "@/auth";
-import Linkify from "@/components/Linkify";
-import Post from "@/components/mmavahi/Post";
-import UserAvatar from "@/components/UserAvatar";
+import Linkify from "@/mcomponents/Linkify";
+import Post from "@/mcomponents/mmavahi/Post";
+import UserAvatar from "@/mcomponents/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude, UserData } from "@/lib/types";
