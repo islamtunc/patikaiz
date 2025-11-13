@@ -1,3 +1,12 @@
+// Bîsmîllahîrrahmanîrahîm
+// Elhamdulillahi rabbi l-'âlamîn
+// Esselâtu vesselâmü alâ seyyidinâ Muhammedin
+// Lâ havle velâ kuvvete illâ billâhil aliyyil azîm
+// Rabbi yessir velâ tu'assir rabbi temmim bil-hayr
+// Allahumme salli alâ seyyidinâ Muhammedin ve alâ âli seyyidinâ Muhammedin
+// SuphanAllahî ve bi hamdihî, subhânallahil azîm
+// Estagrifullah el azîm
+// La ilâhe illallah, wallahu ekber
 "use client";
 
 import { Session, User } from "lucia";
