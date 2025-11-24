@@ -6,12 +6,9 @@
 // Estağfirullah El-Azim
 // La ilahe illallah, Muhammedur Resulullah
 
-import { requireRole } from "@/lib/middlew";
-
+import React from 'react';
 export default async function Page() {
-  const user = await requireRole(["USER", "ADMIN"]);
 
-  if (user) return <h1>Redirecting...</h1>;
 
   return(
 <div>
