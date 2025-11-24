@@ -5,62 +5,49 @@
 // La ilahe illallah 
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 // Bila Allah Azze ve Celle me ji sunneta Resulullah Muhammed (s.a.v) neqetine, amin rabbal alemin 
-// Xeyni Allah tu Xweda tune u Hezreti Muhammed (s.a.v) ji qul u resule Allah e.
-"use client";
+// Xeyni Allah tu Xweda tune
 import React from "react";
-import { Alert, Card, Nav, NavDropdown } from "react-bootstrap";
-import Bkrhnr from "./yasal/mmbikarhnr";
-import Frtn from "./yasal/mmfrtn";
-import Vsrtn from "./yasal/mmvsrtn";
-import { AlertTriangle } from "lucide-react";
 
 const Footer = () => (
   <footer className="bg-dark text-white pt-4">
     <div className="container text-center text-md-left">
-      <Card>
-        {/* Hakkımızda */}
-        <Alert  variant="info">
+      <div className="row">
+        {/* About Section */}
+        <div className="col-md-4 mt-md-0 mt-3">
           <h5 className="text-uppercase font-weight-bold">Hakkımızda</h5>
           <p>
-            Kullanıcılarımıza en iyi hizmetleri ve kaynakları sunmayı hedefliyoruz. Güncellemeler ve haberler için bizimle iletişimde kalın.
+            Mimarid, yaşam alanlarınızı estetik ve fonksiyonel çözümlerle yeniden tasarlayan bir iç mimarlık ofisidir. Hayalinizdeki mekanları gerçeğe dönüştürmek için buradayız.
           </p>
-        </Alert>
+        </div>
 
-        {/* Hızlı Linkler */}
+        {/* Links Section */}
         <div className="col-md-4 mb-md-0 mb-3">
-          <h5 className="text-uppercase font-weight-bold">Hızlı Linkler</h5>
+          <h5 className="text-uppercase font-weight-bold">Hızlı Menü</h5>
           <ul className="list-unstyled">
-            <Alert variant="warning" className="p-2 mb-2">
-            
-                
-            
-              <NavDropdown title="Yasal" id="basic-nav-dropdown-2">
-              <NavDropdown.Item ><Vsrtn/></NavDropdown.Item>
-              <NavDropdown.Item><Frtn/></NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item >
-              <Bkrhnr/>
-              </NavDropdown.Item>
-            </NavDropdown>
-            
-            </Alert>
-            <Alert variant="warning" className="p-2 mb-2"
-            >
-                <NavDropdown.Item >
-              Hizmetler
-              </NavDropdown.Item>
-            </Alert>
-            <Alert>
-            
-              <NavDropdown.Item href="/admin" >
-            
-            Yonetim
-              </NavDropdown.Item>
-            </Alert>
+            <li>
+              <a href="/malper" className="text-white">
+                Anasayfa
+              </a>
+            </li>
+            <li>
+              <a href="/malper/projeler/konut" className="text-white">
+                Projelerimiz
+              </a>
+            </li>
+            <li>
+              <a href="/malper/hizmetler/tasarim" className="text-white">
+                Hizmetlerimiz
+              </a>
+            </li>
+            <li>
+              <a href="/malper/iletisim" className="text-white">
+                İletişim
+              </a>
+            </li>
           </ul>
         </div>
 
-        {/* Sosyal Medya */}
+        {/* Social Media Section */}
         <div className="col-md-4 mb-md-0 mb-3">
           <h5 className="text-uppercase font-weight-bold">Bizi Takip Edin</h5>
           <ul className="list-unstyled d-flex justify-content-center">
@@ -70,13 +57,13 @@ const Footer = () => (
               </a>
             </li>
             <li className="mx-2">
-              <a href="https://twitter.com" className="text-white" aria-label="Twitter">
-                <i className="fab fa-twitter"></i>
+              <a href="https://instagram.com" className="text-white" aria-label="Instagram">
+                <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li className="mx-2">
-              <a href="https://instagram.com" className="text-white" aria-label="Instagram">
-                <i className="fab fa-instagram"></i>
+              <a href="https://pinterest.com" className="text-white" aria-label="Pinterest">
+                <i className="fab fa-pinterest"></i>
               </a>
             </li>
             <li className="mx-2">
@@ -86,23 +73,16 @@ const Footer = () => (
             </li>
           </ul>
         </div>
-      </Card>
+      </div>
     </div>
 
     <div className="text-center py-3">
-      © {new Date().getFullYear()} Tüm hakları saklıdır:{" "}
-      <a href="https://yekazad.com" className="text-white">
-        Yekazad
+      © {new Date().getFullYear()} Tüm Hakları Saklıdır:{" "}
+      <a href="https://mimarid.com" className="text-white">
+        Mimarid İç Mimarlık
       </a>
     </div>
   </footer>
 );
 
 export default Footer;
-
-// Subhanallah, Elhamdulillah, Allahu Ekber, 
-// La ilahe illallah, Muhammaden Abduhu ve Resuluhu
-// La havle ve la kuvvete illa billahil aliyyil azim
-// Estağfirulllah El-Azim
-// Elhmadulillah Elhamdulillah Elhamdulillah
-// Elhamdulillahirabbulalemin

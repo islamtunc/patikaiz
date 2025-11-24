@@ -1,7 +1,7 @@
 // Bismillahirrahmanirahim
 // Elhamdulillahirabbulalemin
 // Ese-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
-// La ilahe illallah, Muhammeden Rasulullah
+// La ilahe illallah
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
  "use client";
@@ -51,7 +51,7 @@ const ContactForm: React.FC = () => {
     >
       {submitted && (
         <Alert variant="success" style={{ borderRadius: "12px", textAlign: "center" }}>
-          Mesajiniz gonderildi, tesekkurler!
+          Your message has been sent!
         </Alert>
       )}
       <h2
@@ -63,10 +63,10 @@ const ContactForm: React.FC = () => {
           fontSize: "2rem",
         }}
       >
-        Bize Ulaşın
+        Contact Us
       </h2>
       <Form.Group className="mb-3" controlId="formName">
-        <Form.Label style={{ color: "#495057", fontWeight: 500 }}>isim</Form.Label>
+        <Form.Label style={{ color: "#495057", fontWeight: 500 }}>Name</Form.Label>
         <Form.Control
           type="text"
           name="name"
@@ -98,7 +98,7 @@ const ContactForm: React.FC = () => {
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formMessage">
-        <Form.Label style={{ color: "#495057", fontWeight: 500 }}>Mesajiniz</Form.Label>
+        <Form.Label style={{ color: "#495057", fontWeight: 500 }}>Your Message</Form.Label>
         <Form.Control
           as="textarea"
           rows={4}
@@ -131,13 +131,11 @@ const ContactForm: React.FC = () => {
           variant="success"
           type="submit"
         >
-       
-
-        Gönder
+          Send
         </Button>
       </div>
       <p className="text-center mt-4" style={{ color: "#6c757d", fontSize: "1rem" }}>
-   
+        To contact us, please fill out the form above. We will get back to you as soon as possible.
       </p>
     </Form>
   );
