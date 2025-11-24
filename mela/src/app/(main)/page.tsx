@@ -17,7 +17,7 @@ function ArchitectHomePage() {
     <main className="bg-gray-100 min-h-screen py-10">
       <div className="max-w-5xl mx-auto px-4">
         <header className="mb-10 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Mimar Portfolyosu</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Patikaiz Sitesi</h1>
           <p className="text-lg text-gray-600">Modern mimari projeler, hizmetler ve iletişim için hoş geldiniz.</p>
         </header>
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">

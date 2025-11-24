@@ -8,16 +8,15 @@
 
 "use client";
 import { useEffect, useRef, useState } from "react";
-
+import { Dropdown } from "react-bootstrap";
 import Link from "next/link";
 import UserButton from "@/components/UserButton";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Menü dışına tıklanınca kapat
   useEffect(() => {
     if (!menuOpen) return;
     function handleClick(e: MouseEvent) {
@@ -29,76 +28,123 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [menuOpen]);
 
+  const handleLinkClick = () => setMenuOpen(false);
+
   return (
-    <header className="sticky top-0 z-10 bg-white shadow-sm">
+    <header className="sticky top-0 z-40 bg-card shadow-sm">
       <div
         ref={navRef}
-        className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 px-5 py-3"
+        className="mx-auto flex items-center justify-between max-w-7xl px-4 py-3"
       >
-        {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-green-700 tracking-tight">
-          Mimar Ofisi
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/" className="text-2xl font-bold text-primary">
+            Yekazad SC
+          </Link>
+        </div>
 
-        {/* Mobil Menü Butonu */}
-        <button
-          className="lg:hidden p-2 rounded text-green-700"
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Menüyü Aç/Kapat"
-        >
-          <FaBars size={22} />
-        </button>
+        <nav className="hidden lg:flex items-center gap-6">
+          <Link href="/mmdashboard" className="text-sm font-medium text-secondary hover:text-primary">
+            Dashboard
+          </Link>
+          <Link href="/users" className="text-sm font-medium text-secondary hover:text-primary">
+            Kullanıcılar
+          </Link>
 
-        {/* Menü Öğeleri */}
-        <nav
-          className={`
-            flex-col lg:flex-row flex items-center gap-3 lg:gap-5
-            fixed lg:static top-16 left-0 w-full lg:w-auto bg-white lg:bg-transparent z-20
-            transition-all duration-200
-            ${menuOpen ? "flex" : "hidden lg:flex"}
-          `}
-        >
-          <Link
-            href="/mmavahi"
-            className="text-sm font-medium text-gray-700 hover:text-green-700 w-full lg:w-auto px-5 py-2 lg:p-0 text-center"
-            onClick={() => setMenuOpen(false)}
-          >
-            Projeler
-          </Link>
-          <Link
-            href="/mmkargeh"
-            className="text-sm font-medium text-gray-700 hover:text-green-700 w-full lg:w-auto px-5 py-2 lg:p-0 text-center"
-            onClick={() => setMenuOpen(false)}
-          >
-            Hizmetler
-          </Link>
-          <Link
-            href="/mmwesayit"
-            className="text-sm font-medium text-gray-700 hover:text-green-700 w-full lg:w-auto px-5 py-2 lg:p-0 text-center"
-            onClick={() => setMenuOpen(false)}
-          >
-            Referanslar
-          </Link>
-          <Link
-            href="/malper"
-            className="text-sm font-medium text-gray-700 hover:text-green-700 w-full lg:w-auto px-5 py-2 lg:p-0 text-center"
-            onClick={() => setMenuOpen(false)}
-          >
-            Hakkımızda
-          </Link>
-          <Link
-            href="/malper"
-            className="text-sm font-medium text-gray-700 hover:text-green-700 w-full lg:w-auto px-5 py-2 lg:p-0 text-center"
-            onClick={() => setMenuOpen(false)}
-          >
-            İletişim
+          <div className="flex items-center gap-3">
+            <Dropdown>
+              <Dropdown.Toggle variant="link" className="text-sm font-medium text-secondary hover:text-primary px-0">
+                Blog
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} href="/posts">Blog Yazıları</Dropdown.Item>
+                <Dropdown.Item as={Link} href="/posts/new">Yeni Blog Yazısı</Dropdown.Item>
+                <Dropdown.Item as={Link} href="/categories">Categories</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown>
+              <Dropdown.Toggle variant="link" className="text-sm font-medium text-secondary hover:text-primary px-0">
+                Settings
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} href="/settings/profile">Profil Ayarları</Dropdown.Item>
+                <Dropdown.Item as={Link} href="/settings/security">Güvenlik Ayarları</Dropdown.Item>
+                <Dropdown.Item as={Link} href="/settings/notifications">Bildirim Ayarları</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+
+          <Link href="/reports" className="text-sm font-medium text-secondary hover:text-primary">
+            Raporlar
           </Link>
         </nav>
 
-        {/* Kullanıcı Butonu */}
-        <div className="sm:ms-auto">
+        <div className="hidden sm:flex sm:items-center sm:ms-auto">
           <UserButton />
         </div>
+
+        <button
+          className="lg:hidden p-2 rounded text-green-500"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? "Kapat" : "Menüyü Aç"}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+        </button>
+      </div>
+
+      {/* Mobile menu — no semi-opaque backdrop, responsive and scrollable */}
+      <div
+        className={`lg:hidden fixed inset-x-0 top-[64px] z-30 transform transition-transform duration-200 ${
+          menuOpen ? "translate-y-0" : "-translate-y-full pointer-events-none"
+        }`}
+        aria-hidden={!menuOpen}
+      >
+        {/* No opaque overlay here (bg-transparent) so menu appears without backdrop opacity */}
+        <div
+          className="absolute inset-0 bg-transparent"
+          onClick={() => setMenuOpen(false)}
+        />
+        <nav className="relative bg-card p-4 shadow-lg max-h-[calc(100vh-64px)] overflow-auto">
+          <div className="flex flex-col gap-2">
+            <Link href="/mmdashboard" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>
+              Dashboard
+            </Link>
+            <Link href="/users" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>
+              Kullanıcılar
+            </Link>
+
+            <div className="border-t my-2" />
+
+            <div className="flex flex-col gap-1">
+              <details className="group">
+                <summary className="px-3 py-2 rounded cursor-pointer hover:bg-muted">Blog</summary>
+                <div className="pl-4">
+                  <Link href="/posts" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>Blog Yazıları</Link>
+                  <Link href="/posts/new" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>Yeni Blog Yazısı</Link>
+                  <Link href="/categories" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>Categories</Link>
+                </div>
+              </details>
+
+              <details className="group">
+                <summary className="px-3 py-2 rounded cursor-pointer hover:bg-muted">Settings</summary>
+                <div className="pl-4">
+                  <Link href="/settings/profile" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>Profil Ayarları</Link>
+                  <Link href="/settings/security" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>Güvenlik Ayarları</Link>
+                  <Link href="/settings/notifications" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>Bildirim Ayarları</Link>
+                </div>
+              </details>
+            </div>
+
+            <Link href="/reports" className="block px-3 py-2 rounded hover:bg-muted" onClick={handleLinkClick}>
+              Raporlar
+            </Link>
+
+            <div className="mt-3 border-t pt-3">
+              <UserButton />
+            </div>
+          </div>
+        </nav>
       </div>
     </header>
   );
