@@ -37,7 +37,7 @@ export default function Post({ post }: PostProps) {
       </div>
       <Linkify>
         <div className="whitespace-pre-line break-words">
-          {post.content[0]}
+          {post.content}
         </div>
       </Linkify>
       {!!post.attachments.length && (
@@ -51,7 +51,7 @@ export default function Post({ post }: PostProps) {
             className="block text-sm text-muted-foreground hover:underline"
             suppressHydrationWarning
           >
-            Daha fazla oku
+            Sepete Ekle
           </Link>
         </div>
       </div>

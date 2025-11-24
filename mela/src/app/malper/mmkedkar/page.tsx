@@ -7,32 +7,17 @@
 
 "use client";
 import React from "react";
-import { Container ,Row,Col} from "react-bootstrap";
-import Mteqvim from "../components/mteqvim";
+import ForYouFeed from "./ForYouFeed";
+import { Card } from "react-bootstrap";
 function page() {
   return (
     <div>
-      <Container>
-        <Row>
-          <h1>Malper Takvim Sayfası</h1>
-        </Row>
-
-        <Row>
-
-          <Col><Mteqvim/></Col>
-                    <Col><Mteqvim/></Col>
-          <Col><Mteqvim/></Col>
-
-        </Row>
-
-        <Row>
-
-          <Col><Mteqvim/></Col>
-                    <Col><Mteqvim/></Col>
-          <Col><Mteqvim/></Col>
-
-        </Row>
-      </Container>
+    <Card style={{ marginTop: "20px", width: "100%", maxWidth: "700px", textAlign: "center", padding: "19px" }}>
+        <Card.Title>OZEL GUN TAKVIMLERI</Card.Title>
+        <Card.Body>
+          <ForYouFeed />
+        </Card.Body>
+      </Card>
     </div>
   )
 }
