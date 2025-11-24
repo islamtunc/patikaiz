@@ -38,8 +38,12 @@ export default function MmmPost({ post }: PostProps) {
 
        <Linkify>
         <Card>
+          <Card.Title>{post.content[0]}</Card.Title>
         <Card.Body>
-          <Card.Text>{post.content}</Card.Text>
+          <Card.Text>{post.content[1]}</Card.Text>
+        {post.content[2] && (
+          <Card.Text>{post.content[2]}</Card.Text>
+        )}
         </Card.Body>
         
 
@@ -48,6 +52,10 @@ export default function MmmPost({ post }: PostProps) {
         </Button>
         </Card>
 </Linkify>
+   {!!post.attachments.length && (
+        <MediaPreviews attachments={post.attachments} />
+      )}
+
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">

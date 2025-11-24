@@ -35,9 +35,24 @@ export default function Post({ post }: PostProps) {
           </div>
         </div>
       </div>
+
+       {!!post.attachments.length && (
+        <MediaPreviews attachments={post.attachments} />
+      )}
       <Linkify>
         <div className="whitespace-pre-line break-words">
-          {post.content}
+         
+         <Card>
+
+         <Card.Title>{post.content[0]}</Card.Title>
+        <Card.Body>
+          <Card.Text>{post.content[1]}</Card.Text>
+        {post.content[2] && (
+          <Card.Text>{post.content[2]}</Card.Text>
+        )}
+        </Card.Body>
+         </Card>
+          
         </div>
       </Linkify>
       {!!post.attachments.length && (
