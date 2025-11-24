@@ -29,38 +29,51 @@ export default async function Layout({
     <SessionProvider value={session}>
       <div
         className="flex min-h-screen flex-col"
-        style={{ backgroundColor: "#f4f6f8" }}
+        style={{ backgroundColor: "#22c55e" /* Tailwind'in green-500 tonu, beyazla uyumlu canlı bir yeşil */ }}
       >
         <Navbar />
         <div className="mx-auto flex w-full max-w-7xl grow flex-row gap-2 p-2">
+        
+          {/* Sol MenuBar kaldırıldı */}
           <div className="flex-1 flex flex-col">
+           
             <Row>
-              <Col>
-                <Alert variant="info" style={{ textAlign: "center", fontSize: "22px", fontWeight: 600, color: "#222", background: "#e5e7eb" }}>
-                  Mimarlık Ofisine Hoş Geldiniz
-                </Alert>
-              </Col>
-            </Row>
-            <Row className="mb-4">
-              <Col>
-                <Alert
-                  style={{
-                    background: "#222",
-                    color: "#fff",
-                    textAlign: "center",
-                    fontSize: "16px",
-                  }}
-                >
-                  Modern mimari projeler, tasarım ve danışmanlık hizmetleri sunuyoruz.
-                </Alert>
-              </Col>
-            </Row>
+        <Col>
+          <Alert variant="success" style={{ textAlign: "center", fontSize: "18px" }}>
+            Selam Aleykum dear Customer or Developer, Welcome to Admin Panel
+          </Alert>
+        </Col>
+      </Row>
+
+      <Row className="mb-4">
+        <Col>
+          <Alert
+            style={{
+              background: "green",
+              color: "white",
+              textAlign: "center",
+              fontSize: "16px",
+            }}
+          >
+            Sernameye name nameye Allah <br />
+            Be namaye nameye kemi wi Wallah
+          </Alert>
+        </Col>
+      </Row>
             {children}
           </div>
+          {/* Sağ MenuBar sadece sm ve üstü ekranlarda görünür */}
           <MenuBar className="sticky top-[5.25rem] hidden h-fit flex-none space-y-3 rounded-2xl bg-card px-2 py-3 shadow-sm sm:block lg:px-3 xl:w-80" />
         </div>
-        <MenuBar className="sticky bottom-0 flex w-full justify-center gap-2 border-t bg-card p-2 sm:hidden" />
-        <Footer />
+        {/* Mobilde altta Footer ve MenuBar */}
+        <div className="sm:hidden w-full">
+          <Footer />
+          <MenuBar className="sticky bottom-0 flex w-full justify-center gap-2 border-t bg-card p-2" />
+        </div>
+        {/* Masaüstünde Footer */}
+        <div className="hidden sm:block">
+          <Footer />
+        </div>
       </div>
     </SessionProvider>
   );
@@ -79,7 +92,7 @@ export function Footer() {
       </p>
       <span className="mx-2">|</span>
       <p className="text-xs text-gray-400">
-  Mimarlık Ofisi &mdash; Modern Tasarım ve Danışmanlık
+        Admin Panel &mdash; Empowering your management experience.
       </p>
     </footer>
   );
