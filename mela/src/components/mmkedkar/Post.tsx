@@ -1,6 +1,6 @@
 // Bismillahirrahmanirrahim 
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu vesselamu ala rasulina Muhammedin 
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 // La ilahe illallah, Muhammedur Resulullah
@@ -134,4 +134,6 @@ function MediaPreview({ media }: MediaPreviewProps) {
 // La havle vela kuvvete illa billahil aliyyil azim
 // Estağfirulllah El-Azim
 // Elhmadulillah Elhamdulillah Elhamdulillah
+// Elhamdulillahirabbulalemin
+// Allahumme salli ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
 // Elhamdulillahirabbulalemin
