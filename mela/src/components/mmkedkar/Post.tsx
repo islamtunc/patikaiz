@@ -16,6 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Linkify from "../Linkify";
 import UserAvatar from "../UserAvatar";
+import { Card } from "react-bootstrap";
 
 
 interface PostProps {
@@ -127,3 +128,10 @@ function MediaPreview({ media }: MediaPreviewProps) {
 
 
 
+
+// Subhanallah, Elhamdulillah, Allahu Ekber, 
+// La ilahe illallah, Muhammeden Abduhu ve Resuluhu
+// La havle vela kuvvete illa billahil aliyyil azim
+// Estağfirulllah El-Azim
+// Elhmadulillah Elhamdulillah Elhamdulillah
+// Elhamdulillahirabbulalemin

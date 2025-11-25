@@ -1,5 +1,16 @@
 // Bismillahirrahmanirrahim
 
+// Bismillahirrahmanirahim
+// Elhamdulillahirabbulalemin
+// Ve salatu ve selamu ala resulina Muhammedin ve alihi ve sahbihi ecmain
+// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
+// Subhanallah, Elhamdulillah, Allahu Ekber
+// Estağfirullah El-Azim
+// La ilahe illallah, Muhammedur Resulullah
+// Bismillahirrahmanirahim
+// Elhamdulillahirabbulalemin
+// Ve salatu ve selamu ala resulina Muhammedin ve alihi ve sahbihi ecmain
+// Elhamdulillahirabbulalemin
 
 
 import PostEditor from "@/components/mmavahi/editor/PostEditor";
@@ -45,3 +56,10 @@ export default function Home() {
     </main>
   );
 }
+
+// Subhanallah, Elhamdulillah, Allahu Ekber, 
+// La ilahe illallah, Muhammeden Abduhu ve Resuluhu
+// La havle vela kuvvete illa billahil aliyyil azim
+// Estağfirulllah El-Azim
+// Elhmadulillah Elhamdulillah Elhamdulillah
+// Elhamdulillahirabbulalemin
