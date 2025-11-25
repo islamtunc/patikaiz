@@ -119,7 +119,7 @@ function MediaPreview({ media }: MediaPreviewProps) {
     );
   }
 
-  return <p className="text-destructive">Ev medya nabe</p>;
+  return <p className="text-destructive">Bu medya desteklenmıyor</p>;
 }
 
 
