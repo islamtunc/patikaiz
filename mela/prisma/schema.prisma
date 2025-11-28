@@ -150,7 +150,7 @@ model Product {
   price     Float
   imageUrl  String?
   mmselikId   String   @db.ObjectId
-  mmselik     Mmselik  @relation(fields: [selikId], references: [id])
+  mmselik     Mmselik  @relation(fields: [mmselikId], references: [id])
   createdAt DateTime @default(now())
 }
 model Mmmpeyam {
