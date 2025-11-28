@@ -118,17 +118,11 @@ model Media {
   mmavahiId     String?
   Mmhewcedari   Mmhewcedari? @relation(fields: [mmhewcedariId], references: [id])
   mmhewcedariId String?
-  Mmkinc        Mmkinc?      @relation(fields: [mmkincId], references: [id])
-  mmkincId      String?
   Mmkedkar      Mmkedkar?    @relation(fields: [mmkedkarId], references: [id])
   mmkedkarId    String?
-  Mmwesayit     Mmwesayit?   @relation(fields: [mmwesayitId], references: [id])
-  mmwesayitId   String?
   Mmselik      Mmselik?    @relation(fields: [mmkargehId], references: [id])
   mmselikId    String?
-  Mmhuner       Mmhuner?     @relation(fields: [mmhunerId], references: [id])
-  mmhunerId     String?
-
+ 
   @@map("post_media")
 }
 
