@@ -167,14 +167,7 @@ export default function NewProductPage() {
 
         {/* Açıklama */}
         <div {...getRootProps()} className="w-full">
-          <EditorContent
-            editor={editor}
-            className={cn(
-              "max-h-[18rem] overflow-y-auto rounded-2xl border p-3 text-black prose",
-              isDragActive && "outline-dashed"
-            )}
-            onPaste={onPaste}
-          />
+        
           <input {...getInputProps()} />
         </div>
 
