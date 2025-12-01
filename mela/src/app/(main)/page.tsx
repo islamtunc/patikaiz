@@ -40,7 +40,7 @@ function ArchitectHomePage() {
        
           <div className="bg-white rounded-xl shadow p-6">
             <h2 className="text-lg font-semibold mb-2">Siteye Git</h2>
-            <a href="/malper" className="text-green-700 font-medium hover:underline">Hakkımızda</a>
+            <a href="/malper" className="text-green-700 font-medium hover:underline">Siteye Git</a>
           </div>
         </section>
       </div>
