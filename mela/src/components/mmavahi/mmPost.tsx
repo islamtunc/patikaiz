@@ -28,11 +28,16 @@ export default function MmmPost({ post }: PostProps) {
    
     prisma.mmselik.create({
   data: {
-    content: post.content, // post.content zaten String[]
-    userId: "",
-    attachments: [],
-    bookmarks: [],
-    products: [],
+    content: post.content,  // String[]
+    attachments: {
+      create: [] // boş dizi ile ilişkiyi oluştur
+    },
+    bookmarks: {
+      create: []
+    },
+    products: {
+      create: []
+    },
   },
 });
 
