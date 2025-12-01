@@ -11,7 +11,7 @@ import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
 import Post from "@/components/mmavahi/Post";
 import PostsLoadingSkeleton from "@/components/mmavahi/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
-import { PostsPage } from "@/lib/types";
+import { MmavahiPage } from "@/lib/types";
 import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { Button } from "react-bootstrap";
@@ -35,7 +35,7 @@ export default function ForYouFeed() {
           "/api/posts/mmavahi",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<PostsPage>(),
+        .json<MmavahiPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });

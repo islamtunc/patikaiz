@@ -1,7 +1,8 @@
 // Bismillahirrahmanirrahim 
 // Elhamdulillahi Rabbil Alamin
-// Essalatu vesselamu ala Resulina Muhammedin ve ala alihi ve sahb
-// La ilahe illallah, Muhammedur Resulullah
+// Essalatu vesselamu ala Resulina Muhammedin 
+// La ilahe illallah, 
+// Muhammedur Resulullah
 // SuphanAllah velhamdulillah, Allahu Ekber
 
 "use client";
@@ -10,7 +11,7 @@ import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
 import Post from "@/components/mmkedkar/Post";
 import PostsLoadingSkeleton from "@/components/mmavahi/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
-import { PostsPage } from "@/lib/types";
+import { MmkedkarPage} from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
@@ -30,7 +31,7 @@ export default function ForYouFeed() {
           "/api/posts/mmkedkar",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<PostsPage>(),
+        .json<MmkedkarPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });

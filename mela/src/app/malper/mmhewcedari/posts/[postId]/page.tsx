@@ -1,7 +1,7 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahi Rabbil Alamin
 // Essalatu vesselamu ala Resulina Muhammedin 
-// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
+// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah.
 // Subhanallah, Elhamdulillah, Allahu Ekber
 import Linkify from "@/components/Linkify";
 import MmmPost from "@/components/mmavahi/mmPost";
@@ -9,7 +9,7 @@ import Post from "@/components/mmavahi/mmPost";
 import UserAvatar from "@/components/UserAvatar";
 import UserTooltip from "@/components/UserTooltip";
 import prisma from "@/lib/prisma";
-import { getPostDataInclude, UserData } from "@/lib/types";
+import { getMmhewcedariDataInclude, UserData } from "@/lib/types";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const getPost = cache(async (postId: string) => {
     where: {
       id: postId,
     },
-    include: getPostDataInclude(""), // Kullanıcı doğrulama kaldırıldı
+    include: getMmhewcedariDataInclude(""), // Kullanıcı doğrulama kaldırıldı
   });
 
   if (!post) notFound();

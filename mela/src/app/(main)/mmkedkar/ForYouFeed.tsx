@@ -10,7 +10,7 @@ import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
 import Post from "@/components/mmkedkar/Post";
 import PostsLoadingSkeleton from "@/components/mmkedkar/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
-import { PostsPage } from "@/lib/types";
+import { MmkedkarPage} from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
@@ -30,7 +30,7 @@ export default function ForYouFeed() {
           "/api/posts/mmkedkar",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<PostsPage>(),
+        .json<MmkedkarPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
