@@ -1,10 +1,14 @@
-// Bismillahirahmanirahim
+// Bismillahirrahmanirahim
 // Elhamdulillahirabbilalemin
 // Es-selatu ve Es-selamu ala Resulina Muhammedin
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // Süphanallah, Elhamdulillah, Allahu Ekber
+
 import { Prisma } from "@prisma/client";
 
+/**
+ * Kullanıcı bilgilerini seçmek için
+ */
 export function getUserDataSelect(loggedInUserId: string) {
   return {
     id: true,
@@ -20,66 +24,69 @@ export type UserData = Prisma.UserGetPayload<{
   select: ReturnType<typeof getUserDataSelect>;
 }>;
 
-export function getPostDataInclude(loggedInUserId: string) {
+/**
+ * Mmavahi için include ayarları
+ */
+export function getMmavahiDataInclude(loggedInUserId: string) {
   return {
     user: {
       select: getUserDataSelect(loggedInUserId),
     },
     attachments: true,
-  } satisfies Prisma.PostInclude;
+    bookmarks: true,
+  } satisfies Prisma.MmavahiInclude;
 }
 
-export type PostData = Prisma.PostGetPayload<{
-  include: ReturnType<typeof getPostDataInclude>;
+export type MmavahiData = Prisma.MmavahiGetPayload<{
+  include: ReturnType<typeof getMmavahiDataInclude>;
 }>;
 
-export interface PostsPage {
-  posts: PostData[];
+export interface MmavahiPage {
+  posts: MmavahiData[];
   nextCursor: string | null;
 }
 
-// Yorum (Comment) ile ilgili tüm tip ve fonksiyonları kaldırın
+/**
+ * Mmselik için include ayarları
+ */
+export function getMmkedkarDataInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
+    },
+    attachments: true,
+    bookmarks: true,
+  } satisfies Prisma.MmkedkarInclude;
+}
 
-// export function getCommentDataInclude(loggedInUserId: string) {
-//   return {
-//     // user alanı kaldırıldı, yorumlar anonim olacak
-//   } satisfies Prisma.CommentInclude;
-// }
+export type MmkedkarData = Prisma.MmkedkarGetPayload<{
+  include: ReturnType<typeof getMmkedkarDataInclude>;
+}>;
 
-// export type CommentData = Prisma.CommentGetPayload<{
-//   include: ReturnType<typeof getCommentDataInclude>;
-// }>;
+export interface MmkedkarPage {
+  posts: MmkedkarData[];
+  nextCursor: string | null;
+}
 
-// export interface CommentsPage {
-//   comments: CommentData[];
-//   previousCursor: string | null;
-// }
 
-// Bildirim (Notification) ile ilgili tüm tip ve fonksiyonları kaldırın
+export function getMmhewcedariDataInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
+    },
+    attachments: true,
+    bookmarks: true,
+  } satisfies Prisma.MmhewcedariInclude;
+}
 
-// export const notificationsInclude = {
-//   issuer: {
-//     select: {
-//       username: true,
-//       displayName: true,
-//       avatarUrl: true,
-//     },
-//   },
-//   post: {
-//     select: {
-//       content: true, // content artık string[] olacak
-//     },
-//   },
-// } satisfies Prisma.NotificationInclude;
+export type MmhewcedariData = Prisma.MmhewcedariGetPayload<{
+  include: ReturnType<typeof getMmkedkarDataInclude>;
+}>;
 
-// export type NotificationData = Prisma.NotificationGetPayload<{
-//   include: typeof notificationsInclude;
-// }>;
-
-// export interface NotificationsPage {
-//   notifications: NotificationData[];
-//   nextCursor: string | null;
-// }
+export interface MmhewcedariPage {
+  posts: MmhewcedariData[];
+  nextCursor: string | null;
+}
 
 export interface BookmarkInfo {
   isBookmarkedByUser: boolean;
