@@ -1,6 +1,12 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu vesselamu ala resulina Muhammedin
+// la havle vela kuvvete illa billahil aliyyil azim
+
+// la ilahe illallah
+//  Muhammeden resulullah
+// Allahumme salli ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
+// ALLAHU EKBERU KEBIRAN
 "use server";
 
 import { validateRequest } from "@/auth";
@@ -18,7 +24,7 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.mmavahi.create({
+  const newPost = await prisma.mmkedkar.create({
     data: {
       content, // Convert string[] to a single string
       userId: user.id,
