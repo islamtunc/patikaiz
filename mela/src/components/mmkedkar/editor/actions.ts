@@ -11,7 +11,7 @@
 
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
-import { getPostDataInclude } from "@/lib/types";
+import { getMmkedkarDataInclude } from "@/lib/types";
 import { createPostSchema } from "@/lib/validation";
 
 export async function submitPost(input: {
@@ -32,7 +32,7 @@ export async function submitPost(input: {
         connect: mediaIds.map((id) => ({ id })),
       },
     },
-    include: getPostDataInclude(user.id),
+    include: getMmkedkarDataInclude(user.id),
   });
 
   return newPost;
