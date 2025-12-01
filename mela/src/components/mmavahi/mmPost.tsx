@@ -26,9 +26,9 @@ export default function MmmPost({ post }: PostProps) {
   const zedeke = () => {
     alert("Sepete Eklendi!");
     prisma.mmselik.create({
-      data: {
+      
        content: post.content[0],
-      },
+      
     });
   };
 
