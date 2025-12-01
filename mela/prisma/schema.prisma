@@ -85,6 +85,7 @@ model Mmkedkar {
   @@map("mmkedkar")
 }
 
+
 model Mmselik {
   id          String    @id @default(cuid())
   content     String[]
@@ -93,11 +94,9 @@ model Mmselik {
   attachments Media[]
   bookmarks   Bookmark[]
   products    Product[]
-
   createdAt   DateTime  @default(now())
-
-  @@map("mmselik")
 }
+
 
 model Media {
   id             String      @id @default(cuid())

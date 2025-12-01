@@ -25,11 +25,17 @@ interface PostProps {
 export default function MmmPost({ post }: PostProps) {
   const zedeke = () => {
     alert("Sepete Eklendi!");
+   
     prisma.mmselik.create({
-      
-       content: post.content[0],
-      
-    });
+  data: {
+    content: post.content, // post.content zaten String[]
+    userId: "",
+    attachments: [],
+    bookmarks: [],
+    products: [],
+  },
+});
+
   };
 
   return (
