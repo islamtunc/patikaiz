@@ -3,7 +3,7 @@
 // Esselatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
 
 import { validateRequest } from "@/auth";
-import prisma from "@/lib/prisma";
+import prisma from "@/pirtukxane/prisma";
 import { createUploadthing, FileRouter } from "uploadthing/next";
 import { UploadThingError, UTApi } from "uploadthing/server";
 

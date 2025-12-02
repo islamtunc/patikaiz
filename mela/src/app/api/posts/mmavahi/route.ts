@@ -6,8 +6,8 @@
 
 
 
-import prisma from "@/lib/prisma";
-import { getMmavahiDataInclude,MmavahiPage} from "@/lib/types";
+import prisma from "@/pirtukxane/prisma";
+import { getMmavahiDataInclude,MmavahiPage} from "@/pirtukxane/types";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {

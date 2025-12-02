@@ -7,7 +7,7 @@
 // La ilahe illallah., Muhammedur Resulullah
 
 import React from 'react';
-import UncontrolledExample from './components/slide';
+import UncontrolledExample from './hemanen/slide';
 
 export default async function Page() {
   return (

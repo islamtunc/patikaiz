@@ -8,12 +8,12 @@
 // Hasbunallahu ve ni'mel vekil
 // La havle ve la kuvvete illa billahil aliyyil azim
 import "./reng.css"
-import MenuBar from "./components/mmenu";
-import Navbar from "./components/mmnav";
+import MenuBar from "./hemanen/mmenu";
+import Navbar from "./hemanen/mmnav";
 import { Row, Col, Alert, Container, Card } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
-import Footer from "./components/mmbingeh";
-import ContactForm from "./components/mmfrm";
+import Footer from "./hemanen/mmbingeh";
+import ContactForm from "./hemanen/mmfrm";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 

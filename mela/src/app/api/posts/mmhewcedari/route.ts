@@ -6,8 +6,8 @@
 
 
 import { validateRequest } from "@/auth";
-import prisma from "@/lib/prisma";
-import { getMmhewcedariDataInclude, MmhewcedariPage } from "@/lib/types";
+import prisma from "@/pirtukxane/prisma";
+import { getMmhewcedariDataInclude, MmhewcedariPage } from "@/pirtukxane/types";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {

@@ -6,7 +6,7 @@
 // Subhanallah, Elhamdulillah, Allahu Ekber
 // Estağfirullah El-Azim
 
-import prisma from "@/lib/prisma";
+import prisma from "@/pirtukxane/prisma";
 export async function GET() {
   const data = await prisma.mmselik.findMany({
     include: {
