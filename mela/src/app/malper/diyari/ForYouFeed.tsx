@@ -17,7 +17,7 @@ import { MmkedkarPage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
-export default function ForYouFeed() {
+export default function Diyari() {
   const {
     data,
     fetchNextPage,
@@ -30,7 +30,7 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/mmkedkar",
+          "/api/posts/diyari",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<MmkedkarPage>(),

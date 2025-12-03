@@ -8,6 +8,8 @@
 
 import React from 'react';
 import UncontrolledExample from './hemanen/slide';
+import ForYouFeed from './diwar/ForYouFeed';
+import Diyari from './diyari/ForYouFeed';
 
 export default async function Page() {
   return (
@@ -82,8 +84,10 @@ export default async function Page() {
 
         {/* Recent Updates */}
         <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-4">Son Güncellemeler</h2>
+          <h2 className="text-2xl font-bold mb-4">TEQWÎMÊN</h2>
         
+        <ForYouFeed/>
+        <Diyari/>
         </div>
       </main>
     </div>
