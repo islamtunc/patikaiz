@@ -1,4 +1,10 @@
 // Bismillahirahmanirahim 
+// Elhamdulillahi Rabbil Alamin
+// Essalatu vesselamu ala Resulina Muhammedin 
+// La ilahe illallah, 
+// Muhammedur Resulullah
+// SuphanAllah velhamdulillah, Allahu Ekber
+// La ilahe illALLAH
 
 
 "use client";

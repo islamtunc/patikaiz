@@ -1,6 +1,10 @@
 // Bismillahirahmanirahim 
-
-
+// Elhamdulillahi Rabbil Alamin
+// Essalatu vesselamu ala Resulina Muhammedin 
+// La ilahe illallah, 
+// Muhammedur Resulullah
+// SuphanAllah velhamdulillah, Allahu Ekber
+// La ilahe illALLAH
 
 import avatarPlaceholder from "@/assets/avatar-placeholder.png";
 import CropImageDialog from "@/hemanen/CropImageDialog";

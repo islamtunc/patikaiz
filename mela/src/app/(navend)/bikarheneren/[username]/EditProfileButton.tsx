@@ -1,5 +1,10 @@
 // Bismillahirrahmanirrahim 
-
+// Elhamdulillahi Rabbil Alamin
+// Essalatu vesselamu ala Resulina Muhammedin 
+// La ilahe illallah, 
+// Muhammedur Resulullah
+// SuphanAllah velhamdulillah, Allahu Ekber
+//LA İLAHE İLLALLAH
 "use client";
 
 import { Button } from "@/hemanen/ui/button";
