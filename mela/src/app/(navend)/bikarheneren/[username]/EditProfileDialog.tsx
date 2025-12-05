@@ -6,7 +6,7 @@
 // SuphanAllah velhamdulillah, Allahu Ekber
 // La ilahe illALLAH
 
-import avatarPlaceholder from "@/assets/avatar-placeholder.png";
+import avatarPlaceholder from "@/negring/avatar-placeholder.png";
 import CropImageDialog from "@/hemanen/CropImageDialog";
 import LoadingButton from "@/hemanen/LoadingButton";
 import {

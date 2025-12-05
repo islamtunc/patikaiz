@@ -1,9 +1,10 @@
 // Bismillahirahmanirahim 
+// Subhanallah, Elhamdulillah, Allahu Ekber
 
 
 
 
-import loginImage from "@/assets/login-image.jpg";
+import loginImage from "@/negring/login-image.jpg";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
