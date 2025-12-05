@@ -69,12 +69,12 @@ export default async function Page() {
               alt="Kurdî Takvim"
               className="w-full h-40 object-cover rounded-t-lg mb-4"
             />
-            <h3 className="text-xl font-bold mb-2">Kurdî Temalı Takvim</h3>
+            <h3 className="text-xl font-bold mb-2">Anne Temalı Takvim</h3>
             <p className="text-gray-600">
               Kürt kültürünü sevenler için eşsiz desen ve fotoğraflarla hazırlanan özel takvimler.
             </p>
             <a
-              href="/malper/takvim/kurdi"
+              href="/malper/diyari"
               className="text-blue-500 hover:underline mt-4 block"
             >
               Takvimlere Bak
