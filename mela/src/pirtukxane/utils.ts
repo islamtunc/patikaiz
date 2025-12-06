@@ -1,6 +1,6 @@
 // Bismillahirahmanirahim
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain.
+// Es-selatu vesselamu ala rasulina Muhammedin 
 import { type ClassValue, clsx } from "clsx";
 import { formatDate, formatDistanceToNowStrict } from "date-fns";
 import { twMerge } from "tailwind-merge";

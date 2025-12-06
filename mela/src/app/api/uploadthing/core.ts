@@ -1,6 +1,6 @@
 // Bismillahirahmanirahim
 // Elhamdulillahirabbulalemin
-// Esselatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Esselatu vesselamu ala rasulina Muhammedin
 
 import { validateRequest } from "@/auth";
 import prisma from "@/pirtukxane/prisma";

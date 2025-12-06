@@ -27,64 +27,64 @@ export type UserData = Prisma.UserGetPayload<{
 /**
  * Mmavahi için include ayarları
  */
-export function getMmavahiDataInclude(loggedInUserId: string) {
+export function getDiwarDataInclude(loggedInUserId: string) {
   return {
     user: {
       select: getUserDataSelect(loggedInUserId),
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.MmavahiInclude;
+  } satisfies Prisma.DiwarInclude;
 }
 
-export type MmavahiData = Prisma.MmavahiGetPayload<{
-  include: ReturnType<typeof getMmavahiDataInclude>;
+export type DiwarData = Prisma.DiwarGetPayload<{
+  include: ReturnType<typeof getDiwarDataInclude>;
 }>;
 
-export interface MmavahiPage {
-  posts: MmavahiData[];
+export interface DiwarPage {
+  posts: DiwarData[];
   nextCursor: string | null;
 }
 
 /**
  * Mmselik için include ayarları
  */
-export function getMmkedkarDataInclude(loggedInUserId: string) {
+export function getBavDataInclude(loggedInUserId: string) {
   return {
     user: {
       select: getUserDataSelect(loggedInUserId),
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.MmkedkarInclude;
+  } satisfies Prisma.BavInclude;
 }
 
-export type MmkedkarData = Prisma.MmkedkarGetPayload<{
-  include: ReturnType<typeof getMmkedkarDataInclude>;
+export type BavData = Prisma.BavGetPayload<{
+  include: ReturnType<typeof getBavDataInclude>;
 }>;
 
-export interface MmkedkarPage {
-  posts: MmkedkarData[];
+export interface BavPage {
+  posts: BavData[];
   nextCursor: string | null;
 }
 
 
-export function getMmhewcedariDataInclude(loggedInUserId: string) {
+export function getDayikDataInclude(loggedInUserId: string) {
   return {
     user: {
       select: getUserDataSelect(loggedInUserId),
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.MmhewcedariInclude;
+  } satisfies Prisma.DayikInclude;
 }
 
-export type MmhewcedariData = Prisma.MmhewcedariGetPayload<{
-  include: ReturnType<typeof getMmkedkarDataInclude>;
+export type DayikData = Prisma.DayikGetPayload<{
+  include: ReturnType<typeof getDayikDataInclude>;
 }>;
 
-export interface MmhewcedariPage {
-  posts: MmhewcedariData[];
+export interface DayikPage {
+  posts: DayikData[];
   nextCursor: string | null;
 }
 
