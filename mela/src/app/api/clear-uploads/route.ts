@@ -17,7 +17,7 @@ export async function GET(req: Request) {
         { status: 401 },
       );
     }
-
+// negringa jebehere
     const unusedMedia = await prisma.media.findMany({
       where: {
         bavId: null,
@@ -26,6 +26,8 @@ export async function GET(req: Request) {
         diyari :null,
         stenbol:null,
         
+
+
 
         ...(process.env.NODE_ENV === "production"
           ? {
