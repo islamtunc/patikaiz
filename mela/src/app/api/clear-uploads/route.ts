@@ -26,7 +26,7 @@ export async function GET(req: Request) {
 
     const unusedMedia = await prisma.media.findMany({
       where: {
-        mmavahiId: null,
+        diwarId: null,
         ...(process.env.NODE_ENV === "production"
           ? {
               createdAt: {

@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "package.json", "use": "@vercel/static-build" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/daily",
+      "schedule": "0 4 * * *",
+      "name": "daily-04-00-utc"
+    },
+    {
+      "path": "/api/cron/hourly",
+      "schedule": "0 * * * *",
+      "name": "every-hour"
+    },
+    {
+      "path": "/api/cron/weekly",
+      "schedule": "0 6 * * 1",
+      "name": "weekly-monday-06-00-utc"
+    }
+  ]
+}
