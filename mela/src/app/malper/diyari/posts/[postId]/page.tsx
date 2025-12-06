@@ -42,7 +42,9 @@ export default async function Page({ params: { postId } }: PageProps) {
           <div className="my-8">
             <hr className="border-t-4 border-gray-355" />
           </div>
+
         </div>
+      <a>Hediye Kutusu </a>
       </div>
     </main>
   );

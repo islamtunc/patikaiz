@@ -32,11 +32,12 @@ function Mmmnavbar() {
 
             <Nav.Link href="/malper/rojentaybet/hezkirin">Sevgi(li) Temalı </Nav.Link>
             <Nav.Link href="/malper/rojentaybet/stenbl">İstanbul Temalı</Nav.Link>
-            <Nav.Link href="/malper/rojentaybet/reng">Manzara Temalı</Nav.Link>
+                        <Nav.Link href="/malper/rojentaybet/dayik">Anne Temalı</Nav.Link>
+
             <Nav.Link href="/malper/rojentaybet/bav">Baba Temalı</Nav.Link>
             <Nav.Link href="/malper/rojentaybet/tn">Yalnızlık Temalı</Nav.Link>
+            <Nav.Link href="/malper/rojentaybet/reng">Manzara Temalı</Nav.Link>
 
-            <Nav.Link href="/malper/rojentaybet/dayik">Anne Temalı</Nav.Link>
 
 
             <NavDropdown title="Hediye Kutusu" id="basic-nav-dropdown-2">

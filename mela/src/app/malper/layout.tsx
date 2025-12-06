@@ -14,8 +14,6 @@ import { Row, Col, Alert, Container, Card } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 import Footer from "./hemanen/mmbingeh";
 import ContactForm from "./hemanen/mmfrm";
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 
 export default function Layout({
@@ -25,9 +23,7 @@ export default function Layout({
 }) {
   return (
     <>
-   <Navbar />    <Alert variant="info" style={{ textAlign: "center", fontSize: "18px" }}>
-        Selam Aleykum dear Visitor, Welcome to Patikaiz Website
-      </Alert>
+   <Navbar />  
    
       <div className="container-fluid">
         <Row>

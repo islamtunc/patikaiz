@@ -1,6 +1,6 @@
 // Bismillahirrahmanirrahim 
 // Elhamdulillahirabbulalemin
-// Esselatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Esselatu vesselamu ala rasulina Muhammedin 
 // Suphanallah, Elhamdulillah, Allahu Ekber
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
@@ -9,7 +9,6 @@
 import { Button } from "@/hemanen/ui/button";
 import { Bookmark, Home, User, ShoppingCart, ShoppingBasketIcon, NotebookIcon } from "lucide-react";
 import Link from "next/link";
-import { Modal } from "./mmodel";
 
 interface MenuBarProps {
   className?: string;
