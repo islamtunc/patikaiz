@@ -4,7 +4,7 @@
 //La ilahe illallah, Muhammedur Resulullah
 //SuphanAllah velhamdulillah, Allahu Ekber
 import { useToast } from "@/hemanen/ui/use-toast";
-import { MmavahiPage} from "@/pirtukxane/types";
+import { DiwarPage} from "@/pirtukxane/types";
 import { useUploadThing } from "@/pirtukxane/uploadthing";
 import { UpdateUserProfileValues } from "@/pirtukxane/validation";
 import {
@@ -47,7 +47,7 @@ export function useUpdateProfileMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<MmavahiPage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<DiwarPage, string | null>>(
         queryFilter,
         (oldData) => {
           if (!oldData) return;
