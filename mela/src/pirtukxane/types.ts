@@ -146,6 +146,24 @@ export interface DiwarPage {
   posts: DiwarData[];
   nextCursor: string | null;
 }
+export function getDiyariDataInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
+    },
+    attachments: true,
+    bookmarks: true,
+  } satisfies Prisma.DiyariInclude;
+}
+
+export type DiyariData = Prisma.DiyariGetPayload<{
+  include: ReturnType<typeof getDayikDataInclude>;
+}>;
+
+export interface DiyariPage {
+  posts: DiyariData[];
+  nextCursor: string | null;
+}
 
 export interface BookmarkInfo {
   isBookmarkedByUser: boolean;

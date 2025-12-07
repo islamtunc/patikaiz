@@ -7,7 +7,7 @@
 
 import { validateRequest } from "@/auth";
 import prisma from "@/pirtukxane/prisma";
-import { getMmkedkarDataInclude,MmavahiPage,MmkedkarData} from "@/pirtukxane/types";
+import { getHezkirinDataInclude,HezkirinPage} from "@/pirtukxane/types";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -22,8 +22,8 @@ export async function GET(req: NextRequest) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const posts = await prisma.mmkedkar.findMany({
-      include: getMmkedkarDataInclude(user.id),
+    const posts = await prisma.hezkirin.findMany({
+      include: getHezkirinDataInclude(user.id),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
       cursor: cursor ? { id: cursor } : undefined,
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
 
     const nextCursor = posts.length > pageSize ? posts[pageSize].id : null;
 
-    const data: MmavahiPage = {
+    const data: HezkirinPage = {
       posts: posts.slice(0, pageSize).map(post => ({
         ...post,
         content: Array.isArray(post.content) ? post.content : [post.content],

@@ -7,7 +7,7 @@
 
 
 import prisma from "@/pirtukxane/prisma";
-import { getMmavahiDataInclude,MmavahiPage} from "@/pirtukxane/types";
+import { getDiwarDataInclude,DiwarPage} from "@/pirtukxane/types";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
    
 
     const posts = await prisma.mmavahi.findMany({
-      include: getMmavahiDataInclude(""),
+      include: getDiwarDataInclude(""),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
       cursor: cursor ? { id: cursor } : undefined,
@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
 
     const nextCursor = posts.length > pageSize ? posts[pageSize].id : null;
 
-    const data: MmavahiPage = {
+    const data: DiwarPage = {
       posts: posts.slice(0, pageSize),
       nextCursor,
     };
