@@ -1,6 +1,6 @@
 // Bismillahirrahmanirrahim 
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu vesselamu ala rasulina Muhammedin 
 // Suphanallah, Elhamdulillah, Allahu Ekber
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
@@ -23,8 +23,8 @@ export async function GET(req: Request) {
         bavId: null,
         dayikId: null,
         rengId: null,
-        diyari :null,
-        stenbol:null,
+        diyariId :null,
+        stenbolId:null,
         
 
 
