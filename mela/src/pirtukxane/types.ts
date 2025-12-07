@@ -37,7 +37,7 @@ export type UserData = Prisma.UserGetPayload<{
 }
 
 export type RengData = Prisma.RengGetPayload<{
-  include: ReturnType<typeof getDiwarDataInclude>;
+  include: ReturnType<typeof getRengDataInclude>;
 }>;
 
 export interface RengPage {
@@ -55,31 +55,15 @@ export function getStenbolDataInclude(loggedInUserId: string) {
 }
 
 export type StenbolData = Prisma.StenbolGetPayload<{
-  include: ReturnType<typeof getDiwarDataInclude>;
+  include: ReturnType<typeof getStenbolDataInclude>;
 }>;
 
 export interface StenbolPage {
   posts: StenbolData[];
   nextCursor: string | null;
 }
-export function getDiwarDataInclude(loggedInUserId: string) {
-  return {
-    user: {
-      select: getUserDataSelect(loggedInUserId),
-    },
-    attachments: true,
-    bookmarks: true,
-  } satisfies Prisma.StenbolInclude;
-}
 
-export type StenbolData = Prisma.StenbolGetPayload<{
-  include: ReturnType<typeof getDiwarDataInclude>;
-}>;
 
-export interface StenbolPage {
-  posts: StenbolData[];
-  nextCursor: string | null;
-}
 export function getHezkirinDataInclude(loggedInUserId: string) {
   return {
     user: {
@@ -91,7 +75,7 @@ export function getHezkirinDataInclude(loggedInUserId: string) {
 }
 
 export type HezkirinData = Prisma.HezkirinGetPayload<{
-  include: ReturnType<typeof getDiwarDataInclude>;
+  include: ReturnType<typeof getHezkirinDataInclude>;
 }>;
 
 export interface HezkirinPage {
