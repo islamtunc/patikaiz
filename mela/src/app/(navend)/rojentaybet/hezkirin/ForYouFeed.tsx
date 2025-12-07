@@ -10,7 +10,7 @@ import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
 import Post from "@/hemanen/diyari/Post";
 import PostsLoadingSkeleton from "@/hemanen/diyari/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
-import { MmkedkarPage} from "@/pirtukxane/types";
+import { HezkirinPage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
@@ -27,10 +27,10 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/mmkedkar",
+          "/api/parvekirin/hezkirin",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<MmkedkarPage>(),
+        .json<HezkirinPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });

@@ -11,7 +11,7 @@ import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
 import Post from "@/hemanen/diwar/Post";
 import PostsLoadingSkeleton from "@/hemanen/diwar/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
-import { MmavahiPage } from "@/pirtukxane/types";
+import { DiwarPage } from "@/pirtukxane/types";
 import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { Button } from "react-bootstrap";
@@ -32,10 +32,10 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/diwar",
+          "/api/parvekirin/diwar",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<MmavahiPage>(),
+        .json<DiwarPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
