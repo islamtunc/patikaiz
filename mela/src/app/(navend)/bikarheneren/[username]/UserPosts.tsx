@@ -9,7 +9,7 @@ import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
 import PostsLoadingSkeleton from "@/hemanen/diwar/PostsLoadingSkeleton";
 import Post from "@/hemanen/diwar/Post";
 import kyInstance from "@/pirtukxane/ky";
-import { MmavahiPage } from "@/pirtukxane/types";
+import { DiwarPage } from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
@@ -33,7 +33,7 @@ export default function UserPosts({ userId }: UserPostsProps) {
           `/api/users/${userId}/posts`,
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<MmavahiPage>(),
+        .json<DiwarPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });

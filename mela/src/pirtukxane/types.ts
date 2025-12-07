@@ -143,3 +143,26 @@ export interface DayikPage {
 export interface BookmarkInfo {
   isBookmarkedByUser: boolean;
 }
+
+export function getDiwarDataInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
+    },
+    attachments: true,
+    bookmarks: true,
+  } satisfies Prisma.DiwarInclude;
+}
+
+export type DiwarData = Prisma.DiwarGetPayload<{
+  include: ReturnType<typeof getDayikDataInclude>;
+}>;
+
+export interface DiwarPage {
+  posts: DiwarData[];
+  nextCursor: string | null;
+}
+
+export interface BookmarkInfo {
+  isBookmarkedByUser: boolean;
+}
