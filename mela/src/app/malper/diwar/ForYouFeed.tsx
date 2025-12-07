@@ -9,7 +9,7 @@ import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
 import Post from "@/hemanen/diwar/Post";
 import PostsLoadingSkeleton from "@/hemanen/diwar/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
-import { MmavahiPage} from "@/pirtukxane/types";
+import { DiwarPage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 

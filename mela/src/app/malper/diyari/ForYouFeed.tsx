@@ -13,7 +13,7 @@ import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
 import Post from "@/hemanen/diyari/Post";
 import PostsLoadingSkeleton from "@/hemanen/diwar/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
-import { MmkedkarPage} from "@/pirtukxane/types";
+import {DiyariPage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
@@ -30,10 +30,10 @@ export default function Diyari() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/diyari",
+          "/api/parvekirin/diyari",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<MmkedkarPage>(),
+        .json<DiyariPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });

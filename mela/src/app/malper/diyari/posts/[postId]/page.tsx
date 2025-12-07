@@ -1,11 +1,11 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahi Rabbil Alamin
-// Essalatu vesselamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Essalatu vesselamu ala Resulina Muhammedin 
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 import MmmPost from "@/hemanen/diyari/mmPost";
 import prisma from "@/pirtukxane/prisma";
-import { getMmkedkarDataInclude, UserData } from "@/pirtukxane/types";
+import { getDiyariDataInclude, UserData } from "@/pirtukxane/types";
 import { notFound } from "next/navigation";
 import { cache, Suspense } from "react";
 
@@ -18,7 +18,7 @@ const getPost = cache(async (postId: string) => {
     where: {
       id: postId,
     },
-    include: getMmkedkarDataInclude(""), // Kullanıcı doğrulama kaldırıldı
+    include: getDiyariDataInclude(""), // Kullanıcı doğrulama kaldırıldı
   });
 
   if (!post) notFound();
