@@ -17,6 +17,13 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+model Mmmpeyam {
+  id      Int    @id @default(autoincrement())
+  name    String
+  email   String
+  message String
+}
+
 // ---------------------------
 // USER
 // ---------------------------
