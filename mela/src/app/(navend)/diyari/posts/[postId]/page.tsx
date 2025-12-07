@@ -12,7 +12,7 @@ import Post from "@/hemanen/rojentaybet/Post";
 import UserAvatar from "@/hemanen/UserAvatar";
 import UserTooltip from "@/hemanen/UserTooltip";
 import prisma from "@/pirtukxane/prisma";
-import { getMmkedkarDataInclude, UserData } from "@/pirtukxane/types";
+import { getDiyariDataInclude, UserData } from "@/pirtukxane/types";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -28,7 +28,7 @@ const getPost = cache(async (postId: string, loggedInUserId: string) => {
     where: {
       id: postId,
     },
-    include: getMmkedkarDataInclude(loggedInUserId),
+    include: getDiyariDataInclude(loggedInUserId),
   });
 
   if (!post) notFound();
