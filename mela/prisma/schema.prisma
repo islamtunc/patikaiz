@@ -49,6 +49,7 @@ model User {
   diwar    Diwar[]
   diyari   Diyari[]
   hezkirin Hezkirin[]
+  tn       Tn[]
 
   createdAt DateTime @default(now())
 
@@ -79,6 +80,8 @@ model Media {
   bavId       String?
   Bav         Bav? @relation(fields: [bavId], references: [id])
 
+  tnId       String?
+  Tn          Tn? @relation(fields: [tnId], references: [id])
   dayikId     String?
   Dayik       Dayik? @relation(fields: [dayikId], references: [id])
 
@@ -117,12 +120,27 @@ model Bav {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   media     Media[]
+
+   @@map("bav")
 }
 
 
 
 
+// ---------------------------
+// Tn
+// ---------------------------
+model Tn {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
 
+  userId    String
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  media     Media[]
+   @@map("tn")
+}
 
 
 // ---------------------------
@@ -137,6 +155,10 @@ model Dayik {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   media     Media[]
+
+
+
+   @@map("dayik")
 }
 
 // ---------------------------
@@ -151,6 +173,8 @@ model Stenbol {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   media     Media[]
+
+   @@map("stenbl")
 }
 
 // ---------------------------
@@ -165,6 +189,8 @@ model Reng {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   media     Media[]
+
+   @@map("reng")
 }
 
 // ---------------------------
@@ -180,6 +206,7 @@ model Mmselik {
   products    Product[]
 
   createdAt   DateTime  @default(now())
+   @@map("mmselik")
 }
 
 // ---------------------------
@@ -211,6 +238,10 @@ model Diwar {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   media     Media[]
+
+
+
+   @@map("diwar")
 }
 
 // ---------------------------
@@ -226,6 +257,7 @@ model Diyari {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   media     Media[]
+   @@map("diyari")
 }
 
 // ---------------------------
@@ -236,4 +268,10 @@ model Hezkirin {
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
+
+
+
+
+
+   @@map("hezkirin")
 }
