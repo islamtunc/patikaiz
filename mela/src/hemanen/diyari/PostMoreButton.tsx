@@ -17,7 +17,7 @@ import {
 import DeletePostDialog from "./DeletePostDialog";
 
 interface PostMoreButtonProps {
-  post: MmkedkarData;
+  post: DiyariData;
   className?: string;
 }
 

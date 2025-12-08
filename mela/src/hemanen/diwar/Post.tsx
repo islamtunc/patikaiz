@@ -8,7 +8,7 @@
 
 "use client";
 
-import { MmavahiData } from "@/pirtukxane/types";
+import { DiwarData } from "@/pirtukxane/types";
 import { cn, formatRelativeDate } from "@/pirtukxane/utils";
 import { Media } from "@prisma/client";
 import { MessageSquare } from "lucide-react";
@@ -20,7 +20,7 @@ import { Card } from "react-bootstrap";
 
 
 interface PostProps {
-  post: MmavahiData;
+  post: DiwarData;
 }
 
 export default function Post({ post }: PostProps) {

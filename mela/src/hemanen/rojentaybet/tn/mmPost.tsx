@@ -7,7 +7,7 @@
 
 "use client";
 
-import { MmavahiData } from "@/pirtukxane/types";
+import { TData } from "@/pirtukxane/types";
 import { cn, formatRelativeDate } from "@/pirtukxane/utils";
 import { Media } from "@prisma/client";
 import { MessageSquare } from "lucide-react";

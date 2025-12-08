@@ -22,6 +22,9 @@ model Mmmpeyam {
   name    String
   email   String
   message String
+    createdAt DateTime @default(now())
+
+  @@map("mmmpeyam")
 }
 
 // ---------------------------

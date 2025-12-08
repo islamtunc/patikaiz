@@ -1,6 +1,6 @@
 // Bismillahirrahmanirrahim 
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu vesselamu ala rasulina Muhammedin 
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 // La ilahe illallah, Muhammedur Resulullah
@@ -8,7 +8,7 @@
 
 "use client";
 
-import { MmavahiData } from "@/pirtukxane/types";
+import { BavData } from "@/pirtukxane/types";
 import { cn, formatRelativeDate } from "@/pirtukxane/utils";
 import { Media } from "@prisma/client";
 import { MessageSquare } from "lucide-react";
@@ -20,7 +20,7 @@ import { Card } from "react-bootstrap";
 
 
 interface PostProps {
-  post: MmavahiData;
+  post: BavData;
 }
 
 export default function Post({ post }: PostProps) {
