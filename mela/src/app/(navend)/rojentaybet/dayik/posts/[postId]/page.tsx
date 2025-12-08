@@ -8,7 +8,7 @@
 
 import { validateRequest } from "@/auth";
 import Linkify from "@/hemanen/Linkify";
-import Post from "@/hemanen/rojentaybet/Post";
+import Post from "@/hemanen/rojentaybet/dayik/Post";
 import UserAvatar from "@/hemanen/UserAvatar";
 import UserTooltip from "@/hemanen/UserTooltip";
 import prisma from "@/pirtukxane/prisma";
