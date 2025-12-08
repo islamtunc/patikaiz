@@ -9,14 +9,14 @@
 
 import { validateRequest } from "@/auth";
 import prisma from "@/pirtukxane/prisma";
-import { getMmavahiDataInclude } from "@/pirtukxane/types";
+import { getDayikDataInclude } from "@/pirtukxane/types";
 
 export async function deletePost(id: string) {
   const { user } = await validateRequest();
 
   if (!user) throw new Error("Unauthorized");
 
-  const post = await prisma.mmavahi.findUnique({
+  const post = await prisma.dayik.findUnique({
     where: { id },
   });
 
@@ -24,9 +24,9 @@ export async function deletePost(id: string) {
 
   if (post.userId !== user.id) throw new Error("Unauthorized");
 
-  const deletedPost = await prisma.mmavahi.delete({
+  const deletedPost = await prisma.dayik.delete({
     where: { id },
-    include: getMmavahiDataInclude(user.id),
+    include: getDayikDataInclude(user.id),
   });
 
   return deletedPost;
