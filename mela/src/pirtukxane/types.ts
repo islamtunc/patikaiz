@@ -146,6 +146,32 @@ export interface DiwarPage {
   posts: DiwarData[];
   nextCursor: string | null;
 }
+
+
+
+
+
+
+
+
+export function getTnDataInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
+    },
+    attachments: true,
+    bookmarks: true,
+  } satisfies Prisma.TnInclude;
+}
+
+export type TnData = Prisma.TnGetPayload<{
+  include: ReturnType<typeof getDayikDataInclude>;
+}>;
+
+export interface TnPage {
+  posts: TnData[];
+  nextCursor: string | null;
+}
 export function getDiyariDataInclude(loggedInUserId: string) {
   return {
     user: {

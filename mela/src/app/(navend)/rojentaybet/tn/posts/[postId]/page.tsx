@@ -8,11 +8,11 @@
 
 import { validateRequest } from "@/auth";
 import Linkify from "@/hemanen/Linkify";
-import Post from "@/hemanen/rojentaybet/Post";
+import Post from "@/hemanen/rojentaybet/tn/Post";
 import UserAvatar from "@/hemanen/UserAvatar";
 import UserTooltip from "@/hemanen/UserTooltip";
 import prisma from "@/pirtukxane/prisma";
-import { getStenbolDataInclude, UserData } from "@/pirtukxane/types";
+import { getTnDataInclude, UserData } from "@/pirtukxane/types";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -24,11 +24,11 @@ interface PageProps {
 }
 
 const getPost = cache(async (postId: string, loggedInUserId: string) => {
-  const post = await prisma.stenbl.findUnique({
+  const post = await prisma.tn.findUnique({
     where: {
       id: postId,
     },
-    include: getStenbolDataInclude(loggedInUserId),
+    include: getTnDataInclude(loggedInUserId),
   });
 
   if (!post) notFound();
