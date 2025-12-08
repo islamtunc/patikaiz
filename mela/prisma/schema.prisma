@@ -86,7 +86,7 @@ model Media {
   Dayik       Dayik? @relation(fields: [dayikId], references: [id])
 
   stenblId   String?
-  Stenbl     Stenbol? @relation(fields: [stenblId], references: [id])
+  Stenbl     Stenbl? @relation(fields: [stenblId], references: [id])
 
   rengId      String?
   Reng        Reng? @relation(fields: [rengId], references: [id])
