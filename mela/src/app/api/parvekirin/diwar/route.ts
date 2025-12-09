@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
 
    
 
-    const posts = await prisma.mmavahi.findMany({
+    const posts = await prisma.diwar.findMany({
       include: getDiwarDataInclude(""),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
