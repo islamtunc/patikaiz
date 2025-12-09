@@ -7,10 +7,10 @@
 "use client";
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
-import Post from "@/hemanen/rojentaybet/Post";
-import PostsLoadingSkeleton from "@/hemanen/rojentaybet/PostsLoadingSkeleton";
+import Post from "@/hemanen/rojentaybet/tn/Post";
+import PostsLoadingSkeleton from "@/hemanen/rojentaybet/tn/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
-import { MmhewcedariPage} from "@/pirtukxane/types";
+import { TnPage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
@@ -27,10 +27,10 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/mmhewcedari",
+          "/api/posts/",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<MmhewcedariPage>(),
+        .json<TnPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });

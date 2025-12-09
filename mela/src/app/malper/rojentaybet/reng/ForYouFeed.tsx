@@ -7,7 +7,7 @@
 "use client";
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
-import Post from "@/hemanen/rojentaybet/Post";
+import Post from "@/hemanen/rojentaybet/reng/Post";
 import PostsLoadingSkeleton from "@/hemanen/rojentaybet/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
 import { RengPage} from "@/pirtukxane/types";
@@ -27,7 +27,7 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/reng",
+          "/api/posts/parvekirin/reng",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<RengPage>(),
