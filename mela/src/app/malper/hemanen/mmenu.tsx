@@ -33,18 +33,7 @@ const MenuBar = ({ className }: MenuBarProps) => {
           </Link>
         </Button>
       
-        <Button
-          variant="ghost"
-          className="flex flex-col items-center justify-center p-2 md:flex-row md:items-center md:justify-start md:gap-3 w-full"
-          title="Kaydedilenler"
-          asChild
-        >
-          <Link href="/malper/ecibandin" className="flex flex-col items-center md:flex-row md:gap-2">
-            <Bookmark className="h-6 w-6 text-primary" aria-hidden />
-            <span className="sr-only md:not-sr-only md:inline ml-2">Kaydedilenler</span>
-          </Link>
-        </Button>
-
+     
         <Button
           variant="ghost"
           className="flex flex-col items-center justify-center p-2 md:flex-row md:justify-start md:gap-3 w-full"
