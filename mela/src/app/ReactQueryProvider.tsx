@@ -1,3 +1,8 @@
+// Bismillahirrahmanirrahim
+// Elhamdulillahirabbulalemin
+// Es-selatu vesselamu ala resulina Muhammedin 
+// La ilahe illallah
+// Subhanallah, Elhamdulillah, Allahu Ekber
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

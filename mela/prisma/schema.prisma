@@ -120,7 +120,7 @@ model Bav {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   media     Media[]
-
+  content   String?
    @@map("bav")
 }
 
@@ -134,7 +134,7 @@ model Tn {
   id        String   @id @default(cuid())
   name      String
   createdAt DateTime @default(now())
-
+  content   String?
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -153,7 +153,7 @@ model Dayik {
 
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  content   String?
   media     Media[]
 
 
@@ -173,7 +173,7 @@ model Stenbl {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   media     Media[]
-
+  content   String?
    @@map("stenbl")
 }
 
@@ -187,7 +187,7 @@ model Reng {
 
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  content   String?
   media     Media[]
 
    @@map("reng")
@@ -252,7 +252,7 @@ model Diyari {
   name        String
   description String?
   createdAt   DateTime @default(now())
-
+  content   String?
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -268,7 +268,7 @@ model Hezkirin {
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
-
+  content   String?
 
 
 
