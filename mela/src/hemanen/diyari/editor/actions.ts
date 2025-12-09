@@ -11,7 +11,7 @@
 
 import { validateRequest } from "@/auth";
 import prisma from "@/pirtukxane/prisma";
-import { getMmkedkarDataInclude } from "@/pirtukxane/types";
+import { getDiyariDataInclude } from "@/pirtukxane/types";
 import { createPostSchema } from "@/pirtukxane/validation";
 
 export async function submitPost(input: {
@@ -24,7 +24,7 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.mmkedkar.create({
+  const newPost = await prisma.diyari.create({
     data: {
       content, // Convert string[] to a single string
       userId: user.id,
@@ -32,7 +32,7 @@ export async function submitPost(input: {
         connect: mediaIds.map((id) => ({ id })),
       },
     },
-    include: getMmkedkarDataInclude(user.id),
+    include: getDiyariDataInclude(user.id),
   });
 
   return newPost;

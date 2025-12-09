@@ -7,7 +7,7 @@
 
 import { validateRequest } from "@/auth";
 import prisma from "@/pirtukxane/prisma";
-import { getMmavahiDataInclude } from "@/pirtukxane/types";
+import { getHezkirinDataInclude } from "@/pirtukxane/types";
 import { createPostSchema } from "@/pirtukxane/validation";
 
 export async function submitPost(input: {
@@ -20,7 +20,7 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.mmavahi.create({
+  const newPost = await prisma.hezkirin.create({
     data: {
       content, // Convert string[] to a single string
       userId: user.id,
@@ -28,7 +28,7 @@ export async function submitPost(input: {
         connect: mediaIds.map((id) => ({ id })),
       },
     },
-    include: getMmavahiDataInclude(user.id),
+    include: getHezkirinDataInclude(user.id),
   });
 
   return newPost;
