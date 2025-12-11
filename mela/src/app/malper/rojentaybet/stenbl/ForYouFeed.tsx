@@ -7,8 +7,8 @@
 "use client";
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
-import Post from "@/hemanen/rojentaybet/Post";
-import PostsLoadingSkeleton from "@/hemanen/rojentaybet/PostsLoadingSkeleton";
+import Post from "@/hemanen/rojentaybet/stenbl/Post";
+import PostsLoadingSkeleton from "@/hemanen/rojentaybet/stenbl/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
 import { StenbolPage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
