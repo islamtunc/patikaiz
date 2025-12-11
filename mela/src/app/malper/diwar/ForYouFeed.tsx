@@ -26,7 +26,7 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/posts/diwar",
+          "/api/parvekirin/diwar",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<DiwarPage>(),
