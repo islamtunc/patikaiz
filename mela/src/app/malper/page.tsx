@@ -33,13 +33,14 @@ export default async function Page() {
             />
             <h3 className="text-xl font-bold mb-2">Anne Temalı Takvim</h3>
             <p className="text-gray-600">
-              Fotoğraflarınızla tamamen size özel duvar takviminizi oluşturun.
+
+                    İlk bağ, hayatın başladığı yer. 
             </p>
             <a
-              href="/malper/takvim/ozel"
+              href="/malper/rojentaybet/dayik"
               className="text-blue-500 hover:underline mt-4 block"
             >
-              Hemen Oluştur
+               İncele
             </a>
           </div>
             <div className="bg-white shadow-lg rounded-lg p-6">
@@ -50,14 +51,15 @@ export default async function Page() {
             />
             <h3 className="text-xl font-bold mb-2">Baba Temalı Takvim</h3>
             <p className="text-gray-600">
-              Fotoğraflarınızla tamamen size özel duvar takviminizi oluşturun.
+
+                 Zamana yayılan bir gölge.
             </p>
             <a
-              href="/malper/takvim/ozel"
+              href="/malper/rojentaybet/bav"
               className="text-blue-500 hover:underline mt-4 block"
             >
-              Hemen Oluştur
-            </a>
+
+  İncele            </a>
           </div>
 
 
@@ -76,14 +78,14 @@ export default async function Page() {
             />
             <h3 className="text-xl font-bold mb-2">Sevgi Temalı Takvim</h3>
             <p className="text-gray-600">
-              Fotoğraflarınızla tamamen size özel duvar takviminizi oluşturun.
+                 İki yolun kesiştiği an,birlikte yürünmüş anlar
             </p>
             <a
-              href="/malper/takvim/ozel"
+              href="/malper/rojentaybet/hezkirin"
               className="text-blue-500 hover:underline mt-4 block"
             >
-              Hemen Oluştur
-            </a>
+
+  İncele            </a>
           </div>
 
 
@@ -96,13 +98,13 @@ export default async function Page() {
             />
             <h3 className="text-xl font-bold mb-2">İstanbul Temalı Takvim</h3>
             <p className="text-gray-600">
-              Fotoğraflarınızla tamamen size özel duvar takviminizi oluşturun.
-            </p>
+             Bir şehirden fazlası.            </p>
             <a
-              href="/malper/takvim/ozel"
+              href="/malper/rojentaybet/stenbol"
               className="text-blue-500 hover:underline mt-4 block"
             >
-              Hemen Oluştur
+              
+              İncele
             </a>
           </div>
 
@@ -115,13 +117,13 @@ export default async function Page() {
             />
             <h3 className="text-xl font-bold mb-2">Yalnızlık Temalı Takvim</h3>
             <p className="text-gray-600">
-              Modern ve sade bir görünüm isteyenler için özel minimalist koleksiyon.
+              Kendinle baş başa.
             </p>
             <a
-              href="/malper/takvim/minimal"
+              href="/malper/rojentaybet/tn"
               className="text-blue-500 hover:underline mt-4 block"
             >
-              Koleksiyonu Gör
+              İncele
             </a>
           </div>
 
@@ -134,20 +136,18 @@ export default async function Page() {
             />
             <h3 className="text-xl font-bold mb-2">Manzara Temalı Takvim</h3>
             <p className="text-gray-600">
-              Kürt kültürünü sevenler için eşsiz desen ve fotoğraflarla hazırlanan özel takvimler.
+               Zamanın yavaşladığı yerler
             </p>
             <a
-              href="/malper/diyari"
+              href="/malper/rojentaybet/reng"
               className="text-blue-500 hover:underline mt-4 block"
             >
-              Takvimlere Bak
-            </a>
+İncele            </a>
           </div>
         </div>
 
         {/* Recent Updates */}
         <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-4">TEQWÎMÊN</h2>
         
         <ForYouFeed/>
         <Diyari/>

@@ -1,6 +1,6 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahirabbulalemin
-// Ve salatu ve selamu ala resulina Muhammedin ve alihi ve sahbihi ecmain
+// Ve salatu ve selamu ala resulina Muhammedin 
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 // Estağfirullah El-Azim
@@ -40,15 +40,10 @@ function Mmmnavbar() {
 
 
 
-            <NavDropdown title="Hediye Kutusu" id="basic-nav-dropdown-2">
-              <NavDropdown.Item href="/malper/diyari?tab=dunya-kuresi">Dünya Küresi</NavDropdown.Item>
-              <NavDropdown.Item href="/malper/diyari?tab=kum-saati">Kum Saati</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/malper/diyari?tab=defter-kalem">
-                Defter + Kalem vs
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/malper/diyari">Hediye Kutusu</Nav.Link>
 
+
+          
 
 
 

@@ -1,6 +1,6 @@
 // Bismillahirahmanirahim 
 // ElHAMDULİLLAHİRABBULALEMİN
-// Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu ve Es-selamu ala Resulina Muhammedin 
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // SubhanAllah, Elhamdulillah, Allahu Ekber
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
@@ -15,7 +15,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Footer from "./hemanen/mmbingeh";
 import ContactForm from "./hemanen/mmfrm";
 
-
 export default function Layout({
   children,
 }: {
@@ -23,17 +22,32 @@ export default function Layout({
 }) {
   return (
     <>
-   <Navbar />  
-   
+      <Navbar />
+
+      {/* Hoşgeldiniz alert */}
+      <Alert 
+        variant="success"
+        style={{
+          backgroundColor: '#fafaf2ff',
+          color: '#2E2E2E',
+          fontSize: '18px',
+          padding: '10px 20px',
+          textAlign: 'center',
+          borderRadius: '8px',
+          margin: '20px 0',
+          fontWeight: 'bold',
+          fontFamily:"cursive"
+        }}
+      >
+        Patikaiz'e Hoşgeldiniz! <br />
+        Her Yaprakta bir hikaye saklı.
+      </Alert>
+
       <div className="container-fluid">
         <Row>
           <Col md={9}>
             {children}
-
-
-
-
-             <ContactForm />
+            <ContactForm />
             <Footer />
           </Col>
           <Col md={3}>
@@ -41,15 +55,11 @@ export default function Layout({
           </Col>
         </Row>
       </div>
+
+      {/* Mobil görünüm için MenuBar */}
       <div className="d-md-none">
         <MenuBar />
       </div>
     </>
   );
 }
-
-
-
-
-
-

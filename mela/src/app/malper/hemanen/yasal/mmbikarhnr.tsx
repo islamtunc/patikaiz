@@ -1,14 +1,14 @@
 // Bismillahirahmanirahim
 // Elhamdulillahirrabbulalemin
-// Esselatu vesselamu ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
+// Esselatu vesselamu ala seyyidina Muhammedin 
 // Elhamdulillahirabbulalemin
-// Ve salatu ve selamu ala resulina Muhammedin ve alihi ve sahbihi ecmain
+// Ve salatu ve selamu ala resulina Muhammedin 
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 // Estağfirullah El-Azim
 // La ilahe illallah, Muhammedur Resulullah
 "use client";
-
+import { FileText } from "lucide-react";
 import { useState, useEffect } from "react";
 import type { FC } from "react";
 import {
@@ -42,7 +42,8 @@ const Bkrhnr: FC = () => {
           className="flex items-center gap-2"
           title="Kullanıcı Sözleşmesi"
           aria-label="Kullanıcı Sözleşmesi"
-        >
+        >          <FileText className="w-4 h-4" />
+
           <span>Kullanıcı Sözleşmesi</span>
         </Button>
       </DialogTrigger>

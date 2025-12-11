@@ -9,6 +9,7 @@
 import React from "react";
 import ForYouFeed from "./ForYouFeed";
 import { Card } from "react-bootstrap";
+import ThemeSelector from "../hemanen/vebijark";
 function page() {
   return (
     <div>
@@ -17,10 +18,9 @@ function page() {
         <Card.Body>
           <ForYouFeed />
           <h1>Tema Seçin</h1>
-      
-      <Card style={{height:55,background:"green"}}></Card>
 
-            <Card style={{height:55,background:"blue"}}></Card>
+          <ThemeSelector/>
+      
 
         </Card.Body>
       </Card>
