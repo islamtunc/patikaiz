@@ -8,7 +8,7 @@
 // Estağfirullah El-Azim
 // La ilahe illallah, Muhammedur Resulullah
 'use client';
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 
 export default function ThemeSelector() {
   const [darkMode, setDarkMode] = useState(false);
@@ -23,7 +23,7 @@ export default function ThemeSelector() {
     }
   }, [darkMode]);
 
-  const handleThemeChange = (e) => {
+  const handleThemeChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setTheme(e.target.value);
   };
 
