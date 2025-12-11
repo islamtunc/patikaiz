@@ -44,7 +44,7 @@ export default async function Page({ params: { postId } }: PageProps) {
       {/* İçerik Kartı */}
       <div className="flex-1 flex justify-center items-start">
         <div className="w-full max-w-2xl">
-          <MmmPost post={post} />
+<MmmPost post={{ ...post, title: post.name }} />
           {/* Ayraç ve boşluk */}
           <div className="my-8">
             <hr className="border-t-4 border-gray-355" />
