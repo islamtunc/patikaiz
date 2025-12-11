@@ -252,7 +252,7 @@ model Diyari {
   name        String
   description String?
   createdAt   DateTime @default(now())
-  content   String?
+  content   String[] | null
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
