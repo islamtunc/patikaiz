@@ -29,7 +29,7 @@ export default function ForYouFeed() {
           "/api/posts/diwar",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
-        .json<MmavahiPage>(),
+        .json<DiwarPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
