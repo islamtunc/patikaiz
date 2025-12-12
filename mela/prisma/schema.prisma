@@ -184,6 +184,7 @@ model Reng {
   id        String   @id @default(cuid())
   color     String
   createdAt DateTime @default(now())
+  name      String
 
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
