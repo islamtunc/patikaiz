@@ -5,7 +5,7 @@
 // Subhanallah, Elhamdulillah, Allahu Ekber
 import Linkify from "@/hemanen/Linkify";
 import MmmPost from "@/hemanen/rojentaybet//tn/mmPost";
-import Post from "@/hemanen/diwar/mmPost";
+import Post from "@/hemanen/rojentaybet/tn/mmPost";
 import UserAvatar from "@/hemanen/UserAvatar";
 import UserTooltip from "@/hemanen/UserTooltip";
 import prisma from "@/pirtukxane/prisma";
