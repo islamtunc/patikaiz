@@ -132,11 +132,11 @@ model Bav {
 // ---------------------------
 model Tn {
   id        String   @id @default(cuid())
-  name      String
   createdAt DateTime @default(now())
   content   String[]
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
 
   media     Media[]
    @@map("tn")
