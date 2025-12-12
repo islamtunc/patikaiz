@@ -6,7 +6,7 @@
 
 
 
-import { MmavahiPage} from "@/pirtukxane/types";
+import { TnPage} from "@/pirtukxane/types";
 import {
   InfiniteData,
   QueryFilters,
@@ -32,7 +32,7 @@ export function useDeletePostMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<MmavahiPage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<TnPage, string | null>>(
         queryFilter,
         (oldData) => {
           if (!oldData) return;

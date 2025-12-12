@@ -1,12 +1,12 @@
 // Bismillahirrahmanirahim
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu vesselamu ala rasulina Muhammedin 
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // SuphanAllah, Elhamdulillah, Allahu Ekber
 
 
 
-import { MmavahiPage} from "@/pirtukxane/types";
+import { StenbolPage} from "@/pirtukxane/types";
 import {
   InfiniteData,
   QueryFilters,
@@ -32,7 +32,7 @@ export function useDeletePostMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<MmavahiPage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<StenbolPage, string | null>>(
         queryFilter,
         (oldData) => {
           if (!oldData) return;
