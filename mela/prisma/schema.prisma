@@ -272,6 +272,7 @@ model Hezkirin {
 
 
 
+  name      String
 
    @@map("hezkirin")
 }

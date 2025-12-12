@@ -194,3 +194,15 @@ export interface DiyariPage {
 export interface BookmarkInfo {
   isBookmarkedByUser: boolean;
 }
+export interface TrackingEvent {
+  status: string;
+  location: string;
+  timestamp: string;
+}
+
+export interface TrackingResponse {
+  tracking_number: string;
+  status: string;
+  last_update: string;
+  events: TrackingEvent[];
+}
