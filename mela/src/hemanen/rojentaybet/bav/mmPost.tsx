@@ -33,9 +33,7 @@ export default function MmmPost({ post }: PostProps) {
     attachments: {
       create: [] // boş dizi ile ilişkiyi oluştur
     },
-    bookmarks: {
-      create: []
-    },
+ 
     products: {
       create: []
     },
