@@ -20,16 +20,22 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  // Create the post first (without attachments) because the generated create input
-  // may not include the relation field for attachments in this schema.
+  // derive a title from content (first line) to satisfy Prisma required field
+  const title =
+    Array.isArray(content) && content.length > 0 && content[0].trim()
+      ? content[0].trim().slice(0, 200)
+      : content.join(" ").slice(0, 200) || "Untitled";
+
+  // Create the post first (without attachments)
   const created = await prisma.diwar.create({
     data: {
+      title,
       content,
       userId: user.id,
     },
   });
 
-  // If media ids were provided, attach them by updating the Media rows to point to this diwar
+  // attach media by updating the Media rows to point to this diwar
   if (Array.isArray(mediaIds) && mediaIds.length > 0) {
     await prisma.media.updateMany({
       where: { id: { in: mediaIds } },
