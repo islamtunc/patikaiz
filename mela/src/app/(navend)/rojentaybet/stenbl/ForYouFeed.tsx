@@ -8,7 +8,7 @@
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
 import Post from "@/hemanen/diyari/Post";
-import PostsLoadingSkeleton from "@/hemanen/diyari/PostsLoadingSkeleton";
+import PostsLoadingSkeleton from "@/hemanen/rojentaybet/stenbl/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
 import { StenbolPage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -63,7 +63,13 @@ export default function ForYouFeed() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {posts.map((post) => (
-        <Post key={post.id} post={post} />
+        <Post
+          key={post.id}
+          post={{
+            ...post,
+            description: (post as any).description ?? null,
+          }}
+        />
       ))}
       {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>

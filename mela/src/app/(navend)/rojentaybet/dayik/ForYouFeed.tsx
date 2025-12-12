@@ -8,7 +8,7 @@
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
 import Post from "@/hemanen/rojentaybet/dayik/Post";
-import PostsLoadingSkeleton from "@/hemanen/diyari/PostsLoadingSkeleton";
+import PostsLoadingSkeleton from "@/hemanen/rojentaybet/dayik/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
 import { DayikPage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
