@@ -6,7 +6,7 @@
 "use client";
 
 import { useState } from "react";
-import { TrackingResponse } from "@/types/kargo";
+import { TrackingResponse } from "@/pirtukxane/types";
 
 export default function TrackPage() {
   const [code, setCode] = useState("");

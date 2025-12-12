@@ -138,6 +138,7 @@ model Tn {
   userId    String
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  name      String
   media     Media[]
    @@map("tn")
 }
