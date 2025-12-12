@@ -7,7 +7,7 @@
 "use client";
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
-import Post from "@/hemanen/diyari/Post";
+import Post from "@/hemanen/rojentaybet/dayik/Post";
 import PostsLoadingSkeleton from "@/hemanen/diyari/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
 import { DayikPage} from "@/pirtukxane/types";
@@ -63,7 +63,14 @@ export default function ForYouFeed() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {posts.map((post) => (
-        <Post key={post.id} post={post} />
+        <Post
+          key={post.id}
+          post={{
+            ...post,
+            // ensure required field exists (backend sometimes omits description)
+            description: (post as any).description ?? null,
+          }}
+        />
       ))}
       {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>
