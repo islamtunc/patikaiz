@@ -16,7 +16,7 @@ export async function deletePost(id: string) {
 
   if (!user) throw new Error("Unauthorized");
 
-  const post = await prisma.stenbl.findUnique({
+  const post = await prisma.stenbol.findUnique({
     where: { id },
   });
 
@@ -24,7 +24,7 @@ export async function deletePost(id: string) {
 
   if (post.userId !== user.id) throw new Error("Unauthorized");
 
-  const deletedPost = await prisma.stenbl.delete({
+  const deletedPost = await prisma.stenbol.delete({
     where: { id },
     include: getStenbolDataInclude(user.id),
   });

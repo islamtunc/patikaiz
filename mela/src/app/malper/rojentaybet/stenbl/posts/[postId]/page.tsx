@@ -21,7 +21,7 @@ interface PageProps {
 }
 
 const getPost = cache(async (postId: string) => {
-  const post = await prisma.stenbl.findUnique({
+  const post = await prisma.stenbol.findUnique({
     where: {
       id: postId,
     },

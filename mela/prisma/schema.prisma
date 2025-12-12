@@ -43,7 +43,7 @@ model User {
   sessions Session[]
   bav      Bav[]
   dayik    Dayik[]
-  stenbl  Stenbl[]
+  stenbol  Stenbol[]
   reng     Reng[]
   mmselik  Mmselik[]
   diwar    Diwar[]
@@ -85,8 +85,8 @@ model Media {
   dayikId     String?
   Dayik       Dayik? @relation(fields: [dayikId], references: [id])
 
-  stenblId   String?
-  Stenbl     Stenbl? @relation(fields: [stenblId], references: [id])
+  stenbolId   String?
+  Stenbol     Stenbol? @relation(fields: [stenbolId], references: [id])
 
   rengId      String?
   Reng        Reng? @relation(fields: [rengId], references: [id])
@@ -164,7 +164,7 @@ model Dayik {
 // ---------------------------
 // STENBOL
 // ---------------------------
-model Stenbl {
+model Stenbol {
   id        String   @id @default(cuid())
   name      String
   createdAt DateTime @default(now())
@@ -174,7 +174,7 @@ model Stenbl {
 
   media     Media[]
   content   String[]
-   @@map("stenbl")
+   @@map("stenbol")
 }
 
 // ---------------------------

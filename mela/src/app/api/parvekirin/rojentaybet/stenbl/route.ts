@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const posts = await prisma.stenbl.findMany({
+    const posts = await prisma.stenbol.findMany({
       include: getStenbolDataInclude(user.id),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
