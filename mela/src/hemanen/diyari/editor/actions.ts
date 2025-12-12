@@ -7,6 +7,11 @@
 //  Muhammeden resulullah
 // Allahumme salli ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
 // ALLAHU EKBERU KEBIRAN
+// Bismillahirrahmanirrahim
+// Elhamdulillahirabbulalemin
+// Es-selatu vesselamu ala resulina Muhammedin 
+// La ilahe illallah
+// Subhanallah, Elhamdulillah, Allahu Ekber
 "use server";
 
 import { validateRequest } from "@/auth";
@@ -30,7 +35,7 @@ export async function submitPost(input: {
       ? content[0].trim().slice(0, 200)
       : content.join(" ").slice(0, 200) || "Untitled";
 
-  // create the post first (don't attempt to write relations that the generated create input doesn't accept)
+  // Create the post first (without attachments)
   const created = await prisma.diyari.create({
     data: {
       title,
@@ -39,14 +44,15 @@ export async function submitPost(input: {
     },
   });
 
-  // attach media by updating Media rows to point to this diyari
+  // attach media by updating the Media rows to point to this diwar
   if (Array.isArray(mediaIds) && mediaIds.length > 0) {
     await prisma.media.updateMany({
       where: { id: { in: mediaIds } },
-      data: { diyariId: created.id },
+      data: { diwarId: created.id },
     });
   }
 
+  // Return the post including relation data
   const newPost = await prisma.diyari.findUnique({
     where: { id: created.id },
     include: getDiyariDataInclude(user.id),
