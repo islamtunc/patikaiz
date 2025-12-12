@@ -21,7 +21,7 @@ import {
 import { useDeletePostMutation } from "./mutations";
 
 interface DeletePostDialogProps {
-  post: MmavahiData;
+  post: DiwarData;
   open: boolean;
   onClose: () => void;
 }
