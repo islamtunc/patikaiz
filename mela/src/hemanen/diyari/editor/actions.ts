@@ -24,16 +24,35 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.diyari.create({
+  // derive a title from content (first line) to satisfy Prisma required field
+  const title =
+    Array.isArray(content) && content.length > 0 && content[0].trim()
+      ? content[0].trim().slice(0, 200)
+      : content.join(" ").slice(0, 200) || "Untitled";
+
+  // create the post first (don't attempt to write relations that the generated create input doesn't accept)
+  const created = await prisma.diyari.create({
     data: {
-      content, // Convert string[] to a single string
+      title,
+      content,
       userId: user.id,
-      attachments: {
-        connect: mediaIds.map((id) => ({ id })),
-      },
     },
+  });
+
+  // attach media by updating Media rows to point to this diyari
+  if (Array.isArray(mediaIds) && mediaIds.length > 0) {
+    await prisma.media.updateMany({
+      where: { id: { in: mediaIds } },
+      data: { diyariId: created.id },
+    });
+  }
+
+  const newPost = await prisma.diyari.findUnique({
+    where: { id: created.id },
     include: getDiyariDataInclude(user.id),
   });
+
+  if (!newPost) throw new Error("Failed to load created post");
 
   return newPost;
 }
