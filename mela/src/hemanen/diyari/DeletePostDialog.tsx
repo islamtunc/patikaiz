@@ -5,7 +5,7 @@
 // Subhanallah, Elhamdulillah, Allahu Ekber
 
 
-import { MmkedkarData} from "@/pirtukxane/types";
+import { DiyariData} from "@/pirtukxane/types";
 import LoadingButton from "../LoadingButton";
 import { Button } from "../ui/button";
 import {
@@ -19,7 +19,7 @@ import {
 import { useDeletePostMutation } from "./mutations";
 
 interface DeletePostDialogProps {
-  post: MmkedkarData;
+  post: DiyariData;
   open: boolean;
   onClose: () => void;
 }

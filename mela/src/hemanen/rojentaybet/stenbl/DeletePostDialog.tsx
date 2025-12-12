@@ -7,7 +7,7 @@
 
 
 
-import { MmavahiData } from "@/pirtukxane/types";
+import { StenbolData } from "@/pirtukxane/types";
 import LoadingButton from "../../LoadingButton";
 import { Button } from "../../ui/button";
 import {
@@ -21,7 +21,7 @@ import {
 import { useDeletePostMutation } from "./mutations";
 
 interface DeletePostDialogProps {
-  post: MmavahiData;
+  post: StenbolData;
   open: boolean;
   onClose: () => void;
 }

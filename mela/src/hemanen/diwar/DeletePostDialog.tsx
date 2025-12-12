@@ -7,7 +7,7 @@
 
 
 
-import { MmavahiData } from "@/pirtukxane/types";
+import { DiwarData } from "@/pirtukxane/types";
 import LoadingButton from "../LoadingButton";
 import { Button } from "../ui/button";
 import {
