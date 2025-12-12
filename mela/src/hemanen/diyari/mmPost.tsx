@@ -22,6 +22,9 @@ interface PostProps {
 }
 
 export default function MmmPost({ post }: PostProps) {
+  const attachments: Media[] = Array.isArray(post.attachments)
+    ? (post.attachments as Media[])
+    : [];
 
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
@@ -119,7 +122,7 @@ function MediaPreview({ media }: MediaPreviewProps) {
     );
   }
 
-  return <p className="text-destructive">Bu medya desteklenmıyor</p>;
+  return <p className="text-destructive">Bu medya desteklenmiyor</p>;
 }
 
 
