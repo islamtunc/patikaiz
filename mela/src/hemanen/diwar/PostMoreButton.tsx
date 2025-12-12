@@ -5,7 +5,7 @@
 // SuphanAllah, Elhamdulillah, Allahu Ekber
 
 
-import { MmavahiData } from "@/pirtukxane/types";
+import { DiwarData } from "@/pirtukxane/types";
 import { MoreHorizontal, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
@@ -18,7 +18,7 @@ import {
 import DeletePostDialog from "./DeletePostDialog";
 
 interface PostMoreButtonProps {
-  post: MmavahiData;
+  post: DiwarData;
   className?: string;
 }
 
