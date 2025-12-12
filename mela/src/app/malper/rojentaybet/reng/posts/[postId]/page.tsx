@@ -4,8 +4,8 @@
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 import Linkify from "@/hemanen/Linkify";
-import MmmPost from "@/hemanen/diwar/mmPost";
-import Post from "@/hemanen/diwar/mmPost";
+import MmmPost from "@/hemanen/rojentaybet/reng/mmPost";
+import Post from "@/hemanen/rojentaybet/reng/mmPost";
 import UserAvatar from "@/hemanen/UserAvatar";
 import UserTooltip from "@/hemanen/UserTooltip";
 import prisma from "@/pirtukxane/prisma";
