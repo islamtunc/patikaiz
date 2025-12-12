@@ -20,16 +20,30 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.diwar.create({
+  // Create the post first (without attachments) because the generated create input
+  // may not include the relation field for attachments in this schema.
+  const created = await prisma.diwar.create({
     data: {
-      content, // Convert string[] to a single string
+      content,
       userId: user.id,
-      attachments: {
-        connect: mediaIds.map((id) => ({ id })),
-      },
     },
+  });
+
+  // If media ids were provided, attach them by updating the Media rows to point to this diwar
+  if (Array.isArray(mediaIds) && mediaIds.length > 0) {
+    await prisma.media.updateMany({
+      where: { id: { in: mediaIds } },
+      data: { diwarId: created.id },
+    });
+  }
+
+  // Return the post including relation data
+  const newPost = await prisma.diwar.findUnique({
+    where: { id: created.id },
     include: getDiwarDataInclude(user.id),
   });
+
+  if (!newPost) throw new Error("Failed to load created post");
 
   return newPost;
 }
