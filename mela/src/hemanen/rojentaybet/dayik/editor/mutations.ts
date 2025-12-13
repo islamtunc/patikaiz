@@ -43,20 +43,25 @@ export function useSubmitPostMutation() {
       queryClient.setQueriesData<InfiniteData<DayikPage, string | null>>(
         queryFilter,
         (oldData) => {
-          const firstPage = oldData?.pages[0];
+          if (!oldData) return undefined;
 
-          if (firstPage) {
-            return {
-              pageParams: oldData.pageParams,
-              pages: [
-                {
-                  posts: [newPost, ...firstPage.posts],
-                  nextCursor: firstPage.nextCursor,
-                },
-                ...oldData.pages.slice(1),
-              ],
-            };
-          }
+          const firstPage = oldData.pages[0];
+          if (!firstPage) return undefined;
+
+          // Filter out any null posts and ensure types align with DayikPage
+          const sanePosts = firstPage.posts.filter(Boolean) as typeof firstPage.posts;
+
+          const newFirstPage = {
+            ...firstPage,
+            posts: [newPost as NonNullable<typeof sanePosts[number]>, ...sanePosts],
+          };
+
+          const newData: InfiniteData<DayikPage, string | null> = {
+            pageParams: oldData.pageParams,
+            pages: [newFirstPage, ...oldData.pages.slice(1)],
+          };
+
+          return newData;
         },
       );
 
