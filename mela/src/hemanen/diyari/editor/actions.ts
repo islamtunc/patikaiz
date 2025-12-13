@@ -38,7 +38,7 @@ export async function submitPost(input: {
   // Create the post first (without attachments)
   const created = await prisma.diyari.create({
     data: {
-      title,
+    
       content,
       userId: user.id,
     },
