@@ -20,14 +20,24 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.dayik.create({
+  // Create the post first (don't include relations that Prisma's create input doesn't accept)
+  const created = await prisma.dayik.create({
     data: {
-      content, // Convert string[] to a single string
+      content,
       userId: user.id,
-      attachments: {
-        connect: mediaIds.map((id) => ({ id })),
-      },
     },
+  });
+
+  // Attach media by updating Media rows to point to this dayik
+  if (Array.isArray(mediaIds) && mediaIds.length > 0) {
+    await prisma.media.updateMany({
+      where: { id: { in: mediaIds } },
+      data: { dayikId: created.id },
+    });
+  }
+
+  const newPost = await prisma.dayik.findUnique({
+    where: { id: created.id },
     include: getDayikDataInclude(user.id),
   });
 

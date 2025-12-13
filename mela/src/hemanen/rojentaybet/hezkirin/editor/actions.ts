@@ -20,16 +20,28 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.hezkirin.create({
+  // create the post first (don't include relations that Prisma's create input may not accept)
+  const created = await prisma.hezkirin.create({
     data: {
-      content, // Convert string[] to a single string
+      content,
       userId: user.id,
-      attachments: {
-        connect: mediaIds.map((id) => ({ id })),
-      },
     },
+  });
+
+  // attach media by updating Media rows to point to this hezkirin
+  if (Array.isArray(mediaIds) && mediaIds.length > 0) {
+    await prisma.media.updateMany({
+      where: { id: { in: mediaIds } },
+      data: { hezkirinId: created.id },
+    });
+  }
+
+  const newPost = await prisma.hezkirin.findUnique({
+    where: { id: created.id },
     include: getHezkirinDataInclude(user.id),
   });
+
+  if (!newPost) throw new Error("Failed to load created post");
 
   return newPost;
 }
