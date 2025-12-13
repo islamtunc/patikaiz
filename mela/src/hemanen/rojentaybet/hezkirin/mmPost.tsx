@@ -49,7 +49,7 @@ export default function MmmPost({ post }: PostProps) {
         </div>
       </div>
      
-      {!!post.attachments.length && (
+      {attachments.length > 0 && (
         <MediaPreviews attachments={attachments} />
       )}
 
