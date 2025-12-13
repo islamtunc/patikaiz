@@ -20,13 +20,20 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  // Create the post first (don't include relations that Prisma's create input doesn't accept)
-  const created = await prisma.dayik.create({
-    data: {
-      content,
-      userId: user.id,
-    },
-  });
+  // derive a required name from content
+  const name =
+    Array.isArray(content) && content.length > 0 && content[0].trim()
+      ? content[0].trim().slice(0, 200)
+      : (Array.isArray(content) ? content.join(" ").slice(0, 200) : "Untitled");
+
+   // Create the post first (don't include relations that Prisma's create input doesn't accept)
+   const created = await prisma.dayik.create({
+     data: {
+      name,
+       content,
+       userId: user.id,
+     },
+   });
 
   // Attach media by updating Media rows to point to this dayik
   if (Array.isArray(mediaIds) && mediaIds.length > 0) {
