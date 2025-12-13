@@ -100,6 +100,10 @@ model Media {
   diyariId    String?
   Diyari      Diyari? @relation(fields: [diyariId], references: [id])
 
+
+  hezkirinId    String?
+  Hezkirin      Hezkirin? @relation(fields: [hezkirinId], references: [id])
+
   @@map("post_media")
 }
 
