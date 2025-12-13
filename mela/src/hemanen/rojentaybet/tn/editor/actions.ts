@@ -20,16 +20,28 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.tn.create({
+  // create the tn first (omit relation fields that Prisma create input may not accept)
+  const created = await prisma.tn.create({
     data: {
-      content, // Convert string[] to a single string
+      content,
       userId: user.id,
-      attachments: {
-        connect: mediaIds.map((id) => ({ id })),
-      },
     },
+  });
+
+  // attach media by updating Media rows to reference this tn
+  if (Array.isArray(mediaIds) && mediaIds.length > 0) {
+    await prisma.media.updateMany({
+      where: { id: { in: mediaIds } },
+      data: { tnId: created.id },
+    });
+  }
+
+  const newPost = await prisma.tn.findUnique({
+    where: { id: created.id },
     include: getTnDataInclude(user.id),
   });
+
+  if (!newPost) throw new Error("Failed to load created post");
 
   return newPost;
 }

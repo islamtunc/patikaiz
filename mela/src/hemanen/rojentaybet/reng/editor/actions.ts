@@ -20,16 +20,28 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.reng.create({
+  // create the reng first (omit relations that Prisma's create input may not accept)
+  const created = await prisma.reng.create({
     data: {
-      content, // Convert string[] to a single string
+      content,
       userId: user.id,
-      attachments: {
-        connect: mediaIds.map((id) => ({ id })),
-      },
     },
+  });
+
+  // attach media by updating Media rows to reference this reng
+  if (Array.isArray(mediaIds) && mediaIds.length > 0) {
+    await prisma.media.updateMany({
+      where: { id: { in: mediaIds } },
+      data: { rengId: created.id },
+    });
+  }
+
+  const newPost = await prisma.reng.findUnique({
+    where: { id: created.id },
     include: getRengDataInclude(user.id),
   });
+
+  if (!newPost) throw new Error("Failed to load created post");
 
   return newPost;
 }
