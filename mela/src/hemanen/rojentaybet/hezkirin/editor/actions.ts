@@ -20,13 +20,20 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  // create the post first (don't include relations that Prisma's create input may not accept)
-  const created = await prisma.hezkirin.create({
-    data: {
-      content,
-      userId: user.id,
-    },
-  });
+  // derive a required name from content (Prisma requires name)
+  const name =
+    Array.isArray(content) && content.length > 0 && content[0].trim()
+      ? content[0].trim().slice(0, 200)
+      : (Array.isArray(content) ? content.join(" ").slice(0, 200) : "Untitled");
+
+   // create the post first (don't include relations that Prisma's create input may not accept)
+   const created = await prisma.hezkirin.create({
+     data: {
+      name,
+       content,
+       userId: user.id,
+     },
+   });
 
   // attach media by updating Media rows to point to this hezkirin
   if (Array.isArray(mediaIds) && mediaIds.length > 0) {
