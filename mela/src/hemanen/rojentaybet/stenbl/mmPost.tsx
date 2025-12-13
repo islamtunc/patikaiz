@@ -16,30 +16,28 @@ import Link from "next/link";
 import Linkify from "../../Linkify";
 import { Card } from "react-bootstrap";
 import { Button } from "../../ui/button";
-import prisma from "@/pirtukxane/prisma";
 
 interface PostProps {
   post: StenbolData;
 }
 
 export default function MmmPost({ post }: PostProps) {
-  const zedeke = () => {
-    alert("Sepete Eklendi!");
-   
-    prisma.mmselik.create({
-  data: {
-    content: post.content,  // String[]
-    userId: "",
-    attachments: {
-      create: [] // boş dizi ile ilişkiyi oluştur
-    },
+  const attachments: Media[] = Array.isArray(post.attachments)
+    ? (post.attachments as Media[])
+    : [];
 
-    products: {
-      create: []
-    },
-  },
-});
-
+  const zedeke = async () => {
+    try {
+      const res = await fetch("/api/cart/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ postId: post.id, content: post.content }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      alert("Sepete Eklendi!");
+    } catch (err: any) {
+      alert("Hata: " + (err?.message ?? "Bilinmeyen"));
+    }
   };
 
   return (
@@ -67,7 +65,7 @@ export default function MmmPost({ post }: PostProps) {
         
 
         <Button onClick={zedeke} variant="outline" className="w-full">
-         Sepete Ekle         
+         Sepete Ekle
         </Button>
         </Card>
 </Linkify>

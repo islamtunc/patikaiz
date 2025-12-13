@@ -1,6 +1,6 @@
 // Bismillahirrahmanirrahim 
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu vesselamu ala rasulina Muhammedin 
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // SuphanAllah, Elhamdulillah, Allahu Ekber
 
@@ -16,32 +16,28 @@ import Link from "next/link";
 import Linkify from "../../Linkify";
 import { Card } from "react-bootstrap";
 import { Button } from "../../ui/button";
-import prisma from "@/pirtukxane/prisma";
 
 interface PostProps {
   post: TnData;
 }
 
 export default function MmmPost({ post }: PostProps) {
-  const zedeke = () => {
-    alert("Sepete Eklendi!");
-   
-    prisma.mmselik.create({
-  data: {
-    content: post.content,  // String[]
-    userId: "",
-    attachments: {
-      create: [] // boş dizi ile ilişkiyi oluştur
-    },
-    bookmarks: {
-      create: []
-    },
-    products: {
-      create: []
-    },
-  },
-});
+  const attachments: Media[] = Array.isArray(post.attachments)
+    ? (post.attachments as Media[])
+    : [];
 
+  const zedeke = async () => {
+    try {
+      const res = await fetch("/api/cart/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ postId: post.id, content: post.content }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      alert("Sepete Eklendi!");
+    } catch (err: any) {
+      alert("Hata: " + (err?.message ?? "Bilinmeyen"));
+    }
   };
 
   return (
