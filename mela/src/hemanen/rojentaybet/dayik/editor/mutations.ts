@@ -1,6 +1,6 @@
 // Bismillahirrahmanirrahim
 // Elhamdulillahi Rabbil Alamin
-// Ve salatu ve selamu ala Resulina Muhammedin ve ala alihi ve sah
+// Ve salatu ve selamu ala Resulina Muhammedin 
 // La ilahe illallah, Muhammedur Resulullah
 // SuphanAllah velhamdulillah, Allahu Ekber
 // Allah ümmetimizi korusun, birlik ve beraberliğimizi daim eylesin.
@@ -8,7 +8,7 @@
 
 import { useSession } from "@/app/(navend)/SessionProvider";
 import { useToast } from "@/hemanen/ui/use-toast";
-import { MmavahiPage} from "@/pirtukxane/types";
+import { DayikPage} from "@/pirtukxane/types";
 import {
   InfiniteData,
   QueryFilters,
@@ -40,7 +40,7 @@ export function useSubmitPostMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<MmavahiPage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<DayikPage, string | null>>(
         queryFilter,
         (oldData) => {
           const firstPage = oldData?.pages[0];
