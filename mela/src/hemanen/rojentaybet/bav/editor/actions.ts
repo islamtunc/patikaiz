@@ -35,7 +35,6 @@ export async function submitPost(input: {
   const created = await prisma.bav.create({
     data: {
       name,
-      description,
       content,
       userId: user.id,
     },
