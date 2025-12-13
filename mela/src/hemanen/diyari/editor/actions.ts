@@ -29,26 +29,32 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  // derive a title from content (first line) to satisfy Prisma required field
-  const title =
+  // derive a name & description from content to satisfy Prisma required fields
+  const name =
     Array.isArray(content) && content.length > 0 && content[0].trim()
       ? content[0].trim().slice(0, 200)
       : content.join(" ").slice(0, 200) || "Untitled";
 
+  const description =
+    Array.isArray(content) && content.length > 1
+      ? content.slice(1).join(" ").trim().slice(0, 1000)
+      : null;
+
   // Create the post first (without attachments)
   const created = await prisma.diyari.create({
     data: {
-    
+      name,
+      description,
       content,
       userId: user.id,
     },
   });
 
-  // attach media by updating the Media rows to point to this diwar
+  // attach media by updating the Media rows to point to this diyari
   if (Array.isArray(mediaIds) && mediaIds.length > 0) {
     await prisma.media.updateMany({
       where: { id: { in: mediaIds } },
-      data: { diwarId: created.id },
+      data: { diyariId: created.id },
     });
   }
 
