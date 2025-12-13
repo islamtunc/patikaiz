@@ -3,7 +3,11 @@
 // Es-selatu vesselamu ala rasulina Muhammedin 
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
-// La ilahe illallah, Muhammedur Resulullah
+// La ilahe illallah, Muhammeden abduhu ve resuluhu
+// La havle vela kuvvete illa billahil aliyyil azim
+// Estağfirullah el-azim
+// Elhamdulillah Elhamdulillah Elhamdulillah
+// Elhamdulillahirabbulalemin
 // Allah U Ekber ve lillahi'l-hamd
 
 "use client";
