@@ -275,9 +275,10 @@ model Hezkirin {
   createdAt DateTime @default(now())
   content   String[]
 
-
-
   name      String
+
+  // opposite relation for Media.hezkirinId
+  media     Media[]
 
    @@map("hezkirin")
 }
