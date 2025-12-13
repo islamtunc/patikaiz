@@ -39,7 +39,8 @@ export async function submitPost(input: {
   if (Array.isArray(mediaIds) && mediaIds.length > 0) {
     await prisma.media.updateMany({
       where: { id: { in: mediaIds } },
-      data: { hezkirinId: created.id },
+      // Replace `postId` with the actual FK field from your prisma schema (e.g. `postId`, `dayikId`, `bavId`, ...)
+      data: { postId: created.id },
     });
   }
 
