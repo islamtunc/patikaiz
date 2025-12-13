@@ -16,64 +16,55 @@ import Link from "next/link";
 import Linkify from "../../Linkify";
 import { Card } from "react-bootstrap";
 import { Button } from "../../ui/button";
-import prisma from "@/pirtukxane/prisma";
 
 interface PostProps {
   post: DayikData;
 }
 
 export default function MmmPost({ post }: PostProps) {
-  const zedeke = () => {
-    alert("Sepete Eklendi!");
-   
-    prisma.mmselik.create({
-  data: {
-    content: post.content,  // String[]
-    userId: "",
-    attachments: {
-      create: [] // boş dizi ile ilişkiyi oluştur
-    },
-   
-    products: {
-      create: []
-    },
-  },
-});
+  const attachments: Media[] = Array.isArray(post.attachments)
+    ? (post.attachments as Media[])
+    : [];
 
+  const zedeke = async () => {
+    try {
+      const res = await fetch("/api/cart/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ postId: post.id, content: post.content }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      alert("Sepete Eklendi!");
+    } catch (err: any) {
+      alert("Hata: " + (err?.message ?? "Bilinmeyen"));
+    }
   };
 
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
       <div className="flex justify-between gap-3">
         <div className="flex flex-wrap gap-3">
-          <div>
-          </div>
+          <div />
         </div>
       </div>
-     
-      {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
 
-       <Linkify>
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+
+      <Linkify>
         <Card>
-          <Card.Title>{post.content[0]}</Card.Title>
-        <Card.Body>
-          <Card.Text>{post.content[1]}</Card.Text>
-        {post.content[2] && (
-          <Card.Text>{post.content[2]}</Card.Text>
-        )}
-        </Card.Body>
-        
+          <Card.Title>{post.content?.[0]}</Card.Title>
+          <Card.Body>
+            <Card.Text>{post.content?.[1]}</Card.Text>
+            {post.content?.[2] && <Card.Text>{post.content[2]}</Card.Text>}
+          </Card.Body>
 
-        <Button onClick={zedeke} variant="outline" className="w-full">
-         Sepete Ekle         
-        </Button>
+          <Button onClick={zedeke} variant="outline" className="w-full">
+            Sepete Ekle
+          </Button>
         </Card>
-</Linkify>
-   {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+      </Linkify>
+
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
 
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
@@ -83,6 +74,7 @@ export default function MmmPost({ post }: PostProps) {
             className="block text-sm text-muted-foreground hover:underline"
             suppressHydrationWarning
           >
+            {/* detay */}
           </Link>
         </div>
       </div>

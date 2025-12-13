@@ -24,8 +24,10 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
-
-
+  const attachments: Media[] = Array.isArray(post.attachments)
+    ? (post.attachments as Media[])
+    : [];
+ 
 
 
   return (
@@ -37,9 +39,7 @@ export default function Post({ post }: PostProps) {
         </div>
       </div>
 
-       {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+       {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
       <Linkify>
         <div className="whitespace-pre-line break-words">
          
@@ -56,9 +56,7 @@ export default function Post({ post }: PostProps) {
           
         </div>
       </Linkify>
-      {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">

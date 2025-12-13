@@ -3,7 +3,7 @@
 // Es-selatu vesselamu ala rasulina Muhammedin 
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
-// La ilahe illallah, Muhammedur Resulullah
+// La ilahe illallah, Muhammeden abduhu ve  Resuluhu
 // Allah U Ekber ve lillahi'l-hamd
 
 "use client";
@@ -24,9 +24,10 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
-
-
-
+  const attachments: Media[] = Array.isArray(post.attachments)
+    ? (post.attachments as Media[])
+    : [];
+ 
 
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
@@ -37,9 +38,7 @@ export default function Post({ post }: PostProps) {
         </div>
       </div>
 
-       {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+       {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
       <Linkify>
         <div className="whitespace-pre-line break-words">
          
@@ -56,9 +55,7 @@ export default function Post({ post }: PostProps) {
           
         </div>
       </Linkify>
-      {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
