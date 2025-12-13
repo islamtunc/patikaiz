@@ -20,16 +20,41 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  const newPost = await prisma.bav.create({
+  // derive required fields
+  const name =
+    Array.isArray(content) && content.length > 0 && content[0].trim()
+      ? content[0].trim().slice(0, 200)
+      : content.join(" ").slice(0, 200) || "Untitled";
+
+  const description =
+    Array.isArray(content) && content.length > 1
+      ? content.slice(1).join(" ").trim().slice(0, 1000)
+      : null;
+
+  // create the bav/post without relation fields that Prisma's create input doesn't accept
+  const created = await prisma.bav.create({
     data: {
-      content, // Convert string[] to a single string
+      name,
+      description,
+      content,
       userId: user.id,
-      attachments: {
-        connect: mediaIds.map((id) => ({ id })),
-      },
     },
+  });
+
+  // attach media by updating media rows to point to the created bav
+  if (Array.isArray(mediaIds) && mediaIds.length > 0) {
+    await prisma.media.updateMany({
+      where: { id: { in: mediaIds } },
+      data: { bavId: created.id },
+    });
+  }
+
+  const newPost = await prisma.bav.findUnique({
+    where: { id: created.id },
     include: getBavDataInclude(user.id),
   });
+
+  if (!newPost) throw new Error("Failed to load created post");
 
   return newPost;
 }
