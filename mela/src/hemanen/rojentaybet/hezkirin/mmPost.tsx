@@ -69,7 +69,7 @@ export default function MmmPost({ post }: PostProps) {
         </Button>
         </Card>
 </Linkify>
-   {!!post.attachments.length && (
+   {attachments.length > 0 && (
         <MediaPreviews attachments={attachments} />
       )}
 
