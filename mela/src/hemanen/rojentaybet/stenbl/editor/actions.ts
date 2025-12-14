@@ -20,9 +20,16 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
+  // derive a required name from content (Prisma requires `name`)
+  const name =
+    Array.isArray(content) && content.length > 0 && content[0].trim()
+      ? content[0].trim().slice(0, 200)
+      : (Array.isArray(content) ? content.join(" ").slice(0, 200) : "Untitled");
+
   // create the post first (omit relations that Prisma's create input may not accept)
   const created = await prisma.stenbol.create({
     data: {
+      name,
       content,
       userId: user.id,
     },
