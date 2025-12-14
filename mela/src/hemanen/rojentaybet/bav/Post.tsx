@@ -14,8 +14,8 @@ import { Media } from "@prisma/client";
 import { MessageSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Linkify from "../Linkify";
-import UserAvatar from "../UserAvatar";
+import Linkify from "../../Linkify";
+import UserAvatar from "../../UserAvatar";
 import { Card } from "react-bootstrap";
 
 
