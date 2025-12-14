@@ -69,9 +69,7 @@ export default function MmmPost({ post }: PostProps) {
         </Button>
         </Card>
 </Linkify>
-   {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+   {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
 
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
