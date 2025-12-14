@@ -20,10 +20,16 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
+  // derive a name/title for the tn (Prisma requires `name` on create)
+  const name = content && content.length > 0
+    ? content.join(" ").slice(0, 255)
+    : "";
+
   // create the tn first (omit relation fields that Prisma create input may not accept)
   const created = await prisma.tn.create({
     data: {
       content,
+      name,
       userId: user.id,
     },
   });
