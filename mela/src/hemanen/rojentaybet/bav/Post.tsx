@@ -3,7 +3,7 @@
 // Es-selatu vesselamu ala rasulina Muhammedin 
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
-// La ilahe illallah, Muhammeden abduhu ve  Resuluhu
+// La ilahe illallah, Muhammedur Resulullah
 // Allah U Ekber ve lillahi'l-hamd
 
 "use client";
@@ -14,8 +14,8 @@ import { Media } from "@prisma/client";
 import { MessageSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Linkify from "../../Linkify";
-import UserAvatar from "../../UserAvatar";
+import Linkify from "../Linkify";
+import UserAvatar from "../UserAvatar";
 import { Card } from "react-bootstrap";
 
 
@@ -24,10 +24,7 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
-  const attachments: Media[] = Array.isArray(post.media)
-    ? (post.media as Media[])
-    : [];
- 
+  const attachments: Media[] = Array.isArray(post.media) ? (post.media as Media[]) : [];
 
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
@@ -38,24 +35,22 @@ export default function Post({ post }: PostProps) {
         </div>
       </div>
 
-       {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+
       <Linkify>
         <div className="whitespace-pre-line break-words">
-         
-         <Card>
-
-         <Card.Title>{post.content[0]}</Card.Title>
-        <Card.Body>
-          <Card.Text>{post.content[1]}</Card.Text>
-        {post.content[2] && (
-          <Card.Text>{post.content[2]}</Card.Text>
-        )}
-        </Card.Body>
-         </Card>
-          
+          <Card>
+            <Card.Title>{post.content[0]}</Card.Title>
+            <Card.Body>
+              <Card.Text>{post.content[1]}</Card.Text>
+              {post.content[2] && <Card.Text>{post.content[2]}</Card.Text>}
+            </Card.Body>
+          </Card>
         </div>
       </Linkify>
+
       {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
