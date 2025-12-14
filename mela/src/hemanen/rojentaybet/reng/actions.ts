@@ -24,7 +24,7 @@ export async function deletePost(id: string) {
 
   if (post.userId !== user.id) throw new Error("Unauthorized");
 
-  const deletedPost = await prisma.mmavahi.delete({
+  const deletedPost = await prisma.reng.delete({
     where: { id },
     include: getRengDataInclude(user.id),
   });
