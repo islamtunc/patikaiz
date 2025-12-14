@@ -48,11 +48,9 @@ export default function MmmPost({ post }: PostProps) {
           </div>
         </div>
       </div>
-     
-      {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
-
+      
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+ 
        <Linkify>
         <Card>
           <Card.Title>{post.content[0]}</Card.Title>
@@ -63,14 +61,13 @@ export default function MmmPost({ post }: PostProps) {
         )}
         </Card.Body>
         
-
+ 
         <Button onClick={zedeke} variant="outline" className="w-full">
          Sepete Ekle
         </Button>
         </Card>
 </Linkify>
-   {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
-
+ 
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
