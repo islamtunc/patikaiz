@@ -22,8 +22,8 @@ interface PostProps {
 }
 
 export default function MmmPost({ post }: PostProps) {
-  const attachments: Media[] = Array.isArray(post.attachments)
-    ? (post.attachments as Media[])
+  const attachments: Media[] = Array.isArray(post.media)
+    ? (post.media as Media[])
     : [];
 
   return (
