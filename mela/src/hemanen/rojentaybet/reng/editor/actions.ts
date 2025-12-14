@@ -20,13 +20,24 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  // create the reng first (omit relations that Prisma's create input may not accept)
-  const created = await prisma.reng.create({
-    data: {
+  // derive required fields
+  const name =
+    Array.isArray(content) && content.length > 0 && content[0].trim()
+      ? content[0].trim().slice(0, 200)
+      : (Array.isArray(content) ? content.join(" ").slice(0, 200) : "Untitled");
+
+  // fallback color (Prisma requires color). Change if you want a different default.
+  const color = "#000000";
+
+   // create the reng first (omit relations that Prisma's create input may not accept)
+   const created = await prisma.reng.create({
+     data: {
+      name,
+      color,
       content,
       userId: user.id,
-    },
-  });
+     },
+   });
 
   // attach media by updating Media rows to reference this reng
   if (Array.isArray(mediaIds) && mediaIds.length > 0) {
