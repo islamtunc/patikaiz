@@ -2,7 +2,7 @@
 // Elhamdulillahirabbulalemin
 // Es-selatu vesselamu ala rasulina Muhammedin
 // SuphanAllah, Elhamdulillah, Allahu Ekber
-
+// la ilahe illallah, Muhammedur Resulullah
 
 "use client";
 
@@ -21,12 +21,13 @@ interface PostProps {
 }
 
 export default function MmmPost({ post }: PostProps) {
-
   const zedeke = () => {alert("Zedeke funksiyonu henüz uygulanmadı.");};
   const attachments: Media[] = Array.isArray(post.attachments)
     ? (post.attachments as Media[])
     : [];
- 
+
+  return (
+    <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
       {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
 
        <Linkify>
