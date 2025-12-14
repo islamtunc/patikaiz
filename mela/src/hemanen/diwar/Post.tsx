@@ -24,7 +24,7 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
-  const attachments: Media[] = Array.isArray(post.attachments) ? (post.attachments as Media[]) : [];
+  const attachments: Media[] = Array.isArray(post.media) ? (post.media as Media[]) : [];
 
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
