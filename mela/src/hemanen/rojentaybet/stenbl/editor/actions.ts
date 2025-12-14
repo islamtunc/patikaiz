@@ -21,7 +21,7 @@ export async function submitPost(input: {
   const { content, mediaIds } = createPostSchema.parse(input);
 
   // create the post first (omit relations that Prisma's create input may not accept)
-  const created = await prisma.stenbl.create({
+  const created = await prisma.stenbol.create({
     data: {
       content,
       userId: user.id,
@@ -32,11 +32,11 @@ export async function submitPost(input: {
   if (Array.isArray(mediaIds) && mediaIds.length > 0) {
     await prisma.media.updateMany({
       where: { id: { in: mediaIds } },
-      data: { stenblId: created.id },
+      data: { stenbolId: created.id },
     });
   }
 
-  const newPost = await prisma.stenbl.findUnique({
+  const newPost = await prisma.stenbol.findUnique({
     where: { id: created.id },
     include: getStenbolDataInclude(user.id),
   });
