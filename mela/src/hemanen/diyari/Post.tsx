@@ -8,7 +8,7 @@
 
 "use client";
 
-import { DiyariData} from "@/pirtukxane/types";
+import { DiyariData } from "@/pirtukxane/types";
 import { cn, formatRelativeDate } from "@/pirtukxane/utils";
 import { Media } from "@prisma/client";
 import { MessageSquare } from "lucide-react";
@@ -24,10 +24,7 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
-  const attachments: Media[] = Array.isArray(post.attachments)
-    ? (post.attachments as Media[])
-    : [];
- 
+  const attachments: Media[] = Array.isArray(post.media) ? (post.media as Media[]) : [];
 
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
@@ -38,24 +35,22 @@ export default function Post({ post }: PostProps) {
         </div>
       </div>
 
-       {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+
       <Linkify>
         <div className="whitespace-pre-line break-words">
-         
-         <Card>
-
-         <Card.Title>{post.content[0]}</Card.Title>
-        <Card.Body>
-          <Card.Text>{post.content[1]}</Card.Text>
-        {post.content[2] && (
-          <Card.Text>{post.content[2]}</Card.Text>
-        )}
-        </Card.Body>
-         </Card>
-          
+          <Card>
+            <Card.Title>{post.content[0]}</Card.Title>
+            <Card.Body>
+              <Card.Text>{post.content[1]}</Card.Text>
+              {post.content[2] && <Card.Text>{post.content[2]}</Card.Text>}
+            </Card.Body>
+          </Card>
         </div>
       </Linkify>
+
       {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
@@ -123,14 +118,11 @@ function MediaPreview({ media }: MediaPreviewProps) {
   return <p className="text-destructive">Ev medya nabe</p>;
 }
 
-
-
-
 // Subhanallah, Elhamdulillah, Allahu Ekber, 
 // La ilahe illallah, Muhammeden Abduhu ve Resuluhu
 // La havle vela kuvvete illa billahil aliyyil azim
 // Estağfirulllah El-Azim
 // Elhmadulillah Elhamdulillah Elhamdulillah
 // Elhamdulillahirabbulalemin
-// Allahumme salli ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
-// Elhamdulillahirabbulalemin
+
+
