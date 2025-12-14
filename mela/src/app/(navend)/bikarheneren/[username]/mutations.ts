@@ -50,19 +50,21 @@ export function useUpdateProfileMutation() {
       queryClient.setQueriesData<InfiniteData<DiwarPage, string | null>>(
         queryFilter,
         (oldData) => {
-          if (!oldData) return;
+          if (!oldData) return oldData;
 
           return {
             pageParams: oldData.pageParams,
             pages: oldData.pages.map((page) => ({
-              nextCursor: page.nextCursor,
+              ...page,
               posts: page.posts.map((post) => {
                 if (post.user.id === updatedUser.id) {
                   return {
                     ...post,
                     user: {
+                      // keep existing full user object fields, overwrite with updated fields
+                      ...post.user,
                       ...updatedUser,
-                      avatarUrl: newAvatarUrl || updatedUser.avatarUrl,
+                      avatarUrl: newAvatarUrl ?? updatedUser.avatarUrl ?? post.user.avatarUrl,
                     },
                   };
                 }
