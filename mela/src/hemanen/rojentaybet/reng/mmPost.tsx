@@ -24,33 +24,8 @@ export default function MmmPost({ post }: PostProps) {
   const attachments: Media[] = Array.isArray(post.attachments)
     ? (post.attachments as Media[])
     : [];
-
-  const zedeke = async () => {
-    try {
-      const res = await fetch("/api/cart/add", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ postId: post.id, content: post.content }),
-      });
-      if (!res.ok) throw new Error(await res.text());
-      alert("Sepete Eklendi!");
-    } catch (err: any) {
-      alert("Hata: " + (err?.message ?? "Bilinmeyen"));
-    }
-  };
-
-  return (
-    <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
-      <div className="flex justify-between gap-3">
-        <div className="flex flex-wrap gap-3">
-          <div>
-          </div>
-        </div>
-      </div>
-     
-      {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+ 
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
 
        <Linkify>
         <Card>
@@ -68,9 +43,7 @@ export default function MmmPost({ post }: PostProps) {
         </Button>
         </Card>
 </Linkify>
-   {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+   {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
 
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
