@@ -22,16 +22,17 @@ interface PostProps {
 }
 
 export default function MmmPost({ post }: PostProps) {
-  const attachments: Media[] = Array.isArray(post.attachments)
-    ? (post.attachments as Media[])
-    : [];
+  const attachments: Media[] = Array.isArray(post.media) ? (post.media as Media[]) : [];
 
   const zedeke = async () => {
     try {
       const res = await fetch("/api/cart/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ postId: post.id, content: post.content }),
+        body: JSON.stringify({
+          postId: post.id,
+          content: post.content,
+        }),
       });
       if (!res.ok) throw new Error(await res.text());
       alert("Sepete Eklendi!");
@@ -69,11 +70,7 @@ export default function MmmPost({ post }: PostProps) {
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
-          <Link
-            href={`/malper/mmavahi/posts/${post.id}`}
-            className="block text-sm text-muted-foreground hover:underline"
-            suppressHydrationWarning
-          >
+          <Link href={`/malper/mmavahi/posts/${post.id}`} className="block text-sm text-muted-foreground hover:underline" suppressHydrationWarning>
             {/* detay */}
           </Link>
         </div>
@@ -91,7 +88,7 @@ function MediaPreviews({ attachments }: MediaPreviewsProps) {
     <div
       className={cn(
         "flex flex-col gap-3",
-        attachments.length > 1 && "sm:grid sm:grid-cols-2",
+        attachments.length > 1 && "sm:grid sm:grid-cols-2"
       )}
     >
       {attachments.map((m) => (
@@ -107,25 +104,13 @@ interface MediaPreviewProps {
 
 function MediaPreview({ media }: MediaPreviewProps) {
   if (media.type === "IMAGE") {
-    return (
-      <Image
-        src={media.url}
-        alt="Attachment"
-        width={500}
-        height={500}
-        className="mx-auto size-fit max-h-[30rem] rounded-2xl"
-      />
-    );
+    return <Image src={media.url} alt="Attachment" width={500} height={500} className="mx-auto size-fit max-h-[30rem] rounded-2xl" />;
   }
 
   if (media.type === "VIDEO") {
     return (
       <div>
-        <video
-          src={media.url}
-          controls
-          className="mx-auto size-fit max-h-[30rem] rounded-2xl"
-        />
+        <video src={media.url} controls className="mx-auto size-fit max-h-[30rem] rounded-2xl" />
       </div>
     );
   }
