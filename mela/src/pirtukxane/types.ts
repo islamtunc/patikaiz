@@ -33,7 +33,7 @@ export type UserData = Prisma.UserGetPayload<{
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.RengInclude;
+  } as Prisma.RengInclude;
 }
 
 export type RengData = Prisma.RengGetPayload<{
@@ -51,7 +51,7 @@ export function getStenbolDataInclude(loggedInUserId: string) {
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.StenbolInclude;
+  } as Prisma.StenbolInclude;
 }
 
 export type StenbolData = Prisma.StenbolGetPayload<{
@@ -71,7 +71,7 @@ export function getHezkirinDataInclude(loggedInUserId: string) {
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.HezkirinInclude;
+  } as Prisma.HezkirinInclude;
 }
 
 export type HezkirinData = Prisma.HezkirinGetPayload<{
@@ -92,7 +92,7 @@ export function getBavDataInclude(loggedInUserId: string) {
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.BavInclude;
+  } as Prisma.BavInclude;
 }
 
 export type BavData = Prisma.BavGetPayload<{
@@ -112,7 +112,7 @@ export function getDayikDataInclude(loggedInUserId: string) {
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.DayikInclude;
+  } as Prisma.DayikInclude;
 }
 
 export type DayikData = Prisma.DayikGetPayload<{
@@ -135,7 +135,7 @@ export function getDiwarDataInclude(loggedInUserId: string) {
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.DiwarInclude;
+  } as Prisma.DiwarInclude;
 }
 
 export type DiwarData = Prisma.DiwarGetPayload<{
@@ -161,7 +161,7 @@ export function getTnDataInclude(loggedInUserId: string) {
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.TnInclude;
+  } as Prisma.TnInclude;
 }
 
 export type TnData = Prisma.TnGetPayload<{
@@ -179,7 +179,7 @@ export function getDiyariDataInclude(loggedInUserId: string) {
     },
     attachments: true,
     bookmarks: true,
-  } satisfies Prisma.DiyariInclude;
+  } as Prisma.DiyariInclude;
 }
 
 export type DiyariData = Prisma.DiyariGetPayload<{
