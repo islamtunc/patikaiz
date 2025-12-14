@@ -21,6 +21,8 @@ interface PostProps {
 }
 
 export default function MmmPost({ post }: PostProps) {
+
+  const zedeke = () => {alert("Zedeke funksiyonu henüz uygulanmadı.");};
   const attachments: Media[] = Array.isArray(post.attachments)
     ? (post.attachments as Media[])
     : [];
