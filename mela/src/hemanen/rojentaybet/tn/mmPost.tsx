@@ -49,8 +49,8 @@ export default function MmmPost({ post }: PostProps) {
         </div>
       </div>
      
-      {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
+      {!!attachments.length && (
+        <MediaPreviews attachments={attachments} />
       )}
 
        <Linkify>
@@ -69,8 +69,8 @@ export default function MmmPost({ post }: PostProps) {
         </Button>
         </Card>
 </Linkify>
-   {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
+   {!!attachments.length && (
+        <MediaPreviews attachments={attachments} />
       )}
 
       <hr className="text-muted-foreground" />
