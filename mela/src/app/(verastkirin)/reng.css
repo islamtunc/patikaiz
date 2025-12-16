@@ -1,0 +1,113 @@
+/* Bismillahirrahmanirrahim 
+   Elhamdulillahi Rabbil Alemin
+   Ve salatu ve selamu ala Resulina Muhammedin 
+   Amin
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "stream-chat-react/dist/css/v2/index.css";
+
+@layer base {
+  :root {
+    /* PURE WHITE THEME */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary = Yeşil */
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142.1 76.2% 36.3%;
+
+    --radius: 1rem;
+
+    /* Bootstrap - Tailwind senkron */
+    --bs-primary: hsl(var(--primary));
+    --bs-link-color: hsl(var(--primary));
+    --bs-btn-bg: hsl(var(--primary));
+    --bs-btn-color: white;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* STREAM CHAT THEME - WHITE */
+
+.str-chat {
+  --str-chat__font-family: inherit;
+
+  --str-chat__primary-color: hsl(var(--primary));
+  --str-chat__on-primary-color: hsl(var(--primary-foreground));
+
+  --str-chat__background-color: hsl(var(--background));
+  --str-chat__secondary-background-color: hsl(var(--background));
+
+  --str-chat__message-textarea-background-color: hsl(var(--background));
+
+  --str-chat__channel-preview-active-background-color: hsl(var(--accent));
+  --str-chat__channel-preview-hover-background-color: hsl(var(--accent));
+
+  --str-chat__secondary-surface-color: hsl(var(--muted));
+
+  --str-chat__own-message-bubble-color: hsl(var(--primary));
+  --str-chat__primary-surface-color: hsl(var(--card));
+
+  --str-chat__disabled-color: hsl(var(--muted-foreground));
+  --str-chat__cta-button-border-radius: var(--radius);
+}
+
+/* TEMİZ KENARLAR */
+
+.str-chat-channel-list {
+  border-right: 1px solid hsl(var(--border));
+}
+
+.str-chat__channel-list-react
+.str-chat__channel-list-messenger-react {
+  padding-bottom: 0;
+}
+
+/* Linkler - yeşil */
+a {
+  @apply text-primary;
+}
+
+/* Bootstrap primary button */
+.btn-primary {
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: hsl(var(--primary) / 0.9) !important;
+}

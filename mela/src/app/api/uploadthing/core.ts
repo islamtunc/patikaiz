@@ -1,7 +1,12 @@
 // Bismillahirahmanirahim
 // Elhamdulillahirabbulalemin
 // Esselatu vesselamu ala rasulina Muhammedin
-
+// Elhamdulillahirrabbulalemin
+// La ilahe illallah
+// Subhanallah, Elhamdulillah, Allahu Ekber
+// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
+// Bila Allah Azze ve Celle me ji sunneta Resulullah Muhammed (s.a.v) neqetine, amin rabbal alemin
+// Xeyni Allah tu Xweda tune
 import { validateRequest } from "@/auth";
 import prisma from "@/pirtukxane/prisma";
 import { createUploadthing, FileRouter } from "uploadthing/next";
