@@ -31,7 +31,7 @@ export default function CreateKargoPage() {
     setLoading(true);
     setResult(null);
 
-    const res = await fetch("/api/kargo/create", {
+    const res = await fetch("/api/tegihistin/nu", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
