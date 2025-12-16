@@ -13,124 +13,53 @@
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 
 "use client";
-import React, { useEffect, useState } from "react";
 
-type Shipment = any;
+import { useState } from "react";
 
-export default function page() {
-  const [shipments, setShipments] = useState<Shipment[]>([]);
+export default function CreateKargoPage() {
+  const [form, setForm] = useState({
+    recipientName: "",
+    recipientPhone: "",
+    address: "",
+    weight: "0.5",
+  });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [creating, setCreating] = useState(false);
-  const [payload, setPayload] = useState<string>(
-    JSON.stringify(
-      {
-        recipient: { name: "Alî", phone: "05XXXXXXXXX", address: "Adres örnek" },
-        parcels: [{ weight: 1 }],
-      },
-      null,
-      2
-    )
-  );
+  const [result, setResult] = useState<any>(null);
 
-  async function load() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/kargo/shipments");
-      if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
-      const data = await res.json();
-      setShipments(Array.isArray(data) ? data : [data]);
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to load");
-    } finally {
-      setLoading(false);
-    }
-  }
+    setResult(null);
 
-  useEffect(() => {
-    load();
-  }, []);
+    const res = await fetch("/api/kargo/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
 
-  async function createShipment(e?: React.FormEvent) {
-    e?.preventDefault();
-    setCreating(true);
-    setError(null);
-    try {
-      const body = JSON.parse(payload);
-      const res = await fetch("/api/kargo/shipments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
-      await load();
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to create");
-    } finally {
-      setCreating(false);
-    }
+    const json = await res.json();
+    setResult(json);
+    setLoading(false);
   }
 
   return (
-    <div style={{ padding: 16 }}>
-      <h2>Admin — Kargo Paneli</h2>
+    <main className="p-6 max-w-xl mx-auto">
+      <h1 className="text-xl font-semibold mb-4">Yeni Kargo Oluştur</h1>
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <input required value={form.recipientName} onChange={(e)=>setForm({...form, recipientName: e.target.value})} placeholder="Alıcı isim" className="w-full p-2 border rounded"/>
+        <input required value={form.recipientPhone} onChange={(e)=>setForm({...form, recipientPhone: e.target.value})} placeholder="Telefon" className="w-full p-2 border rounded"/>
+        <textarea required value={form.address} onChange={(e)=>setForm({...form, address: e.target.value})} placeholder="Adres" className="w-full p-2 border rounded"/>
+        <input value={form.weight} onChange={(e)=>setForm({...form, weight: e.target.value})} placeholder="Ağırlık (kg)" className="w-full p-2 border rounded"/>
+        <button type="submit" disabled={loading} className="bg-blue-600 text-white px-4 py-2 rounded">
+          {loading ? "Gönderiliyor..." : "Kargo Oluştur"}
+        </button>
+      </form>
 
-      <section style={{ marginTop: 12, display: "grid", gap: 12 }}>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button onClick={load} disabled={loading}>
-            Yenile
-          </button>
-          <button
-            onClick={() =>
-              fetch("/api/kargo/webhooks")
-                .then((r) => r.json())
-                .then((d) => alert(JSON.stringify(d.slice(0, 10), null, 2)))
-                .catch((e) => alert(String(e)))
-            }
-          >
-            Webhook Logları (incele)
-          </button>
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 12 }}>
-          <div style={{ border: "1px solid #e6e6e6", padding: 12, borderRadius: 8 }}>
-            <h3 style={{ marginTop: 0 }}>Gönderiler</h3>
-            {loading ? (
-              <div>Yükleniyor...</div>
-            ) : error ? (
-              <div style={{ color: "crimson" }}>{error}</div>
-            ) : shipments.length === 0 ? (
-              <div>Gönderi yok</div>
-            ) : (
-              <div style={{ display: "grid", gap: 8 }}>
-                {shipments.map((s, i) => (
-                  <div key={i} style={{ border: "1px solid #ddd", padding: 8, borderRadius: 6 }}>
-                    <div style={{ fontWeight: 700 }}>{s.id ?? s.shipmentId ?? "—"}</div>
-                    <div style={{ fontSize: 13, color: "#444" }}>{JSON.stringify(s, null, 2).slice(0, 300)}{JSON.stringify(s, null, 2).length>300?"...":""}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <aside style={{ border: "1px solid #e6e6e6", padding: 12, borderRadius: 8 }}>
-            <h3 style={{ marginTop: 0 }}>Yeni Gönderi Oluştur</h3>
-            <form onSubmit={createShipment} style={{ display: "grid", gap: 8 }}>
-              <textarea rows={10} value={payload} onChange={(e) => setPayload(e.target.value)} style={{ width: "100%", fontFamily: "monospace", fontSize: 13 }} />
-              <div style={{ display: "flex", gap: 8 }}>
-                <button type="submit" disabled={creating}>
-                  Oluştur
-                </button>
-                <button type="button" onClick={() => setPayload(JSON.stringify({ recipient: { name: "Alî", phone: "05XXXXXXXXX", address: "Adres örnek" }, parcels: [{ weight: 1 }] }, null, 2))}>
-                  Örnek Yükle
-                </button>
-              </div>
-              {error && <div style={{ color: "crimson" }}>{error}</div>}
-            </form>
-          </aside>
-        </div>
-      </section>
-    </div>
+      {result && (
+        <pre className="mt-4 p-3 bg-gray-50 border rounded text-sm">
+          {JSON.stringify(result, null, 2)}
+        </pre>
+      )}
+    </main>
   );
 }
