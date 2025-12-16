@@ -5,7 +5,6 @@
 // Allah u Ekber, Allahu Ekber, Allahu Ekber
 // La ilahe illallah, Allahu Ekber, Allahu Ekber, ve lillahi'l-hamd
 
-import ' ./global.css';
 import React from "react";
 import { Toaster } from "@/hemanen/ui/toaster";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
