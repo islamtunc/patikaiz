@@ -5,7 +5,7 @@
 // Allah u Ekber, Allahu Ekber, Allahu Ekber
 // La ilahe illallah, Allahu Ekber, Allahu Ekber, ve lillahi'l-hamd
 
-
+import ' ./global.css';
 import React from "react";
 import { Toaster } from "@/hemanen/ui/toaster";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -15,7 +15,6 @@ import localFont from "next/font/local";
 import { extractRouterConfig } from "uploadthing/server";
 import { fileRouter } from "./api/uploadthing/core";
 import ReactQueryProvider from "./ReactQueryProvider";
-import "./global.css";
 import Alert from 'react-bootstrap';
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
