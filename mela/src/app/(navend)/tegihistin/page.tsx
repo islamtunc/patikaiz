@@ -7,125 +7,47 @@
 // SuphanAllahi velhamdulillahi ve la ilahe illAllah u vAllah u Ekber 
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 
-"use client";
-import React, { useEffect, useState } from "react";
 
-type Shipment = any;
+import React from "react";
 
-export default function page() {
-  const [shipments, setShipments] = useState<Shipment[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [creating, setCreating] = useState(false);
-  const [payload, setPayload] = useState<string>(
-    JSON.stringify(
-      {
-        recipient: { name: "Alî", phone: "05XXXXXXXXX", address: "Adres örnek" },
-        parcels: [{ weight: 1 }],
-      },
-      null,
-      2
-    )
-  );
-
-  async function load() {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/tegihistin/parvekirin");
-      if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
-      const data = await res.json();
-      setShipments(Array.isArray(data) ? data : [data]);
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to load");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    load();
-  }, []);
-
-  async function createShipment(e?: React.FormEvent) {
-    e?.preventDefault();
-    setCreating(true);
-    setError(null);
-    try {
-      const body = JSON.parse(payload);
-      const res = await fetch("/api/kargo/shipments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
-      await load();
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to create");
-    } finally {
-      setCreating(false);
-    }
-  }
-
+function Tegihistin() {
   return (
-    <div style={{ padding: 16 }}>
-      <h2>Admin — Kargo Paneli</h2>
-
-      <section style={{ marginTop: 12, display: "grid", gap: 12 }}>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button onClick={load} disabled={loading}>
-            Yenile
-          </button>
-          <button
-            onClick={() =>
-              fetch("/api/kargo/webhooks")
-                .then((r) => r.json())
-                .then((d) => alert(JSON.stringify(d.slice(0, 10), null, 2)))
-                .catch((e) => alert(String(e)))
-            }
-          >
-            Webhook Logları (incele)
-          </button>
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 12 }}>
-          <div style={{ border: "1px solid #e6e6e6", padding: 12, borderRadius: 8 }}>
-            <h3 style={{ marginTop: 0 }}>Gönderiler</h3>
-            {loading ? (
-              <div>Yükleniyor...</div>
-            ) : error ? (
-              <div style={{ color: "crimson" }}>{error}</div>
-            ) : shipments.length === 0 ? (
-              <div>Gönderi yok</div>
-            ) : (
-              <div style={{ display: "grid", gap: 8 }}>
-                {shipments.map((s, i) => (
-                  <div key={i} style={{ border: "1px solid #ddd", padding: 8, borderRadius: 6 }}>
-                    <div style={{ fontWeight: 700 }}>{s.id ?? s.shipmentId ?? "—"}</div>
-                    <div style={{ fontSize: 13, color: "#444" }}>{JSON.stringify(s, null, 2).slice(0, 300)}{JSON.stringify(s, null, 2).length>300?"...":""}</div>
-                  </div>
-                ))}
-              </div>
-            )}
+    <main className="bg-gray-100 min-h-screen py-10">
+      <div className="max-w-5xl mx-auto px-4">
+        <header className="mb-10 text-center">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Kargo ve Stok</h1>
+          <nav className="flex justify-center gap-4 mt-2">
+            <a href="/tegihistin/revebirin" className="text-sm text-green-700 hover:underline">Yeni Kargo </a>
+            <a href="/tegihistin/revebirin/sopandin" className="text-sm text-green-700 hover:underline">Kargo Takip</a>
+          </nav>
+        </header>
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+            <img src="/assets/avatar-placeholder.png" alt="Proje Görseli" className="w-32 h-32 object-cover rounded-full mb-4" />
+            <h2 className="text-xl font-semibold mb-2">Kargo Geçmişi</h2>
+            <a href="/tegihistin/revebirin/paseroj" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
           </div>
-
-          <aside style={{ border: "1px solid #e6e6e6", padding: 12, borderRadius: 8 }}>
-            <h3 style={{ marginTop: 0 }}>Yeni Gönderi Oluştur</h3>
-            <form onSubmit={createShipment} style={{ display: "grid", gap: 8 }}>
-              <textarea rows={10} value={payload} onChange={(e) => setPayload(e.target.value)} style={{ width: "100%", fontFamily: "monospace", fontSize: 13 }} />
-              <div style={{ display: "flex", gap: 8 }}>
-                <button type="submit" disabled={creating}>
-                  Oluştur
-                </button>
-                <button type="button" onClick={() => setPayload(JSON.stringify({ recipient: { name: "Alî", phone: "05XXXXXXXXX", address: "Adres örnek" }, parcels: [{ weight: 1 }] }, null, 2))}>
-                  Örnek Yükle
-                </button>
-              </div>
-              {error && <div style={{ color: "crimson" }}>{error}</div>}
-            </form>
-          </aside>
-        </div>
-      </section>
-    </div>
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+            <img src="/assets/box-icon.png" alt="Kargo" className="w-32 h-32 object-cover rounded-full mb-4" />
+            <h2 className="text-xl font-semibold mb-2">Stok</h2>
+            <a href="/tegihistin/revebirin/embar" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Kargomu Sorgula</a>
+          </div>
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+            <img src="/assets/login-image.jpg" alt="Hizmetler" className="w-32 h-32 object-cover rounded-full mb-4" />
+            <h2 className="text-xl font-semibold mb-2">Ödemeler</h2>
+            <a href="/tegihistin/revebirin/muce" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+          </div>
+        </section>
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+       
+          <div className="bg-white rounded-xl shadow p-6">
+            <h2 className="text-lg font-semibold mb-2">Ayarlar</h2>
+            <a href="/tegihistin/malper" className="text-green-700 font-medium hover:underline">Siteye Git</a>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
+
+export default Tegihistin;
