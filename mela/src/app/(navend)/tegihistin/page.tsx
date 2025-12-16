@@ -8,42 +8,102 @@
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 
 
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "./malper/Ewlehi";
 
 function Tegihistin() {
+  const router = useRouter();
+  const { login: sessionLogin } = useSession();
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState<string | null>(null);
+   const [token, setToken] = useState<string | null>(null);
+
+   async function submit(e: React.FormEvent) {
+     e.preventDefault();
+     setLoading(true);
+     setError(null);
+
+ try {
+   const res = await fetch("/api/tegihistin/", {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify({ email, password }),
+   });
+
+   const json = await res.json().catch(() => ({ error: "Invalid JSON" }));
+
+   if (!res.ok) {
+     setError(json?.error ?? "Login failed");
+     return;
+   }
+
+   const receivedToken = json?.token ?? json?.access_token ?? null;
+   if (receivedToken) {
+     setToken(receivedToken);
+     // persist in session provider + localStorage (SessionProvider also persists)
+     try { sessionLogin(receivedToken); localStorage.setItem("kargo_token", receivedToken); } catch {}
+     // redirect after successful login
+     router.push("/(navend)/tegihistin/malper"); // adjust target route as needed
+   } else {
+     setError("No token returned");
+   }
+ } catch (err: any) {
+       setError(err?.message ?? "Request failed");
+     } finally {
+       setLoading(false);
+     }
+   }
+
   return (
     <main className="bg-gray-100 min-h-screen py-10">
-      <div className="max-w-5xl mx-auto px-4">
-        <header className="mb-10 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Kargo ve Stok</h1>
-          <nav className="flex justify-center gap-4 mt-2">
-            <a href="/tegihistin/nu" className="text-sm text-green-700 hover:underline">Yeni Kargo </a>
-            <a href="/tegihistin/sopandin" className="text-sm text-green-700 hover:underline">Kargo Takip</a>
-          </nav>
-        </header>
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-            <img src="/assets/avatar-placeholder.png" alt="Proje Görseli" className="w-32 h-32 object-cover rounded-full mb-4" />
-            <h2 className="text-xl font-semibold mb-2">Kargo Geçmişi</h2>
-            <a href="/tegihistin/revebirin/paseroj" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
-          </div>
-          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-            <img src="/assets/box-icon.png" alt="Kargo" className="w-32 h-32 object-cover rounded-full mb-4" />
-            <h2 className="text-xl font-semibold mb-2">Stok</h2>
-            <a href="/tegihistin/revebirin/embar" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Kargomu Sorgula</a>
-          </div>
-          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-            <img src="/assets/login-image.jpg" alt="Hizmetler" className="w-32 h-32 object-cover rounded-full mb-4" />
-            <h2 className="text-xl font-semibold mb-2">ödemeler</h2>
-            <a href="/tegihistin/muce" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
-          </div>
-        </section>
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-       
-          <div className="bg-white rounded-xl shadow p-6">
-            <h2 className="text-lg font-semibold mb-2">Ayarlar</h2>
-            <a href="/tegihistin/revebirin" className="text-green-700 font-medium hover:underline">Siteye Git</a>
-          </div>
+      <div className="container mx-auto px-4">
+        <section className="mt-10">
+          <h2 className="text-2xl font-bold mb-4 text-center">Giriş Yap</h2>
+          <form onSubmit={submit} className="bg-white p-6 rounded-lg shadow-md max-w-sm mx-auto space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">E-posta</label>
+              <input
+                id="email"
+                type="email"
+                required
+                placeholder="E-posta"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 block w-full p-2 border rounded-md focus:ring focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Şifre</label>
+              <input
+                id="password"
+                type="password"
+                required
+                placeholder="Şifre"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 block w-full p-2 border rounded-md focus:ring focus:ring-blue-500"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition disabled:opacity-50"
+            >
+              {loading ? "Giriş yapılıyor..." : "Giriş Yap"}
+            </button>
+            {error && <p className="mt-3 text-red-600 text-center">{error}</p>}
+            {token && (
+              <div className="mt-4 p-3 bg-green-50 border rounded">
+                <p className="text-sm">Token alındı. (localStorage içine kaydedildi)</p>
+                <pre className="mt-2 text-xs break-words">{token}</pre>
+              </div>
+            )}
+          </form>
         </section>
       </div>
     </main>
