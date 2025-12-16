@@ -54,7 +54,7 @@ export default async function MenuBar({ className }: MenuBarProps) {
       >
         <Link href="/tegihistin">
           <CarIcon />
-          <span className="hidden lg:inline">Messages</span>
+          <span className="hidden lg:inline">Kargo</span>
         </Link>
       </Button>
     </div>
