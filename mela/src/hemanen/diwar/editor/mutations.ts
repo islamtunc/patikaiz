@@ -8,7 +8,7 @@
 
 import { useSession } from "@/app/(navend)/SessionProvider";
 import { useToast } from "@/hemanen/ui/use-toast";
-import { DiwarPage} from "@/pirtukxane/types";
+import { DiyariPage } from "@/pirtukxane/types";
 import {
   InfiniteData,
   QueryFilters,
@@ -40,7 +40,7 @@ export function useSubmitPostMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<DiwarPage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<DiyariPage, string | null>>(
         queryFilter,
         (oldData) => {
           const firstPage = oldData?.pages[0];

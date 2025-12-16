@@ -8,10 +8,11 @@
 
 "use client";
 
+import React, { useState } from "react";
 import { DiwarData } from "@/pirtukxane/types";
 import { cn, formatRelativeDate } from "@/pirtukxane/utils";
 import { Media } from "@prisma/client";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Heart, Tag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Linkify from "../Linkify";
@@ -25,6 +26,8 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
   const attachments: Media[] = Array.isArray(post.media) ? (post.media as Media[]) : [];
+  const [liked, setLiked] = useState(false);
+  const price = (post as any)?.price ?? (post as any)?.meta?.price ?? null;
 
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
@@ -52,8 +55,27 @@ export default function Post({ post }: PostProps) {
       {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
 
       <hr className="text-muted-foreground" />
-      <div className="flex justify-between gap-5">
-        <div className="flex items-center gap-5">
+      <div className="flex items-center justify-between gap-5">
+        <div className="flex items-center gap-3">
+          {price != null && (
+            <div className="flex items-center gap-2 text-sm font-semibold text-green-700">
+              <Tag className="w-4 h-4" />
+              <span>{typeof price === "number" ? `${price} ₺` : price}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setLiked((s) => !s)}
+            aria-label="Favoriye ekle"
+            className={`p-2 rounded-full hover:bg-gray-100 transition ${
+              liked ? "text-red-600" : "text-gray-600"
+            }`}
+          >
+            <Heart className="w-5 h-5" />
+          </button>
+
           <Link
             href={`/malper/mmavahi/posts/${post.id}`}
             className="block text-sm text-muted-foreground hover:underline"

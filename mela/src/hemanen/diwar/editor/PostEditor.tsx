@@ -204,7 +204,8 @@ export default function NewProductPage() {
               !price ||
               !stock ||
               !size ||
-              isUploading
+              isUploading ||
+              mutation.isPending
             }
           >
             ✅ Ürünü Yayınla
