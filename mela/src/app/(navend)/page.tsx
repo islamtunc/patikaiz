@@ -3,7 +3,7 @@
 // Es-selatu vesselamu ala rasulina Muhammedin 
 // La havle ve la kuvvete illa billahil aliyyil azim
 // Allah u Ekber
-// La ilahe illallah Muhammedur Resulullah
+// La ilahe illallah Muhammeden abduhu ve resuluhu
 // Subhanallah, Elhamdulillah, Allahu Ekber, La ilahe illallah
 // Estağfirulllah El-Azim
 "use client"
@@ -21,19 +21,34 @@ function ArchitectHomePage() {
         </header>
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-            <img src="/assets/avatar-placeholder.png" alt="Proje Görseli" className="w-32 h-32 object-cover rounded-full mb-4" />
             <h2 className="text-xl font-semibold mb-2">Duvar Takvimleri</h2>
-            <a href="/mmavahi" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+            <a href="/diwar" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
           </div>
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-            <img src="/assets/login-image.jpg" alt="Hizmetler" className="w-32 h-32 object-cover rounded-full mb-4" />
-            <h2 className="text-xl font-semibold mb-2">Özel Günler</h2>
-            <a href="/mmkedkar" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+            <h2 className="text-xl font-semibold mb-2">İstanbul Temalı Takvimler</h2>
+            <a href="/rojentaybet/stenbol" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
           </div>
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-            <img src="/assets/signup-image.jpg" alt="İletişim" className="w-32 h-32 object-cover rounded-full mb-4" />
             <h2 className="text-xl font-semibold mb-2">Hediye Kutusu</h2>
-            <a href="/mmhewcedari" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+            <a href="/diyari" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+          </div>
+        </section>
+           <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+            <h2 className="text-xl font-semibold mb-2">Manzara Temalı Takvimleri</h2>
+            <a href="/rojentaybet/reng" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+          </div>
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+            <h2 className="text-xl font-semibold mb-2">Anne  Temalı Takvimler</h2>
+            <a href="/rojentaybet/dayik" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+          </div>
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+            <h2 className="text-xl font-semibold mb-2">Baba Temalı Takvimler</h2>
+            <a href="/rojentaybet/bav" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+          </div>
+                    <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+            <h2 className="text-xl font-semibold mb-2">Yalnızlık Temalı Takvimler</h2>
+            <a href="/rojentaybet/tn" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
           </div>
         </section>
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -1,6 +1,6 @@
 // Bismillahirrahmanirahim
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu vesselamu ala rasulina Muhammedin 
 // La ilahe illallah, Muhammedur Resulullah
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
@@ -44,10 +44,10 @@ export default function Navbar() {
 
         <nav className="hidden lg:flex items-center gap-6">
           <Link href="/mmdashboard" className="text-sm font-medium text-secondary hover:text-primary">
-            Dashboard
+            
           </Link>
-          <Link href="/users" className="text-sm font-medium text-secondary hover:text-primary">
-            Kullanıcılar
+          <Link href="/danegeh" className="text-sm font-medium text-secondary hover:text-primary">
+            Veritabanı
           </Link>
 
           <div className="flex items-center gap-3">
