@@ -16,7 +16,7 @@
 
 import { useState } from "react";
 
-export default function CreateKargoPage() {
+export default function KargoyaNu() {
   const [form, setForm] = useState({
     recipientName: "",
     recipientPhone: "",
