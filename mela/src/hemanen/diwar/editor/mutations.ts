@@ -51,17 +51,20 @@ export function useSubmitPostMutation() {
           const firstPage = oldData.pages[0];
           if (!firstPage) return oldData;
 
-          // return a new InfiniteData with the updated first page
-          return {
+          // quick fix: cast newPost to any (or to the expected post type) to satisfy TS.
+          // Better long-term: align the post types so casting is unnecessary.
+          const updated = {
             ...oldData,
             pages: [
               {
                 ...firstPage,
-                posts: [newPost, ...firstPage.posts],
+                posts: [newPost as any, ...firstPage.posts],
               },
               ...oldData.pages.slice(1),
             ],
-          };
+          } as InfiniteData<DiyariPage, string | null>;
+
+          return updated;
         },
       );
 
