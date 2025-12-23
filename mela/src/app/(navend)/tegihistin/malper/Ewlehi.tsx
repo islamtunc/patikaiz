@@ -3,16 +3,18 @@
 // SuphanAllahi velhamdulillahi ve la ilahe illAllah u vAllah u Ekber 
 // Allahu Ekber, Allahu Ekber, Allahu Ekber, La ilahe illallah
 
-import React from "react";
+"use client";
+
+import React, { createContext, useContext, useEffect, useState, useCallback } from "react";
 
 type Session = { token?: string | null; user?: Record<string, any> | null };
 
 const LS_KEY = "app_session";
 
-const SessionContext = React.createContext<any>(null);
+const SessionContext = createContext<{ session: Session | null; login: (t: string, u?: Record<string, any>) => void; logout: () => void } | undefined>(undefined);
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
-  const [session, setSessionState] = React.useState<Session | null>(() => {
+  const [session, setSessionState] = useState<Session | null>(() => {
     if (typeof window === "undefined") return null;
     try {
       const raw = localStorage.getItem(LS_KEY);
@@ -22,14 +24,14 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     try {
       if (session) localStorage.setItem(LS_KEY, JSON.stringify(session));
       else localStorage.removeItem(LS_KEY);
     } catch {}
   }, [session]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     function onStorage(e: StorageEvent) {
       if (e.key !== LS_KEY) return;
       try {
@@ -44,11 +46,11 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const login = React.useCallback((token: string, user?: Record<string, any>) => {
+  const login = useCallback((token: string, user?: Record<string, any>) => {
     setSessionState({ token, user: user ?? null });
   }, []);
 
-  const logout = React.useCallback(() => setSessionState(null), []);
+  const logout = useCallback(() => setSessionState(null), []);
 
   return (
     <SessionContext.Provider value={{ session, login, logout }}>
@@ -58,7 +60,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useSession() {
-  const ctx = React.useContext(SessionContext);
+  const ctx = useContext(SessionContext);
   if (!ctx) throw new Error("useSession must be used within SessionProvider");
   return ctx;
 }
