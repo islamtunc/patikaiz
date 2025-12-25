@@ -126,7 +126,22 @@ export default async function Page() {
               İncele
             </a>
           </div>
-
+    <div className="bg-white shadow-lg rounded-lg p-6">
+            <img
+              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=80"
+              alt="Kurdî Takvim"
+              className="w-full h-40 object-cover rounded-t-lg mb-4"
+            />
+            <h3 className="text-xl font-bold mb-2">Masa Takvimleri</h3>
+            <p className="text-gray-600">
+               Her güne anlam bırakan
+            </p>
+            <a
+              href="/malper/rojentaybet/reng"
+              className="text-blue-500 hover:underline mt-4 block"
+            >
+İncele            </a>
+          </div>
           {/* Card 3: Kurdî Temalı Takvim */}
           <div className="bg-white shadow-lg rounded-lg p-6">
             <img

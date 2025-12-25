@@ -50,7 +50,8 @@ function Mmmnavbar() {
 
 
 
-            
+                        <Nav.Link href="/malper/mase">MASA TAKVİMLERİ</Nav.Link>
+
 
 
             <Nav.Link href="/malper/derheq"><Alert>Hakkımızda</Alert></Nav.Link>
