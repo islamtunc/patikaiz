@@ -1,17 +1,23 @@
 // Bismillahirrahmanirrahim 
 // Elhamdulillahi Rabbil Alamin
 // Essalatu vesselamu ala Resulina Muhammedin 
-// La ilahe illallah, Muhammedur Resulullah
-// SuphanAllah velhamdulillah, Allahu Ekber
+// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
+// Subhanallah, Elhamdulillah, Allahu Ekber
+
+
 "use client";
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
 import Post from "@/hemanen/diwar/Post";
 import PostsLoadingSkeleton from "@/hemanen/diwar/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
-import { MasePage} from "@/pirtukxane/types";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { MasePage } from "@/pirtukxane/types";
+import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
+import { Button } from "react-bootstrap";
+import Link from "next/link";
+import { toast } from "@/hemanen/ui/use-toast";
+
 
 export default function ForYouFeed() {
   const {
@@ -35,6 +41,26 @@ export default function ForYouFeed() {
   });
 
   const posts = data?.pages.flatMap((page) => page.posts) || [];
+
+  const deleteMutation = useMutation({
+    mutationFn: async (postId: string) => {
+      await kyInstance.delete(`/api/posts/diwar/${postId}`);
+    },
+    onSuccess: () => {
+      toast({
+        description: "Gönderi silindi",
+        variant: "default",
+      });
+      // Sayfayı yenile veya veriyi tekrar çek
+      window.location.reload();
+    },
+    onError: () => {
+      toast({
+        description: "Silme işlemi başarısız",
+        variant: "destructive",
+      });
+    },
+  });
 
   if (status === "pending") {
     return <PostsLoadingSkeleton />;
@@ -62,7 +88,19 @@ export default function ForYouFeed() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {posts.map((post) => (
-        <Post key={post.id} post={post} />
+        <div key={post.id} className="relative">
+          <div className="mb-2 flex gap-2 justify-end">
+            <Button
+              variant="outline-danger"
+              size="sm"
+              onClick={() => deleteMutation.mutate(post.id)}
+              disabled={deleteMutation.isPending}
+            >
+              Sil
+            </Button>
+          </div>
+          <Post post={post} />
+        </div>
       ))}
       {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>

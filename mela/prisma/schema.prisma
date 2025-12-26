@@ -80,6 +80,13 @@ model Media {
   bavId       String?
   Bav         Bav? @relation(fields: [bavId], references: [id])
 
+
+
+
+
+  maseId       String?
+  Mase         Mase? @relation(fields: [maseId], references: [id])
+
   tnId       String?
   Tn          Tn? @relation(fields: [tnId], references: [id])
   dayikId     String?
@@ -128,6 +135,22 @@ model Bav {
    @@map("bav")
 }
 
+
+
+
+
+model Mase {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+
+  userId    String
+  user      User @relation(fields: [maseId], references: [id], onDelete: Cascade)
+
+  media     Media[]
+  content   String[]
+   @@map("mase")
+}
 
 
 

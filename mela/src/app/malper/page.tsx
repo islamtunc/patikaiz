@@ -14,7 +14,7 @@ import Diyari from './diyari/ForYouFeed';
 export default async function Page() {
   return (
     <div>
-      {/* Banner */}
+      {/* Başlık */}
       <img src="/mlg.jpeg" alt="Patikaiz Logo" className="w-full" />
 
       <main className="flex-grow container mx-auto py-8">

@@ -44,6 +44,24 @@ export interface RengPage {
   posts: RengData[];
   nextCursor: string | null;
 }
+ export function getMaseInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
+    },
+    attachments: true,
+    bookmarks: true,
+  } as Prisma.MaseInclude;
+}
+
+export type MaseData = Prisma.MaseGetPayload<{
+  include: ReturnType<typeof getMasaInclude>;
+}>;
+
+export interface MasePage {
+  posts: MaseData[];
+  nextCursor: string | null;
+}
 export function getStenbolDataInclude(loggedInUserId: string) {
   return {
     user: {

@@ -9,7 +9,7 @@ import Post from "@/hemanen/diwar/mmPost";
 import UserAvatar from "@/hemanen/UserAvatar";
 import UserTooltip from "@/hemanen/UserTooltip";
 import prisma from "@/pirtukxane/prisma";
-import { getDiwarDataInclude, UserData } from "@/pirtukxane/types";
+import { getMaseInclude, UserData } from "@/pirtukxane/types";
 import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const getPost = cache(async (postId: string) => {
     where: {
       id: postId,
     },
-    include: getDiwarDataInclude(""), // Kullanıcı doğrulama kaldırıldı
+    include: getMaseInclude(""), // Kullanıcı doğrulama kaldırıldı
   });
 
   if (!post) notFound();
