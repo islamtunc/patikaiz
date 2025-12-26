@@ -50,7 +50,7 @@ function Mmmnavbar() {
 
 
 
-                        <Nav.Link href="/malper/mase">MASA TAKVİMLERİ</Nav.Link>
+                        <Nav.Link href="/malper/mase">Masa Takvimleri</Nav.Link>
 
 
 
