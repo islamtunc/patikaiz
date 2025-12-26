@@ -55,7 +55,7 @@ export interface RengPage {
 }
 
 export type MaseData = Prisma.MaseGetPayload<{
-  include: ReturnType<typeof getMasaInclude>;
+  include: ReturnType<typeof getMaseInclude>;
 }>;
 
 export interface MasePage {
@@ -157,7 +157,7 @@ export function getDiwarDataInclude(loggedInUserId: string) {
 }
 
 export type DiwarData = Prisma.DiwarGetPayload<{
-  include: ReturnType<typeof getDayikDataInclude>;
+  include: ReturnType<typeof getDiwarDataInclude>;
 }>;
 
 export interface DiwarPage {
@@ -183,7 +183,7 @@ export function getTnDataInclude(loggedInUserId: string) {
 }
 
 export type TnData = Prisma.TnGetPayload<{
-  include: ReturnType<typeof getDayikDataInclude>;
+  include: ReturnType<typeof getTnDataInclude>;
 }>;
 
 export interface TnPage {
@@ -201,7 +201,7 @@ export function getDiyariDataInclude(loggedInUserId: string) {
 }
 
 export type DiyariData = Prisma.DiyariGetPayload<{
-  include: ReturnType<typeof getDayikDataInclude>;
+  include: ReturnType<typeof getDiyariDataInclude>;
 }>;
 
 export interface DiyariPage {
