@@ -32,7 +32,7 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/parvekirin/diwar",
+          "/api/parvekirin/mase",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<MasePage>(),
@@ -99,7 +99,7 @@ export default function ForYouFeed() {
               Sil
             </Button>
           </div>
-          <Post post={post} />
+          <Post post={post as any} />
         </div>
       ))}
       {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
