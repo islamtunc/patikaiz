@@ -26,7 +26,7 @@ function ArchitectHomePage() {
           </div>
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
             <h2 className="text-xl font-semibold mb-2">İstanbul Temalı Takvimler</h2>
-            <a href="/rojentaybet/stenbol" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+            <a href="/rojentaybet/stenbl" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
           </div>
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
             <h2 className="text-xl font-semibold mb-2">Hediye Kutusu</h2>
