@@ -6,8 +6,8 @@
 "use client";
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
-import Post from "@/hemanen/diwar/Post";
-import PostsLoadingSkeleton from "@/hemanen/diwar/PostsLoadingSkeleton";
+import Post from "@/hemanen/mase/Post";
+import PostsLoadingSkeleton from "@/hemanen/mase/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
 import { MasePage} from "@/pirtukxane/types";
 import { useInfiniteQuery } from "@tanstack/react-query";

@@ -9,7 +9,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { DiwarData } from "@/pirtukxane/types";
+import { MaseData } from "@/pirtukxane/types";
 import { cn, formatRelativeDate } from "@/pirtukxane/utils";
 import { Media } from "@prisma/client";
 import { MessageSquare, Heart, Tag } from "lucide-react";
