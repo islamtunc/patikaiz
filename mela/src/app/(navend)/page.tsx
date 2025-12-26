@@ -32,6 +32,10 @@ function ArchitectHomePage() {
             <h2 className="text-xl font-semibold mb-2">Hediye Kutusu</h2>
             <a href="/diyari" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
           </div>
+            <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+            <h2 className="text-xl font-semibold mb-2">Mase Takvimi</h2>
+            <a href="/mase" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
+          </div>
         </section>
            <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
@@ -50,6 +54,7 @@ function ArchitectHomePage() {
             <h2 className="text-xl font-semibold mb-2">Yalnızlık Temalı Takvimler</h2>
             <a href="/rojentaybet/tn" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">sayfaya git</a>
           </div>
+          
         </section>
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
        
