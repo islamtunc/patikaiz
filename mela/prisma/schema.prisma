@@ -50,7 +50,7 @@ model User {
   diyari   Diyari[]
   hezkirin Hezkirin[]
   tn       Tn[]
-
+  mase     Mase[]
   createdAt DateTime @default(now())
 
   @@map("users")
