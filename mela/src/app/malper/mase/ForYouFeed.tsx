@@ -26,7 +26,7 @@ export default function ForYouFeed() {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          "/api/parvekirin/diwar",
+          "/api/parvekirin/mase",
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<MasePage>(),
@@ -62,7 +62,7 @@ export default function ForYouFeed() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {posts.map((post) => (
-        <Post key={post.id} post={post} />
+        <Post key={post.id} post={post as any} />
       ))}
       {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>
