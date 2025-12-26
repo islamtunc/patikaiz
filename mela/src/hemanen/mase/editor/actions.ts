@@ -20,8 +20,8 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-  // derive a title from content (first line) to satisfy Prisma required field
-  const title =
+  // derive a name from content (first line) to satisfy Prisma required field
+  const name =
     Array.isArray(content) && content.length > 0 && content[0].trim()
       ? content[0].trim().slice(0, 200)
       : content.join(" ").slice(0, 200) || "Untitled";
@@ -29,7 +29,7 @@ export async function submitPost(input: {
   // Create the post first (without attachments)
   const created = await prisma.mase.create({
     data: {
-      title,
+      name,
       content,
       userId: user.id,
     },
