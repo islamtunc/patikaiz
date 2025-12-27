@@ -41,7 +41,7 @@ export default async function MenuBar({ className }: MenuBarProps) {
         title="messages"
         asChild
       >
-        <Link href="/messages">
+        <Link href="/peyam">
           <Mail />
           <span className="hidden lg:inline">Messages</span>
         </Link>
