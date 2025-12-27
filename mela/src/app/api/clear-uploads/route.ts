@@ -26,7 +26,7 @@ export async function GET(req: Request) {
         diyariId :null,
         stenbolId:null,
         tnId:null,
-        MaseId:null,
+        maseId:null,
         
 
 
