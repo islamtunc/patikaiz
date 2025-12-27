@@ -6,103 +6,101 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function PeyamPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+type Peyam = {
+  id: string;
+  name?: string;
+  email?: string;
+  message?: string;
+  createdAt?: string;
+  [key: string]: any;
+};
+
+export default function PeyamPageAdmin() {
+  const [items, setItems] = useState<Peyam[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [openId, setOpenId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-    setSuccess(false);
-
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      setError("Lütfen tüm alanları doldurun.");
-      return;
-    }
-
+  async function load() {
     setLoading(true);
+    setError(null);
     try {
-      const res = await fetch("/api/mmmpeyam", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim() }),
-      });
-
-      const data = await res.json().catch(() => null);
-      if (!res.ok) {
-        setError((data && (data.error || data.message)) || `Hata: ${res.status}`);
-        return;
-      }
-
-      setSuccess(true);
-      setName("");
-      setEmail("");
-      setMessage("");
-    } catch (err: any) {
-      setError(err?.message ?? "İstek başarısız oldu.");
+      const res = await fetch("/api/mmmpeyam");
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json = await res.json();
+      setItems(Array.isArray(json) ? json : []);
+    } catch (e: any) {
+      setError(e?.message || "Yükleme hatası");
     } finally {
       setLoading(false);
     }
   }
 
+  useEffect(() => {
+    load();
+  }, []);
+
   return (
-    <main className="max-w-xl mx-auto p-6">
-      <h1 className="text-2xl font-semibold mb-4">Bizimle iletişime geçin</h1>
-
-      <form onSubmit={onSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium">İsim</label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full border rounded p-2"
-            placeholder="Adınız"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium">E-posta</label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 block w-full border rounded p-2"
-            placeholder="mail@ornek.com"
-            type="email"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium">Mesaj</label>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="mt-1 block w-full border rounded p-2 min-h-[120px]"
-            placeholder="Mesajınız..."
-            required
-          />
-        </div>
-
-        <div className="flex items-center gap-3">
+    <main className="max-w-4xl mx-auto p-6">
+      <header className="flex items-center justify-between mb-4">
+        <h1 className="text-2xl font-semibold">Gelen Mesajlar (Admin)</h1>
+        <div className="flex items-center gap-2">
           <button
-            type="submit"
+            onClick={load}
+            className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
             disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-60"
           >
-            {loading ? "Gönderiliyor..." : "Gönder"}
+            {loading ? "Yükleniyor..." : "Yenile"}
           </button>
-
-          {success && <span className="text-green-600">Mesaj gönderildi.</span>}
-          {error && <span className="text-red-600">{error}</span>}
         </div>
-      </form>
+      </header>
+
+      {error && <div className="text-red-600 mb-3">{error}</div>}
+
+      {!items || items.length === 0 ? (
+        <div className="text-muted">Henüz mesaj yok.</div>
+      ) : (
+        <ul className="space-y-3">
+          {items.map((m) => (
+            <li
+              key={m.id}
+              className="border rounded p-3 bg-white shadow-sm"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <div className="text-sm text-gray-700">
+                    <strong>{m.name ?? "Anonim"}</strong>{" "}
+                    <span className="text-xs text-gray-400">— {m.email ?? ""}</span>
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {m.createdAt ? new Date(m.createdAt).toLocaleString() : ""}
+                  </div>
+                  <div className="mt-2 text-sm text-gray-800">
+                    {m.message ? (m.message.length > 120 ? m.message.slice(0, 120) + "…" : m.message) : ""}
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-end gap-2">
+                  <button
+                    onClick={() => setOpenId(openId === m.id ? null : m.id)}
+                    className="px-2 py-1 text-sm bg-blue-600 text-white rounded"
+                  >
+                    {openId === m.id ? "Kapat" : "Oku"}
+                  </button>
+                </div>
+              </div>
+
+              {openId === m.id && (
+                <div className="mt-3 border-t pt-3 text-sm text-gray-800 whitespace-pre-wrap">
+                  {m.message ?? "(mesaj yok)"}
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
