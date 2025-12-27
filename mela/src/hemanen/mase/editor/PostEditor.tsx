@@ -204,8 +204,7 @@ export default function NewProductPage() {
               !price ||
               !stock ||
               !size ||
-              isUploading ||
-              mutation.isPending
+              isUploading
             }
           >
             ✅ Ürünü Yayınla
@@ -312,6 +311,6 @@ function AttachmentPreview({
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // Estağfirulllah El-Azim
 // SuphanAllah, Elhamdulillah, Allahu Ekber
-// Allahumme salli ala seyyidina Muhammedin
+// Allahumme salli ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
 // Elhamdulillahirabbulalemin
 
