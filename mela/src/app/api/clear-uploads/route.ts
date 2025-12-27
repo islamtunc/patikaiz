@@ -26,8 +26,19 @@ export async function GET(req: Request) {
         diyariId :null,
         stenbolId:null,
         tnId:null,
+        MaseId:null,
         
 
+
+
+
+
+
+
+
+
+
+        diwarId:null,
 
 
         ...(process.env.NODE_ENV === "production"
@@ -48,7 +59,7 @@ export async function GET(req: Request) {
       unusedMedia.map(
         (m) =>
           m.url.split(
-            `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`
+            `/a/${process.env.UPLOADTHING_APP_ID}/`
           )[1],
       ),
     );
