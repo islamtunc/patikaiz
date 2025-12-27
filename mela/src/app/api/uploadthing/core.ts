@@ -18,7 +18,8 @@ export const fileRouter = {
   avatar: f({
     image: { maxFileSize: "512KB" },
   })
-    .middleware(async () => {
+    .middleware(async ({ req }) => {
+      // pass the incoming request to your auth helper so it can read cookies/headers
       const { user } = await validateRequest();
 
       if (!user) throw new UploadThingError("Unauthorized");
@@ -27,29 +28,17 @@ export const fileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       const oldAvatarUrl = metadata.user.avatarUrl;
-
       if (oldAvatarUrl) {
-        const key = oldAvatarUrl.split(
-          `/a/${process.env.UPLOADTHING_APP_ID}/`,
-        )[1];
-
-        await new UTApi().deleteFiles(key);
+        const key = oldAvatarUrl.split(`/a/${process.env.UPLOADTHING_APP_ID}/`)[1];
+        if (key) await new UTApi().deleteFiles(key);
       }
 
-      const newAvatarUrl = file.url.replace(
-        "/f/",
-        `/a/${process.env.UPLOADTHING_APP_ID}/`,
-      );
+      const newAvatarUrl = file.url.replace("/f/", `/a/${process.env.UPLOADTHING_APP_ID}/`);
 
-      await Promise.all([
-        prisma.user.update({
-          where: { id: metadata.user.id },
-          data: {
-            avatarUrl: newAvatarUrl,
-          },
-        }),
-   
-      ]);
+      await prisma.user.update({
+        where: { id: metadata.user.id },
+        data: { avatarUrl: newAvatarUrl },
+      });
 
       return { avatarUrl: newAvatarUrl };
     }),
@@ -57,21 +46,18 @@ export const fileRouter = {
     image: { maxFileSize: "4MB", maxFileCount: 5 },
     video: { maxFileSize: "64MB", maxFileCount: 5 },
   })
-    .middleware(async () => {
+    .middleware(async ({ req }) => {
       const { user } = await validateRequest();
-
       if (!user) throw new UploadThingError("Unauthorized");
-
-      return {};
+      return { user };
     })
-    .onUploadComplete(async ({ file }) => {
+    .onUploadComplete(async ({ file, metadata }) => {
       const media = await prisma.media.create({
         data: {
-          url: file.url.replace(
-            "/f/",
-            `/a/${process.env.UPLOADTHING_APP_ID}/`,
-          ),
+          url: file.url.replace("/f/", `/a/${process.env.UPLOADTHING_APP_ID}/`),
           type: file.type.startsWith("image") ? "IMAGE" : "VIDEO",
+          // optional: link to user if needed
+          ...(metadata?.user ? { userId: metadata.user.id } : {}),
         },
       });
 
