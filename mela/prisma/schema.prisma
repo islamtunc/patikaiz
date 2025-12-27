@@ -141,7 +141,6 @@ model Bav {
 
 model Mase {
   id        String   @id @default(cuid())
-  name      String
   createdAt DateTime @default(now())
 
   userId    String

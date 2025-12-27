@@ -8,7 +8,7 @@
 
 "use client";
 
-import { useSession } from "@/app/(navend)/SessionProvider";
+import { useSession } from "@/(navend)/SessionProvider";
 import LoadingButton from "@/hemanen/LoadingButton";
 import { Button } from "@/hemanen/ui/button";
 import UserAvatar from "@/hemanen/UserAvatar";
@@ -64,7 +64,7 @@ export default function PostEditor() {
   function onSubmit() {
     mutation.mutate(
       {
-        content: input.split("\n").filter(Boolean) as string[],
+        content: input,
         mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
       },
       {
