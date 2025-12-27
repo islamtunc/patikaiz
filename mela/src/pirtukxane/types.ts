@@ -6,9 +6,7 @@
 
 import { Prisma } from "@prisma/client";
 
-/**
- * Kullanıcı bilgilerini seçmek için
- */
+
 export function getUserDataSelect(loggedInUserId: string) {
   return {
     id: true,

@@ -312,6 +312,6 @@ function AttachmentPreview({
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // Estağfirulllah El-Azim
 // SuphanAllah, Elhamdulillah, Allahu Ekber
-// Allahumme salli ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allahumme salli ala seyyidina Muhammedin
 // Elhamdulillahirabbulalemin
 
