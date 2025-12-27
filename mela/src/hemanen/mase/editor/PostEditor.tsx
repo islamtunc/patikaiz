@@ -8,7 +8,7 @@
 
 "use client";
 
-import { useSession } from "@/(navend)/SessionProvider";
+import { useSession } from "@/app/(navend)/SessionProvider";
 import LoadingButton from "@/hemanen/LoadingButton";
 import { Button } from "@/hemanen/ui/button";
 import UserAvatar from "@/hemanen/UserAvatar";
