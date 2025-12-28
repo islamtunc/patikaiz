@@ -1,8 +1,8 @@
 // Bismillahirrahmanirahim
 // Elhamdulillahirrabbulalemin
-//Es selatu vesselamu ala rasulina  Muhaammedin ve ala alihi ve sahbihi ecmain
-
-
+//Es selatu vesselamu ala rasulina  Muhaammedin 
+// La ilaha illallah vahdehu la şerike leh
+// Muhammedun abduhu ve resuluhu
 import { z } from "zod";
 
 const requiredString = z.string().trim().min(1, "Required");
