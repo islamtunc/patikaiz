@@ -79,11 +79,12 @@ export function useSubmitPostMutation() {
         description: "gönderi yayınlandı",
       });
     },
-    onError(error) {
+    onError(error: unknown) {
+      const message = (error as any)?.message ?? String(error ?? "Bilinmeyen hata");
       console.error(error);
       toast({
         variant: "destructive",
-        description: "Sorun çıktı tekrar deneyin devam ederse yekazad SC ile iletişime geçin.",
+        description: `Sorun çıktı: ${message}. Tekrar deneyin; devam ederse yekazad SC ile iletişime geçin.`,
       });
     },
   });

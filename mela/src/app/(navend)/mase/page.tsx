@@ -2,7 +2,7 @@
 
 // Bismillahirrahmanirahim
 // Elhamdulillahirabbulalemin
-// Ve salatu ve selamu ala resulina Muhammedin ve alihi ve sahbihi ecmain
+// Ve salatu ve selamu ala resulina Muhammedin
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 // Estağfirullah El-Azim
@@ -26,11 +26,11 @@ export default function Home() {
     <main className="flex w-full min-w-0 gap-5 p-">
       <div className="w-full min-w-0 space-y-5">
 
-      <Alert variant="success"> Manage Products Page </Alert>
+      <Alert variant="success"> Masa Takvimleri Sayfasını Yönet </Alert>
         <Tabs defaultValue="mm">
           <TabsList>
-            <TabsTrigger value="for-you">For You</TabsTrigger>
-            <TabsTrigger value="mm">New Post</TabsTrigger>
+            <TabsTrigger value="for-you">Yayınlananlar</TabsTrigger>
+            <TabsTrigger value="mm">Yeni Ürün</TabsTrigger>
 
           </TabsList>
           <TabsContent value="for-you">
