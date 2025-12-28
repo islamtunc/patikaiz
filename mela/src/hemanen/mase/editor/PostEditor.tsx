@@ -1,6 +1,6 @@
 // Bismillahirahmanirahim 
 // ElHAMDULİLLAHİRABBULALEMİN
-// Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu ve Es-selamu ala Resulina Muhammedin 
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // SuphanAllah, Elhamdulillah, Allahu Ekber
 
@@ -8,11 +8,11 @@
 
 "use client";
 
-import { useSession } from "@/app/(main)/SessionProvider";
-import LoadingButton from "@/components/LoadingButton";
-import { Button } from "@/components/ui/button";
-import UserAvatar from "@/components/UserAvatar";
-import { cn } from "@/lib/utils";
+import { useSession } from "@/app/(navend)/SessionProvider";
+import LoadingButton from "@/hemanen/LoadingButton";
+import { Button } from "@/hemanen/ui/button";
+import UserAvatar from "@/hemanen/UserAvatar";
+import { cn } from "@/pirtukxane/utils";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
