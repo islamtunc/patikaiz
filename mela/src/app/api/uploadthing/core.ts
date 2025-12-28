@@ -1,12 +1,8 @@
 // Bismillahirahmanirahim
 // Elhamdulillahirabbulalemin
-// Esselatu vesselamu ala rasulina Muhammedin
-// Elhamdulillahirrabbulalemin
-// La ilahe illallah
-// Subhanallah, Elhamdulillah, Allahu Ekber
+// Esselatu vesselamu ala rasulina Muhammedin 
+// Suphanallah, Elhamdulillah, Allahu Ekber
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
-// Bila Allah Azze ve Celle me ji sunneta Resulullah Muhammed (s.a.v) neqetine, amin rabbal alemin
-// Xeyni Allah tu Xweda tune
 import { validateRequest } from "@/auth";
 import prisma from "@/pirtukxane/prisma";
 import { createUploadthing, FileRouter } from "uploadthing/next";
@@ -18,8 +14,7 @@ export const fileRouter = {
   avatar: f({
     image: { maxFileSize: "512KB" },
   })
-    .middleware(async ({ req }) => {
-      // pass the incoming request to your auth helper so it can read cookies/headers
+    .middleware(async () => {
       const { user } = await validateRequest();
 
       if (!user) throw new UploadThingError("Unauthorized");
@@ -28,17 +23,29 @@ export const fileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       const oldAvatarUrl = metadata.user.avatarUrl;
+
       if (oldAvatarUrl) {
-        const key = oldAvatarUrl.split(`/a/${process.env.UPLOADTHING_APP_ID}/`)[1];
-        if (key) await new UTApi().deleteFiles(key);
+        const key = oldAvatarUrl.split(
+          `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
+        )[1];
+
+        await new UTApi().deleteFiles(key);
       }
 
-      const newAvatarUrl = file.url.replace("/f/", `/a/${process.env.UPLOADTHING_APP_ID}/`);
+      const newAvatarUrl = file.url.replace(
+        "/f/",
+        `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
+      );
 
-      await prisma.user.update({
-        where: { id: metadata.user.id },
-        data: { avatarUrl: newAvatarUrl },
-      });
+      await Promise.all([
+        prisma.user.update({
+          where: { id: metadata.user.id },
+          data: {
+            avatarUrl: newAvatarUrl,
+          },
+        }),
+   
+      ]);
 
       return { avatarUrl: newAvatarUrl };
     }),
@@ -46,23 +53,40 @@ export const fileRouter = {
     image: { maxFileSize: "4MB", maxFileCount: 5 },
     video: { maxFileSize: "64MB", maxFileCount: 5 },
   })
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       const { user } = await validateRequest();
+
       if (!user) throw new UploadThingError("Unauthorized");
-      return { user };
+
+      return {};
     })
-    .onUploadComplete(async ({ file, metadata }) => {
+    .onUploadComplete(async ({ file }) => {
+      const url = file.url.replace(
+        "/f/",
+        `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
+      );
+      const type = file.type.startsWith("image") ? "IMAGE" : "VIDEO";
       const media = await prisma.media.create({
         data: {
-          url: file.url.replace("/f/", `/a/${process.env.UPLOADTHING_APP_ID}/`),
-          type: file.type.startsWith("image") ? "IMAGE" : "VIDEO",
-          // optional: link to user if needed
-          ...(metadata?.user ? { userId: metadata.user.id } : {}),
+          url,
+          type,
         },
       });
 
-      return { mediaId: media.id };
+      // DÖNEN DEĞERİ GÜNCELLE
+      return { 
+        mediaId: media.id,
+        url,
+        type,
+      };
     }),
 } satisfies FileRouter;
 
 export type AppFileRouter = typeof fileRouter;
+
+// The following JSX code was removed because it is not valid in this context:
+// {file.type === "IMAGE" ? (
+//   <img src={file.url} alt="Uploaded" />
+// ) : (
+//   <a href={file.url}>Download Video</a>
+// )}
