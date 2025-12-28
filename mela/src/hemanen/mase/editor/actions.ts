@@ -24,9 +24,10 @@ export async function submitPost(input: {
     data: {
       content, // DİZİ OLARAK GÖNDER
       userId: user.id,
-      attachments: {
-        connect: Array.isArray(mediaIds) ? mediaIds.map((id) => ({ id })) : [],
-      },
+      // use the actual relation field name (media) and only connect when ids exist
+      media: mediaIds && mediaIds.length
+        ? { connect: mediaIds.map((id) => ({ id })) }
+        : undefined,
     },
     include: getMaseInclude(user.id),
   });
