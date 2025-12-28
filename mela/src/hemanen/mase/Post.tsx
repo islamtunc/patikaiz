@@ -40,8 +40,8 @@ export default function Post({ post }: PostProps) {
           {post.content[0]}
         </div>
       </Linkify>
-      {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
+      {!!post.media.length && (
+        <MediaPreviews media={post.media} />
       )}
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
@@ -60,18 +60,18 @@ export default function Post({ post }: PostProps) {
 }
 
 interface MediaPreviewsProps {
-  attachments: Media[];
+  media: Media[];
 }
 
-function MediaPreviews({ attachments }: MediaPreviewsProps) {
+function MediaPreviews({ media }: MediaPreviewsProps) {
   return (
     <div
       className={cn(
         "flex flex-col gap-3",
-        attachments.length > 1 && "sm:grid sm:grid-cols-2",
+        media.length > 1 && "sm:grid sm:grid-cols-2",
       )}
     >
-      {attachments.map((m) => (
+      {media.map((m) => (
         <MediaPreview key={m.id} media={m} />
       ))}
     </div>
