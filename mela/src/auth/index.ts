@@ -9,4 +9,4 @@
 
 
 // Re-export main auth surface to ensure "@/auth" resolution works during build.
-export * from "../auth";
+export { validateRequest } from "../auth";
