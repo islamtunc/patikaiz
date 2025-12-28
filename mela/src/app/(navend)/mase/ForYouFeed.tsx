@@ -8,18 +8,21 @@
 "use client";
 
 import InfiniteScrollContainer from "@/hemanen/InfiniteScrollContainer";
-import Post from "@/hemanen/diwar/Post";
-import PostsLoadingSkeleton from "@/hemanen/diwar/PostsLoadingSkeleton";
+import Post from "@/hemanen/mase/Post";
+import PostsLoadingSkeleton from "@/hemanen/mase/PostsLoadingSkeleton";
 import kyInstance from "@/pirtukxane/ky";
 import { MasePage } from "@/pirtukxane/types";
-import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { Button } from "react-bootstrap";
 import Link from "next/link";
 import { toast } from "@/hemanen/ui/use-toast";
+import { useSession } from "@/app/(navend)/SessionProvider";
 
 
 export default function ForYouFeed() {
+  const { user } = useSession();
+  const queryClient = useQueryClient();
   const {
     data,
     fetchNextPage,
@@ -44,15 +47,15 @@ export default function ForYouFeed() {
 
   const deleteMutation = useMutation({
     mutationFn: async (postId: string) => {
-      await kyInstance.delete(`/api/posts/diwar/${postId}`);
+      await kyInstance.delete(`/api/parvekirin/mase/${postId}`);
     },
     onSuccess: () => {
       toast({
         description: "Gönderi silindi",
         variant: "default",
       });
-      // Sayfayı yenile veya veriyi tekrar çek
-      window.location.reload();
+      // invalidate feed so UI refreshes without full reload
+      queryClient.invalidateQueries({ queryKey: ["post-feed"] });
     },
     onError: () => {
       toast({
@@ -90,14 +93,16 @@ export default function ForYouFeed() {
       {posts.map((post) => (
         <div key={post.id} className="relative">
           <div className="mb-2 flex gap-2 justify-end">
-            <Button
-              variant="outline-danger"
-              size="sm"
-              onClick={() => deleteMutation.mutate(post.id)}
-              disabled={deleteMutation.isPending}
-            >
-              Sil
-            </Button>
+            {user?.id === post.user.id && (
+              <Button
+                variant="outline-danger"
+                size="sm"
+                onClick={() => deleteMutation.mutate(post.id)}
+                disabled={deleteMutation.isPending}
+              >
+                Sil
+              </Button>
+            )}
           </div>
           <Post post={post as any} />
         </div>
