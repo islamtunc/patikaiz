@@ -1,9 +1,8 @@
-// Bismillahirrahmanirrahim 
+// Bismillahirrahmanirrahim
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin 
-// Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
-// SuphanAllah, Elhamdulillah, Allahu Ekber
-
+// Es-selatu vesselamu ala resulina Muhammedin
+// La ilahe illallah
+// Subhanallah, Elhamdulillah, Allahu Ekber
 
 import { MaseData } from "@/pirtukxane/types";
 import { MoreHorizontal, Trash2 } from "lucide-react";
@@ -45,7 +44,11 @@ export default function PostMoreButton({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    
+      <DeletePostDialog
+        post={post}
+        open={showDeleteDialog}
+        onClose={() => setShowDeleteDialog(false)}
+      />
     </>
   );
 }

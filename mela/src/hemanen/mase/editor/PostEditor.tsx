@@ -1,6 +1,6 @@
 // Bismillahirahmanirahim 
 // ElHAMDULİLLAHİRABBULALEMİN
-// Es-selatu ve Es-selamu ala Resulina Muhammedin 
+// Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 // Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
 // SuphanAllah, Elhamdulillah, Allahu Ekber
 
@@ -8,11 +8,11 @@
 
 "use client";
 
-import { useSession } from "@/app/(navend)/SessionProvider";
-import LoadingButton from "@/hemanen/LoadingButton";
-import { Button } from "@/hemanen/ui/button";
-import UserAvatar from "@/hemanen/UserAvatar";
-import { cn } from "@/pirtukxane/utils";
+import { useSession } from "@/app/(main)/SessionProvider";
+import LoadingButton from "@/components/LoadingButton";
+import { Button } from "@/components/ui/button";
+import UserAvatar from "@/components/UserAvatar";
+import { cn } from "@/lib/utils";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -23,13 +23,6 @@ import { ClipboardEvent, useRef, useState } from "react";
 import { useSubmitPostMutation } from "./mutations";
 import "./styles.css";
 import useMediaUpload, { Attachment } from "./useMediaUpload";
-
-// Bismillahirahmanirahim 
-// ElHAMDULİLLAHİRABBULALEMİN
-// Es-selatu ve Es-selamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
-// Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
-// SuphanAllah, Elhamdulillah, Allahu Ekber
-
 
 export default function PostEditor() {
   const { user } = useSession();
@@ -232,7 +225,7 @@ function AttachmentPreview({
   attachment: Attachment;
   onRemoveClick: () => void;
 }) {
-  const src = (attachment as Attachment & { url?: string }).url ?? URL.createObjectURL(attachment.file);
+  const src = attachment.url || URL.createObjectURL(attachment.file);
 
   return (
     <div className={cn("relative mx-auto size-fit", attachment.isUploading && "opacity-50")}>

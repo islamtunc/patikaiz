@@ -4,7 +4,7 @@
 
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Input } from "@/hemanen/ui/input";
+import { Input } from "@/components/ui/input";
 
 export default function SearchField() {
   const router = useRouter();

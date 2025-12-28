@@ -22,9 +22,7 @@ export function useSubmitPostMutation() {
 
   const queryClient = useQueryClient();
 
-  const { session } = useSession();
-  // session type may not declare 'user'; cast to any to access optional user property safely
-  const user = (session as any)?.user;
+  const { user } = useSession();
 
   const mutation = useMutation({
     mutationFn: submitPost,
@@ -32,12 +30,10 @@ export function useSubmitPostMutation() {
       const queryFilter = {
         queryKey: ["post-feed"],
         predicate(query) {
-          const userId = user?.id;
           return (
             query.queryKey.includes("for-you") ||
-            (userId &&
-              query.queryKey.includes("user-posts") &&
-              query.queryKey.includes(userId))
+            (query.queryKey.includes("user-posts") &&
+              query.queryKey.includes(user.id))
           );
         },
       } satisfies QueryFilters;
@@ -47,24 +43,20 @@ export function useSubmitPostMutation() {
       queryClient.setQueriesData<InfiniteData<MasePage, string | null>>(
         queryFilter,
         (oldData) => {
-          if (!oldData) return oldData;
-          const firstPage = oldData.pages[0];
-          if (!firstPage) return oldData;
+          const firstPage = oldData?.pages[0];
 
-          // quick fix: cast newPost to any (or to the expected post type) to satisfy TS.
-          // Better long-term: align the post types so casting is unnecessary.
-          const updated = {
-            ...oldData,
-            pages: [
-              {
-                ...firstPage,
-                posts: [newPost as any, ...firstPage.posts],
-              },
-              ...oldData.pages.slice(1),
-            ],
-          } as InfiniteData<MasePage, string | null>;
-
-          return updated;
+          if (firstPage) {
+            return {
+              pageParams: oldData.pageParams,
+              pages: [
+                {
+                  posts: [newPost, ...firstPage.posts],
+                  nextCursor: firstPage.nextCursor,
+                },
+                ...oldData.pages.slice(1),
+              ],
+            };
+          }
         },
       );
 
@@ -79,12 +71,11 @@ export function useSubmitPostMutation() {
         description: "gönderi yayınlandı",
       });
     },
-    onError(error: unknown) {
-      const message = (error as any)?.message ?? String(error ?? "Bilinmeyen hata");
+    onError(error) {
       console.error(error);
       toast({
         variant: "destructive",
-        description: `Sorun çıktı: ${message}. Tekrar deneyin; devam ederse yekazad SC ile iletişime geçin.`,
+        description: "Sorun çıktı tekrar deneyin devam ederse yekazad SC ile iletişime geçin.",
       });
     },
   });

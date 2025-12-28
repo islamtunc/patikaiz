@@ -1,12 +1,8 @@
 // Bismillahirrahmanirahim
-// Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin 
-// Allah u Ekber, Allah u Ekber, Allah u Ekber, La ilahe illallah
-// SuphanAllah, Elhamdulillah, Allahu Ekber
 
 
 
-import { MasePage} from "@/pirtukxane/types";
+import { PostsPage } from "@/pirtukxane/types";
 import {
   InfiniteData,
   QueryFilters,
@@ -32,7 +28,7 @@ export function useDeletePostMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<MasePage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<PostsPage, string | null>>(
         queryFilter,
         (oldData) => {
           if (!oldData) return;

@@ -1,9 +1,8 @@
-// Bismillahirrahmanirahim
-// Elhamdu lillahi rabbil alamin
-// Esselatu vesselamu ala rasulina Muhammedin
+// Bismillahirrahmanirrahim
+// Elhamdulillahirabbulalemin
+// Es-selatu vesselamu ala resulina Muhammedin
 // La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
-
 
 
 

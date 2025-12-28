@@ -1,15 +1,22 @@
 //Bismillahirrahmanirrahim 
+// Elhamdulillahirabbulalemin
+// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Suphanallah, Elhamdulillah, Allahu Ekber
+// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
+
+// Elhamdulillahirabbulalemin
 
 
 
-
-import { useToast } from "@/hemanen/ui/use-toast";
-import { useUploadThing } from "@/pirtukxane/uploadthing";
+import { useToast } from "@/components/ui/use-toast";
+import { useUploadThing } from "@/lib/uploadthing";
 import { useState } from "react";
 
 export interface Attachment {
   file: File;
   mediaId?: string;
+  url?: string;
+  type?: string;
   isUploading: boolean;
 }
 
@@ -51,6 +58,8 @@ export default function useMediaUpload() {
           return {
             ...a,
             mediaId: uploadResult.serverData.mediaId,
+            url: uploadResult.serverData.url,
+            type: uploadResult.serverData.type,
             isUploading: false,
           };
         }),

@@ -1,6 +1,6 @@
 // Bismillahir Rahmanir Rahim
 // Elhamdulillahi Rabbil Alamin
-// Essalatu vesselamu ala Resulina Muhammedin 
+// Essalatu vesselamu ala Resulina Muhammedin ve ala alihi ve sahbihi ecmain
 // La ilahe illallah, Muhammedur Resulullah
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
