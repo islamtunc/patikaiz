@@ -2,7 +2,7 @@
 
 
 
-import { PostsPage } from "@/pirtukxane/types";
+import { MasePage } from "@/pirtukxane/types";
 import {
   InfiniteData,
   QueryFilters,
@@ -28,7 +28,7 @@ export function useDeletePostMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<PostsPage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<MasePage, string | null>>(
         queryFilter,
         (oldData) => {
           if (!oldData) return;
