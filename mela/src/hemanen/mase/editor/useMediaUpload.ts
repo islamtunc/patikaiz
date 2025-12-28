@@ -1,6 +1,6 @@
 //Bismillahirrahmanirrahim 
 // Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin ve ala alihi ve sahbihi ecmain
+// Es-selatu vesselamu ala rasulina Muhammedin 
 // Suphanallah, Elhamdulillah, Allahu Ekber
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
@@ -8,8 +8,8 @@
 
 
 
-import { useToast } from "@/components/ui/use-toast";
-import { useUploadThing } from "@/lib/uploadthing";
+import { useToast } from "@/hemanen/ui/use-toast";
+import { useUploadThing } from "@/pirtukxane/uploadthing";
 import { useState } from "react";
 
 export interface Attachment {
