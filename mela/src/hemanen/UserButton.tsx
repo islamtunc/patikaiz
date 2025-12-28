@@ -42,9 +42,9 @@ export default function UserButton({ className }: UserButtonProps) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>Logged in as @{user.username}</DropdownMenuLabel>
+        <DropdownMenuLabel>Wek @{user.username} tedeyi niha</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <Link href={`/users/${user.username}`}>
+        <Link href={`/bikarheneren/${user.username}`}>
           <DropdownMenuItem>
             <UserIcon className="mr-2 size-4" />
             Profila We
