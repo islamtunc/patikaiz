@@ -119,7 +119,8 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
           <EditProfileButton user={user} />
         ) : (
 
-  <Button >Mesaj Yaz</Button>)}
+          <div></div>
+        )}
       </div>
       {user.bio && (
         <>
