@@ -4,9 +4,8 @@
 // Suphanallah, Elhamdulillah, Allahu Ekber
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
+// @ts-ignore: missing type declarations for module alias "@/auth"
 import { validateRequest } from "@/auth";
-import { Button } from "@/hemanen/ui/button";
-import prisma from "@/pirtukxane/prisma";
 import {  CarIcon, Home, Mail } from "lucide-react";
 import Link from "next/link";
 
