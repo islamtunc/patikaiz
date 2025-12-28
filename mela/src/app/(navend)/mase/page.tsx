@@ -9,11 +9,11 @@
 // La ilahe illallah, Muhammedur Resulullah
 // Bismillahirrahmanirahim
 // Elhamdulillahirabbulalemin
-// Ve salatu ve selamu ala resulina Muhammedin ve alihi ve sahbihi ecmain
+// Ve salatu ve selamu ala resulina Muhammedin 
 // Elhamdulillahirabbulalemin
 
 
-import PostEditor from "@/hemanen/diwar/editor/PostEditor";
+import PostEditor from "@/hemanen/mase/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/hemanen/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";

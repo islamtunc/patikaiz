@@ -5,7 +5,7 @@
 
 // la ilahe illallah
 //  Muhammeden resulullah
-// Allahumme salli ala seyyidina Muhammedin ve ala alihi ve sahbihi ecmain
+// Allahumme salli ala seyyidina Muhammedin 
 // ALLAHU EKBERU KEBIRAN
 // Bismillahirrahmanirrahim
 // Elhamdulillahirabbulalemin
