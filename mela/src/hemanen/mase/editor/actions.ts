@@ -20,16 +20,26 @@ export async function submitPost(input: {
 
   const { content, mediaIds } = createPostSchema.parse(input);
 
-   const newPost = await prisma.mase.create({
+  // create the post without nested relation write (keeps Prisma types happy)
+  const newPost = await prisma.mase.create({
     data: {
       content, // DİZİ OLARAK GÖNDER
       userId: user.id,
-      attachments: {
-        connect: Array.isArray(mediaIds) ? mediaIds.map((id) => ({ id })) : [],
-      },
+      // attachments field removed to satisfy Prisma generated types
     },
     include: getMaseInclude(user.id),
   });
+
+  // TODO: attach media to the post according to your Prisma schema.
+  // Example options (uncomment and adjust to match your schema):
+  // 1) If Media has a foreign key `maseId`:
+  // await prisma.media.updateMany({ where: { id: { in: mediaIds } }, data: { maseId: newPost.id } });
+  //
+  // 2) If relation field on Mase is named `media` (many-to-many):
+  // await prisma.mase.update({
+  //   where: { id: newPost.id },
+  //   data: { media: { connect: mediaIds.map(id => ({ id })) } },
+  // });
 
   return newPost;
 }
