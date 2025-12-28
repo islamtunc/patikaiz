@@ -57,23 +57,57 @@ export async function POST(req: Request) {
   }
 
   const base = process.env.KARGO_PANELS_BASE_URL ?? "https://api.kargopaneli.com";
-  const endpoint = process.env.KARGO_PANELS_SHIP_ENDPOINT ?? "/v1/shipments";
-  const upstream = `${base.replace(/\/$/, "")}${endpoint}`;
+  const envEndpoint = process.env.KARGO_PANELS_SHIP_ENDPOINT ?? "/v1/shipments";
 
-  const res = await fetch(upstream, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  // try the configured endpoint, but fall back to common alternatives if route not found
+  const triedEndpoints = [
+    envEndpoint,
+    // common alternative endpoints for pricing / shipments
+    "/v1/price",
+    "/v1/prices",
+    "/v1/shipments",
+  ].filter((v, i, a) => v && a.indexOf(v) === i); // unique
 
-  const text = await res.text();
-  const contentType = res.headers.get("content-type") ?? "";
-  const parsed = contentType.includes("application/json") ? JSON.parse(text) : text;
+  let lastRes: Response | null = null;
+  let lastText = "";
+  let lastContentType = "";
 
-  if (!res.ok) return NextResponse.json({ error: parsed }, { status: res.status });
+  for (const ep of triedEndpoints) {
+    const upstream = `${base.replace(/\/$/, "")}${ep}`;
+    try {
+      const res = await fetch(upstream, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      lastRes = res;
+      lastText = await res.text();
+      lastContentType = res.headers.get("content-type") ?? "";
+
+      // if found or other non-404 status, stop trying
+      if (res.ok || res.status !== 404) break;
+      // otherwise continue to next alternative
+    } catch (err) {
+      // network error — keep trying alternatives
+      lastRes = null;
+    }
+  }
+
+  if (!lastRes) {
+    return NextResponse.json({ error: "Upstream request failed (no response)" }, { status: 502 });
+  }
+
+  const parsed = lastContentType.includes("application/json")
+    ? (() => {
+        try { return JSON.parse(lastText); } catch { return lastText; }
+      })()
+    : lastText;
+
+  if (!lastRes.ok) return NextResponse.json({ error: parsed }, { status: lastRes.status });
   return NextResponse.json(parsed);
 }
