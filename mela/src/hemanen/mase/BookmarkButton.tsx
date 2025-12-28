@@ -2,9 +2,9 @@
 
 
 
-import kyInstance from "@/lib/ky";
-import { BookmarkInfo } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import kyInstance from "@/pirtukxane/ky";
+import { BookmarkInfo } from "@/pirtukxane/types";
+import { cn } from "@/pirtukxane/utils";
 import {
   QueryKey,
   useMutation,
