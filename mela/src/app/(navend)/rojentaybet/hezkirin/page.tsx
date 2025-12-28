@@ -7,12 +7,11 @@
 // Allah bizleri Peygamber Efendimiz'in (s.a.v) izinden giden, O'na layık bir ümmet eylesin.
 // SuphanAllah velhamdulillah, Allahu Ekber.
 // La ilahe illallah, Muhammedur Resulullah.
-import PostEditor from "@/hemanen/diyari/editor/PostEditor";
+import PostEditor from "@/hemanen/rojentaybet/hezkirin/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/hemanen/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
 
-import SearchField from "@/hemanen/diwar/SearchField";
 import { Alert } from "react-bootstrap";
 
 export default function Home() {
@@ -20,19 +19,17 @@ export default function Home() {
     <main className="flex w-full min-w-0 gap-5 p-">
       <div className="w-full min-w-0 space-y-5">
 
-      <Alert variant="success"> Manage References Page </Alert>
+      <Alert variant="success"> Sevgi Temalı Takvimler Sayfasını Yönetin </Alert>
         <Tabs defaultValue="mm">
           <TabsList>
-            <TabsTrigger value="for-you">For You</TabsTrigger>
-            <TabsTrigger value="mm">New Post</TabsTrigger>
-
+            <TabsTrigger value="for-you">Yayınlananlar</TabsTrigger>
+            <TabsTrigger value="mm">Yeni Gönderi</TabsTrigger>
           </TabsList>
           <TabsContent value="for-you">
             <ForYouFeed />
           </TabsContent>
           <TabsContent value="following">
 
-      <SearchField/>
           </TabsContent>
     
 
