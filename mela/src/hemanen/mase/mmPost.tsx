@@ -15,60 +15,63 @@ import Image from "next/image";
 import Link from "next/link";
 import Linkify from "../Linkify";
 import UserAvatar from "../UserAvatar";
+import { Card, Button } from "react-bootstrap";
 
 
 interface PostProps {
   post: MaseData;
 }
-
 export default function MmmPost({ post }: PostProps) {
+  const attachments: Media[] = Array.isArray(post.media) ? (post.media as Media[]) : [];
+
+  const zedeke = async () => {
+    try {
+      const res = await fetch("/api/cart/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          postId: post.id,
+          content: post.content,
+        }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      alert("Sepete Eklendi!");
+    } catch (err: any) {
+      alert("Hata: " + (err?.message ?? "Bilinmeyen"));
+    }
+  };
 
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm text-black">
       <div className="flex justify-between gap-3">
         <div className="flex flex-wrap gap-3">
-          <div>
-          </div>
+          <div />
         </div>
       </div>
+
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+
       <Linkify>
-        <div className="space-y-3">
-          {Array.isArray(post.content)
-            ? post.content.map((line: string, i: number) => {
-                if (i === 0)
-                  return (
-                    <h2 key={i} className="text-xl font-bold mb-1">
-                      {line}
-                    </h2>
-                  );
-                if (i === 1)
-                  return (
-                    <div key={i} className="text-green-700 font-semibold mb-2">
-                      {line}
-                    </div>
-                  );
-                return (
-                  <p key={i} className="text-base whitespace-pre-line">
-                    {line}
-                  </p>
-                );
-              })
-            : (
-              <p className="text-base whitespace-pre-line">{post.content}</p>
-            )}
-        </div>
+        <Card>
+          <Card.Title>{post.content?.[0]}</Card.Title>
+          <Card.Body>
+            <Card.Text>{post.content?.[1]}</Card.Text>
+            {post.content?.[2] && <Card.Text>{post.content[2]}</Card.Text>}
+          </Card.Body>
+
+          <Button onClick={zedeke} variant="outline" className="w-full">
+            Sepete Ekle
+          </Button>
+        </Card>
       </Linkify>
-      {!!post.attachments.length && (
-        <MediaPreviews attachments={post.attachments} />
-      )}
+
+      {attachments.length > 0 && <MediaPreviews attachments={attachments} />}
+
       <hr className="text-muted-foreground" />
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
-          <Link
-            href={`/malper/mmavahi/posts/${post.id}`}
-            className="block text-sm text-muted-foreground hover:underline"
-            suppressHydrationWarning
-          >
+          <Link href={`/malper/mmavahi/posts/${post.id}`} className="block text-sm text-muted-foreground hover:underline" suppressHydrationWarning>
+            {/* detay */}
           </Link>
         </div>
       </div>
@@ -85,7 +88,7 @@ function MediaPreviews({ attachments }: MediaPreviewsProps) {
     <div
       className={cn(
         "flex flex-col gap-3",
-        attachments.length > 1 && "sm:grid sm:grid-cols-2",
+        attachments.length > 1 && "sm:grid sm:grid-cols-2"
       )}
     >
       {attachments.map((m) => (
@@ -101,25 +104,13 @@ interface MediaPreviewProps {
 
 function MediaPreview({ media }: MediaPreviewProps) {
   if (media.type === "IMAGE") {
-    return (
-      <Image
-        src={media.url}
-        alt="Attachment"
-        width={500}
-        height={500}
-        className="mx-auto size-fit max-h-[30rem] rounded-2xl"
-      />
-    );
+    return <Image src={media.url} alt="Attachment" width={500} height={500} className="mx-auto size-fit max-h-[30rem] rounded-2xl" />;
   }
 
   if (media.type === "VIDEO") {
     return (
       <div>
-        <video
-          src={media.url}
-          controls
-          className="mx-auto size-fit max-h-[30rem] rounded-2xl"
-        />
+        <video src={media.url} controls className="mx-auto size-fit max-h-[30rem] rounded-2xl" />
       </div>
     );
   }
@@ -129,3 +120,4 @@ function MediaPreview({ media }: MediaPreviewProps) {
 
 
 
+// Bismillahirrahmanirrahim
