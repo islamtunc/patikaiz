@@ -6,7 +6,7 @@
 
 "use client"
 
-import { Button } from "../../../hemanen/ui/button";
+import { Button } from "@/hemanen/ui/button";
 import { Bookmark, Home, User, ShoppingCart, ShoppingBasketIcon, NotebookIcon } from "lucide-react";
 import Link from "next/link";
 

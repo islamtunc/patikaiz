@@ -1,8 +1,5 @@
 // Bismillahirrahmanirahim 
-// Elhamdulillahirabbulalemin
-// Es-selatu vesselamu ala rasulina Muhammedin
-// Subhanallah, Elhamdulillah, Allahu Ekber
-// Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
+
 
 
 import * as React from "react"

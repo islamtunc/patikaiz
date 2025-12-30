@@ -4,7 +4,7 @@
 //Suphanallah, Elhamdulillah, Allahu Ekber
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
-import { validateRequest } from "@/(verastkirin)";
+import { validateRequest } from "@/auth";
 import Linkify from "@/hemanen/Linkify";
 import UserAvatar from "@/hemanen/UserAvatar";
 import prisma from "@/pirtukxane/prisma";
@@ -119,8 +119,7 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
           <EditProfileButton user={user} />
         ) : (
 
-          <div></div>
-        )}
+  <Button >Mesaj Yaz</Button>)}
       </div>
       {user.bio && (
         <>

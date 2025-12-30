@@ -67,48 +67,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
       notFound()
     }
 
-    // if there are no products, render the page with a visible modal saying "Sepet boş"
-    if (selik.products.length === 0) {
-      return (
-        <div className="min-h-screen bg-black text-white flex items-center justify-center">
-          <div className="container px-4">
-            <h1 className="text-4xl font-bold mb-4">{selik.title}</h1>
-
-            {/* Modal overlay */}
-            <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-              <div className="bg-white text-black rounded-2xl max-w-sm w-full p-6 shadow-lg">
-                <h2 className="text-2xl font-semibold mb-2">Sepet boş</h2>
-                <p className="text-gray-700 mb-4">
-                  Bu kategori için sepete eklenebilecek ürün bulunmamaktadır.
-                </p>
-                <div className="flex justify-end gap-2">
-                  <a
-                    href="/"
-                    className="px-4 py-2 bg-gray-800 text-white rounded hover:opacity-90 transition"
-                  >
-                    Ana Sayfaya Dön
-                  </a>
-                  <a
-                    href="/malper"
-                    className="px-4 py-2 bg-green-600 text-white rounded hover:opacity-90 transition"
-                  >
-                    Kategorilere Git
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Keep an empty container below so the page layout remains */}
-            <div className="mt-8">
-              <p className="text-gray-400 max-w-2xl">
-                {selik.content?.join(" ") ?? ""}
-              </p>
-            </div>
-          </div>
-        </div>
-      )
-    }
-
     return (
       <div className="container mx-auto px-4 py-10">
         {/* Başlık */}
@@ -118,6 +76,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
             {selik.content.join(" ")}
           </p>
         ) : null}
+
+        {/* Ürün yoksa */}
+        {selik.products.length === 0 && (
+          <div className="text-center py-16 text-gray-500">
+            Bu kategoriye henüz ürün eklenmedi.
+          </div>
+        )}
 
         {/* Ürün Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
