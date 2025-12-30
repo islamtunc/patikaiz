@@ -4,7 +4,7 @@
 //Suphanallah, Elhamdulillah, Allahu Ekber
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
-import { validateRequest } from "@/auth";
+import { validateRequest } from "@/(verastkirin)";
 import Linkify from "@/hemanen/Linkify";
 import UserAvatar from "@/hemanen/UserAvatar";
 import prisma from "@/pirtukxane/prisma";
