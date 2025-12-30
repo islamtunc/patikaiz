@@ -8,7 +8,7 @@
 import { validateRequest } from "@/(verastkirin)";
 import { CarIcon, Home, Mail } from "lucide-react";
 import Link from "next/link";
-import { Button } from "../../hemanen/ui/button";
+import { Button } from "../../components/ui/button";
 
 interface MenuBarProps {
   className?: string;

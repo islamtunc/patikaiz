@@ -11,8 +11,8 @@
     "prefix": ""
   },
   "aliases": {
-    "hemanen": "@/hemanen",
+    "components": "@/components",
     "utils": "@/lib/utils",
-    "verastkirin": "@/verastkirin"
+    "auth": "@/auth"
   }
 }
