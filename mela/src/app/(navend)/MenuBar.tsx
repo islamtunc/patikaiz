@@ -5,10 +5,11 @@
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 
 // @ts-ignore: missing type declarations for module alias "@/auth"
-import { validateRequest } from "@/auth";
-import {  CarIcon, Home, Mail } from "lucide-react";
+import { validateRequest } from "@/(verastkirin)";
+import { CarIcon, Home, Mail } from "lucide-react";
 import Link from "next/link";
-import Button from "@/hemanen/ui/Button";
+import { Button } from "@/hemanen/ui/button";
+
 interface MenuBarProps {
   className?: string;
 }
@@ -32,8 +33,6 @@ export default async function MenuBar({ className }: MenuBarProps) {
         </Link>
       </Button>
     
-    
-
       <Button
         variant="ghost"
         className="flex items-center justify-start gap-3"
