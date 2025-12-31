@@ -75,7 +75,7 @@ export function useSubmitPostMutation() {
       console.error(error);
       toast({
         variant: "destructive",
-        description: "Sorun çıktı tekrar deneyin devam ederse yekazad SC ile iletişime geçin.",
+        description: `Sorun çıktı ${error} tekrar deneyin devam ederse yekazad SC ile iletişime geçin.`,
       });
     },
   });
