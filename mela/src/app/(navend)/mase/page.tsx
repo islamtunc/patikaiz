@@ -13,13 +13,18 @@
 // Elhamdulillahirabbulalemin
 
 
-import PostEditor from "@/hemanen/mase/editor/PostEditor";
+import dynamic from "next/dynamic";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/hemanen/ui/tabs";
 
 import ForYouFeed from "./ForYouFeed";
 
 import SearchField from "@/hemanen/diwar/SearchField";
 import { Alert } from "react-bootstrap";
+
+const PostEditor = dynamic(
+  () => import("@/hemanen/mase/editor/PostEditor"),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
