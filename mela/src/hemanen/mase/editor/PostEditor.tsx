@@ -142,7 +142,7 @@ export default function PostEditor() {
         />
         <LoadingButton
           onClick={onSubmit}
-          loading={mutation.isPending}
+          loading={mutation.isUploading}
           disabled={
             !title.trim() || !address.trim() || !description.trim() || isUploading
           }
