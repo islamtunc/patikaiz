@@ -4,8 +4,8 @@
 // Allah U Ekber, Allah U Ekber, Allah U Ekber, La ilahe illallah
 // Subhanallah, Elhamdulillah, Allahu Ekber
 import Linkify from "@/hemanen/Linkify";
-import MmmPost from "@/hemanen/diwar/mmPost";
-import Post from "@/hemanen/diwar/mmPost";
+import MmmPost from "@/hemanen/mase/mmPost";
+import Post from "@/hemanen/mase/Post";
 import UserAvatar from "@/hemanen/UserAvatar";
 import UserTooltip from "@/hemanen/UserTooltip";
 import prisma from "@/pirtukxane/prisma";
@@ -44,7 +44,7 @@ export default async function Page({ params: { postId } }: PageProps) {
       {/* İçerik Kartı */}
       <div className="flex-1 flex justify-center items-start">
         <div className="w-full max-w-2xl">
-          <MmmPost post={post} />
+          <MmmPost post={post as any} />
           {/* Ayraç ve boşluk */}
           <div className="my-8">
             <hr className="border-t-4 border-gray-355" />

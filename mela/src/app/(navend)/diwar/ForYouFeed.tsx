@@ -44,7 +44,7 @@ export default function ForYouFeed() {
 
   const deleteMutation = useMutation({
     mutationFn: async (postId: string) => {
-      await kyInstance.delete(`/api/posts/diwar/${postId}`);
+      await kyInstance.delete(`/api/parvekirin/diwar/${postId}`);
     },
     onSuccess: () => {
       toast({
@@ -75,6 +75,7 @@ export default function ForYouFeed() {
   }
 
   if (status === "error") {
+    
     return (
       <p className="text-center text-destructive">
         Pirsgirek derket 

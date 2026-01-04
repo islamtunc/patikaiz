@@ -47,7 +47,7 @@ export default function Post({ post }: PostProps) {
       <div className="flex justify-between gap-5">
         <div className="flex items-center gap-5">
           <Link
-            href={`/malper/mmavahi/posts/${post.id}`}
+            href={`/malper/mase/posts/${post.id}`}
             className="block text-sm text-muted-foreground hover:underline"
             suppressHydrationWarning
           >
