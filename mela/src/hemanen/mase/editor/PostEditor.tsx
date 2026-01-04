@@ -141,8 +141,8 @@ export default function PostEditor() {
           disabled={isUploading || attachments.length >= 10}
         />
         <LoadingButton
-          onClick={onSubmit}
-          loading={mutation.isUploading}
+          {...({ onClick: onSubmit } as any)}
+          loading={mutation.isLoading}
           disabled={
             !title.trim() || !address.trim() || !description.trim() || isUploading
           }
