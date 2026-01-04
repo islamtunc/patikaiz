@@ -4,7 +4,7 @@
 // La ilahe illallah, Muhammedur Resulullah
 // SuphanAllah velhamdulillah, Allahu Ekber
 // Allah ümmetimizi korusun, birlik ve beraberliğimizi daim eylesin.
-
+//La ilahe illAllahu vahdehu la şerike leh, lehul mülkü ve lehul hamdu yuhyi ve yumitu ve hüve ala külli şey'in kadir.
 
 import { useSession } from "@/app/(navend)/SessionProvider";
 import { useToast } from "@/hemanen/ui/use-toast";
