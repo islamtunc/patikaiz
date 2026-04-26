@@ -7,7 +7,7 @@
 
 """
 Ana Uygulama - Profil Satış Muhasebe Programı
-Tkinter GUI ile cari, veresiye ve muhasebe yönetimi
+Tkinter GUI ile cari, satış ve muhasebe yönetimi
 """
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -20,7 +20,7 @@ class ProfilMuhasebeApp:
     
     def __init__(self, root):
         self.root = root
-        self.root.title("Profil Muhasebe - Cari ve Veresiye Yönetimi")
+        self.root.title("EmirOğlu Demir Çelik- Cari ve Satış Yönetimi")
         self.root.geometry("1200x700")
         self.root.configure(bg="#f0f0f0")
         
@@ -28,12 +28,11 @@ class ProfilMuhasebeApp:
         
         self.setup_styles()
         self.create_header()
-        self.create_menu()
-        self.create_main_content()
+        self.create_tabs()  # Sekmeli yapı - tek pencerede tüm modüller
         self.create_status_bar()
         
-        # Varsayılan görünüm
-        self.show_cari_listesi()
+        # İlk sekme
+        self.notebook.select(0)
     
     def setup_styles(self):
         """GUI stillerini ayarla"""
@@ -64,7 +63,7 @@ class ProfilMuhasebeApp:
         header.pack_propagate(False)
         
         # Başlık
-        title = tk.Label(header, text="🏪 Profil Muhasebe Programı", 
+        title = tk.Label(header, text="🏪 EmirOğlu Demir Çelik", 
                        font=("Arial", 18, "bold"), bg=self.header_bg, fg="white")
         title.pack(side=tk.LEFT, padx=20)
         
@@ -81,31 +80,49 @@ class ProfilMuhasebeApp:
         self.root.after(1000, self.update_date)
     
     def create_menu(self):
-        """Menü oluştur"""
+        """Menü oluştur - Artık sekmeler var, basit başlık yeterli"""
         menu_frame = tk.Frame(self.root, bg="#ddd", height=40)
         menu_frame.pack(fill=tk.X)
         menu_frame.pack_propagate(False)
         
-        buttons = [
-            ("👥 Cariler", self.show_cari_listesi),
-            ("📋 Veresiye Defteri", self.show_veresiye_defteri),
-            ("💰 Muhasebe", self.show_muhasebe),
-            ("📦 Stok", self.show_stok),
-            ("📊 Raporlar", self.show_raporlar),
-        ]
-        
-        for text, command in buttons:
-            btn = tk.Button(menu_frame, text=text, command=command,
-                           bg="#ddd", fg="#333", relief=tk.FLAT,
-                           font=("Arial", 10, "bold"), padx=15, pady=5)
-            btn.pack(side=tk.LEFT, padx=2)
-            btn.bind("<Enter>", lambda e, b=btn: b.config(bg="#ccc"))
-            btn.bind("<Leave>", lambda e, b=btn: b.config(bg="#ddd"))
+        # Sekmeler artık ana navigasyon, sadece basit bir ipucu göster
+        tk.Label(menu_frame, text="📌 Sekmeler arasında geçiş için yukarıdaki sekmelere tıklayın", 
+                font=("Arial", 10), bg="#ddd", fg="#666").pack(pady=10)
     
-    def create_main_content(self):
-        """Ana içerik alanı"""
-        self.content_frame = tk.Frame(self.root, bg=self.bg_color)
-        self.content_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+    def create_tabs(self):
+        """Sekmeli (Notebook) yapı oluştur - Tüm modüller tek pencerede"""
+        self.notebook = ttk.Notebook(self.root)
+        self.notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        
+        # Her modül için ayrı frame
+        self.cari_frame = tk.Frame(self.notebook, bg=self.bg_color)
+        self.satis_frame = tk.Frame(self.notebook, bg=self.bg_color)
+        self.muhasebe_frame = tk.Frame(self.notebook, bg=self.bg_color)
+        self.stok_frame = tk.Frame(self.notebook, bg=self.bg_color)
+        self.rapor_frame = tk.Frame(self.notebook, bg=self.bg_color)
+        
+        # Sekmelere ekle
+        self.notebook.add(self.cari_frame, text="👥 Cariler")
+        self.notebook.add(self.satis_frame, text="📋 Satışlar")
+        self.notebook.add(self.muhasebe_frame, text="💰 Muhasebe")
+        self.notebook.add(self.stok_frame, text="📦 Stok")
+        self.notebook.add(self.rapor_frame, text="📊 Raporlar")
+        
+        # Sekme değiştiğinde içeriği yenile
+        self.notebook.bind("<<NotebookTabChanged>>", self.on_tab_changed)
+        
+        # İçerikleri yükle
+        self.load_cari_content()
+        self.load_satis_content()
+        self.load_muhasebe_content()
+        self.load_stok_content()
+        self.load_rapor_content()
+    
+    def on_tab_changed(self, event=None):
+        """Sekme değiştiğinde"""
+        secili = self.notebook.index(self.notebook.select())
+        moduller = ["Cari Listesi", "Satışlar", "Muhasebe", "Stok Yönetimi", "Raporlar"]
+        self.status_label.config(text=moduller[secili])
     
     def create_status_bar(self):
         """Durum çubuğu"""
@@ -137,23 +154,20 @@ class ProfilMuhasebeApp:
     
     # ==================== CARİ MODÜLÜ ====================
     
-    def show_cari_listesi(self):
-        """Cari listesi görünümü"""
-        self.clear_content()
-        self.status_label.config(text="Cari Listesi")
-        
+    def load_cari_content(self):
+        """Cari sekmesi içeriğini yükle"""
         # Başlık
-        tk.Label(self.content_frame, text="👥 Cari (Müşteri) Listesi", 
+        tk.Label(self.cari_frame, text="👥 Cari (Müşteri) Listesi", 
                 font=("Arial", 16, "bold"), bg=self.bg_color).pack(pady=10)
         
         # Araç çubuğu
-        toolbar = tk.Frame(self.content_frame, bg=self.bg_color)
+        toolbar = tk.Frame(self.cari_frame, bg=self.bg_color)
         toolbar.pack(fill=tk.X, pady=5)
         
         tk.Button(toolbar, text="+ Yeni Cari", command=self.cari_ekle_pencere,
                  bg=self.accent_color, fg="white", padx=10).pack(side=tk.LEFT, padx=5)
         
-        tk.Button(toolbar, text="🔄 Yenile", command=self.show_cari_listesi,
+        tk.Button(toolbar, text="🔄 Yenile", command=self.load_cari_content,
                  bg="#95a5a6", fg="white", padx=10).pack(side=tk.LEFT, padx=5)
         
         # Arama
@@ -163,14 +177,14 @@ class ProfilMuhasebeApp:
         self.cari_arama.bind("<KeyRelease>", self.cari_ara)
         
         # Tablo
-        table_frame = tk.Frame(self.content_frame)
+        table_frame = tk.Frame(self.cari_frame)
         table_frame.pack(fill=tk.BOTH, expand=True)
         
         # Scrollbar
         scroll_y = tk.Scrollbar(table_frame, orient=tk.VERTICAL)
         scroll_y.pack(side=tk.RIGHT, fill=tk.Y)
         
-        columns = ("ID", "Ad", "Telefon", "Borç", "Alacak", "Tarih")
+        columns = ("ID", "Ad", "Telefon", "Borç", "Alacak", "Tarih", "Notlar", "Belge Numarası", "işlem Tipi","Bakiye Cinsi")
         self.cari_tablo = ttk.Treeview(table_frame, columns=columns, 
                                        show="headings", yscrollcommand=scroll_y.set)
         scroll_y.config(command=self.cari_tablo.yview)
@@ -254,7 +268,7 @@ class ProfilMuhasebeApp:
                             notlar_entry.get("1.0", tk.END).strip())
             messagebox.showinfo("Başarılı", "Cari başarıyla eklendi!")
             win.destroy()
-            self.show_cari_listesi()
+            self.load_cari_content()
         
         tk.Button(win, text="Kaydet", command=kaydet,
                  bg=self.success_color, fg="white", padx=20, pady=5).pack(pady=15)
@@ -300,8 +314,8 @@ class ProfilMuhasebeApp:
                 font=("Arial", 12, "bold"), fg=self.success_color,
                 bg="white").pack(side=tk.LEFT, padx=20)
         
-        # Veresiye geçmişi
-        tk.Label(win, text="📋 Veresiye Geçmişi", font=("Arial", 12, "bold"),
+        # Satış geçmişi
+        tk.Label(win, text="📋 Satış Geçmişi", font=("Arial", 12, "bold"),
                 bg="white").pack(pady=5)
         
         table_frame = tk.Frame(win)
@@ -311,20 +325,20 @@ class ProfilMuhasebeApp:
         scroll_y.pack(side=tk.RIGHT, fill=tk.Y)
         
         columns = ("Ürün", "Miktar", "Birim Fiyat", "Toplam", "Ödenen", "Kalan", "Durum")
-        veresiye_tablo = ttk.Treeview(table_frame, columns=columns, 
+        satis_tablo = ttk.Treeview(table_frame, columns=columns, 
                                       show="headings", yscrollcommand=scroll_y.set)
-        scroll_y.config(command=veresiye_tablo.yview)
+        scroll_y.config(command=satis_tablo.yview)
         
         for col in columns:
-            veresiye_tablo.heading(col, text=col)
-            veresiye_tablo.column(col, width=80)
+            satis_tablo.heading(col, text=col)
+            satis_tablo.column(col, width=80)
         
-        veresiye_tablo.pack(fill=tk.BOTH, expand=True)
+        satis_tablo.pack(fill=tk.BOTH, expand=True)
         
         # Verileri yükle
-        veresiye_list = self.db.veresiye_listele(cari_id)
-        for v in veresiye_list:
-            veresiye_tablo.insert("", tk.END, values=(
+        satis_list = self.db.satis_listele(cari_id)
+        for v in satis_list:
+            satis_tablo.insert("", tk.END, values=(
                 v["urun_adi"],
                 v["miktar"],
                 f"{v['birim_fiyat']:,.2f} ₺",
@@ -338,8 +352,8 @@ class ProfilMuhasebeApp:
         btn_frame = tk.Frame(win, bg="white")
         btn_frame.pack(pady=10)
         
-        tk.Button(btn_frame, text="+ Veresiye Ekle", 
-                command=lambda: self.veresiye_ekle_pencere(cari_id, cari['ad']),
+        tk.Button(btn_frame, text="+ Satış Ekle", 
+                command=lambda: self.satis_ekle_pencere(cari_id, cari['ad']),
                 bg=self.accent_color, fg="white", padx=10).pack(side=tk.LEFT, padx=5)
         
         tk.Button(btn_frame, text="Ödeme Al", 
@@ -355,20 +369,21 @@ class ProfilMuhasebeApp:
         if messagebox.askyesno("Onay", f"{cari_ad} cari silinsin mi?"):
             self.db.cari_sil(cari_id)
             messagebox.showinfo("Başarılı", "Cari silindi!")
-            self.show_cari_listesi()
+            self.load_cari_content()
     
-    # ==================== VERESİYE MODÜLÜ ====================
+    # ==================== SATIŞ MODÜLÜ ====================
     
-    def show_veresiye_defteri(self):
-        """Veresiye defteri görünümü"""
-        self.clear_content()
-        self.status_label.config(text="Veresiye Defteri")
-        
-        tk.Label(self.content_frame, text="📋 Veresiye Defteri", 
+    def load_satis_content(self):
+        """Satış sekmesi içeriğini yükle"""
+        # Temizle
+        for widget in self.satis_frame.winfo_children():
+            widget.destroy()
+            
+        tk.Label(self.satis_frame, text="📋 Satış Listesi", 
                 font=("Arial", 16, "bold"), bg=self.bg_color).pack(pady=10)
         
         # Filtre
-        filter_frame = tk.Frame(self.content_frame, bg=self.bg_color)
+        filter_frame = tk.Frame(self.satis_frame, bg=self.bg_color)
         filter_frame.pack(fill=tk.X, pady=5)
         
         tk.Label(filter_frame, text="Cari:", bg=self.bg_color).pack(side=tk.LEFT, padx=5)
@@ -380,44 +395,45 @@ class ProfilMuhasebeApp:
         combo = ttk.Combobox(filter_frame, textvariable=self.cari_secim, 
                             values=cari_adlari, state="readonly", width=20)
         combo.pack(side=tk.LEFT, padx=5)
-        combo.bind("<<ComboboxSelected>>", self.veresiye_filtrele)
+        combo.bind("<<ComboboxSelected>>", self.satis_filtrele)
         
-        tk.Button(filter_frame, text="+ Yeni Veresiye", 
-                 command=self.veresiye_ekle_pencere,
+        tk.Button(filter_frame, text="+ Yeni Satış", 
+                 command=self.satis_ekle_pencere,
                  bg=self.accent_color, fg="white", padx=10).pack(side=tk.LEFT, padx=20)
         
         # Tablo
-        table_frame = tk.Frame(self.content_frame)
+        table_frame = tk.Frame(self.satis_frame)
         table_frame.pack(fill=tk.BOTH, expand=True)
         
         scroll_y = tk.Scrollbar(table_frame, orient=tk.VERTICAL)
         scroll_y.pack(side=tk.RIGHT, fill=tk.Y)
         
-        columns = ("ID", "Cari", "Ürün", "Miktar", "Birim Fiyat", "Toplam", "Ödenen", "Kalan", "Durum", "Tarih")
-        self.veresiye_tablo = ttk.Treeview(table_frame, columns=columns, 
+        columns = ("ID", "Cari", "Ürün", "Miktar", "Birim Fiyat", "Toplam", "Ödenen", "Kalan", "Açıklama", "Durum", "Tarih")
+        self.satis_tablo = ttk.Treeview(table_frame, columns=columns, 
                                            show="headings", yscrollcommand=scroll_y.set)
-        scroll_y.config(command=self.veresiye_tablo.yview)
+        scroll_y.config(command=self.satis_tablo.yview)
         
         for col in columns:
-            self.veresiye_tablo.heading(col, text=col)
-            self.veresiye_tablo.column(col, width=80)
+            self.satis_tablo.heading(col, text=col)
+            self.satis_tablo.column(col, width=80)
         
-        self.veresiye_tablo.column("Cari", width=120)
-        self.veresiye_tablo.column("Ürün", width=150)
+        self.satis_tablo.column("Cari", width=120)
+        self.satis_tablo.column("Ürün", width=150)
+        self.satis_tablo.column("Açıklama", width=120)
         
-        self.veresiye_tablo.pack(fill=tk.BOTH, expand=True)
+        self.satis_tablo.pack(fill=tk.BOTH, expand=True)
         
         # Verileri yükle
-        self.veresiye_veriler = self.db.veresiye_listele()
-        self.veresiye_tablo_doldur(self.veresiye_veriler)
+        self.satis_veriler = self.db.satis_listele()
+        self.satis_tablo_doldur(self.satis_veriler)
     
-    def veresiye_tablo_doldur(self, veriler):
-        """Veresiye tablosunu doldur"""
-        for item in self.veresiye_tablo.get_children():
-            self.veresiye_tablo.delete(item)
+    def satis_tablo_doldur(self, veriler):
+        """Satış tablosunu doldur"""
+        for item in self.satis_tablo.get_children():
+            self.satis_tablo.delete(item)
         
         for v in veriler:
-            self.veresiye_tablo.insert("", tk.END, values=(
+            self.satis_tablo.insert("", tk.END, values=(
                 v["id"],
                 v["cari_ad"],
                 v["urun_adi"],
@@ -426,27 +442,32 @@ class ProfilMuhasebeApp:
                 f"{v['toplam']:,.2f} ₺",
                 f"{v['odendi']:,.2f} ₺",
                 f"{v['kalan']:,.2f} ₺",
+                v.get("aciklama") or "-",
                 v["durum"],
                 v["tarih"][:10] if v["tarih"] else "-"
             ))
     
-    def veresiye_filtrele(self, event=None):
-        """Veresiye filtrele"""
+    def satis_filtrele(self, event=None):
+        """Satış filtrele"""
         secili = self.cari_secim.get()
         if secili == "Tümü":
-            self.veresiye_tablo_doldur(self.veresiye_veriler)
+            self.satis_tablo_doldur(self.satis_veriler)
         else:
-            filtreli = [v for v in self.veresiye_veriler if v["cari_ad"] == secili]
-            self.veresiye_tablo_doldur(filtreli)
+            filtreli = [v for v in self.satis_veriler if v["cari_ad"] == secili]
+            self.satis_tablo_doldur(filtreli)
     
-    def veresiye_ekle_pencere(self, cari_id=None, cari_ad=None):
-        """Veresiye ekleme penceresi"""
+    def satis_ekle_pencere(self, cari_id=None, cari_ad=None):
+        """Satış ekleme penceresi
+        
+        Bu fonksiyon yeni bir satış kaydı oluşturur.
+        Stoktan düşme işlemi otomatik yapılır.
+        """
         win = tk.Toplevel(self.root)
-        win.title("Yeni Veresiye")
+        win.title("Yeni Satış")
         win.geometry("400x400")
         win.configure(bg="white")
         
-        tk.Label(win, text="Veresiye Kaydı", font=("Arial", 14, "bold"),
+        tk.Label(win, text="Satış Kaydı", font=("Arial", 14, "bold"),
                 bg="white").pack(pady=15)
         
         form = tk.Frame(win, bg="white")
@@ -463,10 +484,21 @@ class ProfilMuhasebeApp:
                                  state="readonly", width=27)
         cari_combo.grid(row=0, column=1, pady=5, padx=5)
         
-        # Ürün adı
-        tk.Label(form, text="Ürün Adı:", bg="white").grid(row=1, column=0, sticky="w", pady=5)
-        urun_entry = tk.Entry(form, width=30)
-        urun_entry.grid(row=1, column=1, pady=5, padx=5)
+        # Stok (Ürün) seçimi
+        tk.Label(form, text="Ürün (Stok):", bg="white").grid(row=1, column=0, sticky="w", pady=5)
+        
+        stoklar = self.db.stok_listele()
+        stok_secenekleri = [f"{s['urun_adi']} (Stok: {s['miktar']})" for s in stoklar]
+        
+        if not stok_secenekleri:
+            messagebox.showerror("Hata", "Stok bulunmuyor! Önce stok ekleyin.")
+            win.destroy()
+            return
+        
+        stok_var = tk.StringVar(value=stok_secenekleri[0])
+        stok_combo = ttk.Combobox(form, textvariable=stok_var, values=stok_secenekleri, 
+                                 state="readonly", width=27)
+        stok_combo.grid(row=1, column=1, pady=5, padx=5)
         
         # Miktar
         tk.Label(form, text="Miktar:", bg="white").grid(row=2, column=0, sticky="w", pady=5)
@@ -477,6 +509,11 @@ class ProfilMuhasebeApp:
         tk.Label(form, text="Birim Fiyat (₺):", bg="white").grid(row=3, column=0, sticky="w", pady=5)
         fiyat_entry = tk.Entry(form, width=30)
         fiyat_entry.grid(row=3, column=1, pady=5, padx=5)
+        
+        # Açıklama
+        tk.Label(form, text="Açıklama:", bg="white").grid(row=4, column=0, sticky="w", pady=5)
+        aciklama_entry = tk.Entry(form, width=30)
+        aciklama_entry.grid(row=4, column=1, pady=5, padx=5)
         
         def kaydet():
             cari_ad = cari_var.get()
@@ -490,21 +527,40 @@ class ProfilMuhasebeApp:
                 messagebox.showerror("Hata", "Cari bulunamadı!")
                 return
             
-            try:
-                urun = urun_entry.get().strip()
-                miktar = int(miktar_entry.get())
-                fiyat = float(fiyat_entry.get())
-                
-                if not urun or miktar <= 0 or fiyat <= 0:
-                    raise ValueError()
-            except:
-                messagebox.showerror("Hata", "Geçerli değerler giriniz!")
+            # Stok seçimi
+            stok_secim = stok_var.get()
+            if not stok_secim:
+                messagebox.showerror("Hata", "Ürün seçiniz!")
                 return
             
-            self.db.veresiye_ekle(cari_bul["id"], urun, miktar, fiyat)
-            messagebox.showinfo("Başarılı", "Veresiye kaydı eklendi!")
-            win.destroy()
-            self.show_veresiye_defteri()
+            # Stok ID bul
+            secim_ad = stok_secim.split(" (Stok:")[0]
+            stok_bul = next((s for s in stoklar if s["urun_adi"] == secim_ad), None)
+            if not stok_bul:
+                messagebox.showerror("Hata", "Stok bulunamadı!")
+                return
+            
+            try:
+                miktar = int(miktar_entry.get())
+                fiyat = float(fiyat_entry.get())
+                aciklama = aciklama_entry.get().strip()
+                
+                if miktar <= 0 or fiyat <= 0:
+                    raise ValueError()
+            except:
+                messagebox.showerror("Hata", "Geçerli miktar ve fiyat giriniz!")
+                return
+            
+            try:
+                # Satış ekle (stoktan düşülür)
+                self.db.satis_ekle(cari_bul["id"], stok_bul["id"], miktar, fiyat, aciklama)
+                messagebox.showinfo("Başarılı", f"Satış kaydedildi!\nStoktan {miktar} adet düşüldü.")
+                win.destroy()
+                self.load_satis_content()
+            except ValueError as e:
+                messagebox.showerror("Hata", str(e))
+            except Exception as e:
+                messagebox.showerror("Hata", f"Bir hata oluştu: {e}")
         
         tk.Button(win, text="Kaydet", command=kaydet,
                  bg=self.success_color, fg="white", padx=20, pady=5).pack(pady=15)
@@ -519,26 +575,26 @@ class ProfilMuhasebeApp:
         tk.Label(win, text=f"Ödeme Al: {cari_ad}", font=("Arial", 14, "bold"),
                 bg="white").pack(pady=15)
         
-        # Veresiye seçimi
-        veresiye_list = self.db.veresiye_listele(cari_id)
-        aktif_veresiye = [v for v in veresiye_list if v["kalan"] > 0]
+        # Satış seçimi
+        satis_list = self.db.satis_listele(cari_id)
+        aktif_satis = [v for v in satis_list if v["kalan"] > 0]
         
-        if not aktif_veresiye:
-            messagebox.showinfo("Bilgi", "Ödenmemiş veresiye bulunmuyor!")
+        if not aktif_satis:
+            messagebox.showinfo("Bilgi", "Ödenmemiş satış bulunmuyor!")
             win.destroy()
             return
         
         form = tk.Frame(win, bg="white")
         form.pack(pady=10)
         
-        tk.Label(form, text="Veresiye:", bg="white").grid(row=0, column=0, sticky="w", pady=5)
+        tk.Label(form, text="Satış:", bg="white").grid(row=0, column=0, sticky="w", pady=5)
         
-        veresiye_secenekleri = [f"{v['urun_adi']} - Kalan: {v['kalan']:,.2f} ₺" 
-                               for v in aktif_veresiye]
-        veresiye_var = tk.StringVar(value=veresiye_secenekleri[0])
+        satis_secenekleri = [f"{v['urun_adi']} - Kalan: {v['kalan']:,.2f} ₺" 
+                               for v in aktif_satis]
+        satis_var = tk.StringVar(value=satis_secenekleri[0])
         
-        combo = ttk.Combobox(form, textvariable=veresiye_var, 
-                            values=veresiye_secenekleri, state="readonly", width=27)
+        combo = ttk.Combobox(form, textvariable=satis_var, 
+                            values=satis_secenekleri, state="readonly", width=27)
         combo.grid(row=0, column=1, pady=5, padx=5)
         
         tk.Label(form, text="Ödeme Tutarı (₺):", bg="white").grid(row=1, column=0, sticky="w", pady=5)
@@ -554,34 +610,35 @@ class ProfilMuhasebeApp:
                 messagebox.showerror("Hata", "Geçerli tutar giriniz!")
                 return
             
-            # Veresiye ID bul
-            secili = veresiye_var.get()
-            veresiye_bul = next((v for v in aktif_veresiye 
+            # Satış ID bul
+            secili = satis_var.get()
+            satis_bul = next((v for v in aktif_satis 
                                 if f"{v['urun_adi']} - Kalan: {v['kalan']:,.2f} ₺" == secili), None)
             
-            if veresiye_bul:
-                self.db.veresiye_ode(veresiye_bul["id"], tutar)
+            if satis_bul:
+                self.db.satis_ode(satis_bul["id"], tutar)
                 messagebox.showinfo("Başarılı", "Ödeme kaydedildi!")
                 win.destroy()
-                self.show_veresiye_defteri()
+                self.load_satis_content()
         
         tk.Button(win, text="Ödemeyi Kaydet", command=ode,
                  bg=self.success_color, fg="white", padx=20, pady=5).pack(pady=15)
     
     # ==================== MUHASEBE MODÜLÜ ====================
     
-    def show_muhasebe(self):
-        """Muhasebe görünümü"""
-        self.clear_content()
-        self.status_label.config(text="Muhasebe")
-        
-        tk.Label(self.content_frame, text="💰 Muhasebe", 
+    def load_muhasebe_content(self):
+        """Muhasebe sekmesi içeriğini yükle"""
+        # Temizle
+        for widget in self.muhasebe_frame.winfo_children():
+            widget.destroy()
+            
+        tk.Label(self.muhasebe_frame, text="💰 Muhasebe", 
                 font=("Arial", 16, "bold"), bg=self.bg_color).pack(pady=10)
         
         # Özet kartları
         rapor = self.db.muhasebe_rapor()
         
-        kart_frame = tk.Frame(self.content_frame, bg=self.bg_color)
+        kart_frame = tk.Frame(self.muhasebe_frame, bg=self.bg_color)
         kart_frame.pack(fill=tk.X, pady=10)
         
         self.kart_olustur(kart_frame, "💵 Toplam Gelir", f"{rapor.get('gelir', 0):,.2f} ₺", 
@@ -594,7 +651,7 @@ class ProfilMuhasebeApp:
                          self.accent_color).pack(side=tk.LEFT, padx=10, fill=tk.X, expand=True)
         
         # İşlem ekleme
-        islem_frame = tk.LabelFrame(self.content_frame, text="Yeni İşlem", 
+        islem_frame = tk.LabelFrame(self.muhasebe_frame, text="Yeni İşlem", 
                                     bg="white", font=("Arial", 11, "bold"))
         islem_frame.pack(fill=tk.X, padx=10, pady=10)
         
@@ -630,16 +687,16 @@ class ProfilMuhasebeApp:
             kategori = kat_entry.get().strip() or "Diğer"
             self.db.muhasebe_ekle(tur_var.get(), kategori, tutar, aciklama_entry.get())
             messagebox.showinfo("Başarılı", "İşlem kaydedildi!")
-            self.show_muhasebe()
+            self.load_muhasebe_content()
         
         tk.Button(islem_frame, text="Kaydet", command=ekle,
                  bg=self.success_color, fg="white", padx=15).pack(pady=10)
         
         # Geçmiş işlemler
-        tk.Label(self.content_frame, text="Geçmiş İşlemler", font=("Arial", 12, "bold"),
+        tk.Label(self.muhasebe_frame, text="Geçmiş İşlemler", font=("Arial", 12, "bold"),
                 bg=self.bg_color).pack(pady=5)
         
-        table_frame = tk.Frame(self.content_frame)
+        table_frame = tk.Frame(self.muhasebe_frame)
         table_frame.pack(fill=tk.BOTH, expand=True, pady=10)
         
         scroll_y = tk.Scrollbar(table_frame, orient=tk.VERTICAL)
@@ -683,16 +740,17 @@ class ProfilMuhasebeApp:
     
     # ==================== STOK MODÜLÜ ====================
     
-    def show_stok(self):
-        """Stok görünümü"""
-        self.clear_content()
-        self.status_label.config(text="Stok Yönetimi")
-        
-        tk.Label(self.content_frame, text="📦 Stok Yönetimi", 
+    def load_stok_content(self):
+        """Stok sekmesi içeriğini yükle"""
+        # Temizle
+        for widget in self.stok_frame.winfo_children():
+            widget.destroy()
+            
+        tk.Label(self.stok_frame, text="📦 Stok Yönetimi", 
                 font=("Arial", 16, "bold"), bg=self.bg_color).pack(pady=10)
         
         # Stok ekle
-        ekle_frame = tk.LabelFrame(self.content_frame, text="Yeni Ürün Ekle", 
+        ekle_frame = tk.LabelFrame(self.stok_frame, text="Yeni Ürün Ekle", 
                                    bg="white", font=("Arial", 11, "bold"))
         ekle_frame.pack(fill=tk.X, padx=10, pady=10)
         
@@ -731,13 +789,13 @@ class ProfilMuhasebeApp:
             
             self.db.stok_ekle(urun, birim, miktar, fiyat)
             messagebox.showinfo("Başarılı", "Ürün eklendi!")
-            self.show_stok()
+            self.load_stok_content()
         
         tk.Button(ekle_frame, text="Ekle", command=ekle,
                  bg=self.accent_color, fg="white", padx=15).pack(pady=10)
         
         # Stok listesi
-        table_frame = tk.Frame(self.content_frame)
+        table_frame = tk.Frame(self.stok_frame)
         table_frame.pack(fill=tk.BOTH, expand=True, pady=10)
         
         scroll_y = tk.Scrollbar(table_frame, orient=tk.VERTICAL)
@@ -768,18 +826,19 @@ class ProfilMuhasebeApp:
     
     # ==================== RAPORLAR ====================
     
-    def show_raporlar(self):
-        """Raporlar görünümü"""
-        self.clear_content()
-        self.status_label.config(text="Raporlar")
-        
-        tk.Label(self.content_frame, text="📊 Raporlar", 
+    def load_rapor_content(self):
+        """Raporlar sekmesi içeriğini yükle"""
+        # Temizle
+        for widget in self.rapor_frame.winfo_children():
+            widget.destroy()
+            
+        tk.Label(self.rapor_frame, text="📊 Raporlar", 
                 font=("Arial", 16, "bold"), bg=self.bg_color).pack(pady=10)
         
         # Özet rapor
         rapor = self.db.muhasebe_rapor()
         
-        rapor_frame = tk.LabelFrame(self.content_frame, text="Muhasebe Özeti", 
+        rapor_frame = tk.LabelFrame(self.rapor_frame, text="Muhasebe Özeti", 
                                    bg="white", font=("Arial", 11, "bold"))
         rapor_frame.pack(fill=tk.X, padx=10, pady=10)
         
@@ -796,7 +855,7 @@ class ProfilMuhasebeApp:
         toplam_borc = sum(c["borc"] for c in cariler)
         toplam_alacak = sum(c["alacak"] for c in cariler)
         
-        cari_frame = tk.LabelFrame(self.content_frame, text="Cari Özeti", 
+        cari_frame = tk.LabelFrame(self.rapor_frame, text="Cari Özeti", 
                                    bg="white", font=("Arial", 11, "bold"))
         cari_frame.pack(fill=tk.X, padx=10, pady=10)
         
@@ -807,6 +866,28 @@ class ProfilMuhasebeApp:
         """
         tk.Label(cari_frame, text=cari_icerik, font=("Arial", 12), bg="white",
                 justify=tk.LEFT).pack(pady=20)
+
+    # ==================== ESKİ METHODLAR - uyumluluk ====================
+    
+    def show_cari_listesi(self):
+        """Cari listesine git"""
+        self.notebook.select(0)
+    
+    def show_satis_listesi(self):
+        """Satış listesine git"""
+        self.notebook.select(1)
+    
+    def show_muhasebe(self):
+        """Muhasebeye git"""
+        self.notebook.select(2)
+    
+    def show_stok(self):
+        """Stok yönetimine git"""
+        self.notebook.select(3)
+    
+    def show_raporlar(self):
+        """Raporlara git"""
+        self.notebook.select(4)
 
 
 def main():
